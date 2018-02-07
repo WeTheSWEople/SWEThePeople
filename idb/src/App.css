@@ -22,6 +22,16 @@
   font-size: large;
 }
 
+.carousel-parent {
+    width: 100%;
+}
+
+.carousel-parent .carousel {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

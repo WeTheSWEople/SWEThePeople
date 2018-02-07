@@ -22,8 +22,7 @@ export default class Splash extends Component {
       slidesToScroll: 1,
       autoplay: true,
       centerMode: true,
-      autoplaySpeed: 4000,
-      centerPadding: '420px'
+      autoplaySpeed: 4000
     };
   }
   render() {
@@ -34,21 +33,23 @@ export default class Splash extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Splash Screen One</h1>
         </header>
-      <Slider {...this.settings}>
-        <div >
-            <img src={pic1}  alt="" />
-                    
-        </div>
-       <div >
-            <img src={pic2}  alt="" />
-                    
-        </div>
-        <div >
-            <img src={pic3}  alt="" />
-                    
-        </div>
-    
-      </Slider>
+      <div className="carousel-parent">
+          <Slider {...this.settings} className="carousel">
+            <div >
+                <img src={pic1}  alt="" />
+                        
+            </div>
+           <div >
+                <img src={pic2}  alt="" />
+                        
+            </div>
+            <div >
+                <img src={pic3}  alt="" />
+                        
+            </div>
+        
+          </Slider>
+      </div>
       </div>
     );
   }
