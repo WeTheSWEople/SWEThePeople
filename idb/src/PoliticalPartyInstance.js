@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-var request = require("request");
-
-export default class PoliticalParty extends Component {
+export default class PoliticalPartyInstance extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,16 +15,8 @@ export default class PoliticalParty extends Component {
         }
     }
 
-    componentWillMount() {
-        this.setState({ready: false})
-
-        this.setState({name: "Democratic Party",
-                       chair: "John Doe",
-                       formation_date: "July 4, 1776",
-                       color: "Blue"});
-    }
-
     render() {
+        console.log("hello world");
         return (
             <div className="Political-party">
                 <div className="App">
@@ -37,13 +27,18 @@ export default class PoliticalParty extends Component {
                 </div>
 
                 <div className="party-name">
-                    <h1>{this.state.name}</h1>
+                    <h1>{this.props.vals.name}</h1>
                 </div>
 
                 <div className="party-info">
-                    <p>{this.state.chair}</p>
-                    <p>{this.state.formation_date}</p>
-                    <p>{this.state.color}</p>
+                    <p>{this.props.vals.chair}</p>
+                    <p>{this.props.vals.formation_date}</p>
+                    <div>
+                        {this.props.vals.founders.map((item, index) => (
+                            <p key={index}>{item}</p>
+                        ))}
+                    </div>
+                    <p>{this.props.vals.color}</p>
                 </div>
             </div>
         );
