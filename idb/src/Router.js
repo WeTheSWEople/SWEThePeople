@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Splash from './Splash'
 import About from './About'
-import PoliticalParty from './PolitcalParty'
+import PoliticalParty from './PoliticalParty'
 
 
 export default class DefaultRouter extends Component {
