@@ -5,7 +5,7 @@ Iteration 1.0 of our flask/react stack.
 Clone the repo
 Go to the idb folder `cd idb`
 
-###Frontend Setup
+### Frontend Setup
 Setup the frontend     
 
 Go to the frontend folder  
@@ -17,7 +17,7 @@ Run `npm run build` to bundle and build the static assets for the flask server
 
 Proceed to server setup below
 
-###Server Setup
+### Server Setup
 To run a virtual environment:  
 Create virtual environment
 ```
