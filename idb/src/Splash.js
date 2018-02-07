@@ -24,7 +24,6 @@ export default class Splash extends Component {
       autoplay: true,
       centerMode: true,
       autoplaySpeed: 4000,
-      centerPadding: '420px',
       pauseOnHover: true
     };
   }
@@ -35,21 +34,23 @@ export default class Splash extends Component {
       <header className="App-header">
           <img src={header} className="App-logo" alt="logo" />
         </header>
-      <Slider {...this.settings}>
-        <div >
-            <img src={pic1}  alt="" />
+      <div className="carousel-parent">
+          <Slider {...this.settings} className="carousel">
+            <div >
+                <img src={pic1}  alt="" />
 
-        </div>
-       <div >
-            <img src={pic2}  alt="" />
+            </div>
+           <div >
+                <img src={pic2}  alt="" />
 
-        </div>
-        <div >
-            <img src={pic3}  alt="" />
+            </div>
+            <div >
+                <img src={pic3}  alt="" />
 
-        </div>
+            </div>
 
-      </Slider>
+          </Slider>
+      </div>
       </div>
     );
   }
