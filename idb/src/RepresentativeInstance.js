@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Link } from 'react-router-dom'
+import {GridList, GridTile} from 'material-ui/GridList';
 
-
+const styles = {
+  hyperlink: {
+    textDecoration: "none",
+    color: "black"
+  },
+};
 
 export default class RepresentativeInstance extends Component {
   constructor(props) {
@@ -10,13 +17,18 @@ export default class RepresentativeInstance extends Component {
 
   }
   render() {
-    console.log("From Rep Instance: " + this.props.rep)
+    console.log("FROM REP: " + this.props.rep)
     return (
-      <div className="App">
-        <img src={"https://theunitedstates.io/images/congress/225x275/" + this.props.rep.bioguide + ".jpg"}  alt="" />
-        <h2>{this.props.rep.firstName} {this.props.rep.lastName}</h2>
-        <h4>{this.props.rep.party}</h4>
-      </div>
+      <Link 
+        to={`/representative/${this.props.rep.bioguide}`} 
+        style={styles.hyperlink}>
+            <GridTile
+              key={this.props.rep.bioguide}
+              title={this.props.rep.firstName} >
+                <img src={"https://theunitedstates.io/images/congress/225x275/" + this.props.rep.bioguide + ".jpg"}  alt="" />
+           </GridTile>
+      </Link>
     );
   }
 }
+
