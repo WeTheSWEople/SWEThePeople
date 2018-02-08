@@ -1,41 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import header from './assets/header.png'
 import './App.css';
 import RepresentativeInstance from './RepresentativeInstance'
-
+import allReps from './assets/all-reps-endpoint.json';
 
 export default class Representative extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      rep1: {
-            bioguide : "R000570",
-            name: "Paul Ryan"
-      },
-      rep2: {
-            bioguide : "R000570",
-            name: "Paul Ryan"
-      },
-      rep3: {
-            bioguide : "R000570",
-            name: "Paul Ryan"
-      }
-    }
-    
+
+    console.log(allReps)
+
+    this.state = allReps
+
   }
   render() {
     return (
       <div className="App">
       <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={header} className="App-logo" alt="logo" />
           <h1 className="App-title">Representative</h1>
       </header>
-      <RepresentativeInstance rep = {this.state.rep1} />
-      <RepresentativeInstance rep = {this.state.rep2} />
-      <RepresentativeInstance rep = {this.state.rep3} />
+      <RepresentativeInstance rep = {this.state[0]} />
+      <RepresentativeInstance rep = {this.state[1]} />
+      <RepresentativeInstance rep = {this.state[2]} />
       </div>
     );
   }
 }
-
-
