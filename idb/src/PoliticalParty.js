@@ -16,9 +16,22 @@ export default class PoliticalParty extends Component {
                           founders: ["Andrew Jackson", "Martin Van Buren"],
                           formation_date: "January 8, 1828",
                           color: "Blue"}
+        var republican = {name: "Republican Party",
+                          chair: "Ronna Romney McDaniel",
+                          formation_date: "March 20, 1854",
+                          color: "Red"};
+
+        var libertarian = {name: "Libertarian Party",
+                           chair: "Wes Benedict",
+                           formation_date: "December 11, 1971",
+                           color: "Purple"};
 
         return (
-            <PoliticalPartyInstance vals={democratic} />
+            <div>
+                <PoliticalPartyInstance vals={democratic}  />
+                <PoliticalPartyInstance vals={republican}  />
+                <PoliticalPartyInstance vals={libertarian} />
+            </div>
         );
     }
 }
