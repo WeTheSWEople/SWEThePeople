@@ -3,7 +3,6 @@ import header from './assets/header.png'
 import './App.css';
 import RepresentativeInstance from './RepresentativeInstance'
 import allReps from './assets/all-reps-endpoint.json';
-import { Link } from 'react-router-dom'
 import {GridList} from 'material-ui/GridList';
 
 

@@ -3,10 +3,6 @@ import header from './assets/header.png'
 import './App.css';
 
 export default class RepresentativeDetails extends Component {
-  constructor(props) {
-    super(props);
-
-  }
   render() {
     return (
       <div className="App">
