@@ -1,19 +1,49 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Slider from 'react-slick';
+import header from './assets/images/header.png'
 import './App.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import pic1 from './assets/images/splash-screen/pic1.jpg'
+import pic2 from './assets/images/splash-screen/pic2.jpg'
+import pic3 from './assets/images/splash-screen/pic3.jpg'
 
 export default class Splash extends Component {
+  constructor(props) {
+    super(props);
+
+    this.settings = {
+      dots: true,
+      infinite: true,
+      speed: 300,
+      arrows: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      centerMode: true,
+      autoplaySpeed: 4000,
+      pauseOnHover: true
+    }
+  }
   render() {
+    var pics = [pic1, pic2, pic3]
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+      <header className="App-header">
+          <img src={header} className="App-logo" alt="logo" />
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="carousel-parent">
+          <Slider {...this.settings} className="carousel">
+
+          {pics.map((item) => (
+              <div><img src={item} alt=""/></div>
+          ))}
+
+          </Slider>
       </div>
-    );
+      </div>
+    )
   }
 }

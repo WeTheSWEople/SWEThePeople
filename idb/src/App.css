@@ -4,12 +4,12 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 50px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: black;
+  height: 100px;
   padding: 20px;
   color: white;
 }
@@ -22,7 +22,23 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
+.h1 {
+  font: times;
+  color: white
+}
+
+.carousel-parent {
+    width: 100%;
+    background-color: black;
+}
+
+.carousel-parent .carousel {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
+}  */
