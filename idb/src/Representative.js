@@ -11,8 +11,6 @@ export default class Representative extends Component {
     super(props);
 
     console.log(allReps)
-
-    this.state = null
     this.state = allReps
 
   }
@@ -23,18 +21,15 @@ export default class Representative extends Component {
           <img src={header} className="App-logo" alt="logo" />
           <h1 className="App-title">Representative</h1>
       </header>
-      <Link to={`/representative/${this.state[0].bioguide}`} >
-      <RepresentativeInstance rep = {this.state[0]} />
-      </Link>
 
-       <Link to={`/representative/${this.state[1].bioguide}`} >
-      <RepresentativeInstance rep = {this.state[1]} />
-      </Link>
+      {this.state.map((item) => (
 
-       <Link to={`/representative/${this.state[2].bioguide}`} >
-      <RepresentativeInstance rep = {this.state[2]} />
-      </Link>
+          <Link key={item.bioguide} to={`/representative/${item.bioguide}`} >
+            <RepresentativeInstance rep = {item} />
+          </Link>
 
+      ))}
+      
       </div>
     );
   }
