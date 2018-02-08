@@ -27,10 +27,7 @@ export default class Splash extends Component {
     }
   }
   render() {
-    var pics = []
-    pics.push(pic1)
-    pics.push(pic2)
-    pics.push(pic3)
+    var pics = [pic1, pic2, pic3]
 
     return (
       <div className="App">
