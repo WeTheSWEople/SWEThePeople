@@ -81,6 +81,7 @@ export default class About extends Component {
 		/></center>
 		{calls_ready}
 		{members}
+		<p><a href = "https://github.com/WeTheSWEople/SWEThePeople/">Link to the GitHub Repo</a></p>
 	  </div>
 	);
   }
