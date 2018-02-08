@@ -6,6 +6,14 @@ import allReps from './assets/all-reps-endpoint.json';
 import { Link } from 'react-router-dom'
 
 
+const styles = {
+  hyperlink: {
+    textDecoration: "none",
+    color: "black"
+  },
+};
+
+
 export default class Representative extends Component {
   constructor(props) {
     super(props);
@@ -23,11 +31,13 @@ export default class Representative extends Component {
       </header>
 
       {this.state.map((item) => (
-
-          <Link key={item.bioguide} to={`/representative/${item.bioguide}`} >
+          <Link 
+            key={item.bioguide} 
+            to={`/representative/${item.bioguide}`} 
+            style={styles.hyperlink} >
             <RepresentativeInstance rep = {item} />
+            
           </Link>
-
       ))}
       
       </div>
