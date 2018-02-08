@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import header from './assets/header.png'
+import header from './assets/images/header.png'
 import './App.css';
 
 export default class RepresentativeDetails extends Component {

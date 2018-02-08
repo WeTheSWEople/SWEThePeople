@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import pic1 from './assets/pic1.jpg'
-import pic2 from './assets/pic2.jpg'
-import pic3 from './assets/pic3.jpg'
-import header from './assets/header.png'
+import header from './assets/images/header.png'
 import './App.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+import pic1 from './assets/images/splash-screen/pic1.jpg'
+import pic2 from './assets/images/splash-screen/pic2.jpg'
+import pic3 from './assets/images/splash-screen/pic3.jpg'
 
 export default class Splash extends Component {
   constructor(props) {
@@ -23,9 +24,13 @@ export default class Splash extends Component {
       centerMode: true,
       autoplaySpeed: 4000,
       pauseOnHover: true
-    };
+    }
   }
   render() {
+    var pics = []
+    pics.push(pic1)
+    pics.push(pic2)
+    pics.push(pic3)
 
     return (
       <div className="App">
@@ -34,22 +39,14 @@ export default class Splash extends Component {
         </header>
       <div className="carousel-parent">
           <Slider {...this.settings} className="carousel">
-            <div >
-                <img src={pic1}  alt="" />
 
-            </div>
-           <div >
-                <img src={pic2}  alt="" />
-
-            </div>
-            <div >
-                <img src={pic3}  alt="" />
-
-            </div>
+          {pics.map((item) => (
+              <div><img src={item} alt=""/></div>
+          ))}
 
           </Slider>
       </div>
       </div>
-    );
+    )
   }
 }

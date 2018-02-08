@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import header from './assets/header.png'
+import header from './assets/images/header.png'
 import './App.css';
 import RepresentativeInstance from './RepresentativeInstance'
 import allReps from './assets/all-reps-endpoint.json';
