@@ -11,7 +11,6 @@ export default class RepresentativeDetails extends Component {
           <h1 className="App-title">Representative Details</h1>
       </header>
       <p>{this.props.match.params.bioguideid}</p>
-
       </div>
     );
   }
