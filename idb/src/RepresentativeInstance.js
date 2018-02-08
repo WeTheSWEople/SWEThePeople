@@ -17,10 +17,9 @@ export default class RepresentativeInstance extends Component {
 
   }
   render() {
-    console.log("FROM REP: " + this.props.rep)
     return (
-      <Link 
-        to={`/representative/${this.props.rep.bioguide}`} 
+      <Link
+        to={`/representatives/${this.props.rep.bioguide}`}
         style={styles.hyperlink}>
             <GridTile
               key={this.props.rep.bioguide}
@@ -31,4 +30,3 @@ export default class RepresentativeInstance extends Component {
     );
   }
 }
-

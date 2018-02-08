@@ -8,16 +8,14 @@ export default class RepresentativeDetails extends Component {
 
   }
   render() {
-    console.log("Hello")
-    console.log(this.props.match.params.bioguideid)
     return (
       <div className="App">
       <header className="App-header">
           <img src={header} className="App-logo" alt="logo" />
-          <h1 className="App-title">Representative DeTails</h1>
+          <h1 className="App-title">Representative Details</h1>
       </header>
       <p>{this.props.match.params.bioguideid}</p>
-      
+
       </div>
     );
   }

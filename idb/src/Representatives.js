@@ -25,11 +25,10 @@ const styles = {
 };
 
 
-export default class Representative extends Component {
+export default class Representatives extends Component {
   constructor(props) {
     super(props);
 
-    console.log(allReps)
     this.state = allReps
 
   }
@@ -38,7 +37,7 @@ export default class Representative extends Component {
       <div className="App">
       <header className="App-header">
           <img src={header} className="App-logo" alt="logo" />
-          <h1 className="App-title">Representative</h1>
+          <h1 className="App-title">Representatives</h1>
       </header>
       <div style={styles.root}>
       <GridList
