@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Link } from 'react-router-dom'
-import {GridList, GridTile} from 'material-ui/GridList';
+import {GridTile} from 'material-ui/GridList';
 
 const styles = {
   hyperlink: {
@@ -24,7 +24,7 @@ export default class RepresentativeInstance extends Component {
         style={styles.hyperlink}>
             <GridTile
               key={this.props.rep.bioguide}
-              title={this.props.rep.firstName} >
+              title={this.props.rep.firstName + " " + this.props.rep.lastName} >
                 <img src={"https://theunitedstates.io/images/congress/225x275/" + this.props.rep.bioguide + ".jpg"}  alt="" />
            </GridTile>
       </Link>

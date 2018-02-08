@@ -4,15 +4,11 @@ import './App.css';
 import RepresentativeInstance from './RepresentativeInstance'
 import allReps from './assets/all-reps-endpoint.json';
 import { Link } from 'react-router-dom'
-import {GridList, GridTile} from 'material-ui/GridList';
+import {GridList} from 'material-ui/GridList';
 
 
 
 const styles = {
-  hyperlink: {
-    textDecoration: "none",
-    color: "black"
-  },
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -44,8 +40,6 @@ export default class Representative extends Component {
           <img src={header} className="App-logo" alt="logo" />
           <h1 className="App-title">Representative</h1>
       </header>
-
-
       <div style={styles.root}>
       <GridList
         cellHeight={400}
