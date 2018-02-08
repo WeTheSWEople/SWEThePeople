@@ -15,7 +15,7 @@ export default class Navigation extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <LinkContainer to="/">
+            <LinkContainer to="/" exact={true}>
               <NavItem>
                 Home
               </NavItem>
