@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 
+import header from './assets/images/header.png'
+import './App.css';
+
 export default class Navigation extends Component {
   render() {
     return (
       <div>
-        <Navbar>
+        <Navbar fixedTop={true} inverse={true}>
           <Navbar.Header>
             <Navbar.Brand>
               <LinkContainer to="/">
-                <a>Swe The People</a>
+                <img src={header} className="App-logo" alt="logo" />
               </LinkContainer>
             </Navbar.Brand>
           </Navbar.Header>
@@ -36,5 +39,3 @@ export default class Navigation extends Component {
     );
   }
 }
-
-

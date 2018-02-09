@@ -72,20 +72,20 @@ export default class About extends Component {
 		  members = <Members swe_data = {this.state.swe_member_data} />
 	  }
 
-	return (
-	  <div className="App">
-	  <h2>We the Sweople Present: </h2>
-	  <h3>SWEThePeople.me</h3>
-	  <h4>Swethepeople is a website devoted to people who love the government. We provide information about local government officials, the location in which they represent, and the parties they represent.</h4>
-	  <h4>Within our website, you will also find a visualization of census data with the location of certain government districts.</h4>
-		<center><RingLoader
-		  color={'#123abc'}
-		  loading={!this.state.ready}
-		/></center>
-		{calls_ready}
-		{members}
-		<p><a href = "https://github.com/WeTheSWEople/SWEThePeople/">Link to the GitHub Repo</a></p>
-	  </div>
-	);
+    return (
+      <div className="App">
+      <h2>We the Sweople Present: </h2>
+      <h3>SWEThePeople.me</h3>
+      <h4>Swethepeople is a website devoted to people who love the government. We provide information about local government officials, the location in which they represent, and the parties they represent.</h4>
+      <h4>Within our website, you will also find a visualization of census data with the location of certain government districts.</h4>
+      <center><RingLoader
+        color={'#123abc'}
+        loading={!this.state.ready}
+      /></center>
+      {calls_ready}
+      {members}
+      <p><a href = "https://github.com/WeTheSWEople/SWEThePeople/">Link to the GitHub Repo</a></p>
+      </div>
+    );
   }
 }

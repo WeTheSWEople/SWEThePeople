@@ -32,8 +32,7 @@ export default class Splash extends Component {
     return (
       <div className="App">
       <header className="App-header">
-          <img src={header} className="App-logo" alt="logo" />
-        </header>
+      </header>
       <div className="carousel-parent">
           <Slider {...this.settings} className="carousel">
 
