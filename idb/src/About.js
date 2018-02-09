@@ -78,21 +78,21 @@ export default class About extends Component {
 		  calls_ready = <h4>Total Commits: {this.state.total_commits} <br />Total Issues: {this.state.total_issues} <br />Total Unit tests: 0</h4>
 		  members = <Members swe_data = {this.state.swe_member_data} />
 	  }
-
-	return (
-	  <div className="App">
-	  <h2>WeTheSWEople Present: </h2>
-	  <h3>SWEThePeople.me</h3>
-	  <h4>SWEThePeople provides information and resources for anyone interested in the members of United States House of Representatives. This site provides information about representatives, their districts, and parties.</h4>
-	  <h4>The site combines information about legislators with U.S. Census data, providing visitors with a better understanding of the intersection between party, state, and socioeconomics.</h4>
-		<center><RingLoader
-		  color={'#123abc'}
-		  loading={!this.state.ready}
-		/></center>
-		{calls_ready}
-		{members}
-		<p><a href = "https://github.com/WeTheSWEople/SWEThePeople/">Link to the GitHub Repo</a></p>
-	  </div>
-	);
+      
+    return (
+      <div className="App">
+      <h2>WeTheSWEople Present: </h2>
+      <h3>SWEThePeople.me</h3>
+      <h4>SWEThePeople provides information and resources for anyone interested in the members of United States House of Representatives. This site provides information about representatives, their districts, and parties.</h4>
+      <h4>The site combines information about legislators with U.S. Census data, providing visitors with a better understanding of the intersection between party, state, and socioeconomics.</h4>
+      <center><RingLoader
+        color={'#123abc'}
+        loading={!this.state.ready}
+      /></center>
+      {calls_ready}
+      {members}
+      <p><a href = "https://github.com/WeTheSWEople/SWEThePeople/">Link to the GitHub Repo</a></p>
+      </div>
+    );
   }
 }
