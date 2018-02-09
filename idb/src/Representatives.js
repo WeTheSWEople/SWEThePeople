@@ -34,9 +34,7 @@ export default class Representatives extends Component {
   render() {
     return (
       <div className="App">
-      <header className="App-header">
-          <img src={header} className="App-logo" alt="logo" />
-          <h1 className="App-title">Representatives</h1>
+      <header className="App-header-white">
       </header>
       <div style={styles.root}>
       <GridList
