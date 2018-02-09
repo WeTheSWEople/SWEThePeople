@@ -20,6 +20,12 @@
   color: white;
 }
 
+.About-header-white {
+  background-color: white;
+  height: 50px;
+  color: white;
+}
+
 .App-title {
   font-size: 1.5em;
 }

@@ -4,16 +4,7 @@ import './App.css';
 import { RingLoader } from 'react-spinners';
 import Members from './Members'
 
-
 var request = require("request");
-
-const forkMeStyle = {
-	position: 'absolute',
-	top: 0,
-	left: 0,
-	border: 0,
-  alignSelf: 'flex-end',
-};
 
 export default class About extends Component {
 	constructor(props){
@@ -78,9 +69,11 @@ export default class About extends Component {
 		  calls_ready = <h4>Total Commits: {this.state.total_commits} <br />Total Issues: {this.state.total_issues} <br />Total Unit tests: 0</h4>
 		  members = <Members swe_data = {this.state.swe_member_data} />
 	  }
-      
+
     return (
       <div className="App">
+			<header className="About-header-white">
+      </header>
       <h2>WeTheSWEople Present: </h2>
       <h3>SWEThePeople.me</h3>
       <h4>SWEThePeople provides information and resources for anyone interested in the members of United States House of Representatives. This site provides information about representatives, their districts, and parties.</h4>
