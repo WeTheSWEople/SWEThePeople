@@ -22,24 +22,27 @@ export default class About extends Component {
 		this.setState({ready: false})
 
 		var options = { method: 'GET',
-		url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/commits'}
+		url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/stats/contributors'}
 		request(options, function (error, response, body) {
 			if(error){
 				this.setState({error: true, ready: true})
 			}
 			var swe_members = {}
-			swe_members['MTirtowidjojo'] = ['Michael Tirtowidjojo', 0,0, 0]
-			swe_members['copperstick6'] = ["William Han",0,0, 0]
-			swe_members['raulcodes'] = ['Raul Camacho', 0,0, 0]
-			swe_members['minwoo0jo'] = ['Minwoo Jo', 0,0, 0]
-			swe_members['bzsinger'] = ['Benjamin Singer', 0,0, 0]
-			swe_members['palakhirpara'] = ['Palakkumar Hirpara', 0, 0, 0]
+			swe_members['MTirtowidjojo'] = ['Michael Tirtowidjojo', 0,0, 0,"Michael is a third-year CS student who trains in Taekwondo and enjoys reading World War II stories.", "Michael.png"]
+			swe_members['copperstick6'] = ["William Han",0,0, 0, "William is a sophomore CS student who enjoys the subtle art of memes and hackathons.", "William.jpg"]
+			swe_members['raulcodes'] = ['Raul Camacho', 0,0, 0, "Raul is cool and needs to get me his bio.", "Raul.jpeg"]
+			swe_members['minwoo0jo'] = ['Minwoo Jo', 0,0, 0, "Minwoo is a fourth year student currently pursuing a BSA in CS. He enjoys studying foreign languages and competing in video game tournaments in his free time.", 'Minwoo.jpg']
+			swe_members['bzsinger'] = ['Benjamin Singer', 0,0, 0, "Benny is also cool and fly af and needs to get me his bio.", "Benny.jpg"]
+			swe_members['palakhirpara'] = ['Palakkumar Hirpara', 0, 0, 0, "Palak is a senior who will be graduating this semester with BSCS and likes watching cricket.", "Palak.png"]
 			var commit_json = JSON.parse(body)
+			var total_commits = 0
 			for(var i = 0; i < commit_json.length; i++){
-				swe_members[String(commit_json[i]["author"]["login"])][1] += 1
+				var cur_user_count = commit_json[i]["total"]
+				swe_members[String(commit_json[i]["author"]["login"])][1] = cur_user_count
+				total_commits += commit_json[i]["total"]
 
 			}
-			this.setState({total_commits: commit_json.length})
+			this.setState({total_commits: total_commits})
 			var options = { method: 'GET',
 			  url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all',
 			  qs: { state: 'all' },
