@@ -6,13 +6,13 @@ import Navigation from './Navigation'
 
 export default class App extends Component {
   render() {
-    return (
-      <MuiThemeProvider>
-        <div>
-	      <DefaultRouter />
-        <Navigation />
-	      </div>
+	return (
+	  <MuiThemeProvider>
+		<div>
+		<Navigation />
+		  <DefaultRouter />
+		  </div>
 	  </MuiThemeProvider>
-    );
+	);
   }
 }
