@@ -15,7 +15,7 @@ export default class Navigation extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <LinkContainer to="/">
+            <LinkContainer to="/" exact={true}>
               <NavItem>
                 Home
               </NavItem>
@@ -23,6 +23,11 @@ export default class Navigation extends Component {
             <LinkContainer to="/about">
               <NavItem>
                 About
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to="/representatives">
+              <NavItem>
+                Representatives
               </NavItem>
             </LinkContainer>
           </Nav>
