@@ -3,8 +3,10 @@ import {GridList} from 'material-ui/GridList';
 import RepresentativeInstance from './RepresentativeInstance'
 import logo from './logo.svg';
 import './App.css';
+import './party.css';
 import all_parties from './assets/all-parties.json';
 import reps_info from './assets/bioguide-endpoint.json';
+import {Timeline} from 'react-twitter-widgets';
 
 export default class PoliticalPartyInstance extends Component {
     constructor(props) {
@@ -52,21 +54,41 @@ export default class PoliticalPartyInstance extends Component {
 
         return (
             <div style={divStyle}>
-                <img src={require("./assets/images/parties/" +
-                                  this.state.party["name"] + "-full.png")}
-                     style={imgStyle}
-                     alt={this.state.party["name"]} />
+                <div class="container">
+                <div class="party-header">
+                    <img src={require("./assets/images/parties/" +
+                                      this.state.party["name"] + "-full.png")}
+                         style={imgStyle}
+                         alt={this.state.party["name"]} />
+                    <h1>{this.state.party["name"]} Party</h1>
+                </div>
 
-                <h2>{this.state.party["name"]} Party</h2>
-                <p>Party chair: {this.state.party["chair"]}</p>
-                <p>Formation date: {this.state.party["formation_date"]}</p>
-                <p>Party color: {this.state.party["color"]}</p>
-                <p>Twitter: {this.state.party["twitter_handle"]}</p>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-2">
+                        <p>Party chair: {this.state.party["chair"]}</p>
+                        <p>Formation date: {this.state.party["formation_date"]}</p>
+                        <p>Party color: {this.state.party["color"]}</p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <Timeline
+                            dataSource={{
+                              sourceType: 'profile',
+                              screenName: this.state.party["twitter_handle"]
+                            }}
+                            options={{
+                              username: this.state.party["twitter_handle"],
+                              height: '400'
+                            }}
+                        />
+                    </div>
+                </div>
 
                 <h3>Representatives:</h3>
                 <GridList cellHeight={400} cols={5}>
                     {reps_grid}
                 </GridList>
+                </div>
             </div>
         );
     }
