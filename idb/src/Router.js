@@ -11,9 +11,10 @@ export default class DefaultRouter extends Component {
     return (
 		<Switch>
        	<Route exact path="/" component={Splash}/>
-		    <Route path="/about" component={About}/>
+        <Route path="/about" component={About}/>
         <Route exact path="/representatives" component={Representatives}/>
-		    <Route path="/representatives/:bioguideid" component={RepresentativeDetails}/>
+        <Route path="/representatives/:bioguideid" component={RepresentativeDetails}/>
+        <Route path="/parties" component={PoliticalParty} />
     </Switch>
     );
   }

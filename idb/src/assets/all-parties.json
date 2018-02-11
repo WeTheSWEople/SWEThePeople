@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Democratic Party",
+    "chair": "Tom Perez",
+    "formation_date": "January 8, 1828",
+    "color": "Blue"
+  },
+  {
+    "name": "Republican Party",
+    "chair": "Ronna Romney McDaniel",
+    "formation_date": "March 20, 1854",
+    "color": "Red"
+  },
+  {
+    "name": "Libertarian Party",
+    "chair": "Wes Benedict",
+    "formation_date": "December 11, 1971",
+    "color": "Purple"
+  }
+]
