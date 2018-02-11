@@ -8,10 +8,10 @@ export default class App extends Component {
   render() {
 	return (
 	  <MuiThemeProvider>
-		<div>
-		<Navigation />
-		  <DefaultRouter />
-		  </div>
+			<div>
+				<Navigation />
+				<DefaultRouter />
+			</div>
 	  </MuiThemeProvider>
 	);
   }
