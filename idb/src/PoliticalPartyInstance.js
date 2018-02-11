@@ -32,10 +32,6 @@ export default class PoliticalPartyInstance extends Component {
         Object.keys(reps_info).forEach(function (key){
             if (this_party["name"].startsWith(reps_info[key]["party"])) {
                 reps_map[key] = reps_info[key]
-
-                // TODO: way to not have to explicitly state?
-                reps_map[key]["firstName"] = reps_map[key]["first-name"]
-                reps_map[key]["lastName"] = reps_map[key]["last-name"]
             }
         })
         this.setState({reps: reps_map, ready: true})
@@ -44,7 +40,10 @@ export default class PoliticalPartyInstance extends Component {
     render() {
         var divStyle = {
             paddingTop: "50px",
-            textAlign: "center"
+        }
+
+        var imgStyle = {
+            width: "10%"
         }
 
         var reps_grid = Object.keys(this.state.reps).map((key) =>
@@ -53,12 +52,18 @@ export default class PoliticalPartyInstance extends Component {
 
         return (
             <div style={divStyle}>
+                <img src={require("./assets/images/parties/" +
+                                  this.state.party["name"] + "-full.png")}
+                     style={imgStyle}
+                     alt={this.state.party["name"]} />
+
                 <h2>{this.state.party["name"]} Party</h2>
                 <p>Party chair: {this.state.party["chair"]}</p>
                 <p>Formation date: {this.state.party["formation_date"]}</p>
                 <p>Party color: {this.state.party["color"]}</p>
                 <p>Twitter: {this.state.party["twitter_handle"]}</p>
 
+                <h3>Representatives:</h3>
                 <GridList cellHeight={400} cols={5}>
                     {reps_grid}
                 </GridList>

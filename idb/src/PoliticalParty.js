@@ -47,7 +47,7 @@ export default class PoliticalParty extends Component {
         }
 
         let divStyle = {
-            paddingTop: "50px"
+            paddingTop: "70px"
         }
 
         return (
