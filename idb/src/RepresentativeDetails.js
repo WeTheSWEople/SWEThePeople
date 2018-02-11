@@ -3,6 +3,7 @@ import header from './assets/images/header.png'
 import './App.css';
 import allReps from './assets/bioguide-endpoint.json';
 import { Link } from 'react-router-dom'
+import {Timeline} from 'react-twitter-widgets'
 
 const styles = {
   hyperlink: {
@@ -47,6 +48,19 @@ export default class RepresentativeDetails extends Component {
         {this.state.rep_data["district"]} </Link> 
       </p>
       <a href={this.state.rep_data["url"]}>Website</a>
+      <br></br>
+      <Timeline
+       dataSource={{
+         sourceType: "profile",
+         screenName: this.state.rep_data["twitter"]
+       }}
+       options={{
+         username: this.state.rep_data["twitter"],
+         height: "400",
+         width:"400"
+
+       }}
+     />
       </div>
     );
   }
