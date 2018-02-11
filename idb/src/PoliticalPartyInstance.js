@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import all_parties from './assets/all-parties.json';
 
 export default class PoliticalPartyInstance extends Component {
     constructor(props) {
@@ -8,22 +9,34 @@ export default class PoliticalPartyInstance extends Component {
         this.state = {
             ready: false,
             error: false,
+            party: {}
         }
     }
 
-    render() {
-        console.log("Rendering " + this.props.vals.name);
-        return (
-            <div className="Political-party">
-                <div className="party-name">
-                    <h1>{this.props.vals.name}</h1>
-                </div>
+    componentWillMount() {
+        this.setState({ready: false})
 
-                <div className="party-info">
-                    <p>{this.props.vals.chair}</p>
-                    <p>{this.props.vals.formation_date}</p>
-                    <p>{this.props.vals.color}</p>
-                </div>
+        var this_party = {}
+        for (var i = 0; i < all_parties.length; i++) {
+            if (all_parties[i]["id"] == this.props.match.params.id) {
+                this_party = all_parties[i]
+            }
+        }
+        this.setState({party: this_party, ready: true})
+    }
+
+    render() {
+        var divStyle = {
+            paddingTop: "50px",
+            textAlign: "center"
+        }
+
+        return (
+            <div style={divStyle}>
+                <h2>{this.state.party["name"]}</h2>
+                <p>{this.state.party["chair"]}</p>
+                <p>{this.state.party["formation_date"]}</p>
+                <p>{this.state.party["color"]}</p>
             </div>
         );
     }

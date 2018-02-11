@@ -22,9 +22,11 @@ export default class PoliticalParty extends Component {
 
         var parties_map = {}
         for (var i = 0; i < all_parties.length; i++) {
-            parties_map[all_parties[i]["name"]] = [all_parties[i]["chair"],
-                    [all_parties[i]["formation_date"]],
-                    [all_parties[i]["color"]]]
+            parties_map[all_parties[i]["name"]] = [
+                    all_parties[i]["id"],
+                    all_parties[i]["chair"],
+                    all_parties[i]["formation_date"],
+                    all_parties[i]["color"]]
         }
         this.setState({parties: parties_map, ready: true})
     }
