@@ -9,8 +9,20 @@
 
 .App-header {
   background-color: black;
-  height: 100px;
+  height: 75px;
   padding: 20px;
+  color: white;
+}
+
+.App-header-white {
+  background-color: white;
+  height: 25px;
+  color: white;
+}
+
+.About-header-white {
+  background-color: white;
+  height: 50px;
   color: white;
 }
 
