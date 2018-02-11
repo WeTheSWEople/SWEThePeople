@@ -33,6 +33,11 @@ export default class Navigation extends Component {
                 Representatives
               </NavItem>
             </LinkContainer>
+            <LinkContainer to="/parties">
+              <NavItem>
+                Parties
+              </NavItem>
+            </LinkContainer>
           </Nav>
         </Navbar>
       </div>
