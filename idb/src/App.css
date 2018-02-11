@@ -26,6 +26,12 @@
   color: white;
 }
 
+.Rep-Details-header-white {
+  background-color: white;
+  height: 75px;
+  color: white;
+}
+
 .App-title {
   font-size: 1.5em;
 }
