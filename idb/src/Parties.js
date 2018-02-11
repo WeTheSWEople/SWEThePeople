@@ -8,10 +8,12 @@ export default class Parties extends Component {
     
     render() {
         let mapping = Object.keys(this.props.party_data).map((key) =>
-            <Link to={`/party/${this.props.party_data[key][0]}`} >
+            <Link to={`/party/${this.props.party_data[key]["id"]}`} >
                 <div key={key}>
                     <h3>{key} Party</h3>
-                    <p>Number of reps: {this.props.party_data[key][4]}</p>
+                    <p>
+                        Number of reps: {this.props.party_data[key]["num_reps"]}
+                    </p>
                 </div>
             </Link>
         )

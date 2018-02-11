@@ -23,18 +23,16 @@ export default class PoliticalParty extends Component {
 
         var parties_map = {}
         for (var i = 0; i < all_parties.length; i++) {
-            parties_map[all_parties[i]["name"]] = [
-                    all_parties[i]["id"],
-                    all_parties[i]["chair"],
-                    all_parties[i]["formation_date"],
-                    all_parties[i]["color"],
-                    0]
+            parties_map[all_parties[i]["name"]] = {
+                    id: all_parties[i]["id"],
+                    color: all_parties[i]["color"],
+                    num_reps: 0}
         }
 
         Object.keys(reps_info).forEach(function(rep_key) {
             Object.keys(parties_map).forEach(function(party_key) {
                 if (party_key.startsWith(reps_info[rep_key]["party"])) {
-                    parties_map[party_key][4] += 1
+                    parties_map[party_key]["num_reps"] += 1
                 }
             })
         })

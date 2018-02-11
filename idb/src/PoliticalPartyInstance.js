@@ -57,6 +57,7 @@ export default class PoliticalPartyInstance extends Component {
                 <p>Party chair: {this.state.party["chair"]}</p>
                 <p>Formation date: {this.state.party["formation_date"]}</p>
                 <p>Party color: {this.state.party["color"]}</p>
+                <p>Twitter: {this.state.party["twitter_handle"]}</p>
 
                 <GridList cellHeight={400} cols={5}>
                     {reps_grid}

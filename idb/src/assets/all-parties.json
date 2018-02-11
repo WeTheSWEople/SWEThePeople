@@ -4,20 +4,23 @@
     "name": "Democratic",
     "chair": "Tom Perez",
     "formation_date": "January 8, 1828",
-    "color": "Blue"
+    "color": "Blue",
+    "twitter_handle": "@TheDemocrats"
   },
   {
     "id": "1",
     "name": "Republican",
     "chair": "Ronna Romney McDaniel",
     "formation_date": "March 20, 1854",
-    "color": "Red"
+    "color": "Red",
+    "twitter_handle": "@GOP"
   },
   {
     "id": "2",
     "name": "Libertarian",
     "chair": "Wes Benedict",
     "formation_date": "December 11, 1971",
-    "color": "Purple"
+    "color": "Purple",
+    "twitter_handle": "@LPNational"
   }
 ]
