@@ -3,6 +3,20 @@ import header from './assets/images/header.png'
 import './App.css';
 
 export default class RepresentativeDetails extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      error: false,
+      rep_data: {}
+    }
+  }
+  componentWillMount(){
+
+    // get the data
+    
+
+  }
+  
   render() {
     return (
       <div className="App">
