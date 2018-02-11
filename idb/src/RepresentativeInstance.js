@@ -12,7 +12,6 @@ const styles = {
 
 export default class RepresentativeInstance extends Component {
   render() {
-    console.log(this.props.rep)
     return (
       <Link
         to={`/representatives/${this.props.rep.bioguide}`}
