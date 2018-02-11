@@ -7,35 +7,40 @@ import './App.css';
 
 export default class Navigation extends Component {
   render() {
-    return (
-      <div>
-        <Navbar fixedTop={true} inverse={true}>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <LinkContainer to="/">
-                <img src={header} className="App-logo" alt="logo" />
-              </LinkContainer>
-            </Navbar.Brand>
-          </Navbar.Header>
-          <Nav>
-            <LinkContainer to="/" exact={true}>
-              <NavItem>
-                Home
-              </NavItem>
-            </LinkContainer>
-            <LinkContainer to="/about">
-              <NavItem>
-                About
-              </NavItem>
-            </LinkContainer>
-            <LinkContainer to="/representatives">
-              <NavItem>
-                Representatives
-              </NavItem>
-            </LinkContainer>
-          </Nav>
-        </Navbar>
-      </div>
-    );
+	return (
+	  <div>
+		<Navbar fixedTop={true} inverse={true}>
+		  <Navbar.Header>
+			<Navbar.Brand>
+			  <LinkContainer to="/">
+				<img src={header} className="App-logo" alt="logo" />
+			  </LinkContainer>
+			</Navbar.Brand>
+		  </Navbar.Header>
+		  <Nav>
+			<LinkContainer to="/" exact={true}>
+			  <NavItem>
+				Home
+			  </NavItem>
+			</LinkContainer>
+			<LinkContainer to="/about">
+			  <NavItem>
+				About
+			  </NavItem>
+			</LinkContainer>
+			<LinkContainer to="/representatives">
+			  <NavItem>
+				Representatives
+			  </NavItem>
+			</LinkContainer>
+			<LinkContainer to="/districts">
+			  <NavItem>
+				Districts
+			  </NavItem>
+			</LinkContainer>
+		  </Nav>
+		</Navbar>
+	  </div>
+	);
   }
 }
