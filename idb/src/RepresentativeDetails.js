@@ -70,7 +70,7 @@ export default class RepresentativeDetails extends Component {
             to={`/districts/${this.state.rep_data["state"]}/${this.state.rep_data["district"]}`}>
             {this.state.rep_data["district"]} </Link> 
           </p>
-          <a href={this.state.rep_data["url"]}>Website</a>
+          <p> <b> Site: </b><a href={this.state.rep_data["url"]}>Website</a></p>
           <p> <b>Votes with Party (%): </b> <ProgressBar  bsStyle="success" now={this.state.rep_data["votes_with_party_pct"]} label={`${this.state.rep_data["votes_with_party_pct"]}%`} />
           </p>   
           </div>
