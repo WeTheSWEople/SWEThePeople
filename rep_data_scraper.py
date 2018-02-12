@@ -6,8 +6,6 @@ data = json.load(open('state.json'))
 count = 1
 for i in data:
 	count+=1
-	print(count)
-	print(i)
 	url = "https://api.propublica.org/congress/v1/members/senate/" + i + "/current.json"
 
 	headers = {
