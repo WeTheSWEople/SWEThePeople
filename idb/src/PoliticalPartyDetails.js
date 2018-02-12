@@ -92,6 +92,14 @@ export default class PoliticalPartyDetails extends Component {
                                     {this.state.party["color"]}
                                 </span>
                             </p>
+                            <p>
+                                <span class="party-info-header">
+                                    Website:
+                                </span>
+                                <a href={this.state.party["website"]}>
+                                    {this.state.party["website"]}
+                                </a>
+                            </p>
                         </div>
 
                         <div class="col-sm-5">
