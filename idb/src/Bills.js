@@ -20,12 +20,19 @@ export default class RepBills extends Component {
     // get the data - in the future call the api
     this.setState({bioguideid: this.props.bioguideid})
     this.setState({bills_data: allReps[this.props.bioguideid]["bills"]})
+    // shorten the latest major action
+    
   	
 
   }
 
   render() {
-  	console.log("bill data: " +  this.state.bills_data[0]["number"])
+  	for(var i = 0; i < this.state.bills_data.length; i++){
+  		var bill = this.state.bills_data[i];    	
+    	if(bill["latest_major_action"].length > 115){
+    	 	bill["latest_major_action"] = bill["latest_major_action"].substring(0, 115) + "..."
+    	}
+    }
   	let mapping = Object.keys(this.state.bills_data).map((item) =>
   		<Col sm={12} md={4}>
               <div class="tile1 job-bucket">
@@ -37,7 +44,7 @@ export default class RepBills extends Component {
                       </div>
                 </div>
                 <div class="back">
-                      <h3>Details</h3>
+                      <h4><u>Details</u></h4>
                       <h3> Introduced by: {this.state.bills_data[item]["sponsor_name"]} </h3>
                       <h3> Date: {this.state.bills_data[item]["introduced_date"]} </h3>
                       <h3> Lastest Major Action: {this.state.bills_data[item]["latest_major_action"]} </h3>
