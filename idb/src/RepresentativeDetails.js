@@ -14,6 +14,9 @@ const styles = {
     textDecoration: "none",
     color: "black"
   },
+  roundcorner:{
+    borderRadius: "13%"
+  },
 };
 
 export default class RepresentativeDetails extends Component {
@@ -48,13 +51,14 @@ export default class RepresentativeDetails extends Component {
 
       <div className="App">
       <header className="Rep-Details-header"> </header>
-      <Row>
+      <Row >
         <Col sm={12} md={4}>
-          <img src={"https://theunitedstates.io/images/congress/225x275/" + this.state.bioguideid + ".jpg"}  alt="" />
+          <img src={"https://theunitedstates.io/images/congress/225x275/" + this.state.bioguideid + ".jpg"}  alt="" style={styles.roundcorner} />
         </Col>
         <Col sm={12} md={4}>
+          <font size="5">
           <div style={{textAlign: "left"}}>
-          <p style={{paddingTop:"10px"}}>{this.state.rep_data["firstName"]} {this.state.rep_data["lastName"]}   </p>
+          <p style={{paddingTop:"10px"}}>{this.state.rep_data["firstName"]} {this.state.rep_data["lastName"]}  </p>
           <p> <b>Party: </b> <Link
             to={`/party/${this.state.party_id}`}>
             {this.state.rep_data["party"]} </Link> 
@@ -66,6 +70,7 @@ export default class RepresentativeDetails extends Component {
           </p>
           <a href={this.state.rep_data["url"]}>Website</a>
           </div>
+          </font> 
         </Col>
 
         <Col sm={12} md={4}>
@@ -81,10 +86,11 @@ export default class RepresentativeDetails extends Component {
            }}
          />
         </Col>
+        
       </Row>
       <h3 class="bills-header">Bills Sponsored</h3>
-      <Row>
-      <RepBills bioguideid = {this.state.bioguideid} />
+      <Row style={{paddingLeft:"160px"}}>
+         <RepBills bioguideid = {this.state.bioguideid} />
       </Row>
       </div>
     );

@@ -70,11 +70,9 @@ export default class RepBills extends Component {
 	)
   
     return (
-    <div className="App">
-    <Row>
+      <Row>
       	{mapping}
-    </Row>
-       </div>
+       </Row>
     );
   }
 }
