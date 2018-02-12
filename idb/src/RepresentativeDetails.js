@@ -20,7 +20,8 @@ export default class RepresentativeDetails extends Component {
     this.state = {
       error: false,
       rep_data: {},
-      bioguideid: ""
+      bioguideid: "",
+      party_id: null
     }
   }
   componentWillMount(){
@@ -28,10 +29,19 @@ export default class RepresentativeDetails extends Component {
     // get the data - in the future call the api
     this.setState({bioguideid: this.props.match.params.bioguideid})
     this.setState({rep_data: allReps[this.props.match.params.bioguideid]})
+    var id = 0
+    if(allReps[this.props.match.params.bioguideid]["party"] === "Republican"){
+      id = 1
+    }
+    else if(allReps[this.props.match.params.bioguideid]["party"] === "Libertarian"){
+      id = 2
+    }
+    this.setState({party_id: id})
 
   }
 
   render() {
+
     return (
 
       <div className="App">
@@ -44,7 +54,7 @@ export default class RepresentativeDetails extends Component {
           <div style={{textAlign: "left"}}>
           <p style={{paddingTop:"10px"}}>{this.state.rep_data["first-name"]} {this.state.rep_data["last-name"]}   </p>
           <p> Party: <Link
-            to={`/parties/${this.state.rep_data["party"]}`}>
+            to={`/party/${this.state.party_id}`}>
             {this.state.rep_data["party"]} </Link> 
           </p>
           <p> State: {this.state.rep_data["state"]}</p>
