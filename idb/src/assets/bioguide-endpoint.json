@@ -1,7 +1,7 @@
 {
   "R000570": {
-    "first-name": "Paul",
-    "last-name": "Ryan",
+    "firstName": "Paul",
+    "lastName": "Ryan",
     "party": "Republican",
     "state": "WI",
     "district": 1,
@@ -12,8 +12,8 @@
     "url": "https://paulryan.house.gov"
   },
   "M001165": {
-    "first-name": "Kevin",
-    "last-name": "McCarthy",
+    "firstName": "Kevin",
+    "lastName": "McCarthy",
     "party": "Republican",
     "state": "CA",
     "district": 23,
@@ -24,8 +24,8 @@
     "url": "https://kevinmccarthy.house.gov"
   },
   "P000197": {
-    "first-name": "Nancy",
-    "last-name": "Pelosi",
+    "firstName": "Nancy",
+    "lastName": "Pelosi",
     "party": "Democrat",
     "state": "CA",
     "district": 12,

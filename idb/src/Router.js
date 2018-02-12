@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {Route, Switch} from 'react-router-dom'
 import Splash from './Splash'
 import About from './About'
+import PoliticalParty from './PoliticalParty'
+import PoliticalPartyDetails from './PoliticalPartyDetails'
 import Representatives from './Representatives'
 import RepresentativeDetails from './RepresentativeDetails'
 
@@ -10,9 +12,11 @@ export default class DefaultRouter extends Component {
     return (
 		<Switch>
        	<Route exact path="/" component={Splash}/>
-		    <Route path="/about" component={About}/>
+        <Route path="/about" component={About}/>
         <Route exact path="/representatives" component={Representatives}/>
-		    <Route path="/representatives/:bioguideid" component={RepresentativeDetails}/>
+        <Route path="/representatives/:bioguideid" component={RepresentativeDetails}/>
+        <Route path="/parties" component={PoliticalParty} />
+        <Route path="/party/:id" component={PoliticalPartyDetails} />
     </Switch>
     );
   }

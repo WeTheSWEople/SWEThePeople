@@ -1,0 +1,37 @@
+.party-header {
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #AAA;
+    margin-bottom: 50px;
+}
+
+.party-rep-card {
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+
+.rep-header {
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #AAA;
+}
+
+.party-info {
+    text-align: left;
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+.party-info p {
+    width: 100%;
+}
+
+.party-info-header {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.party-info-top {
+    margin-bottom: 125px;
+}
