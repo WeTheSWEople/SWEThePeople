@@ -82,8 +82,10 @@ export default class RepresentativeDetails extends Component {
          />
         </Col>
       </Row>
-      <h3 class="bills-header">Bills in the Congress</h3>
+      <h3 class="bills-header">Bills Sponsored</h3>
+      <Row>
       <RepBills bioguideid = {this.state.bioguideid} />
+      </Row>
       </div>
     );
   }
