@@ -4,3 +4,12 @@
     padding-bottom: 20px;
     border-bottom: 1px solid #DDD;
 }
+
+.party-rep-card {
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+
+.rep-header {
+    margin-bottom: 25px;
+}
