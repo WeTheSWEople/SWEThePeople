@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "C000141",
+         "name": "Benjamin L. Cardin",
+         "first_name": "Benjamin",
+         "middle_name": "L.",
+         "last_name": "Cardin",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/c/benjamin_l_cardin/index.html",
+         "twitter_id": "SenatorCardin",
+         "facebook_account": "senatorbencardin",
+         "youtube_id": "senatorcardin",
+         "seniority": "11",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C000141.json"
+      },
+      {
+         "id": "V000128",
+         "name": "Chris Van Hollen",
+         "first_name": "Chris",
+         "middle_name": null,
+         "last_name": "Van Hollen",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": null,
+         "twitter_id": "ChrisVanHollen",
+         "facebook_account": "chrisvanhollen",
+         "youtube_id": "RepChrisVanHollen",
+         "seniority": "1",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/V000128.json"
+      }
+]}

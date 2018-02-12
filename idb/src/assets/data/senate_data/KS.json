@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "R000307",
+         "name": "Pat Roberts",
+         "first_name": "Pat",
+         "middle_name": null,
+         "last_name": "Roberts",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/r/pat_robertson/index.html",
+         "twitter_id": "SenPatRoberts",
+         "facebook_account": "SenPatRoberts",
+         "youtube_id": "SenPatRoberts",
+         "seniority": "21",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/R000307.json"
+      },
+      {
+         "id": "M000934",
+         "name": "Jerry Moran",
+         "first_name": "Jerry",
+         "middle_name": null,
+         "last_name": "Moran",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "",
+         "twitter_id": "JerryMoran",
+         "facebook_account": "jerrymoran",
+         "youtube_id": "senatorjerrymoran",
+         "seniority": "7",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/M000934.json"
+      }
+]}

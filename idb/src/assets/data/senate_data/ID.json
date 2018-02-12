@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "R000584",
+         "name": "Jim Risch",
+         "first_name": "Jim",
+         "middle_name": null,
+         "last_name": "Risch",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": "SenatorRisch",
+         "facebook_account": "",
+         "youtube_id": "SenatorJamesRisch",
+         "seniority": "9",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/R000584.json"
+      },
+      {
+         "id": "C000880",
+         "name": "Michael D. Crapo",
+         "first_name": "Michael",
+         "middle_name": "D.",
+         "last_name": "Crapo",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": "MikeCrapo",
+         "facebook_account": "mikecrapo",
+         "youtube_id": "senatorcrapo",
+         "seniority": "19",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C000880.json"
+      }
+]}

@@ -1,0 +1,25 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "R000600",
+         "name": "Amata Coleman Radewagen",
+         "first_name": "Amata",
+         "middle_name": "Coleman",
+         "last_name": "Radewagen",
+         "suffix": null,
+         "role": "Delegate",
+         "gender": "F",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": "RepAmata",
+         "facebook_account": null,
+         "youtube_id": null,
+         "seniority": "4",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/R000600.json",
+         "district": "At-Large",
+         "at_large": true
+      }
+]}

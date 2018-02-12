@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "C000127",
+         "name": "Maria Cantwell",
+         "first_name": "Maria",
+         "middle_name": null,
+         "last_name": "Cantwell",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "F",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/c/maria_cantwell/index.html",
+         "twitter_id": "SenatorCantwell",
+         "facebook_account": "senatorcantwell",
+         "youtube_id": "SenatorCantwell",
+         "seniority": "17",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C000127.json"
+      },
+      {
+         "id": "M001111",
+         "name": "Patty Murray",
+         "first_name": "Patty",
+         "middle_name": null,
+         "last_name": "Murray",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "F",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/m/patty_murray/index.html",
+         "twitter_id": "PattyMurray",
+         "facebook_account": "",
+         "youtube_id": "SenatorPattyMurray",
+         "seniority": "25",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/M001111.json"
+      }
+]}

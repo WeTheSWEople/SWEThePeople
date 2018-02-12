@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "T000464",
+         "name": "Jon Tester",
+         "first_name": "Jon",
+         "middle_name": null,
+         "last_name": "Tester",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": null,
+         "twitter_id": "SenatorTester",
+         "facebook_account": "senatortester",
+         "youtube_id": "senatorjontester",
+         "seniority": "11",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/T000464.json"
+      },
+      {
+         "id": "D000618",
+         "name": "Steve Daines",
+         "first_name": "Steve",
+         "middle_name": null,
+         "last_name": "Daines",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": "SteveDaines",
+         "facebook_account": "SteveDainesMT",
+         "youtube_id": "SteveDainesMT",
+         "seniority": "3",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/D000618.json"
+      }
+]}
