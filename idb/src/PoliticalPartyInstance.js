@@ -8,8 +8,13 @@ export default class Parties extends Component {
     }
     
     render() {
-        var imgStyle = {
-            width: "50%"
+        const styles = {
+            imgStyle: {
+                width: "50%"
+            },
+            numReps: {
+                marginRight: "5px"
+            }
         }
 
         let mapping = Object.keys(this.props.party_data).map((key) =>
@@ -21,14 +26,16 @@ export default class Parties extends Component {
                                 <div key={key} class="center-div">
                                     <img src={require("./assets/images/parties/" + key + ".png")}
                                            className="img-responsive"
-                                           style={imgStyle}
+                                           style={styles.imgStyle}
                                            alt={key} />
                                 </div>
                             </div>
                             <div class="col-md-6 party-index-name">
                                 <h3>{key} Party</h3>
                                 <p>
-                                    Number of representatives:
+                                    <span style={styles.numReps}>
+                                        Number of representatives: 
+                                    </span>
                                     {this.props.party_data[key]["num_reps"]}
                                 </p>
                             </div>
