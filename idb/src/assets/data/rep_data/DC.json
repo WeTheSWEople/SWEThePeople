@@ -1,0 +1,25 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "N000147",
+         "name": "Eleanor Holmes Norton",
+         "first_name": "Eleanor",
+         "middle_name": "Holmes",
+         "last_name": "Norton",
+         "suffix": null,
+         "role": "Delegate",
+         "gender": "F",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/n/eleanor_holmes_norton/index.html",
+         "twitter_id": "EleanorNorton",
+         "facebook_account": "CongresswomanNorton",
+         "youtube_id": "EleanorHNorton",
+         "seniority": "28",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/N000147.json",
+         "district": "At-Large",
+         "at_large": true
+      }
+]}

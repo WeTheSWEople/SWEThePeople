@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "C001098",
+         "name": "Ted Cruz",
+         "first_name": "Ted",
+         "middle_name": null,
+         "last_name": "Cruz",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": "SenTedCruz",
+         "facebook_account": "SenatorTedCruz",
+         "youtube_id": "sentedcruz",
+         "seniority": "5",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C001098.json"
+      },
+      {
+         "id": "C001056",
+         "name": "John Cornyn",
+         "first_name": "John",
+         "middle_name": null,
+         "last_name": "Cornyn",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/c/john_cornyn/index.html",
+         "twitter_id": "JohnCornyn",
+         "facebook_account": "sen.johncornyn",
+         "youtube_id": "senjohncornyn",
+         "seniority": "15",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C001056.json"
+      }
+]}

@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "N000032",
+         "name": "Bill Nelson",
+         "first_name": "Bill",
+         "middle_name": null,
+         "last_name": "Nelson",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": null,
+         "twitter_id": "SenBillNelson",
+         "facebook_account": "",
+         "youtube_id": "senbillnelson",
+         "seniority": "17",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/N000032.json"
+      },
+      {
+         "id": "R000595",
+         "name": "Marco Rubio",
+         "first_name": "Marco",
+         "middle_name": null,
+         "last_name": "Rubio",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "",
+         "twitter_id": "SenRubioPress",
+         "facebook_account": "SenatorMarcoRubio",
+         "youtube_id": "SenatorMarcoRubio",
+         "seniority": "7",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/R000595.json"
+      }
+]}

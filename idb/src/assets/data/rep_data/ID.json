@@ -1,0 +1,45 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "L000573",
+         "name": "Raúl Labrador",
+         "first_name": "Raúl",
+         "middle_name": null,
+         "last_name": "Labrador",
+         "suffix": null,
+         "role": "Representative",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "",
+         "twitter_id": "Raul_Labrador",
+         "facebook_account": "raul.r.labrador",
+         "youtube_id": "RepLabrador",
+         "seniority": "8",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/L000573.json",
+         "district": "1",
+         "at_large": false
+      },
+      {
+         "id": "S001148",
+         "name": "Mike Simpson",
+         "first_name": "Mike",
+         "middle_name": null,
+         "last_name": "Simpson",
+         "suffix": null,
+         "role": "Representative",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": "CongMikeSimpson",
+         "facebook_account": "96007744606",
+         "youtube_id": "CongMikeSimpson",
+         "seniority": "20",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/S001148.json",
+         "district": "2",
+         "at_large": false
+      }
+]}

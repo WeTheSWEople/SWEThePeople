@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "C000174",
+         "name": "Thomas R. Carper",
+         "first_name": "Thomas",
+         "middle_name": "R.",
+         "last_name": "Carper",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/c/thomas_r_carper/index.html",
+         "twitter_id": "SenatorCarper",
+         "facebook_account": "tomcarper",
+         "youtube_id": "senatorcarper",
+         "seniority": "17",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C000174.json"
+      },
+      {
+         "id": "C001088",
+         "name": "Christopher A. Coons",
+         "first_name": "Christopher",
+         "middle_name": "A.",
+         "last_name": "Coons",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": "",
+         "twitter_id": "SenCoonsOffice",
+         "facebook_account": "senatorchriscoons",
+         "youtube_id": "senatorchriscoons",
+         "seniority": "9",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C001088.json"
+      }
+]}

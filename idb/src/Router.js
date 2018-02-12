@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {Route, Switch} from 'react-router-dom'
 import Splash from './Splash'
 import About from './About'
+import PoliticalParty from './PoliticalParty'
+import PoliticalPartyDetails from './PoliticalPartyDetails'
 import Representatives from './Representatives'
 import RepresentativeDetails from './RepresentativeDetails'
 import Districts from './District'
@@ -17,7 +19,9 @@ export default class DefaultRouter extends Component {
 			<Route path="/representatives/:bioguideid" component={RepresentativeDetails}/>
 		<Route exact path="/districts" component={AllDistricts}/>
 			<Route path="/districts/:districtid" component={Districts}/>
-	</Switch>
+		<Route path="/parties" component={PoliticalParty} />
+			<Route path="/party/:id" component={PoliticalPartyDetails} />
+		</Switch>
 	);
   }
 }
