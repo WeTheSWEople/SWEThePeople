@@ -3,7 +3,7 @@ import {Route, Switch} from 'react-router-dom'
 import Splash from './Splash'
 import About from './About'
 import PoliticalParty from './PoliticalParty'
-import PoliticalPartyInstance from './PoliticalPartyInstance'
+import PoliticalPartyDetails from './PoliticalPartyDetails'
 import Representatives from './Representatives'
 import RepresentativeDetails from './RepresentativeDetails'
 
@@ -16,7 +16,7 @@ export default class DefaultRouter extends Component {
         <Route exact path="/representatives" component={Representatives}/>
         <Route path="/representatives/:bioguideid" component={RepresentativeDetails}/>
         <Route path="/parties" component={PoliticalParty} />
-        <Route path="/party/:id" component={PoliticalPartyInstance} />
+        <Route path="/party/:id" component={PoliticalPartyDetails} />
     </Switch>
     );
   }

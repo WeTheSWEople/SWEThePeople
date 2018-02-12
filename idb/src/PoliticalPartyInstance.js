@@ -1,121 +1,47 @@
-import React, { Component } from 'react';
-import {GridList} from 'material-ui/GridList';
-import RepresentativeInstance from './RepresentativeInstance'
-import logo from './logo.svg';
-import './App.css';
-import './party.css';
-import all_parties from './assets/all-parties.json';
-import reps_info from './assets/all-reps-endpoint.json';
-import {Timeline} from 'react-twitter-widgets';
+import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
+import './PoliticalPartyInstance.css';
 
-export default class PoliticalPartyInstance extends Component {
+export default class Parties extends Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            ready: false,
-            error: false,
-            party: {},
-            reps: {}
-        }
+        super(props)
     }
-
-    componentWillMount() {
-        this.setState({ready: false})
-
-        var this_party = {}
-        for (var i = 0; i < all_parties.length; i++) {
-            if (all_parties[i]["id"] == this.props.match.params.id) {
-                this_party = all_parties[i]
-            }
-        }
-        this.setState({party: this_party})
-
-        var reps_map = {}
-        Object.keys(reps_info).forEach(function (key){
-            if (this_party["name"].startsWith(reps_info[key]["party"])) {
-                reps_map[key] = reps_info[key]
-            }
-        })
-        this.setState({reps: reps_map, ready: true})
-    }
-
+    
     render() {
-        const styles = {
-            divStyle: {
-                paddingTop: "50px",
-            },
-            imgStyle: {
-                width: "10%"
-            },
-            partyColor: {
-                color: this.state.party["color"]
-            }
+        var imgStyle = {
+            width: "50%"
         }
 
-
-        var reps_grid = Object.keys(this.state.reps).map((key) =>
-            <div class="col-sm-3 party-rep-card">
-                <RepresentativeInstance key={key} rep={this.state.reps[key]} />
-            </div>
-        )
-
-        return (
-            <div style={styles.divStyle} className="App">
-                <div class="container">
-                    <div class="party-header">
-                        <img src={require("./assets/images/parties/" +
-                                          this.state.party["name"] + "-full.png")}
-                             style={styles.imgStyle}
-                             alt={this.state.party["name"]} />
-                        <h1>{this.state.party["name"]} Party</h1>
-                    </div>
-
-                    <div class="row party-info-top">
-                        <div class="col-sm-5 col-sm-offset-1 party-info">
-                            <p>
-                                <span class="party-info-header">
-                                    Party chair:
-                                </span>
-                                {this.state.party["chair"]}
-                            </p>
-                            <p>
-                                <span class="party-info-header">
-                                    Formation date:
-                                </span>
-                                {this.state.party["formation_date"]}
-                            </p>
-                            <p>
-                                <span class="party-info-header">
-                                    Party color:
-                                </span>
-                                <span style={styles.partyColor}>
-                                    {this.state.party["color"]}
-                                </span>
-                            </p>
-                        </div>
-
-                        <div class="col-sm-5">
-                            <Timeline
-                                dataSource={{
-                                  sourceType: 'profile',
-                                  screenName: this.state.party["twitter_handle"]
-                                }}
-                                options={{
-                                  username: this.state.party["twitter_handle"],
-                                  height: '300'
-                                }}
-                            />
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="rep-header">Representatives</h3>
+        let mapping = Object.keys(this.props.party_data).map((key) =>
+            <Link to={`/party/${this.props.party_data[key]["id"]}`} >
+                <div class="row party-index-card">
+                    <div class="col-md-8 col-md-offset-2">
                         <div class="row">
-                            {reps_grid}
+                            <div class="col-md-6">
+                                <div key={key} class="center-div">
+                                    <img src={require("./assets/images/parties/" + key + ".png")}
+                                           className="img-responsive"
+                                           style={imgStyle}
+                                           alt={key} />
+                                </div>
+                            </div>
+                            <div class="col-md-6 party-index-name">
+                                <h3>{key} Party</h3>
+                                <p>
+                                    Number of representatives:
+                                    {this.props.party_data[key]["num_reps"]}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </Link>
+        )
+
+        return (
+            <div class="container">
+                {mapping}
             </div>
-        );
+        )
     }
 }

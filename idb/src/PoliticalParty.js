@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Parties from './Parties.js';
+import PoliticalPartyInstance from './PoliticalPartyInstance.js';
 import all_parties from './assets/all-parties.json';
 import reps_info from './assets/bioguide-endpoint.json';
 
@@ -43,7 +43,8 @@ export default class PoliticalParty extends Component {
     render() {
         let parties = null
         if (this.state.ready) {
-            parties = <Parties party_data = {this.state.parties} />
+            parties = <PoliticalPartyInstance
+                        party_data = {this.state.parties} />
         }
 
         let divStyle = {
