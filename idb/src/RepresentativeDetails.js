@@ -4,7 +4,7 @@ import './App.css';
 import allReps from './assets/bioguide-endpoint.json';
 import { Link } from 'react-router-dom'
 import {Timeline} from 'react-twitter-widgets'
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
 import './Bill.css'; 
 import RepBills from './Bills.js'
 
@@ -26,7 +26,7 @@ export default class RepresentativeDetails extends Component {
       error: false,
       rep_data: {},
       bioguideid: "",
-      party_id: null
+      party_id: null,
     }
   }
   componentWillMount(){
@@ -41,6 +41,8 @@ export default class RepresentativeDetails extends Component {
     else if(allReps[this.props.match.params.bioguideid]["party"] === "Libertarian"){
       id = 2
     }
+    var rep = allReps[this.props.match.params.bioguideid]
+  
     this.setState({party_id: id})
 
   }
@@ -58,7 +60,7 @@ export default class RepresentativeDetails extends Component {
         <Col sm={12} md={4}>
           <font size="5">
           <div style={{textAlign: "left"}}>
-          <p style={{paddingTop:"10px"}}>{this.state.rep_data["firstName"]} {this.state.rep_data["lastName"]}  </p>
+          <p style={{paddingTop:"10px"}}><font size="8"><b>{this.state.rep_data["firstName"]} {this.state.rep_data["lastName"]}</b></font>  </p>
           <p> <b>Party: </b> <Link
             to={`/party/${this.state.party_id}`}>
             {this.state.rep_data["party"]} </Link> 
@@ -69,6 +71,8 @@ export default class RepresentativeDetails extends Component {
             {this.state.rep_data["district"]} </Link> 
           </p>
           <a href={this.state.rep_data["url"]}>Website</a>
+          <p> <b>Votes with Party (%): </b> <ProgressBar  bsStyle="success" now={this.state.rep_data["votes_with_party_pct"]} label={`${this.state.rep_data["votes_with_party_pct"]}%`} />
+          </p>   
           </div>
           </font> 
         </Col>
@@ -81,14 +85,15 @@ export default class RepresentativeDetails extends Component {
            }}
            options={{
              username: this.state.rep_data["twitter"],
-             height: "400",
+             height: "350",
              width:"400"
            }}
          />
         </Col>
-        
+     
       </Row>
       <h3 class="bills-header">Bills Sponsored</h3>
+
       <Row style={{paddingLeft:"160px"}}>
          <RepBills bioguideid = {this.state.bioguideid} />
       </Row>
