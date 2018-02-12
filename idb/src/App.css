@@ -26,10 +26,10 @@
   color: white;
 }
 
-.Rep-Details-header-white {
-  background-color: white;
+.Rep-Details-header {
+  background-color: #e2e1e0;
   height: 75px;
-  color: white;
+  color: #fff;
 }
 
 .App-title {
@@ -55,8 +55,3 @@
     margin-left: auto;
     margin-right: auto;
 }
-
-/* @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}  */

@@ -28,17 +28,14 @@ export default class RepresentativeDetails extends Component {
     // get the data - in the future call the api
     this.setState({bioguideid: this.props.match.params.bioguideid})
     this.setState({rep_data: allReps[this.props.match.params.bioguideid]})
-    
+
   }
-  
+
   render() {
-    console.log("bioguideid: " + this.state.bioguideid)
-    // console.log("All reps: " + allReps[this.state.bioguideid])
-    console.log("rep data: " + this.state.rep_data["last-name"])
     return (
 
       <div className="App">
-      <header className="Rep-Details-header-white"> </header>
+      <header className="Rep-Details-header"> </header>
       <Row>
         <Col sm={12} md={4}>
           <img src={"https://theunitedstates.io/images/congress/225x275/" + this.state.bioguideid + ".jpg"}  alt="" />
@@ -72,7 +69,6 @@ export default class RepresentativeDetails extends Component {
            }}
          />
         </Col>
-
       </Row>
       
       </div>

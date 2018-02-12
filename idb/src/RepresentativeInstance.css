@@ -1,0 +1,29 @@
+.rep_img {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 100%;
+  max-width: 55%;
+  bottom: 200px;
+  margin-top: 10%;
+}
+
+.list {
+  margin: 0% auto;
+  left: 0%;
+  right: 0%;
+}
+
+.tile {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background-color: #fff;
+  width: 90%;
+  height: 90% !important;
+  margin: auto;
+  padding: 0%;
+}
+
+.rep_info {
+  text-align: center;
+  width: 100%;
+  padding-top: 20px;
+  font-family: 'EB Garamond', serif;
+}
