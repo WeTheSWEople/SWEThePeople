@@ -5,6 +5,8 @@ import allReps from './assets/bioguide-endpoint.json';
 import { Link } from 'react-router-dom'
 import {Timeline} from 'react-twitter-widgets'
 import { Grid, Row, Col } from 'react-bootstrap';
+import './Bill.css'; 
+import RepBills from './Bills.js'
 
 
 const styles = {
@@ -52,13 +54,13 @@ export default class RepresentativeDetails extends Component {
         </Col>
         <Col sm={12} md={4}>
           <div style={{textAlign: "left"}}>
-          <p style={{paddingTop:"10px"}}>{this.state.rep_data["first-name"]} {this.state.rep_data["last-name"]}   </p>
-          <p> Party: <Link
+          <p style={{paddingTop:"10px"}}>{this.state.rep_data["firstName"]} {this.state.rep_data["lastName"]}   </p>
+          <p> <b>Party: </b> <Link
             to={`/party/${this.state.party_id}`}>
             {this.state.rep_data["party"]} </Link> 
           </p>
-          <p> State: {this.state.rep_data["state"]}</p>
-          <p> District: <Link
+          <p> <b> State: </b> {this.state.rep_data["state"]}</p>
+          <p> <b> District: </b> <Link
             to={`/districts/${this.state.rep_data["state"]}/${this.state.rep_data["district"]}`}>
             {this.state.rep_data["district"]} </Link> 
           </p>
@@ -80,7 +82,8 @@ export default class RepresentativeDetails extends Component {
          />
         </Col>
       </Row>
-      
+      <h3 class="bills-header">Bills in the Congress</h3>
+      <RepBills bioguideid = {this.state.bioguideid} />
       </div>
     );
   }
