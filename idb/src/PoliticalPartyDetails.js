@@ -7,6 +7,9 @@ import './PoliticalPartyDetails.css';
 import all_parties from './assets/all-parties.json';
 import reps_info from './assets/all-reps-endpoint.json';
 import {Timeline} from 'react-twitter-widgets';
+import StateInstance from './StateInstance.js';
+
+let state_json = require("./assets/data/state.json")
 
 export default class PoliticalPartyDetails extends Component {
     constructor(props) {
@@ -15,7 +18,8 @@ export default class PoliticalPartyDetails extends Component {
             ready: false,
             error: false,
             party: {},
-            reps: {}
+            reps: {},
+            districts: []
         }
     }
 
@@ -31,12 +35,14 @@ export default class PoliticalPartyDetails extends Component {
         this.setState({party: this_party})
 
         var reps_map = {}
+        var districts_arr = []
         Object.keys(reps_info).forEach(function (key){
             if (this_party["name"].startsWith(reps_info[key]["party"])) {
                 reps_map[key] = reps_info[key]
+                districts_arr.push(reps_info[key]["state"])
             }
         })
-        this.setState({reps: reps_map, ready: true})
+        this.setState({reps: reps_map, districts: districts_arr, ready: true})
     }
 
     render() {
@@ -56,6 +62,15 @@ export default class PoliticalPartyDetails extends Component {
         var reps_grid = Object.keys(this.state.reps).map((key) =>
             <div class="col-sm-3 party-rep-card">
                 <RepresentativeInstance key={key} rep={this.state.reps[key]} />
+            </div>
+        )
+
+        console.log(this.state.districts)
+        var districts_grid = this.state.districts.map(district =>
+            <div class="col-sm-3 party-rep-card">
+                <StateInstance key={district}
+                               full_state={state_json[district]}
+                               state={district} />
             </div>
         )
 
@@ -120,6 +135,13 @@ export default class PoliticalPartyDetails extends Component {
                         <h3 class="rep-header">Representatives</h3>
                         <div class="row">
                             {reps_grid}
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="rep-header">Districts</h3>
+                        <div class="row">
+                            {districts_grid}
                         </div>
                     </div>
                 </div>
