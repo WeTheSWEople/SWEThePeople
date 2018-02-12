@@ -40,13 +40,18 @@ export default class PoliticalPartyInstance extends Component {
     }
 
     render() {
-        var divStyle = {
-            paddingTop: "50px",
+        const styles = {
+            divStyle: {
+                paddingTop: "50px",
+            },
+            imgStyle: {
+                width: "10%"
+            },
+            partyColor: {
+                color: this.state.party["color"]
+            }
         }
 
-        var imgStyle = {
-            width: "10%"
-        }
 
         var reps_grid = Object.keys(this.state.reps).map((key) =>
             <div class="col-sm-3 party-rep-card">
@@ -54,41 +59,42 @@ export default class PoliticalPartyInstance extends Component {
             </div>
         )
 
-        const styles = {
-            root: {
-                display: 'flex',
-                flexWrap: 'wrap',
-                paddingTop: '50px',
-                paddingLeft: '50px',
-                paddingRight: '50px',
-                justifyContent: 'space-around',
-              },
-              gridList: {
-                    width: '80%',
-                    height: '100%',
-                    overflowY: 'auto',
-              },
-        };
-
         return (
-            <div style={divStyle} className="App">
+            <div style={styles.divStyle} className="App">
                 <div class="container">
                     <div class="party-header">
                         <img src={require("./assets/images/parties/" +
                                           this.state.party["name"] + "-full.png")}
-                             style={imgStyle}
+                             style={styles.imgStyle}
                              alt={this.state.party["name"]} />
                         <h1>{this.state.party["name"]} Party</h1>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-2">
-                            <p>Party chair: {this.state.party["chair"]}</p>
-                            <p>Formation date: {this.state.party["formation_date"]}</p>
-                            <p>Party color: {this.state.party["color"]}</p>
+                    <div class="row party-info-top">
+                        <div class="col-sm-5 col-sm-offset-1 party-info">
+                            <p>
+                                <span class="party-info-header">
+                                    Party chair:
+                                </span>
+                                {this.state.party["chair"]}
+                            </p>
+                            <p>
+                                <span class="party-info-header">
+                                    Formation date:
+                                </span>
+                                {this.state.party["formation_date"]}
+                            </p>
+                            <p>
+                                <span class="party-info-header">
+                                    Party color:
+                                </span>
+                                <span style={styles.partyColor}>
+                                    {this.state.party["color"]}
+                                </span>
+                            </p>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-sm-5">
                             <Timeline
                                 dataSource={{
                                   sourceType: 'profile',
@@ -96,16 +102,14 @@ export default class PoliticalPartyInstance extends Component {
                                 }}
                                 options={{
                                   username: this.state.party["twitter_handle"],
-                                  height: '400'
+                                  height: '300'
                                 }}
                             />
                         </div>
                     </div>
-                </div>
 
-                <div style={styles.root}>
-                    <div style={styles.gridList}>
-                        <h3 class="rep-header">Representatives:</h3>
+                    <div>
+                        <h3 class="rep-header">Representatives</h3>
                         <div class="row">
                             {reps_grid}
                         </div>
