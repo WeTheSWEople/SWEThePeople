@@ -34,7 +34,13 @@ export default class Districts extends Component {
                     cssColor = "light-yellow"
                 }
 
+                var name = "District " + result["district"]
+                if (rep_json.results.length === 1) {
+                    name = result["district"] + " District"
+                }
+
                 districts_list.push({"district": result["district"],
+                                     "name": name,
                                      "party": party,
                                      "cssColor": cssColor,
                                      "rep_id": result["id"]})
@@ -60,10 +66,10 @@ export default class Districts extends Component {
     }
 
     let districts_grid = this.state.districts_arr.map(district =>
-        <div class="col-sm-3 district-grid">
+        <div className="col-sm-3 district-grid" key={district.district}>
             <Link to={""}>
-                <div class={"district-card " + district.cssColor}>
-                    <h3>District {district.district}</h3>
+                <div className={"district-card " + district.cssColor}>
+                    <h3>{district.name}</h3>
                     <p>Party: {district.party}</p>
                 </div>
             </Link>
@@ -71,11 +77,11 @@ export default class Districts extends Component {
     )
 
 	return (
-        <div class="container" style={styles.head}>
-            <h1 class="district-header">
+        <div className="container" style={styles.head}>
+            <h1 className="district-header">
                 Districts of {state_json[this.props.match.params.districtid]}
             </h1>
-            <div class="row">
+            <div className="row">
                 {districts_grid}
             </div>
         </div>
