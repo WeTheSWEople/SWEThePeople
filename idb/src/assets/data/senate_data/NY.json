@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "G000555",
+         "name": "Kirsten E. Gillibrand",
+         "first_name": "Kirsten",
+         "middle_name": "E.",
+         "last_name": "Gillibrand",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "F",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/g/kirsten_gillibrand/index.html",
+         "twitter_id": "SenGillibrand",
+         "facebook_account": "KirstenGillibrand",
+         "youtube_id": "KirstenEGillibrand",
+         "seniority": "9",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/G000555.json"
+      },
+      {
+         "id": "S000148",
+         "name": "Charles E. Schumer",
+         "first_name": "Charles",
+         "middle_name": "E.",
+         "last_name": "Schumer",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/s/charles_e_schumer/index.html",
+         "twitter_id": "SenSchumer",
+         "facebook_account": "senschumer",
+         "youtube_id": "SenatorSchumer",
+         "seniority": "19",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/S000148.json"
+      }
+]}

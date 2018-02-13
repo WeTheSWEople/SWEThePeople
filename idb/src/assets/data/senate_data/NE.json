@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "F000463",
+         "name": "Deb Fischer",
+         "first_name": "Deb",
+         "middle_name": null,
+         "last_name": "Fischer",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "F",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": "SenatorFischer",
+         "facebook_account": "senatordebfischer",
+         "youtube_id": "senatordebfischer",
+         "seniority": "5",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/F000463.json"
+      },
+      {
+         "id": "S001197",
+         "name": "Ben Sasse",
+         "first_name": "Ben",
+         "middle_name": "",
+         "last_name": "Sasse",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "",
+         "twitter_id": "SenSasse",
+         "facebook_account": null,
+         "youtube_id": null,
+         "seniority": "3",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/S001197.json"
+      }
+]}

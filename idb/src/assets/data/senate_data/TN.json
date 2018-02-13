@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "C001071",
+         "name": "Bob Corker",
+         "first_name": "Bob",
+         "middle_name": null,
+         "last_name": "Corker",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": "SenBobCorker",
+         "facebook_account": "bobcorker",
+         "youtube_id": "senatorcorker",
+         "seniority": "11",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C001071.json"
+      },
+      {
+         "id": "A000360",
+         "name": "Lamar Alexander",
+         "first_name": "Lamar",
+         "middle_name": "",
+         "last_name": "Alexander",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/a/lamar_alexander/index.html",
+         "twitter_id": "SenAlexander",
+         "facebook_account": "senatorlamaralexander",
+         "youtube_id": "lamaralexander",
+         "seniority": "15",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/A000360.json"
+      }
+]}

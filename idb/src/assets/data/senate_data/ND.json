@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "H001069",
+         "name": "Heidi Heitkamp",
+         "first_name": "Heidi",
+         "middle_name": null,
+         "last_name": "Heitkamp",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "F",
+         "party": "D",
+         "times_topics_url": null,
+         "twitter_id": "SenatorHeitkamp",
+         "facebook_account": "SenatorHeidiHeitkamp",
+         "youtube_id": "senatorheidiheitkamp",
+         "seniority": "5",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/H001069.json"
+      },
+      {
+         "id": "H001061",
+         "name": "John Hoeven",
+         "first_name": "John",
+         "middle_name": null,
+         "last_name": "Hoeven",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "",
+         "twitter_id": "SenJohnHoeven",
+         "facebook_account": "SenatorJohnHoeven",
+         "youtube_id": "senatorjohnhoevennd",
+         "seniority": "7",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/H001061.json"
+      }
+]}

@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "K000383",
+         "name": "Angus King",
+         "first_name": "Angus",
+         "middle_name": null,
+         "last_name": "King",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "I",
+         "times_topics_url": null,
+         "twitter_id": "SenAngusKing",
+         "facebook_account": "SenatorAngusSKingJr",
+         "youtube_id": "SenatorAngusKing",
+         "seniority": "5",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/K000383.json"
+      },
+      {
+         "id": "C001035",
+         "name": "Susan Collins",
+         "first_name": "Susan",
+         "middle_name": null,
+         "last_name": "Collins",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "F",
+         "party": "R",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/c/susan_m_collins/index.html",
+         "twitter_id": "SenatorCollins",
+         "facebook_account": "susancollins",
+         "youtube_id": "SenatorSusanCollins",
+         "seniority": "21",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C001035.json"
+      }
+]}

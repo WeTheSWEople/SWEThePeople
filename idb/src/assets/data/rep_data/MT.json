@@ -1,0 +1,25 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "G000584",
+         "name": "Greg Gianforte",
+         "first_name": "Greg",
+         "middle_name": "",
+         "last_name": "Gianforte",
+         "suffix": null,
+         "role": "Representative",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "",
+         "twitter_id": null,
+         "facebook_account": null,
+         "youtube_id": null,
+         "seniority": "2",
+         "next_election": "",
+         "api_uri": "https://api.propublica.org/congress/v1/members/G000584.json",
+         "district": "At-Large",
+         "at_large": true
+      }
+]}

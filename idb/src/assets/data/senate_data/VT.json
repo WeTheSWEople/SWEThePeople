@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "S000033",
+         "name": "Bernard Sanders",
+         "first_name": "Bernard",
+         "middle_name": null,
+         "last_name": "Sanders",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "I",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/s/bernard_sanders/index.html",
+         "twitter_id": "SenSanders",
+         "facebook_account": "senatorsanders",
+         "youtube_id": "senatorsanders",
+         "seniority": "11",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/S000033.json"
+      },
+      {
+         "id": "L000174",
+         "name": "Patrick J. Leahy",
+         "first_name": "Patrick",
+         "middle_name": "J.",
+         "last_name": "Leahy",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/l/patrick_j_leahy/index.html",
+         "twitter_id": "SenatorLeahy",
+         "facebook_account": "SenatorPatrickLeahy",
+         "youtube_id": "SenatorPatrickLeahy",
+         "seniority": "43",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/L000174.json"
+      }
+]}

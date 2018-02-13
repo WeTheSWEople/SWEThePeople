@@ -1,0 +1,25 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "B001245",
+         "name": "Madeleine Z. Bordallo",
+         "first_name": "Madeleine",
+         "middle_name": "Z.",
+         "last_name": "Bordallo",
+         "suffix": null,
+         "role": "Delegate",
+         "gender": "F",
+         "party": "D",
+         "times_topics_url": null,
+         "twitter_id": null,
+         "facebook_account": null,
+         "youtube_id": null,
+         "seniority": "16",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/B001245.json",
+         "district": "At-Large",
+         "at_large": true
+      }
+]}

@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "M001170",
+         "name": "Claire McCaskill",
+         "first_name": "Claire",
+         "middle_name": null,
+         "last_name": "McCaskill",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "F",
+         "party": "D",
+         "times_topics_url": null,
+         "twitter_id": "McCaskillOffice",
+         "facebook_account": "senatormccaskill",
+         "youtube_id": "SenatorMcCaskill",
+         "seniority": "11",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/M001170.json"
+      },
+      {
+         "id": "B000575",
+         "name": "Roy Blunt",
+         "first_name": "Roy",
+         "middle_name": "",
+         "last_name": "Blunt",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/b/roy_d_blunt/index.html",
+         "twitter_id": "RoyBlunt",
+         "facebook_account": "SenatorBlunt",
+         "youtube_id": "SenatorBlunt",
+         "seniority": "7",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/B000575.json"
+      }
+]}

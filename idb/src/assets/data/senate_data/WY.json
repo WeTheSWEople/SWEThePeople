@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "B001261",
+         "name": "John Barrasso",
+         "first_name": "John",
+         "middle_name": null,
+         "last_name": "Barrasso",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": "SenJohnBarrasso",
+         "facebook_account": "johnbarrasso",
+         "youtube_id": "barrassowyo",
+         "seniority": "11",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/B001261.json"
+      },
+      {
+         "id": "E000285",
+         "name": "Michael B. Enzi",
+         "first_name": "Michael",
+         "middle_name": "B.",
+         "last_name": "Enzi",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/e/michael_b_enzi/index.html",
+         "twitter_id": "SenatorEnzi",
+         "facebook_account": "mikeenzi",
+         "youtube_id": "senatorenzi",
+         "seniority": "21",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/E000285.json"
+      }
+]}

@@ -11,8 +11,8 @@ import RepBills from './Bills.js'
 
 const styles = {
   hyperlink: {
-    textDecoration: "none",
-    color: "black"
+	textDecoration: "none",
+	color: "black"
   },
   roundcorner:{
     borderRadius: "13%"
@@ -21,6 +21,7 @@ const styles = {
 
 export default class RepresentativeDetails extends Component {
   constructor(props){
+
     super(props)
     this.state = {
       error: false,
