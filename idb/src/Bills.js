@@ -47,7 +47,6 @@ export default class RepBills extends Component {
 
     }
 
-  	console.log(this.state.bill_colors)
   	let mapping = Object.keys(this.state.bills_data).map((item) =>
   		<Col sm={12} md={4}>
               <div class="tile1 job-bucket" >
