@@ -18,6 +18,7 @@ export default class PoliticalPartyDetails extends Component {
             ready: false,
             error: false,
             party: {},
+            num_reps: 0,
             reps: {},
             districts: []
         }
@@ -28,7 +29,8 @@ export default class PoliticalPartyDetails extends Component {
 
         var this_party = {}
         for (var i = 0; i < all_parties.length; i++) {
-            if (all_parties[i]["id"] == this.props.match.params.id) {
+            if (all_parties[i]["name"].toUpperCase() ===
+                this.props.match.params.name.toUpperCase()) {
                 this_party = all_parties[i]
             }
         }
@@ -36,16 +38,20 @@ export default class PoliticalPartyDetails extends Component {
 
         var reps_map = {}
         var districts_arr = []
+        var rep_count = 0
         Object.keys(reps_info).forEach(function (key){
             if (this_party["name"].startsWith(reps_info[key]["party"])) {
                 reps_map[key] = reps_info[key]
                 districts_arr.push(reps_info[key]["state"])
+                rep_count += 1
             }
         })
-        this.setState({reps: reps_map, districts: districts_arr, ready: true})
+        this.setState({num_reps: rep_count, reps: reps_map,
+                       districts: districts_arr, ready: true})
     }
 
     render() {
+        console.log(this.state.num_reps)
         const styles = {
             divStyle: {
                 paddingTop: "50px",
@@ -55,9 +61,18 @@ export default class PoliticalPartyDetails extends Component {
             },
             partyColor: {
                 color: this.state.party["color"]
+            },
+            progressStyle: {
+                width: ((this.state.num_reps / 3) * 100) + "%",
+                backgroundImage: "none",
+                backgroundColor: this.state.party["color"]
             }
         }
 
+        var control_text = ""
+        if (this.state.num_reps > 0) {
+            control_text = this.state.num_reps + "/3"
+        }
 
         var reps_grid = Object.keys(this.state.reps).map((key) =>
             <div class="col-sm-3 party-rep-card">
@@ -65,7 +80,6 @@ export default class PoliticalPartyDetails extends Component {
             </div>
         )
 
-        console.log(this.state.districts)
         var districts_grid = this.state.districts.map(district =>
             <div class="col-sm-3 party-rep-card">
                 <StateInstance key={district}
@@ -115,6 +129,16 @@ export default class PoliticalPartyDetails extends Component {
                                     {this.state.party["website"]}
                                 </a>
                             </p>
+
+                            <p class="party-info-header">House Control:</p>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar"
+                                     style={styles.progressStyle}
+                                     aria-valuenow="50" aria-valuemin="0"
+                                     aria-valuemax="435">
+                                    {control_text}
+                                </div>
+                            </div>
                         </div>
 
                         <div class="col-sm-5">
