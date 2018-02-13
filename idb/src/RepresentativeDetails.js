@@ -80,6 +80,16 @@ export default class RepresentativeDetails extends Component {
       frameborder="10" allowfullscreen >
     </iframe>
     </Col>
+    <Col>
+    <h3><b>Office Location</b></h3>
+    <h4>{this.state.rep_data["office"]}</h4>
+    <iframe
+      width="600"
+      height="450"
+      frameborder="0" style={{border: "0"}}
+      src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY&q=" + this.state.rep_data["office"]} allowfullscreen>
+    </iframe>
+    </Col>
     </Row>
 	  </div>
 	);
