@@ -24,7 +24,6 @@ export default class Districts extends Component {
 			reps += senator_json["results"].length
 			this.setState({senator_count: senator_json["results"].length, total_reps: reps})
 		}
-		console.log(this.state.total_reps)
 	}
   render() {
 	  let senators = null
