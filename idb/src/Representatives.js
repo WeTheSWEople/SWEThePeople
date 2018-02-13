@@ -17,7 +17,7 @@ const styles = {
     justifyContent: 'space-around',
   },
   gridList: {
-    width: '80%',
+    width: '100%',
     height: '100%',
     overflowY: 'auto',
   },
@@ -39,8 +39,9 @@ export default class Representatives extends Component {
       <div style={styles.root}>
       <GridList
         cellHeight={400}
-        cols={4}
-        style={styles.gridList} >
+        cols={5}
+        style={styles.gridList}
+      >
         {this.state.map((item) => (
             <RepresentativeInstance key={item.bioguide} rep = {item} />
         ))}
