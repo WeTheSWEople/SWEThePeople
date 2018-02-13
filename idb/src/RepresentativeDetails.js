@@ -70,7 +70,17 @@ export default class RepresentativeDetails extends Component {
 		 />
 		</Col>
 	  </Row>
-
+    <Row>
+    <Col>
+    <h3><b>YouTube Channel</b></h3>
+    <iframe
+      width="600"
+      height="340"
+      src={"http://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=" + this.state.rep_data["youtube"]}
+      frameborder="10" allowfullscreen >
+    </iframe>
+    </Col>
+    </Row>
 	  </div>
 	);
   }
