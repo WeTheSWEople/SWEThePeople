@@ -26,6 +26,7 @@ export default class PoliticalParty extends Component {
             parties_map[all_parties[i]["name"]] = {
                     name: all_parties[i]["name"],
                     color: all_parties[i]["color"],
+                    chair: all_parties[i]["chair"],
                     num_reps: 0}
         }
 
