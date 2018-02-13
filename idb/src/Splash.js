@@ -21,7 +21,7 @@ export default class Splash extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      centerMode: true,
+      centerMode: false,
       autoplaySpeed: 4000,
       pauseOnHover: true
     }
@@ -34,13 +34,13 @@ export default class Splash extends Component {
       <header className="App-header">
       </header>
       <div className="carousel-parent">
-          <Slider {...this.settings} className="carousel">
+          <center><Slider {...this.settings} className="carousel">
 
           {pics.map((item) => (
               <div><img src={item} alt=""/></div>
           ))}
 
-          </Slider>
+          </Slider></center>
       </div>
       </div>
     )
