@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "C001075",
+         "name": "Bill Cassidy",
+         "first_name": "Bill",
+         "middle_name": null,
+         "last_name": "Cassidy",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": null,
+         "facebook_account": "",
+         "youtube_id": "SenatorBillCassidy",
+         "seniority": "3",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C001075.json"
+      },
+      {
+         "id": "K000393",
+         "name": "John Kennedy",
+         "first_name": "John",
+         "middle_name": null,
+         "last_name": "Kennedy",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": "SenJohnKennedy",
+         "facebook_account": null,
+         "youtube_id": null,
+         "seniority": "1",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/K000393.json"
+      }
+]}

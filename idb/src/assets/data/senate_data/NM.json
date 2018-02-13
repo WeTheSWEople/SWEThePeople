@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "H001046",
+         "name": "Martin Heinrich",
+         "first_name": "Martin",
+         "middle_name": null,
+         "last_name": "Heinrich",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": null,
+         "twitter_id": "MartinHeinrich",
+         "facebook_account": "MartinHeinrich",
+         "youtube_id": "SenMartinHeinrich",
+         "seniority": "5",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/H001046.json"
+      },
+      {
+         "id": "U000039",
+         "name": "Tom Udall",
+         "first_name": "Tom",
+         "middle_name": null,
+         "last_name": "Udall",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/u/tom_udall/index.html",
+         "twitter_id": "SenatorTomUdall",
+         "facebook_account": "senatortomudall",
+         "youtube_id": "senatortomudall",
+         "seniority": "10",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/U000039.json"
+      }
+]}

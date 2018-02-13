@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "C001095",
+         "name": "Tom Cotton",
+         "first_name": "Tom",
+         "middle_name": null,
+         "last_name": "Cotton",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "",
+         "twitter_id": "SenTomCotton",
+         "facebook_account": "SenatorTomCotton",
+         "youtube_id": "RepTomCotton",
+         "seniority": "3",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C001095.json"
+      },
+      {
+         "id": "B001236",
+         "name": "John Boozman",
+         "first_name": "John",
+         "middle_name": "",
+         "last_name": "Boozman",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "",
+         "twitter_id": "JohnBoozman",
+         "facebook_account": "JohnBoozman",
+         "youtube_id": "BoozmanPressOffice",
+         "seniority": "7",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/B001236.json"
+      }
+]}

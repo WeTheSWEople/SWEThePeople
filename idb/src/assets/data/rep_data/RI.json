@@ -1,0 +1,45 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "C001084",
+         "name": "David Cicilline",
+         "first_name": "David",
+         "middle_name": null,
+         "last_name": "Cicilline",
+         "suffix": null,
+         "role": "Representative",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": "",
+         "twitter_id": "RepCicilline",
+         "facebook_account": "CongressmanDavidCicilline",
+         "youtube_id": "RepDavidCicilline",
+         "seniority": "8",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/C001084.json",
+         "district": "1",
+         "at_large": false
+      },
+      {
+         "id": "L000559",
+         "name": "Jim Langevin",
+         "first_name": "Jim",
+         "middle_name": null,
+         "last_name": "Langevin",
+         "suffix": null,
+         "role": "Representative",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": null,
+         "twitter_id": "JimLangevin",
+         "facebook_account": "CongressmanJimLangevin",
+         "youtube_id": "jimlangevin",
+         "seniority": "18",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/L000559.json",
+         "district": "2",
+         "at_large": false
+      }
+]}

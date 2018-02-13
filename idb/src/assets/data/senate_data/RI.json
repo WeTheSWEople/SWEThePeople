@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "W000802",
+         "name": "Sheldon Whitehouse",
+         "first_name": "Sheldon",
+         "middle_name": null,
+         "last_name": "Whitehouse",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/w/sheldon_whitehouse/index.html",
+         "twitter_id": "SenWhitehouse",
+         "facebook_account": "SenatorWhitehouse",
+         "youtube_id": "SenatorWhitehouse",
+         "seniority": "11",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/W000802.json"
+      },
+      {
+         "id": "R000122",
+         "name": "Jack Reed",
+         "first_name": "Jack",
+         "middle_name": null,
+         "last_name": "Reed",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/r/jack_reed/index.html",
+         "twitter_id": "SenJackReed",
+         "facebook_account": "SenJackReed",
+         "youtube_id": "SenatorReed",
+         "seniority": "21",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/R000122.json"
+      }
+]}

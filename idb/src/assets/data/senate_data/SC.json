@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "G000359",
+         "name": "Lindsey Graham",
+         "first_name": "Lindsey",
+         "middle_name": null,
+         "last_name": "Graham",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/g/lindsey_graham/index.html",
+         "twitter_id": "GrahamBlog",
+         "facebook_account": "USSenatorLindseyGraham",
+         "youtube_id": "USSenLindseyGraham",
+         "seniority": "15",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/G000359.json"
+      },
+      {
+         "id": "S001184",
+         "name": "Tim Scott",
+         "first_name": "Tim",
+         "middle_name": null,
+         "last_name": "Scott",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "",
+         "twitter_id": "SenatorTimScott",
+         "facebook_account": "SenatorTimScott",
+         "youtube_id": "SenatorTimScott",
+         "seniority": "5",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/S001184.json"
+      }
+]}

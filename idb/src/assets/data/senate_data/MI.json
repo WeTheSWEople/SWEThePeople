@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "S000770",
+         "name": "Debbie Stabenow",
+         "first_name": "Debbie",
+         "middle_name": null,
+         "last_name": "Stabenow",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "F",
+         "party": "D",
+         "times_topics_url": "http://topics.nytimes.com/top/reference/timestopics/people/s/debbie_stabenow/index.html",
+         "twitter_id": "SenStabenow",
+         "facebook_account": "",
+         "youtube_id": "senatorstabenow",
+         "seniority": "17",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/S000770.json"
+      },
+      {
+         "id": "P000595",
+         "name": "Gary Peters",
+         "first_name": "Gary",
+         "middle_name": null,
+         "last_name": "Peters",
+         "suffix": null,
+         "role": "Senator, 2nd Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": null,
+         "twitter_id": "SenGaryPeters",
+         "facebook_account": "SenGaryPeters",
+         "youtube_id": "RepGaryPeters",
+         "seniority": "3",
+         "next_election": "2020",
+         "api_uri": "https://api.propublica.org/congress/v1/members/P000595.json"
+      }
+]}

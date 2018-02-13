@@ -1,0 +1,41 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "B000944",
+         "name": "Sherrod Brown",
+         "first_name": "Sherrod",
+         "middle_name": "",
+         "last_name": "Brown",
+         "suffix": null,
+         "role": "Senator, 1st Class",
+         "gender": "M",
+         "party": "D",
+         "times_topics_url": "",
+         "twitter_id": "SenSherrodBrown",
+         "facebook_account": "",
+         "youtube_id": "SherrodBrownOhio",
+         "seniority": "11",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/B000944.json"
+      },
+      {
+         "id": "P000449",
+         "name": "Rob Portman",
+         "first_name": "Rob",
+         "middle_name": "",
+         "last_name": "Portman",
+         "suffix": null,
+         "role": "Senator, 3rd Class",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": "",
+         "twitter_id": "SenRobPortman",
+         "facebook_account": "senrobportman",
+         "youtube_id": "SenRobPortman",
+         "seniority": "7",
+         "next_election": "2022",
+         "api_uri": "https://api.propublica.org/congress/v1/members/P000449.json"
+      }
+]}
