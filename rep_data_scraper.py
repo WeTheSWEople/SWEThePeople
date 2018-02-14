@@ -1,6 +1,7 @@
 import requests
 import json
 import os
+import apikeys
 
 data = json.load(open('state.json'))
 count = 1
@@ -9,7 +10,7 @@ for i in data:
 	url = "https://api.propublica.org/congress/v1/members/senate/" + i + "/current.json"
 
 	headers = {
-		'x-api-key': "bOdIbL6MItwDYrU3ISRxtTi2ttT0B8I5o4eycB7X",
+		'x-api-key': apikeys.rep_key(),
 		}
 
 	response = requests.request("GET", url, headers=headers)
