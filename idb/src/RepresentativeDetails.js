@@ -27,7 +27,6 @@ export default class RepresentativeDetails extends Component {
       error: false,
       rep_data: {},
       bioguideid: "",
-      party_id: null,
     }
   }
   componentWillMount(){
@@ -35,16 +34,6 @@ export default class RepresentativeDetails extends Component {
     // get the data - in the future call the api
     this.setState({bioguideid: this.props.match.params.bioguideid})
     this.setState({rep_data: allReps[this.props.match.params.bioguideid]})
-    var id = 0
-    if(allReps[this.props.match.params.bioguideid]["party"] === "Republican"){
-      id = 1
-    }
-    else if(allReps[this.props.match.params.bioguideid]["party"] === "Libertarian"){
-      id = 2
-    }
-    var rep = allReps[this.props.match.params.bioguideid]
-  
-    this.setState({party_id: id})
 
   }
 
@@ -63,7 +52,7 @@ export default class RepresentativeDetails extends Component {
           <div style={{textAlign: "left"}}>
           <p style={{paddingTop:"10px"}}><font size="8"><b>{this.state.rep_data["firstName"]} {this.state.rep_data["lastName"]}</b></font>  </p>
           <p> <b>Party: </b> <Link
-            to={`/party/${this.state.party_id}`}>
+            to={`/party/${this.state.rep_data["party"]}`}>
             {this.state.rep_data["party"]} </Link> 
           </p>
           <p> <b> State: </b> {this.state.rep_data["state"]}</p>
@@ -86,8 +75,8 @@ export default class RepresentativeDetails extends Component {
            }}
            options={{
              username: this.state.rep_data["twitter"],
-             height: "350",
-             width:"400"
+             height: "370",
+             width:"350"
            }}
          />
         </Col>
