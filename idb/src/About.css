@@ -1,3 +1,41 @@
+.about-content {
+    padding-top: 70px;
+}
+
+.about-content a:link,
+.about-content a:visited {
+    color: #3E73C9 !important;
+}
+
+.about-header {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #AAA;
+}
+
+.github-info {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.github-info .pad-right {
+    margin-right: 5px;
+}
+
+.github-info .github-counts {
+    text-align: left !important;
+    min-width: 100%;
+    padding-left: 10%;
+}
+
+.github-info .github-counts h4 {
+    min-width: 100%;
+}
+
+.github-info .github-counts .right-info {
+    float: right;
+    padding-right: 20%;
+}
+
 .tools-div {
     margin-top: 50px;
 }
@@ -17,6 +55,11 @@
     margin-bottom: 25px;
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
     min-height: 400px;
+}
+
+.tools-div .tools-card img {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .tools-div .tools-card p {
