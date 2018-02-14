@@ -206,6 +206,26 @@ export default class About extends Component {
                 </a>
             </div>
         </div>
+
+        <div>
+            <p><u><a href = "https://github.com/WeTheSWEople/SWEThePeople/">Link to the GitHub Repo</a></u></p>
+            <h2>Data Sources </h2>
+            <h3>Source 1: ProPublica </h3>
+            <p>Link: <u><a href = "https://projects.propublica.org/api-docs/congress-api/">ProPublica</a></u></p>
+            <p>Description: Used to get information about all of U.S. representatives, their party, and corresponding districts  </p> 
+
+            <h3>Source 2: GovTrack </h3>
+            <p>Link: <u><a href = "https://www.govtrack.us/developers/api">GovTrack</a></u></p>
+            <p>Description: Used to get information about recent bills sponsored by each representatives and their current status </p> 
+
+            <h3>Source 3: United States Bureau</h3>
+            <p>Link: <u><a href = "https://www.census.gov/data/developers/data-sets/decennial-census.html">United States Bureau</a></u></p>
+            <p>Description: Used to get socioeconomics information based on either states or districts from the census </p>
+
+            <h3>Source 4: TheUnitedStates.io</h3>
+            <p>Link: <u><a href = "https://theunitedstates.io/images/congress/">TheUnitedStates.io</a></u></p>
+            <p>Description: Used to get images of representatives based on their bioguide id </p> 
+        </div>
       </div>
     );
   }
