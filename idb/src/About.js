@@ -110,6 +110,10 @@ export default class About extends Component {
                             <img src={require("./assets/images/about/github.png")}
                                  className="img-responsive" />
                             <h5>GitHub</h5>
+                            <p>
+                                Used to manage versions betwen different
+                                branches of the project.
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -119,6 +123,9 @@ export default class About extends Component {
                             <img src={require("./assets/images/about/gitbook.png")}
                                  className="img-responsive" />
                             <h5>Gitbook</h5>
+                            <p>
+                                Used to document the project and its API.
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -128,6 +135,9 @@ export default class About extends Component {
                             <img src={require("./assets/images/about/reactjs.png")}
                                  className="img-responsive" />
                             <h5>ReactJS</h5>
+                            <p>
+                                The JavaScript library the site is built on.
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -137,6 +147,10 @@ export default class About extends Component {
                             <img src={require("./assets/images/about/ec2.jpg")}
                                  className="img-responsive" />
                             <h5>Amazon EC2</h5>
+                            <p>
+                                Container being used to host the production
+                                site.
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -146,6 +160,10 @@ export default class About extends Component {
                             <img src={require("./assets/images/about/bootstrap.png")}
                                  className="img-responsive" />
                             <h5>Bootstrap</h5>
+                            <p>
+                                CSS and JavaScript toolkit used to beautify
+                                pages.
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -155,6 +173,9 @@ export default class About extends Component {
                             <img src={require("./assets/images/about/flask.png")}
                                  className="img-responsive" />
                             <h5>Python Flask</h5>
+                            <p>
+                                Web framework used for the production site.
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -163,7 +184,23 @@ export default class About extends Component {
                         <div className="tools-card">
                             <img src={require("./assets/images/about/nginx.png")}
                                  className="img-responsive" />
-                            <h5>Nginx</h5>
+                            <h5>NGINX</h5>
+                            <p>
+                                Webserver to serve the production site.
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.slack.com/">
+                    <div className="col-sm-3">
+                        <div className="tools-card">
+                            <img src={require("./assets/images/about/slack.png")}
+                                 className="img-responsive" />
+                            <h5>Slack</h5>
+                            <p>
+                                Used to communicate between members to organize
+                                meetings and work.
+                            </p>
                         </div>
                     </div>
                 </a>
