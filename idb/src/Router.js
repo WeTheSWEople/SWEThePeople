@@ -15,11 +15,11 @@ export default class DefaultRouter extends Component {
 		<Switch>
 		   <Route exact path="/" component={Splash}/>
 			<Route path="/about" component={About}/>
-		<Route exact path="/representatives" component={Representatives}/>
+            <Route exact path="/representatives" component={Representatives}/>
 			<Route path="/representatives/:bioguideid" component={RepresentativeDetails}/>
-		<Route exact path="/districts" component={AllDistricts}/>
+            <Route exact path="/districts" component={AllDistricts}/>
 			<Route path="/districts/:districtid" component={Districts}/>
-		<Route path="/parties" component={PoliticalParty} />
+            <Route path="/parties" component={PoliticalParty} />
 			<Route path="/party/:name" component={PoliticalPartyDetails} />
 		</Switch>
 	);

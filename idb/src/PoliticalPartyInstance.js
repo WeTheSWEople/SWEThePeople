@@ -12,7 +12,7 @@ export default class Parties extends Component {
             imgStyle: {
                 width: "50%"
             },
-            numReps: {
+            itemHeader: {
                 marginRight: "5px"
             }
         }
@@ -33,10 +33,16 @@ export default class Parties extends Component {
                             <div class="col-md-6 party-index-name">
                                 <h3>{key} Party</h3>
                                 <p>
-                                    <span style={styles.numReps}>
+                                    <span style={styles.itemHeader}>
                                         Number of representatives: 
                                     </span>
                                     {this.props.party_data[key]["num_reps"]}
+                                </p>
+                                <p>
+                                    <span style={styles.itemHeader}>
+                                        Party chair:
+                                    </span>
+                                    {this.props.party_data[key]["chair"]}
                                 </p>
                             </div>
                         </div>
