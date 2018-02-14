@@ -1,25 +1,26 @@
 {
-	"name": "idb",
-	"version": "0.1.0",
-	"private": true,
-	"dependencies": {
-		"material-ui": "^0.20.0",
-		"react": "^16.2.0",
-		"react-bootstrap": "^0.32.1",
-		"react-dom": "^16.2.0",
-		"react-router-bootstrap": "^0.24.4",
-		"react-router-dom": "^4.2.2",
-		"react-scripts": "1.1.0",
-		"react-slick": "^0.18.0",
-		"react-spinners": "^0.2.6",
-		"react-twitter-widgets": "^1.7.1",
-		"requests": "^0.2.2",
-		"slick-carousel": "^1.8.1"
-	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test --env=jsdom",
-		"eject": "react-scripts eject"
-	}
+  "name": "idb",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "material-ui": "^0.20.0",
+    "momentjs": "^2.0.0",
+    "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.2.0",
+    "react-router-bootstrap": "^0.24.4",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.0",
+    "react-slick": "^0.18.0",
+    "react-spinners": "^0.2.6",
+    "react-twitter-widgets": "^1.7.1",
+    "requests": "^0.2.2",
+    "slick-carousel": "^1.8.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
 }
