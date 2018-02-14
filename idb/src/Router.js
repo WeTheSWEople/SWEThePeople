@@ -8,7 +8,6 @@ import Representatives from './Representatives'
 import RepresentativeDetails from './RepresentativeDetails'
 import Districts from './District'
 import AllDistricts from './AllDistricts'
-import DistrictDetail from './DistrictDetail.js'
 
 export default class DefaultRouter extends Component {
   render() {
@@ -16,13 +15,12 @@ export default class DefaultRouter extends Component {
 		<Switch>
 		   <Route exact path="/" component={Splash}/>
 			<Route path="/about" component={About}/>
-		<Route exact path="/representatives" component={Representatives}/>
+            <Route exact path="/representatives" component={Representatives}/>
 			<Route path="/representatives/:bioguideid" component={RepresentativeDetails}/>
-		<Route exact path="/districts" component={AllDistricts}/>
+            <Route exact path="/districts" component={AllDistricts}/>
 			<Route path="/districts/:districtid" component={Districts}/>
-		<Route path="/parties" component={PoliticalParty} />
+            <Route path="/parties" component={PoliticalParty} />
 			<Route path="/party/:name" component={PoliticalPartyDetails} />
-            <Route path="/district/:state/:district" component={DistrictDetail} />
 		</Switch>
 	);
   }
