@@ -129,7 +129,6 @@ export default class PoliticalPartyDetails extends Component {
                                     {this.state.party["website"]}
                                 </a>
                             </p>
-
                             <p class="party-info-header">House Control:</p>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar"
@@ -140,7 +139,6 @@ export default class PoliticalPartyDetails extends Component {
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-sm-5">
                             <Timeline
                                 dataSource={{
@@ -152,9 +150,15 @@ export default class PoliticalPartyDetails extends Component {
                                   height: '300'
                                 }}
                             />
+                            <iframe
+                              width="353"
+                              height="200"
+                              src={"http://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=" + this.state.party["youtube"]}
+                              frameborder="10" allowfullscreen >
+                            </iframe>
                         </div>
-                    </div>
 
+                    </div>
                     <div>
                         <h3 class="rep-header">Representatives</h3>
                         <div class="row">
@@ -168,6 +172,17 @@ export default class PoliticalPartyDetails extends Component {
                             {districts_grid}
                         </div>
                     </div>
+
+                  <div>
+                      <h4><b>Office Location:</b></h4>
+                      <h4>{this.state.party["office"]}</h4>
+                      <iframe
+                        width="353"
+                        height="200"
+                        frameborder="0" style={{border: "0"}}
+                        src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY&q=" + this.state.party["office"]} allowfullscreen>
+                      </iframe>          
+                  </div>
                 </div>
             </div>
         );

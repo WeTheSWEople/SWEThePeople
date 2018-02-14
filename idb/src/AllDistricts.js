@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import header from './assets/images/header.png'
 import './App.css';
 import {GridList} from 'material-ui/GridList';
 import StateInstance from './StateInstance'
