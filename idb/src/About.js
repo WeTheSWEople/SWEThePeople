@@ -42,24 +42,35 @@ export default class About extends Component {
 
 			}
 			this.setState({total_commits: total_commits})
-			var options = { method: 'GET',
-			  url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all',
-			  qs: { state: 'all' },
-			  };
+			var end_of_file = false
+			var page = 1
+			//loop doesn't work for some reason
+			//while(!end_of_file){
+				var options = { method: 'GET',
+				  url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all&per_page=100&page=' + String(page),
+				  qs: { state: 'all' },
+				};
 
-			request(options, function (error, response, body) {
-			  if(error){
-				  this.setState({error: true, ready: true})
-			  }
-			 var issue_json = JSON.parse(body)
-			 for(var i = 0; i < issue_json.length; i++){
-				 var current_author = issue_json[i]["user"]["login"]
-				 swe_members[String(issue_json[i]["user"]["login"])][2] += 1
-			 }
-			 this.setState({swe_member_data: swe_members, total_issues: issue_json.length, ready: true})
-		  }.bind(this));
+				request(options, function (error, response, body) {
+				  if(error){
+					  this.setState({error: true, ready: true})
+				  }
+				 var issue_json = JSON.parse(body)
+				 for(var i = 0; i < issue_json.length; i++){
+					 var current_author = issue_json[i]["user"]["login"]
+					 swe_members[String(issue_json[i]["user"]["login"])][2] += 1
+				 }
+				 if(issue_json[issue_json.length - 1]["number"] == 1){
+				 	end_of_file = true
+				 }
+				 page += 1
+				 console.log(end_of_file, page)
+				this.setState({swe_member_data: swe_members, total_issues: issue_json.length})
+			  	}.bind(this));
+			//}
+			this.setState({ready: true})
 
-	  }.bind(this));
+		}.bind(this));
 
 	}
   render() {
