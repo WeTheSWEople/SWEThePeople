@@ -57,6 +57,11 @@
     min-height: 400px;
 }
 
+.tools-div a:link,
+.tools-div a:visited {
+    color: #000 !important;
+}
+
 .tools-div .tools-card img {
     margin-right: auto;
     margin-left: auto;
@@ -81,3 +86,4 @@
     color: #000;
     margin-top: 25px;
 }
+
