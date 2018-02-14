@@ -6,6 +6,8 @@
     "formation_date": "January 8, 1828",
     "color": "Blue",
     "twitter_handle": "TheDemocrats",
+    "youtube": "DemocraticVideo",
+    "office": "310 First Street SE, Washington, DC 20003",
     "website": "https://democrats.org/"
   },
   {
@@ -15,6 +17,8 @@
     "formation_date": "March 20, 1854",
     "color": "Red",
     "twitter_handle": "GOP",
+    "youtube": "rnc",
+    "office": "430 South Capitol Street Southeast Washington, DC 20003",
     "website": "https://www.gop.com/"
   },
   {
@@ -24,6 +28,8 @@
     "formation_date": "December 11, 1971",
     "color": "Purple",
     "twitter_handle": "LPNational",
+    "youtube": "LibertarianParty",
+    "office": "1444 Duke St. Alexandria, VA 22314-3403",
     "website": "https://www.lp.org/"
   }
 ]
