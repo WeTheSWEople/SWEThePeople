@@ -24,7 +24,7 @@ export default class PoliticalParty extends Component {
         var parties_map = {}
         for (var i = 0; i < all_parties.length; i++) {
             parties_map[all_parties[i]["name"]] = {
-                    id: all_parties[i]["id"],
+                    name: all_parties[i]["name"],
                     color: all_parties[i]["color"],
                     num_reps: 0}
         }
