@@ -44,6 +44,7 @@ export default class Districts extends Component {
 									 "name": name,
 									 "party": party,
 									 "rep": result["name"],
+									 "id": result["id"],
 									 "cssColor": cssColor,
 									 "rep_id": result["id"]})
 				districts_list.sort(function(a, b) {
@@ -89,16 +90,21 @@ export default class Districts extends Component {
 	let styles = {
 		head: {
 			paddingTop: "70px",
+		},
+		imgStyle: {
+			width: "50%"
 		}
 	}
 
 	let districts_grid = this.state.districts_arr.map(district =>
 		<div className="col-sm-3 district-grid" key={district.district}>
-			<Link to={""}>
+			<Link to={"/"}>
 				<div className={"district-card " + district.cssColor}>
 					<h3>{district.name}</h3>
 					<h4>{district.rep}</h4>
-					<p>Party: {district.party}</p>
+					<img src={"https://theunitedstates.io/images/congress/225x275/" + district.id + ".jpg"}  alt={district.name} class="rep_img" />
+					<br /> <br />
+					<h4>Party: {district.party}</h4>
 				</div>
 			</Link>
 		</div>
