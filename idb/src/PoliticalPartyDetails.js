@@ -28,9 +28,11 @@ export default class PoliticalPartyDetails extends Component {
         this.setState({ready: false})
 
         var this_party = {}
+        console.log(this.props.match.params.name)
         for (var i = 0; i < all_parties.length; i++) {
-            if (all_parties[i]["name"].toUpperCase() ===
-                this.props.match.params.name.toUpperCase()) {
+            console.log(all_parties[i]["name"])
+            if (all_parties[i]["name"].toUpperCase().startsWith(
+                this.props.match.params.name.toUpperCase())) {
                 this_party = all_parties[i]
             }
         }
@@ -51,7 +53,6 @@ export default class PoliticalPartyDetails extends Component {
     }
 
     render() {
-        console.log(this.state.num_reps)
         const styles = {
             divStyle: {
                 paddingTop: "50px",
