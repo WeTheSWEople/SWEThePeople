@@ -77,28 +77,51 @@ export default class RepresentativeDetails extends Component {
           </div>
           </font> 
         </Col>
+		<Col sm={12} md={4}>
+		  <Timeline
+		   dataSource={{
+			 sourceType: "profile",
+			 screenName: this.state.rep_data["twitter"]
+		   }}
+		   options={{
+			 username: this.state.rep_data["twitter"],
+			 height: "400",
+			 width:"400"
+		   }}
+		 />
+		</Col>
+	  </Row>
 
-        <Col sm={12} md={4}>
-          <Timeline
-           dataSource={{
-             sourceType: "profile",
-             screenName: this.state.rep_data["twitter"]
-           }}
-           options={{
-             username: this.state.rep_data["twitter"],
-             height: "350",
-             width:"400"
-           }}
-         />
-        </Col>
-     
-      </Row>
-      <h3 class="bills-header">Bills Sponsored</h3>
+    <h3 class="bills-header">Bills Sponsored</h3>
 
-      <Row style={{paddingLeft:"160px"}}>
-         <RepBills bioguideid = {this.state.bioguideid} />
-      </Row>
-      </div>
-    );
+    <Row style={{paddingLeft:"160px"}}>
+       <RepBills bioguideid = {this.state.bioguideid} />
+    </Row>
+
+
+
+    <Row>
+    <Col>
+    <h3><b>YouTube Channel</b></h3>
+    <iframe
+      width="600"
+      height="340"
+      src={"http://www.youtube.com/embed?max-results=1&controls=0&showinfo=0&rel=0&listType=user_uploads&list=" + this.state.rep_data["youtube"]}
+      frameborder="10" allowfullscreen >
+    </iframe>
+    </Col>
+    <Col>
+    <h3><b>Office Location</b></h3>
+    <h4>{this.state.rep_data["office"]}</h4>
+    <iframe
+      width="600"
+      height="450"
+      frameborder="0" style={{border: "0"}}
+      src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY&q=" + this.state.rep_data["office"]} allowfullscreen>
+    </iframe>
+    </Col>
+    </Row>
+	  </div>
+	);
   }
 }
