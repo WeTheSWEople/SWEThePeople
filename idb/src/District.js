@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import header from './assets/images/header.png'
 import './App.css';
 import './District.css';
+import DistrictDetail from './DistrictDetail.js';
+
 let state_json = require('./assets/data/state.json')
 export default class Districts extends Component {
 	constructor(props){
@@ -67,7 +69,7 @@ export default class Districts extends Component {
 
     let districts_grid = this.state.districts_arr.map(district =>
         <div className="col-sm-3 district-grid" key={district.district}>
-            <Link to={""}>
+            <Link to={`/district/${this.props.match.params.districtid}/${district.district}`}>
                 <div className={"district-card " + district.cssColor}>
                     <h3>{district.name}</h3>
                     <p>Party: {district.party}</p>

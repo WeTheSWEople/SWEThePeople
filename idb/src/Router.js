@@ -8,6 +8,7 @@ import Representatives from './Representatives'
 import RepresentativeDetails from './RepresentativeDetails'
 import Districts from './District'
 import AllDistricts from './AllDistricts'
+import DistrictDetail from './DistrictDetail.js'
 
 export default class DefaultRouter extends Component {
   render() {
@@ -21,6 +22,7 @@ export default class DefaultRouter extends Component {
 			<Route path="/districts/:districtid" component={Districts}/>
 		<Route path="/parties" component={PoliticalParty} />
 			<Route path="/party/:name" component={PoliticalPartyDetails} />
+            <Route path="/district/:state/:district" component={DistrictDetail} />
 		</Switch>
 	);
   }

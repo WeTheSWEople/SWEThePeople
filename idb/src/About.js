@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './About.css';
 import { RingLoader } from 'react-spinners';
+import { a } from 'react-router-dom'
 import Members from './Members'
 
 var request = require("request");
@@ -95,7 +97,78 @@ export default class About extends Component {
       /></center>
       {calls_ready}
       {members}
-      <p><a href = "https://github.com/WeTheSWEople/SWEThePeople/">Link to the GitHub Repo</a></p>
+      <p><a href = "https://github.com/WeTheSWEople/SWEThePeople/">a to the GitHub Repo</a></p>
+
+        <div className="tools-div container">
+            <div className="tools-header">
+                <h2>Tools</h2>
+            </div>
+            <div className="row">
+                <a href="https://github.com/WeTheSWEople/SWEThePeople/">
+                    <div className="col-sm-3">
+                        <div className="tools-card">
+                            <img src={require("./assets/images/about/github.png")}
+                                 className="img-responsive" />
+                            <h5>GitHub</h5>
+                        </div>
+                    </div>
+                </a>
+                <a href="">
+                    <div className="col-sm-3">
+                        <div className="tools-card">
+                            <img src={require("./assets/images/about/gitbook.png")}
+                                 className="img-responsive" />
+                            <h5>Gitbook</h5>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://reactjs.org/">
+                    <div className="col-sm-3">
+                        <div className="tools-card">
+                            <img src={require("./assets/images/about/reactjs.png")}
+                                 className="img-responsive" />
+                            <h5>ReactJS</h5>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://aws.amazon.com/ec2/">
+                    <div className="col-sm-3">
+                        <div className="tools-card">
+                            <img src={require("./assets/images/about/ec2.jpg")}
+                                 className="img-responsive" />
+                            <h5>Amazon EC2</h5>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://getbootstrap.com/">
+                    <div className="col-sm-3">
+                        <div className="tools-card">
+                            <img src={require("./assets/images/about/bootstrap.png")}
+                                 className="img-responsive" />
+                            <h5>Bootstrap</h5>
+                        </div>
+                    </div>
+                </a>
+                <a href="http://flask.pocoo.org/">
+                    <div className="col-sm-3">
+                        <div className="tools-card">
+                            <img src={require("./assets/images/about/flask.png")}
+                                 className="img-responsive" />
+                            <h5>Python Flask</h5>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.nginx.com/">
+                    <div className="col-sm-3">
+                        <div className="tools-card">
+                            <img src={require("./assets/images/about/nginx.png")}
+                                 className="img-responsive" />
+                            <h5>Nginx</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
       </div>
     );
   }
