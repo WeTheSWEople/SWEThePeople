@@ -86,7 +86,6 @@ export default class About extends Component {
       {members}
       <p><u><a href = "https://github.com/WeTheSWEople/SWEThePeople/">Link to the GitHub Repo</a></u></p>
       <h2>Data Sources </h2>
-      <p><a href = "https://github.com/WeTheSWEople/SWEThePeople/">Link to the GitHub Repo</a></p>
       <h3>Source 1: ProPublica </h3>
       <p>Link: <u><a href = "https://projects.propublica.org/api-docs/congress-api/">ProPublica</a></u></p>
       <p>Description: Used to get information about all of U.S. representatives, their party, and corresponding districts  </p> 
@@ -102,12 +101,6 @@ export default class About extends Component {
       <h3>Source 4: TheUnitedStates.io</h3>
       <p>Link: <u><a href = "https://theunitedstates.io/images/congress/">TheUnitedStates.io</a></u></p>
       <p>Description: Used to get images of representatives based on their bioguide id </p> 
-
-
-
-
-
-
 
       </div>
     );
