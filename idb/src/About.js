@@ -76,10 +76,8 @@ export default class About extends Component {
 
 	}
   render() {
-	  let calls_ready = null
 	  let members = null
 	  if(this.state.ready){
-		  calls_ready = <h4>Total Commits: {this.state.total_commits} <br />Total Issues: {this.state.total_issues} <br />Total Unit Tests: 0</h4>
 		  members = <Members swe_data = {this.state.swe_member_data} />
 	  }
 
