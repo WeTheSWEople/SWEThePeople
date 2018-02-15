@@ -94,7 +94,7 @@ export default class PoliticalPartyDetails extends Component {
                 color: this.state.party["color"]
             },
             progressStyle: {
-                width: ((this.state.num_reps / 3) * 100) + "%",
+                width: ((this.state.num_reps / 4) * 100) + "%",
                 backgroundImage: "none",
                 backgroundColor: this.state.party["color"]
             }
@@ -102,7 +102,7 @@ export default class PoliticalPartyDetails extends Component {
 
         var control_text = ""
         if (this.state.num_reps > 0) {
-            control_text = this.state.num_reps + "/3"
+            control_text = this.state.num_reps + "/4"
         }
 
         var reps_grid = Object.keys(this.state.reps).map((key) =>
