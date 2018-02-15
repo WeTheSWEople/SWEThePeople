@@ -74,5 +74,31 @@
         "two-or-more-races": 28819
        }
     }
-  }
+  },
+  "MD": {
+    "5": {
+      "population": {
+        "total": 767369,
+        "male": 374248,
+        "female": 393121
+      },
+      "median-age": {
+        "male": 35.6,
+        "female": 38.4,
+        "both-sexes": 37.1
+      },
+      "race": {
+        "one-race": {
+          "total": 742515,
+          "white": 391656,
+          "black-or-african-american": 286145,
+          "american-indian-and-alaska-native": 3443,
+          "asian": 32219,
+          "native-hawaiian-and-other-pacific-islander": 451,
+          "some-other-race": 28601
+        },
+        "two-or-more-races": 21970
+      }
+    }
+  },
 }
