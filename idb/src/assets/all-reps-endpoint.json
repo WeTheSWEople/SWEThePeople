@@ -23,4 +23,12 @@
     "district": 12,
     "bioguide": "P000197"
   }
+  {
+    "firstName": "Steny",
+    "lastName": "Hoyer",
+    "party": "Democrat",
+    "state": "MD",
+    "district": 5,
+    "bioguide": "H000874"
+  }
 ]
