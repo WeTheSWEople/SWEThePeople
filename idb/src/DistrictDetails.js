@@ -99,7 +99,6 @@ export default class RepresentativeDetails extends Component {
   render() {
 
     var reps_grid = <div class="col-sm-6">
-            <h4><b>Representative</b></h4>
             <RepresentativeInstance rep={this.state.rep_data} />
     </div>
 
@@ -193,14 +192,12 @@ export default class RepresentativeDetails extends Component {
 
 
         </Row>
-        <h3 class="bills-header"><b>Ruled By</b></h3>
+        <h3 class="bills-header"><b>Representative</b></h3>
        <div class="row">
           <div class="col-md-5 col-md-offset-2">
-              
               {reps_grid}
           </div>
           <div class="col-md-3">
-              <h4><b>Party</b></h4>
               <Link to={`/party/${this.state.rep_data["party"]}`} >
                   <img src={require("./assets/images/parties/" + this.state.party_image + ".png")}
                                            className="img-responsive" style={styles.imgStyle} />
