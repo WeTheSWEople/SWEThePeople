@@ -1,0 +1,25 @@
+{
+   "status":"OK",
+   "copyright":"Copyright (c) 2018 Pro Publica Inc. All Rights Reserved.",
+   "results":[
+      {
+         "id": "R000570",
+         "name": "Paul D. Ryan",
+         "first_name": "Paul",
+         "middle_name": "D.",
+         "last_name": "Ryan",
+         "suffix": null,
+         "role": "Representative",
+         "gender": "M",
+         "party": "R",
+         "times_topics_url": null,
+         "twitter_id": "SpeakerRyan",
+         "facebook_account": "speakerryan",
+         "youtube_id": "reppaulryan",
+         "seniority": "20",
+         "next_election": "2018",
+         "api_uri": "https://api.propublica.org/congress/v1/members/R000570.json",
+         "district": "1",
+         "at_large": false
+      }
+]}
