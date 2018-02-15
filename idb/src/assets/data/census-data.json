@@ -4,7 +4,7 @@
       "population": {
         "total": 728042,
         "male": 360215,
-        "female": 0
+        "female": 367827
       },
       "median-age": {
         "male": 38,
@@ -21,7 +21,7 @@
           "native-hawaiian-and-other-pacific-islander": 260,
           "some-other-race": 25970
         },
-        "two-or-more-races": 14647,
+        "two-or-more-races": 14647
       }
     }
   },
@@ -30,7 +30,7 @@
       "population": {
         "total": 651322,
         "male": 317837,
-        "female": 0
+        "female": 333485
       },
       "median-age": {
         "male": 39.2,
@@ -47,14 +47,14 @@
           "native-hawaiian-and-other-pacific-islander": 6750,
           "some-other-race": 49797
         },
-        "two-or-more-races": 31788,
+        "two-or-more-races": 31788
       }
     },
     "23": {
       "population": {
         "total": 695404,
         "male": 349415,
-        "female": 0
+        "female": 345989
       },
       "median-age": {
         "male": 31,
@@ -71,7 +71,7 @@
           "native-hawaiian-and-other-pacific-islander": 1500,
           "some-other-race": 152146
         },
-        "two-or-more-races": 28819,
+        "two-or-more-races": 28819
       }
     }
   }
