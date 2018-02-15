@@ -35,7 +35,7 @@
       "median-age": {
         "male": 39.2,
         "female": 41.5,
-        "both": 40.3
+        "both-sexes": 40.3
       },
       "race": {
         "one-race": {
@@ -59,7 +59,7 @@
       "median-age": {
         "male": 31,
         "female": 33.8,
-        "both": 32.3
+        "both-sexes": 32.3
       },
       "race": {
         "one-race": {

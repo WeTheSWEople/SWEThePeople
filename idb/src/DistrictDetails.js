@@ -137,7 +137,7 @@ export default class RepresentativeDetails extends Component {
           </Col>
         </Row>
         <br></br><br></br>
-        <h3 class="bills-header"><b>Statistics for the District</b></h3>
+        <h3 class="bills-header"><b>Statistics for District {this.state.district_num}</b></h3>
         <Row >
           <Col sm={6} md={6}>
            <PieChart labels

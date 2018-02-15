@@ -98,7 +98,7 @@ export default class Districts extends Component {
 
 	let districts_grid = this.state.districts_arr.map(district =>
 		<div className="col-sm-3 district-grid" key={district.district}>
-			<Link to={"/"}>
+			<Link to={`/districts/${this.props.match.params.districtid}/${district.district}`}>
 				<div className={"district-card " + district.cssColor}>
 					<h3>{district.name}</h3>
 					<h4>{district.rep}</h4>
