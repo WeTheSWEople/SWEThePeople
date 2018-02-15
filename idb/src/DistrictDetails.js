@@ -13,10 +13,6 @@ import './DistrictDetails.css';
 import {PieChart, BarChart} from 'react-easy-chart';
 
 
-
-
-
-
 const styles = {
     imgStyle: {
         width:"100%",
@@ -53,10 +49,11 @@ export default class RepresentativeDetails extends Component {
     this.setState({rep_data: allReps[bio_guide]})
 
     // set party image
-    if(this.state.rep_data["party"] == "Democrat"){
+    var party = allReps[bio_guide]["party"]
+    if(party === "Democrat"){
       this.setState({party_image: "Democratic"})
     }
-    else if(this.state.rep_data["party"] == "Libertarian"){
+    else if(party === "Libertarian"){
       this.setState({party_image: "Libertarian"})
     }
     else{
@@ -93,6 +90,7 @@ export default class RepresentativeDetails extends Component {
             <RepresentativeInstance rep={this.state.rep_data} />
     </div>
 
+    console.log(this.state.party_image)
 
     var gender_pop_data = []
     
