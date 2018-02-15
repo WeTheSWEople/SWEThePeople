@@ -33,7 +33,8 @@ export default class RepresentativeDetails extends Component {
       bioguide: "",
       rep_data : {},
       races_pop : {},
-      party_image: {}
+      party_image: {},
+      legend:{}
     }
   }
   componentWillMount(){
@@ -63,24 +64,35 @@ export default class RepresentativeDetails extends Component {
     // data for the bar graph
     var one_race = stateDistrict[state][number]["race"]["one-race"]
     var result = []
+    var legend_temp = []
     for (var key in one_race){
       if (key != "total"){
         // format the labels
         var str_split = key.split("-").map(function(word){
           return (word.charAt(0).toUpperCase())
         })
-        str_split = str_split.join(" ")
+
+        var format_words = key.split("-").map(function(word){
+          return (word.charAt(0).toUpperCase()) + word.slice(1)
+        })
+
+        str_split = str_split.join("")
+        format_words = format_words.join(" ")
         var temp = {}
         temp["x"] = str_split
         temp["y"] = one_race[key]
+        legend_temp.push({"key": str_split, "value":format_words})
         result.push(temp)
       }
     }
     var temp = {}
-    temp["x"] = "TwoRaces"
+    temp["x"] = "TR"
     temp["y"] = stateDistrict[state][number]["race"]["two-or-more-races"]
     result.push(temp)
+    legend_temp.push({key: "TR", value:"Two or More Races"})
     this.setState({races_pop: result})
+    this.setState({legend: legend_temp})
+    console.log(legend_temp)
 
   }
 
@@ -90,7 +102,11 @@ export default class RepresentativeDetails extends Component {
             <RepresentativeInstance rep={this.state.rep_data} />
     </div>
 
-    console.log(this.state.party_image)
+    let legend = null
+    legend = Object.keys(this.state.legend).map((item) =>
+            <p style={{textAlign: "left"}}> <b>{this.state.legend[item]["key"]}</b> : {this.state.legend[item]["value"]}</p>
+        )
+    console.log(legend)
 
     var gender_pop_data = []
     
@@ -137,7 +153,7 @@ export default class RepresentativeDetails extends Component {
         <br></br><br></br>
         <h3 class="bills-header"><b>Statistics for District {this.state.district_num}</b></h3>
         <Row >
-          <Col sm={6} md={6}>
+          <Col sm={5} md={5}>
            <PieChart labels
               padding={30}
               data={gender_pop_data}
@@ -150,7 +166,7 @@ export default class RepresentativeDetails extends Component {
             />
           <p><b> Gender Population</b></p>
           </Col>
-          <Col sm={6} md={6}>
+          <Col sm={5} md={5}>
            <BarChart labels
               colorBars
               axes
@@ -165,8 +181,15 @@ export default class RepresentativeDetails extends Component {
               }
             }}
             />
+          
           <p><b> Race v.s. Number of People</b></p>
           </Col>
+          <Col sm={2} md={2}>
+            <div style={{marginTop:"75px", marginRight:"40px"}}><h5> <b>Legend: </b></h5>
+            {legend}
+            </div>
+          </Col>
+
 
         </Row>
         <h3 class="bills-header"><b>Other Details</b></h3>
