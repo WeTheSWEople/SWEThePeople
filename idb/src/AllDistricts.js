@@ -5,8 +5,6 @@ import StateInstance from './StateInstance'
 
 const styles = {
   root: {
-	display: 'flex',
-	flexWrap: 'wrap',
 	paddingTop: '50px',
 	paddingLeft: '50px',
 	paddingRight: '50px',
@@ -25,7 +23,7 @@ export default class AllDistricts extends Component {
   render() {
 	  let allStates = Object.keys(state_json).map((key, index) =>
 			  <StateInstance full_state={state_json[key]} state={key} />
-		)
+	)
 	return (
 	  <div className="App">
 	  <br />
