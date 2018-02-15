@@ -106,7 +106,7 @@ export default class About extends Component {
 
             <div className="interesting-result">
                 <h4>
-                    Benny write yo stuff here.
+                    Our website, by combining district party control and demographic and age information, displays an interesting corrolation between the two. Thus, SWEThePeople is a valuable resource for anyone interested in studying party and demographics in modern American politics.
                 </h4>
             </div>
 
@@ -147,7 +147,7 @@ export default class About extends Component {
                     </a>
                 </p>
             </div>
-        
+
             <div className="about-header">
                 <h1>Your Representatives</h1>
             </div>
@@ -278,7 +278,7 @@ export default class About extends Component {
                                 Used to get information about all of U.S.
                                 representatives, their party, and corresponding
                                 districts.
-                            </p> 
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -292,7 +292,7 @@ export default class About extends Component {
                                 Used to get information about recent bills
                                 sponsored by each representatives and their
                                 current status.
-                            </p> 
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -319,7 +319,7 @@ export default class About extends Component {
                             <p>
                                 Used to get images of representatives based on
                                 their bioguide id.
-                            </p> 
+                            </p>
                         </div>
                     </div>
                 </a>
