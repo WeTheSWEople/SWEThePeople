@@ -266,6 +266,8 @@ export default class About extends Component {
                 <a href="https://projects.propublica.org/api-docs/congress-api/">
                     <div className="col-sm-3">
                         <div className="data-card">
+                            <img src={require("./assets/images/about/propubica.jpg")}
+                                 className="img-responsive" />
                             <h3>ProPublica</h3>
                             <p>
                                 Used to get information about all of U.S.
@@ -278,7 +280,9 @@ export default class About extends Component {
                 <a href="https://www.govtrack.us/developers/api">
                     <div className="col-sm-3">
                         <div className="data-card">
-                        <h3>GovTrack</h3>
+                            <img src={require("./assets/images/about/govtrack.png")}
+                                 className="img-responsive" />
+                            <h3>GovTrack</h3>
                             <p>
                                 Used to get information about recent bills
                                 sponsored by each representatives and their
@@ -290,6 +294,8 @@ export default class About extends Component {
                 <a href="https://www.census.gov/data/developers/data-sets/decennial-census.html">
                     <div className="col-sm-3">
                         <div className="data-card">
+                            <img src={require("./assets/images/about/census.png")}
+                                 className="img-responsive" />
                             <h3>US Census Bureau</h3>
                             <p>
                                 Used to get socioeconomics information based on
@@ -302,6 +308,8 @@ export default class About extends Component {
                 <a href="https://theunitedstates.io/images/congress/">
                     <div className="col-sm-3">
                         <div className="data-card">
+                            <img src={require("./assets/images/about/unitedstatesio.png")}
+                                 className="img-responsive" />
                             <h3>TheUnitedStates.io</h3>
                             <p>
                                 Used to get images of representatives based on
