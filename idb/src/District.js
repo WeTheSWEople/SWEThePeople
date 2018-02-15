@@ -18,6 +18,7 @@ export default class Districts extends Component {
 
 	}
 	componentWillMount(){
+		let census_json = require('./assets/data/census_data.json')
 		let rep_json = require('./assets/data/rep_data/' + this.props.match.params.districtid + '.json')
 		let senator_json = require('./assets/data/senate_data/' + this.props.match.params.districtid + '.json')
 		let reps = this.state.total_reps
@@ -41,9 +42,11 @@ export default class Districts extends Component {
 				// if (rep_json.results.length === 1) {
 				// 	name = result["district"] + " District"
 				// }
+				var population = census_json[this.props.match.params.districtid][result["district"]]["population"]["total"]
 
 				districts_list.push({"district": result["district"],
 									 "name": name,
+									 "population": population,
 									 "party": party,
 									 "rep": result["name"],
 									 "id": result["id"],
@@ -59,14 +62,6 @@ export default class Districts extends Component {
 		}
 	}
   render() {
-	let state_data = null
-	if(this.state.senator_count == 2){
-		state_data = <div><center><h3>{this.state.state_data[0]}</h3></center>
-		<center><h4><a href ={this.state.state_data[1]}>
-		{state_json[this.props.match.params.districtid]} Legislature Website</a></h4></center>
-		<center><h5>Number of recent sessions: {this.state.state_data[2]}</h5></center>
-		<center><h5>Recent Session name: {this.state.state_data[3]}</h5></center><br /></div>
-	}
 
 	let styles = {
 		head: {
@@ -81,7 +76,10 @@ export default class Districts extends Component {
 		<div className="col-sm-3 district-grid" key={district.district}>
 			<Link to={`/districts/${this.props.match.params.districtid}/${district.district}`}>
 				<div className={"district-card " + district.cssColor}>
-					<h3>{district.name}</h3>
+					<h3><b>{district.name}</b></h3>
+					<h5><b>Population: </b>{district.population}</h5>
+					<br></br>
+					<h4><b>Representative:</b></h4>
 					<h4>{district.rep}</h4>
 					<img src={"https://theunitedstates.io/images/congress/225x275/" + district.id + ".jpg"}  alt={district.name} class="rep_img" />
 					<br /> <br />
@@ -96,7 +94,6 @@ export default class Districts extends Component {
 			<h1 className="district-header">
 				{state_json[this.props.match.params.districtid]}
 			</h1>
-			{state_data}
 			<div className="row">
 				{districts_grid}
 			</div>
