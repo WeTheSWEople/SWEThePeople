@@ -9,6 +9,11 @@ const styles = {
 	textDecoration: "none",
 	color: "black"
   },
+  imgStyle: {
+                width: "75%",
+                marginTop:"15px",
+                marginLeft:"15px"
+            },
 };
 
 export default class StateInstance extends Component {
@@ -38,11 +43,24 @@ export default class StateInstance extends Component {
 		  <GridTile
 			key={this.props.state}
 			class="tile" >
-			<div class="rep_info">
-			<h3 class="title">{this.props.full_state}</h3>
-			<h4 class="party">Districts: {this.state.numReps}</h4>
-			<h4 class="district"><i>Senators: {this.state.numSenators}</i></h4>
-			</div>
+				<div class="row">
+	                    <div class="col-md-4">
+	                        <img src={require("./assets/images/states/" + this.props.state + ".png")}
+		                       className="img-responsive"
+		                       style={styles.imgStyle}
+		                    />
+	                    </div>
+	                    <div class="col-md-4 text-md-left">
+	                        <div class="rep_info">
+								<h3 class="title">{this.props.full_state}</h3>
+								<h4 class="party">Districts: {this.state.numReps}</h4>
+								<h4 class="district"><i>Senators: {this.state.numSenators}</i></h4>
+							</div>
+	                    </div>
+                 </div>
+
+                
+			
 		  </GridTile>
 	  </Link>
 	);
