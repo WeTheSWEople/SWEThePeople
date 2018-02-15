@@ -50,6 +50,8 @@ export default class RepresentativeDetails extends Component {
     this.setState({rep_data: allReps[bio_guide]})
 
     // set party image
+    console.log(allReps)
+    console.log(bio_guide)
     var party = allReps[bio_guide]["party"]
     if(party === "Democrat"){
       this.setState({party_image: "Democratic"})
@@ -92,7 +94,6 @@ export default class RepresentativeDetails extends Component {
     legend_temp.push({key: "TR", value:"Two or More Races"})
     this.setState({races_pop: result})
     this.setState({legend: legend_temp})
-    console.log(legend_temp)
 
   }
 
@@ -106,7 +107,6 @@ export default class RepresentativeDetails extends Component {
     legend = Object.keys(this.state.legend).map((item) =>
             <p style={{textAlign: "left"}}> <b>{this.state.legend[item]["key"]}</b> : {this.state.legend[item]["value"]}</p>
         )
-    console.log(legend)
 
     var gender_pop_data = []
     

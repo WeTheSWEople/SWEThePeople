@@ -42,6 +42,10 @@ export default class Districts extends Component {
 				// if (rep_json.results.length === 1) {
 				// 	name = result["district"] + " District"
 				// }
+
+				console.log(census_json)
+				console.log("2 " + this.props.match.params.districtid)
+				console.log(result["district"])
 				var population = census_json[this.props.match.params.districtid][result["district"]]["population"]["total"]
 
 				districts_list.push({"district": result["district"],
