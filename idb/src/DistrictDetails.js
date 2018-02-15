@@ -143,7 +143,7 @@ export default class RepresentativeDetails extends Component {
             <p><font size="5"><b>Total Population: </b> {this.state.district_data["population"]["total"]} people</font></p>
             <p><font size="5"><b>Median Age: </b> {this.state.district_data["median-age"]["both-sexes"]} years</font></p>
             <p><font size="5"><b>Median Age (Male): </b> {this.state.district_data["median-age"]["male"]} years</font></p>
-            <p><font size="5"><b>Median Age (Male): </b> {this.state.district_data["median-age"]["female"]} years</font></p>
+            <p><font size="5"><b>Median Age (Female): </b> {this.state.district_data["median-age"]["female"]} years</font></p>
             </div>
       
 

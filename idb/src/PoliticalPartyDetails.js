@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import {GridList} from 'material-ui/GridList';
 import RepresentativeInstance from './RepresentativeInstance'
 import logo from './logo.svg';
 import './App.css';
 import './PoliticalPartyDetails.css';
+import './District.css';
 import all_parties from './assets/all-parties.json';
 import reps_info from './assets/all-reps-endpoint.json';
 import {Timeline} from 'react-twitter-widgets';
-import StateInstance from './StateInstance.js';
 
 let state_json = require("./assets/data/state.json")
 
@@ -28,7 +29,6 @@ export default class PoliticalPartyDetails extends Component {
         this.setState({ready: false})
 
         var this_party = {}
-        console.log(this.props.match.params.name)
         for (var i = 0; i < all_parties.length; i++) {
             console.log(all_parties[i]["name"])
             if (all_parties[i]["name"].toUpperCase().startsWith(
@@ -38,15 +38,45 @@ export default class PoliticalPartyDetails extends Component {
         }
         this.setState({party: this_party})
 
+		let census_json = require('./assets/data/census_data.json')
         var reps_map = {}
         var districts_arr = []
         var rep_count = 0
         Object.keys(reps_info).forEach(function (key){
             if (this_party["name"].startsWith(reps_info[key]["party"])) {
-                reps_map[key] = reps_info[key]
-                districts_arr.push(reps_info[key]["state"])
+                let result = reps_info[key]
+                reps_map[key] = result
                 rep_count += 1
+
+				var district_name = "District " + result["district"]
+				var population = census_json[result["state"]]
+                                            [result["district"]]
+                                            ["population"]
+                                            ["total"]
+                var rep_name = result["firstName"] + " " + result["lastName"]
+				var party = "Democratic"
+				var cssColor = "light-blue"
+				if (result["party"] === "Republican") {
+					party = "Republican"
+					cssColor = "light-red"
+				} else if (result["party"] === "Libertarian") {
+					party = "Libertarian"
+					cssColor = "light-yellow"
+				}
+
+				districts_arr.push({"district": result["district"],
+                                    "state": result["state"],
+								    "district_name": district_name,
+									"population": population,
+									"party": party,
+									"cssColor": cssColor,
+									"rep": rep_name,
+									"rep_id": result["bioguide"]})
             }
+        })
+
+        districts_arr.sort(function(a, b) {
+            return parseInt(a.district) - parseInt(b.district)
         })
         this.setState({num_reps: rep_count, reps: reps_map,
                        districts: districts_arr, ready: true})
@@ -64,7 +94,7 @@ export default class PoliticalPartyDetails extends Component {
                 color: this.state.party["color"]
             },
             progressStyle: {
-                width: ((this.state.num_reps / 3) * 100) + "%",
+                width: ((this.state.num_reps / 4) * 100) + "%",
                 backgroundImage: "none",
                 backgroundColor: this.state.party["color"]
             }
@@ -72,7 +102,7 @@ export default class PoliticalPartyDetails extends Component {
 
         var control_text = ""
         if (this.state.num_reps > 0) {
-            control_text = this.state.num_reps + "/3"
+            control_text = this.state.num_reps + "/4"
         }
 
         var reps_grid = Object.keys(this.state.reps).map((key) =>
@@ -82,11 +112,22 @@ export default class PoliticalPartyDetails extends Component {
         )
 
         var districts_grid = this.state.districts.map(district =>
-            <div class="col-sm-3 party-rep-card">
-                <StateInstance key={district}
-                               full_state={state_json[district]}
-                               state={district} />
-            </div>
+            <Link to={`/districts/${district["state"]}/${district["district"]}`}>
+                <div class="col-sm-3 party-rep-card">
+                    <div className={"district-card " + district.cssColor}>
+                        <h3><b>{district.district_name}</b></h3>
+                        <h5><b>Population: </b>{district.population}</h5>
+                        <br></br>
+                        <h4><b>Representative:</b></h4>
+                        <h4>{district.rep}</h4>
+                        <img src={"https://theunitedstates.io/images/congress/225x275/" + district["rep_id"] + ".jpg"}
+                             alt={district.name}
+                             className="rep_img" />
+                        <br /> <br />
+                        <h4>Party: {district.party}</h4>
+                    </div>
+                </div>
+            </Link>
         )
 
         return (
