@@ -27,7 +27,6 @@ export default class RepresentativeDetails extends Component {
       error: false,
       rep_data: {},
       bioguideid: "",
-      party_id: null,
     }
   }
   componentWillMount(){
@@ -35,23 +34,12 @@ export default class RepresentativeDetails extends Component {
     // get the data - in the future call the api
     this.setState({bioguideid: this.props.match.params.bioguideid})
     this.setState({rep_data: allReps[this.props.match.params.bioguideid]})
-    var id = 0
-    if(allReps[this.props.match.params.bioguideid]["party"] === "Republican"){
-      id = 1
-    }
-    else if(allReps[this.props.match.params.bioguideid]["party"] === "Libertarian"){
-      id = 2
-    }
-    var rep = allReps[this.props.match.params.bioguideid]
-  
-    this.setState({party_id: id})
 
   }
 
   render() {
 
     return (
-
       <div className="App">
       <header className="Rep-Details-header"> </header>
       <Row >
@@ -97,9 +85,6 @@ export default class RepresentativeDetails extends Component {
     <Row style={{paddingLeft:"160px"}}>
        <RepBills bioguideid = {this.state.bioguideid} />
     </Row>
-
-
-
     <Row>
     <Col>
     <h3><b>YouTube Channel</b></h3>

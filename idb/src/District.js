@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import header from './assets/images/header.png'
 import './App.css';
 import './District.css';
+
 let state_json = require('./assets/data/state.json')
 export default class Districts extends Component {
 	constructor(props){
