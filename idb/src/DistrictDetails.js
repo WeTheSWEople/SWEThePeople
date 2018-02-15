@@ -98,7 +98,7 @@ export default class RepresentativeDetails extends Component {
 
   render() {
 
-    var reps_grid = <div class="col-sm-6 district-rep-card">
+    var reps_grid = <div class="col-sm-6">
             <RepresentativeInstance rep={this.state.rep_data} />
     </div>
 
@@ -192,7 +192,7 @@ export default class RepresentativeDetails extends Component {
 
 
         </Row>
-        <h3 class="bills-header"><b>Other Details</b></h3>
+        <h3 class="bills-header"><b>Representative</b></h3>
        <div class="row">
           <div class="col-md-5 col-md-offset-2">
               {reps_grid}
