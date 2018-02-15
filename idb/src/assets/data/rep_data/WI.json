@@ -16,9 +16,6 @@
          "twitter_id": "SpeakerRyan",
          "facebook_account": "speakerryan",
          "youtube_id": "reppaulryan",
-         "seniority": "20",
-         "next_election": "2018",
-         "api_uri": "https://api.propublica.org/congress/v1/members/R000570.json",
          "district": "1",
          "at_large": false
       }

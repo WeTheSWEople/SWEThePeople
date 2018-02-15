@@ -16,9 +16,6 @@
          "twitter_id": "GOPLeader",
          "facebook_account": "CongressmanKevinMcCarthy",
          "youtube_id": "repkevinmccarthy",
-         "seniority": "12",
-         "next_election": "2018",
-         "api_uri": "https://api.propublica.org/congress/v1/members/M001165.json",
          "district": "23",
          "at_large": false
       },
@@ -36,9 +33,6 @@
          "twitter_id": "NancyPelosi",
          "facebook_account": "NancyPelosi",
          "youtube_id": "nancypelosi",
-         "seniority": "30",
-         "next_election": "2018",
-         "api_uri": "https://api.propublica.org/congress/v1/members/P000197.json",
          "district": "12",
          "at_large": false
       }
