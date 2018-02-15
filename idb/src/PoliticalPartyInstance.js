@@ -20,7 +20,7 @@ export default class Parties extends Component {
         let mapping = Object.keys(this.props.party_data).map((key) =>
             <Link to={`/party/${this.props.party_data[key]["name"]}`} >
                 <div class="row party-index-card">
-                    <div class="col-md-8 ">
+                    <div class="col-md-8 col-md-offset-2">
                         <div class="row">
                             <div class="col-md-6">
                                 <div key={key} class="center-div">

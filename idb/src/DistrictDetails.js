@@ -106,8 +106,6 @@ export default class RepresentativeDetails extends Component {
     female["key"] = "Female (" + (population["female"]/population["total"] * 100).toFixed(2) + "%)"
     female["value"] = population["female"]
     female["color"] = "#aaac84"
-
-
     gender_pop_data.push(male)
     gender_pop_data.push(female)
 
@@ -117,8 +115,13 @@ export default class RepresentativeDetails extends Component {
       <div className="App">
         <header className="Rep-Details-header"> </header>
         <Row >
-          <Col sm={12} md={12}>
-          <h1>{states[this.state.district_state]} District {this.state.district_num}</h1>
+          <h1><b>{states[this.state.district_state]} District {this.state.district_num}</b></h1>
+          <Col sm={6} md={6}>
+          
+        
+            <img className="district-map-card"src={require("./assets/images/districts/"  + this.state.district_state + this.state.district_num +  ".png")}
+                                           width="500px" height="350px" marginLeft="25px"/>
+          
           </Col>
         </Row>
         <h3 class="bills-header"><b>Statistics for the District</b></h3>
