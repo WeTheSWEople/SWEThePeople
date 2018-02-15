@@ -18,24 +18,27 @@ export default class Navigation extends Component {
                                      alt="logo" />
 			                </LinkContainer>
 			            </Navbar.Brand>
+                        <Navbar.Toggle />
 		            </Navbar.Header>
-                    <Nav>
-                        <LinkContainer to="/" exact={true}>
-                            <NavItem>Home</NavItem>
-                        </LinkContainer>
-                        <LinkContainer to="/representatives">
-                            <NavItem>Representatives</NavItem>
-                        </LinkContainer>
-                        <LinkContainer to="/parties">
-                            <NavItem>Parties</NavItem>
-                        </LinkContainer>
-                        <LinkContainer to="/districts">
-                            <NavItem>Districts</NavItem>
-                        </LinkContainer>
-                        <LinkContainer to="/about">
-                            <NavItem>About</NavItem>
-                        </LinkContainer>
-                    </Nav>
+                    <Navbar.Collapse>
+                        <Nav>
+                            <LinkContainer to="/" exact={true}>
+                                <NavItem>Home</NavItem>
+                            </LinkContainer>
+                            <LinkContainer to="/representatives">
+                                <NavItem>Representatives</NavItem>
+                            </LinkContainer>
+                            <LinkContainer to="/parties">
+                                <NavItem>Parties</NavItem>
+                            </LinkContainer>
+                            <LinkContainer to="/districts">
+                                <NavItem>Districts</NavItem>
+                            </LinkContainer>
+                            <LinkContainer to="/about">
+                                <NavItem>About</NavItem>
+                            </LinkContainer>
+                        </Nav>
+                    </Navbar.Collapse>
 		        </Navbar>
 	        </div>
 	);
