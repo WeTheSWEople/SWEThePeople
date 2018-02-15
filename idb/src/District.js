@@ -52,10 +52,11 @@ export default class Districts extends Component {
 									 "id": result["id"],
 									 "cssColor": cssColor,
 									 "rep_id": result["id"]})
-				districts_list.sort(function(a, b) {
-					return parseInt(a.district) - parseInt(b.district)
-				})
 			}
+
+            districts_list.sort(function(a, b) {
+                return parseInt(a.district) - parseInt(b.district)
+            })
 			this.setState({districts: rep_json["results"].length,
 						   total_reps: reps,
 						   districts_arr: districts_list})
