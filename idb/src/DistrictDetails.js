@@ -184,7 +184,9 @@ export default class RepresentativeDetails extends Component {
              </Link>
           </div>
         </div>
+        <br></br>
       </div>
+
   );
   }
 }
