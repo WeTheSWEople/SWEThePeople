@@ -103,6 +103,13 @@ export default class About extends Component {
                     </h4>
                 </div>
             </div>
+
+            <div className="interesting-result">
+                <h4>
+                    Benny write yo stuff here.
+                </h4>
+            </div>
+
             <center>
                 <RingLoader color={'#123abc'} loading={!this.state.ready} />
             </center>

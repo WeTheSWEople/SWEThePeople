@@ -90,3 +90,8 @@
 .tools-div .data-card h3 {
     overflow-wrap: break-word;
 }
+
+.interesting-result {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
