@@ -51,7 +51,7 @@ export default class RepresentativeDetails extends Component {
           <div style={{textAlign: "left"}}>
           <p style={{paddingTop:"10px"}}><font size="8"><b>{this.state.rep_data["firstName"]} {this.state.rep_data["lastName"]}</b></font>  </p>
           <p> <b>Party: </b> <Link
-            to={`/party/${this.state.party_id}`}>
+            to={`/party/${this.state.rep_data["party"]}`}>
             {this.state.rep_data["party"]} </Link> 
           </p>
           <p> <b> State: </b> {this.state.rep_data["state"]}</p>
