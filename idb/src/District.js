@@ -37,9 +37,10 @@ export default class Districts extends Component {
 				}
 
 				var name = "District " + result["district"]
-				if (rep_json.results.length === 1) {
-					name = result["district"] + " District"
-				}
+				// Re-add for At-Large Districts
+				// if (rep_json.results.length === 1) {
+				// 	name = result["district"] + " District"
+				// }
 
 				districts_list.push({"district": result["district"],
 									 "name": name,
