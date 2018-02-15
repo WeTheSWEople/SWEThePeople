@@ -114,16 +114,29 @@ export default class RepresentativeDetails extends Component {
 
       <div className="App">
         <header className="Rep-Details-header"> </header>
+
         <Row >
-          <h1><b>{states[this.state.district_state]} District {this.state.district_num}</b></h1>
+          <h1><font size="8"><b>{states[this.state.district_state]} District {this.state.district_num}</b></font></h1>
+          <br></br><br></br>
           <Col sm={6} md={6}>
           
-        
             <img className="district-map-card"src={require("./assets/images/districts/"  + this.state.district_state + this.state.district_num +  ".png")}
                                            width="500px" height="350px" marginLeft="25px"/>
           
           </Col>
+          <Col sm={6} md={6}>
+            <div style={{textAlign: "left", padding:"80px"}}>
+            <p><font size="5"><b>Total Population: </b> {this.state.district_data["population"]["total"]} people</font></p>
+            <p><font size="5"><b>Median Age: </b> {this.state.district_data["median-age"]["both-sexes"]} years</font></p>
+            <p><font size="5"><b>Median Age (Male): </b> {this.state.district_data["median-age"]["male"]} years</font></p>
+            <p><font size="5"><b>Median Age (Male): </b> {this.state.district_data["median-age"]["female"]} years</font></p>
+            </div>
+      
+
+
+          </Col>
         </Row>
+        <br></br><br></br>
         <h3 class="bills-header"><b>Statistics for the District</b></h3>
         <Row >
           <Col sm={6} md={6}>
