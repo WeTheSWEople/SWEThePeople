@@ -56,27 +56,6 @@ export default class Districts extends Component {
 						   total_reps: reps,
 						   districts_arr: districts_list})
 		}
-		if(senator_json["status"] === "OK" && senator_json["results"].length > 0){
-			reps += senator_json["results"].length
-			this.setState({senator_count: senator_json["results"].length, total_reps: reps, senator_count: 2})
-			let state_json = require('./assets/data/state_data/' + this.props.match.params.districtid + '.json')
-			let found = false
-			let cur_year = new Date().getFullYear()
-			let latest_session = null
-			while(!found){
-				for (var key in state_json["session_details"]){
-					if(String(key).includes(cur_year)){
-						latest_session = state_json["session_details"][key]["display_name"]
-						found = true
-						break
-					}
-				}
-				cur_year-=1
-			}
-			var cur_state_data = [state_json['legislature_name'], state_json['legislature_url'], Object.keys(state_json["session_details"]).length, latest_session ]
-			this.setState({state_data: cur_state_data})
-
-		}
 	}
   render() {
 	let state_data = null
