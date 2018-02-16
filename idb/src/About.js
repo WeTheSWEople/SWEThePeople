@@ -31,7 +31,7 @@ export default class About extends Component {
 			var swe_members = {}
 			swe_members['MTirtowidjojo'] = ['Michael Tirtowidjojo', 0,0, 0,"Michael is a third-year CS student who trains in Taekwondo and enjoys reading World War II stories.", "Michael.png", "Parties front-end and chief of chief naming", "Mojo Jojo"]
 			swe_members['copperstick6'] = ["William Han",0,0, 0, "William is a sophomore CS student who enjoys the subtle art of memes and hackathons.", "William.jpg", "Districts front-end, production deployment, and chief of nocturnal development", "Bill"]
-			swe_members['raulcodes'] = ['Raul Camacho', 0,0, 0, "Raul is a senior CS major who will be graduating this semester. Also he's tall. Probably too tall.", "Raul.png", "Front-end beautifier and chief ducker of low ceilings", "The Chosen Dolphin"]
+			swe_members['raulcodes'] = ['Raul Camacho', 0,0, 0, "Raul is a senior CS major who will be graduating this semester. Also he's tall. Probably too tall.", "Raul.png", "Front-end beautifier and chief ducker of low ceilings", "Camacho Style Sheets"]
 			swe_members['minwoo0jo'] = ['Minwoo Jo', 0,0, 0, "Minwoo is a fourth year student currently pursuing a BSA in CS. He enjoys studying foreign languages and competing in video game tournaments in his free time.", 'Minwoo.jpg', "District front-end, API designer, and chief late team addition", "MJ"]
 			swe_members['bzsinger'] = ['Benjamin Singer', 0,0, 0, "Benny is a third-year CS student who enjoys iOS development, reading, and following current events.", "Benny.jpg", "Representatives front-end and chief spammer of GitHub emails", "Benny"]
 			swe_members['palakhirpara'] = ['Palak Hirpara', 0, 0, 0, "Palak is a senior who will be graduating this semester with BSCS and likes watching cricket.", "Palak.png", "Representatives front-end and chief misspeller of routes", "The Decider"]
@@ -142,12 +142,12 @@ export default class About extends Component {
                     </a>
                 </p>
                 <p>
-                    <a href = "https://www.gitbook.com/book/wethesweople/report">
+                    <a href = "https://wethesweople.gitbooks.io/report/">
                         IDB 1 Technical Report
                     </a>
                 </p>
                 <p>
-                    <a href = "https://wethesweople.gitbooks.io/api">
+                    <a href = "https://wethesweople.gitbooks.io/api/">
                         API Documentation
                     </a>
                 </p>
