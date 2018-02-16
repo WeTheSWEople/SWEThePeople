@@ -34,7 +34,7 @@ export default class About extends Component {
 			swe_members['raulcodes'] = ['Raul Camacho', 0,0, 0, "Raul is a senior CS major who will be graduating this semester. Also he's tall. Probably too tall.", "Raul.png", "Front-end beautifier and chief ducker of low ceilings", "Camacho Style Sheets"]
 			swe_members['minwoo0jo'] = ['Minwoo Jo', 0,0, 0, "Minwoo is a fourth year student currently pursuing a BSA in CS. He enjoys studying foreign languages and competing in video game tournaments in his free time.", 'Minwoo.jpg', "District front-end, API designer, and chief late team addition", "MJ"]
 			swe_members['bzsinger'] = ['Benjamin Singer', 0,0, 0, "Benny is a third-year CS student who enjoys iOS development, reading, and following current events.", "Benny.jpg", "Representatives front-end and chief spammer of GitHub emails", "Benny"]
-			swe_members['palakhirpara'] = ['Palak Hirpara', 0, 0, 0, "Palak is a senior who will be graduating this semester with BSCS and likes watching cricket.", "Palak.png", "Representatives front-end and chief misspeller of routes", "PK Attribute"]
+			swe_members['palakhirpara'] = ['Palak Hirpara', 0, 0, 0, "Palak is a senior who will be graduating this semester with BSCS and likes watching cricket.", "Palak.png", "Representatives front-end and chief misspeller of routes", "The Decider"]
 			var commit_json = JSON.parse(body)
 			var total_commits = 0
 			for(var i = 0; i < commit_json.length; i++){
@@ -142,8 +142,13 @@ export default class About extends Component {
                     </a>
                 </p>
                 <p>
-                    <a href = "https://www.gitbook.com/@wethesweople">
-                        GitBook Documentation
+                    <a href = "https://wethesweople.gitbooks.io/report/">
+                        IDB 1 Technical Report
+                    </a>
+                </p>
+                <p>
+                    <a href = "https://wethesweople.gitbooks.io/api/">
+                        API Documentation
                     </a>
                 </p>
             </div>
