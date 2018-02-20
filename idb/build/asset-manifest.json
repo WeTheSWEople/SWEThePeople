@@ -1,13 +1,8 @@
 {
-  "main.css": "static/css/main.4a5fa128.css",
-  "main.css.map": "static/css/main.4a5fa128.css.map",
-<<<<<<< HEAD
-  "main.js": "static/js/main.5f808763.js",
-  "main.js.map": "static/js/main.5f808763.js.map",
-=======
-  "main.js": "static/js/main.54352b09.js",
-  "main.js.map": "static/js/main.54352b09.js.map",
->>>>>>> 94f150dab30a3419cf9b5b6fb8e154659534ac02
+  "main.css": "static/css/main.59a0e66d.css",
+  "main.css.map": "static/css/main.59a0e66d.css.map",
+  "main.js": "static/js/main.0e95fa02.js",
+  "main.js.map": "static/js/main.0e95fa02.js.map",
   "static/media/Benny.jpg": "static/media/Benny.3535e064.jpg",
   "static/media/CA.png": "static/media/CA.f5aac922.png",
   "static/media/CA12.png": "static/media/CA12.5a570a8d.png",
@@ -35,7 +30,6 @@
   "static/media/github.png": "static/media/github.d68185e6.png",
   "static/media/govtrack.png": "static/media/govtrack.6fe7debf.png",
   "static/media/header.png": "static/media/header.1f0d0789.png",
-  "static/media/logo.svg": "static/media/logo.5d5d9eef.svg",
   "static/media/pic1.jpg": "static/media/pic1.ea3ab7b4.jpg",
   "static/media/pic2.jpg": "static/media/pic2.f0514c5a.jpg",
   "static/media/pic3.jpg": "static/media/pic3.e5281cef.jpg",
