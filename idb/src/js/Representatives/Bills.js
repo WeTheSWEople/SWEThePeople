@@ -1,10 +1,9 @@
+import '../../assets/css/App.css';
+import '../../assets/css/Bills.css';
 import React, { Component } from 'react';
-import header from './assets/images/header.png'
-import './App.css';
-import allReps from './assets/bioguide-endpoint.json';
 import { Grid, Row, Col } from 'react-bootstrap';
-import './Bill.css';
 
+import allReps from '../../assets/bioguide-endpoint.json';
 
 export default class RepBills extends Component {
   constructor(props){
@@ -23,8 +22,8 @@ export default class RepBills extends Component {
     this.setState({bioguideid: this.props.bioguideid})
     this.setState({bills_data: allReps[this.props.bioguideid]["bills"]})
     // shorten the latest major action
-    
-  	
+
+
 
   }
 
@@ -39,7 +38,7 @@ export default class RepBills extends Component {
 
   render() {
   	for(var i = 0; i < this.state.bills_data.length; i++){
-  		var bill = this.state.bills_data[i];    	
+  		var bill = this.state.bills_data[i];
     	if(bill["latest_major_action"].length > 115){
     	 	bill["latest_major_action"] = bill["latest_major_action"].substring(0, 115) + "..."
     	}
@@ -67,7 +66,7 @@ export default class RepBills extends Component {
               </div>
        	</Col>
 	)
-  
+
     return (
       <Row>
       	{mapping}

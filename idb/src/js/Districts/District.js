@@ -1,10 +1,9 @@
+import '../../assets/css/App.css';
+import '../../assets/css/District.css';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import header from './assets/images/header.png'
-import './App.css';
-import './District.css';
 
-let state_json = require('./assets/data/state.json')
+let state_json = require('../../assets/data/state.json')
 export default class Districts extends Component {
 	constructor(props){
 		super(props)
@@ -18,9 +17,9 @@ export default class Districts extends Component {
 
 	}
 	componentWillMount(){
-		let census_json = require('./assets/data/census_data.json')
-		let rep_json = require('./assets/data/rep_data/' + this.props.match.params.districtid + '.json')
-		let senator_json = require('./assets/data/senate_data/' + this.props.match.params.districtid + '.json')
+		let census_json = require('../../assets/data/census_data.json')
+		let rep_json = require('../../assets/data/rep_data/' + this.props.match.params.districtid + '.json')
+		let senator_json = require('../../assets/data/senate_data/' + this.props.match.params.districtid + '.json')
 		let reps = this.state.total_reps
 		var districts_list = []
 		if(rep_json["status"] === "OK"){
@@ -86,7 +85,6 @@ export default class Districts extends Component {
 					<br></br>
 					<h4><b>Representative:</b></h4>
 					<h4>{district.rep}</h4>
-					<img src={"https://theunitedstates.io/images/congress/225x275/" + district.id + ".jpg"}  alt={district.name} class="rep_img" />
 					<br /> <br />
 					<h4>Party: {district.party}</h4>
 				</div>

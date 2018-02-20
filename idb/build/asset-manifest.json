@@ -1,8 +1,13 @@
 {
   "main.css": "static/css/main.4a5fa128.css",
   "main.css.map": "static/css/main.4a5fa128.css.map",
+<<<<<<< HEAD
   "main.js": "static/js/main.5f808763.js",
   "main.js.map": "static/js/main.5f808763.js.map",
+=======
+  "main.js": "static/js/main.54352b09.js",
+  "main.js.map": "static/js/main.54352b09.js.map",
+>>>>>>> 94f150dab30a3419cf9b5b6fb8e154659534ac02
   "static/media/Benny.jpg": "static/media/Benny.3535e064.jpg",
   "static/media/CA.png": "static/media/CA.f5aac922.png",
   "static/media/CA12.png": "static/media/CA12.5a570a8d.png",

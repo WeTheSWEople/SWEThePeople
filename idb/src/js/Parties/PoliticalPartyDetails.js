@@ -1,16 +1,16 @@
+import RepresentativeInstance from '../Representatives/RepresentativeInstance'
+import '../../assets/css/App.css';
+import '../../assets/css/PoliticalPartyDetails.css';
+import '../../assets/css/District.css';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import {GridList} from 'material-ui/GridList';
-import RepresentativeInstance from './RepresentativeInstance'
-import logo from './logo.svg';
-import './App.css';
-import './PoliticalPartyDetails.css';
-import './District.css';
-import all_parties from './assets/all-parties.json';
-import reps_info from './assets/all-reps-endpoint.json';
 import {Timeline} from 'react-twitter-widgets';
 
-let state_json = require("./assets/data/state.json")
+import all_parties from '../../assets/all-parties.json';
+import reps_info from '../../assets/all-reps-endpoint.json';
+
+let state_json = require("../../assets/data/state.json")
 
 export default class PoliticalPartyDetails extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ export default class PoliticalPartyDetails extends Component {
         }
         this.setState({party: this_party})
 
-		let census_json = require('./assets/data/census_data.json')
+		let census_json = require('../../assets/data/census_data.json')
         var reps_map = {}
         var districts_arr = []
         var rep_count = 0
@@ -134,7 +134,7 @@ export default class PoliticalPartyDetails extends Component {
             <div style={styles.divStyle} className="App">
                 <div class="container">
                     <div class="party-header">
-                        <img src={require("./assets/images/parties/" +
+                        <img src={require("../../assets/images/parties/" +
                                           this.state.party["name"] + "-full.png")}
                              style={styles.imgStyle}
                              alt={this.state.party["name"]} />
@@ -194,7 +194,7 @@ export default class PoliticalPartyDetails extends Component {
                             />
                         </div>
                     </div>
-                    
+
                     <div className="row party-media">
                         <div className="col-sm-6">
                             <h4><b>YouTube Channel</b></h4>
@@ -210,7 +210,7 @@ export default class PoliticalPartyDetails extends Component {
                             <iframe width="353" height="200"
                                frameborder="0" style={{border: "0"}}
                                src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY&q=" + this.state.party["office"]} allowfullscreen>
-                            </iframe>          
+                            </iframe>
                         </div>
                     </div>
 

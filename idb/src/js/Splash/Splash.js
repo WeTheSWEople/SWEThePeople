@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import Slider from 'react-slick';
-import header from './assets/images/header.png'
-import './App.css';
+import '../../assets/css/App.css';
+import pic1 from '../../assets/images/splash-screen/pic1.jpg'
+import pic2 from '../../assets/images/splash-screen/pic2.jpg'
+import pic3 from '../../assets/images/splash-screen/pic3.jpg'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-import pic1 from './assets/images/splash-screen/pic1.jpg'
-import pic2 from './assets/images/splash-screen/pic2.jpg'
-import pic3 from './assets/images/splash-screen/pic3.jpg'
+import React, { Component } from 'react';
+import Slider from 'react-slick';
 
 export default class Splash extends Component {
   constructor(props) {

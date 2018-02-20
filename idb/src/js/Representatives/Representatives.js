@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import header from './assets/images/header.png'
-import './App.css';
 import RepresentativeInstance from './RepresentativeInstance'
-import allReps from './assets/all-reps-endpoint.json';
+import '../../assets/css/App.css';
+import React, { Component } from 'react';
 import {GridList} from 'material-ui/GridList';
+
+import allReps from '../../assets/all-reps-endpoint.json';
 
 
 

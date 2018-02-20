@@ -1,6 +1,6 @@
+import '../../assets/css/App.css';
+import '../../assets/css/RepresentativeInstance.css';
 import React, { Component } from 'react';
-import './App.css';
-import './RepresentativeInstance.css';
 import { Link } from 'react-router-dom'
 import {GridTile} from 'material-ui/GridList';
 
@@ -26,8 +26,8 @@ export default class StateInstance extends Component {
 		}
 	}
 	componentWillMount(){
-		let rep_json = require('./assets/data/rep_data/' + this.props.state + '.json')
-		let senator_json = require('./assets/data/senate_data/' + this.props.state + '.json')
+		let rep_json = require('../../assets/data/rep_data/' + this.props.state + '.json')
+		let senator_json = require('../../assets/data/senate_data/' + this.props.state + '.json')
 		if(rep_json["status"] === "OK"){
 			this.setState({numReps: rep_json["results"].length})
 		}
@@ -45,7 +45,7 @@ export default class StateInstance extends Component {
 			class="tile" >
 				<div class="row">
 	                    <div class="col-md-4">
-	                        <img src={require("./assets/images/states/" + this.props.state + ".png")}
+	                        <img src={require("../../assets/images/states/" + this.props.state + ".png")}
 		                       className="img-responsive"
 		                       style={styles.imgStyle}
 		                    />
@@ -59,8 +59,8 @@ export default class StateInstance extends Component {
 	                    </div>
                  </div>
 
-                
-			
+
+
 		  </GridTile>
 	  </Link>
 	);

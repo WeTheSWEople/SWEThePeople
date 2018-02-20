@@ -1,7 +1,7 @@
+import StateInstance from '../Representatives/StateInstance'
+import '../../assets/css/App.css';
 import React, { Component } from 'react';
-import './App.css';
 import {GridList} from 'material-ui/GridList';
-import StateInstance from './StateInstance'
 
 const styles = {
   root: {
@@ -17,7 +17,7 @@ const styles = {
   },
 };
 
-let state_json = require('./assets/data/state.json')
+let state_json = require('../../assets/data/state.json')
 export default class AllDistricts extends Component {
 
   render() {

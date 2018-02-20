@@ -1,6 +1,6 @@
+import '../../assets/css/Members.css';
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import './Members.css';
 
 export default class Members extends Component {
 	constructor(props){
@@ -14,7 +14,7 @@ export default class Members extends Component {
                     <p className="nickname">
                         {'"' + this.props.swe_data[item][7] + '"'}
                     </p>
-                    <img src={require("./assets/images/about/" + this.props.swe_data[item][5])}
+                    <img src={require("../../assets/images/about/" + this.props.swe_data[item][5])}
                          width='300' height='300'
                          className="img-responsive"/>
 

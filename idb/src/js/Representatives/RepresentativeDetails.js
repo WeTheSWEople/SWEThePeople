@@ -1,12 +1,12 @@
+import RepBills from './Bills.js'
+import '../../assets/css/App.css';
+import '../../assets/css/Bills.css';
 import React, { Component } from 'react';
-import header from './assets/images/header.png'
-import './App.css';
-import allReps from './assets/bioguide-endpoint.json';
 import { Link } from 'react-router-dom'
 import {Timeline} from 'react-twitter-widgets'
 import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
-import './Bill.css'; 
-import RepBills from './Bills.js'
+
+import allReps from '../../assets/bioguide-endpoint.json';
 
 
 const styles = {
@@ -57,13 +57,13 @@ export default class RepresentativeDetails extends Component {
           <p> <b> State: </b> {this.state.rep_data["state"]}</p>
           <p> <b> District: </b> <Link
             to={`/districts/${this.state.rep_data["state"]}/${this.state.rep_data["district"]}`}>
-            {this.state.rep_data["district"]} </Link> 
+            {this.state.rep_data["district"]} </Link>
           </p>
           <p> <b> Site: </b><a href={this.state.rep_data["url"]}>Website</a></p>
           <p> <b>Votes with Party (%): </b> <ProgressBar  bsStyle="success" now={this.state.rep_data["votes_with_party_pct"]} label={`${this.state.rep_data["votes_with_party_pct"]}%`} />
-          </p>   
+          </p>
           </div>
-          </font> 
+          </font>
         </Col>
     <Col sm={12} md={4}>
       <Timeline

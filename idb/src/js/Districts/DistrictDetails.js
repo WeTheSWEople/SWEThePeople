@@ -1,22 +1,22 @@
+import RepresentativeInstance from '../Representatives/RepresentativeInstance'
+import '../../assets/css/App.css';
+import '../../assets/css/DistrictDetails.css';
 import React, { Component } from 'react';
-import header from './assets/images/header.png'
-import './App.css';
-import stateDistrict from './assets/data/census_data.json';
-import districtRep from './assets/data/district_rep.json';
 import { Link } from 'react-router-dom'
 import {Timeline} from 'react-twitter-widgets'
 import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
-import allReps from './assets/bioguide-endpoint.json';
-import states from './assets/data/state.json'
-import RepresentativeInstance from './RepresentativeInstance'
-import './DistrictDetails.css';
 import {PieChart, BarChart} from 'react-easy-chart';
+
+import stateDistrict from '../../assets/data/census_data.json';
+import districtRep from '../../assets/data/district_rep.json';
+import allReps from '../../assets/bioguide-endpoint.json';
+import states from '../../assets/data/state.json'
 
 
 const styles = {
     imgStyle: {
         width:"100%",
-        
+
         height:"100%"
     }
 }
@@ -109,7 +109,7 @@ export default class RepresentativeDetails extends Component {
         )
 
     var gender_pop_data = []
-    
+
     var population = this.state.district_data["population"]
     var male = {}
     male["key"] = "Male (" + (population["male"]/population["total"] * 100).toFixed(2) + "%)"
@@ -133,10 +133,10 @@ export default class RepresentativeDetails extends Component {
           <h1><font size="8"><b>{states[this.state.district_state]} District {this.state.district_num}</b></font></h1>
           <br></br><br></br>
           <Col sm={6} md={6}>
-          
-            <img className="district-map-card"src={require("./assets/images/districts/"  + this.state.district_state + this.state.district_num +  ".png")}
+
+            <img className="district-map-card"src={require("../../assets/images/districts/"  + this.state.district_state + this.state.district_num +  ".png")}
                                            width="500px" height="350px" marginLeft="25px"/>
-          
+
           </Col>
           <Col sm={6} md={6}>
             <div style={{textAlign: "left", padding:"80px"}}>
@@ -145,7 +145,7 @@ export default class RepresentativeDetails extends Component {
             <p><font size="5"><b>Median Age (Male): </b> {this.state.district_data["median-age"]["male"]} years</font></p>
             <p><font size="5"><b>Median Age (Female): </b> {this.state.district_data["median-age"]["female"]} years</font></p>
             </div>
-      
+
 
 
           </Col>
@@ -181,7 +181,7 @@ export default class RepresentativeDetails extends Component {
               }
             }}
             />
-          
+
           <p><b> Race v.s. Number of People</b></p>
           </Col>
           <Col sm={2} md={2}>
@@ -199,7 +199,7 @@ export default class RepresentativeDetails extends Component {
           </div>
           <div class="col-md-3">
               <Link to={`/party/${this.state.rep_data["party"]}`} >
-                  <img src={require("./assets/images/parties/" + this.state.party_image + ".png")}
+                  <img src={require("../../assets/images/parties/" + this.state.party_image + ".png")}
                                            className="img-responsive" style={styles.imgStyle} />
                   <h3><b>{this.state.rep_data["party"]}</b></h3>
              </Link>

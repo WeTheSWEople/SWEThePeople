@@ -1,12 +1,12 @@
+import '../../assets/css/PoliticalPartyInstance.css';
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
-import './PoliticalPartyInstance.css';
 
 export default class Parties extends Component {
     constructor(props) {
         super(props)
     }
-    
+
     render() {
         const styles = {
             imgStyle: {
@@ -24,7 +24,7 @@ export default class Parties extends Component {
                         <div class="row">
                             <div class="col-md-6">
                                 <div key={key} class="center-div">
-                                    <img src={require("./assets/images/parties/" + key + ".png")}
+                                    <img src={require("../../assets/images/parties/" + key + ".png")}
                                            className="img-responsive"
                                            style={styles.imgStyle}
                                            alt={key} />
@@ -34,7 +34,7 @@ export default class Parties extends Component {
                                 <h3>{key} Party</h3>
                                 <p>
                                     <span style={styles.itemHeader}>
-                                        Number of representatives: 
+                                        Number of representatives:
                                     </span>
                                     {this.props.party_data[key]["num_reps"]}
                                 </p>
