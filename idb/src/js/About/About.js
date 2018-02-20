@@ -1,11 +1,11 @@
 import Members from './Members'
-import '../../assets/css/App.css';
-import '../../assets/css/About.css';
-import React, { Component } from 'react';
-import { RingLoader } from 'react-spinners';
-import { a } from 'react-router-dom'
+import '../../assets/css/App.css'
+import '../../assets/css/About.css'
+import React, {Component} from 'react'
+import {RingLoader} from 'react-spinners'
+import {a} from 'react-router-dom'
 
-var request = require("request");
+var request = require("request")
 
 export default class About extends Component {
 	constructor(props){
