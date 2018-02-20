@@ -1,61 +1,61 @@
-import PoliticalPartyInstance from './PoliticalPartyInstance.js';
-import '../../assets/css/App.css';
-import React, { Component } from 'react';
+/* eslint-disable no-unused-vars */
+import PoliticalPartyInstance from './PoliticalPartyInstance.js'
+import React, {Component} from 'react'
+/* eslint-enable no-unused-vars */
 
-import all_parties from '../../assets/all-parties.json';
-import reps_info from '../../assets/all-reps-endpoint.json';
-
-var request = require("request");
+import '../../assets/css/App.css'
+import allParties from '../../assets/all-parties.json'
+import repsInfo from '../../assets/all-reps-endpoint.json'
 
 export default class PoliticalParty extends Component {
-    constructor(props) {
-        super(props);
+  constructor (props) {
+    super(props)
 
-        this.state = {
-            ready: false,
-            error: false,
-            parties: {}
-        }
+    this.state = {
+      ready: false,
+      error: false,
+      parties: {}
+    }
+  }
+
+  componentWillMount () {
+    this.setState({ready: false})
+
+    let partiesMap = {}
+    for (let i = 0; i < allParties.length; i++) {
+      partiesMap[allParties[i]['name']] = {
+        name: allParties[i]['name'],
+        color: allParties[i]['color'],
+        chair: allParties[i]['chair'],
+        num_reps: 0
+      }
     }
 
-    componentWillMount() {
-        this.setState({ready: false})
-
-        var parties_map = {}
-        for (var i = 0; i < all_parties.length; i++) {
-            parties_map[all_parties[i]["name"]] = {
-                    name: all_parties[i]["name"],
-                    color: all_parties[i]["color"],
-                    chair: all_parties[i]["chair"],
-                    num_reps: 0}
+    Object.keys(repsInfo).forEach(function (repKey) {
+      Object.keys(partiesMap).forEach(function (partyKey) {
+        if (partyKey.startsWith(repsInfo[repKey]['party'])) {
+          partiesMap[partyKey]['num_reps'] += 1
         }
+      })
+    })
 
-        Object.keys(reps_info).forEach(function(rep_key) {
-            Object.keys(parties_map).forEach(function(party_key) {
-                if (party_key.startsWith(reps_info[rep_key]["party"])) {
-                    parties_map[party_key]["num_reps"] += 1
-                }
-            })
-        })
+    this.setState({parties: partiesMap, ready: true})
+  }
 
-        this.setState({parties: parties_map, ready: true})
+  render () {
+    let parties = null
+    if (this.state.ready) {
+      parties = <PoliticalPartyInstance party_data = {this.state.parties} />
     }
 
-    render() {
-        let parties = null
-        if (this.state.ready) {
-            parties = <PoliticalPartyInstance
-                        party_data = {this.state.parties} />
-        }
-
-        let divStyle = {
-            paddingTop: "70px"
-        }
-
-        return (
-            <div style={divStyle}>
-                {parties}
-            </div>
-        );
+    let divStyle = {
+      paddingTop: '70px'
     }
+
+    return (
+      <div style={divStyle}>
+        {parties}
+      </div>
+    )
+  }
 }
