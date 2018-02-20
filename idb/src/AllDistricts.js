@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './assets/css/App.css';
 import {GridList} from 'material-ui/GridList';
 import StateInstance from './StateInstance'
 

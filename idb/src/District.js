@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import header from './assets/images/header.png'
-import './App.css';
-import './District.css';
+import './assets/css/App.css';
+import './assets/css/District.css';
 
 let state_json = require('./assets/data/state.json')
 export default class Districts extends Component {
@@ -86,7 +86,6 @@ export default class Districts extends Component {
 					<br></br>
 					<h4><b>Representative:</b></h4>
 					<h4>{district.rep}</h4>
-					<img src={"https://theunitedstates.io/images/congress/225x275/" + district.id + ".jpg"}  alt={district.name} class="rep_img" />
 					<br /> <br />
 					<h4>Party: {district.party}</h4>
 				</div>

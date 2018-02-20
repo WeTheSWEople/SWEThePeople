@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import {GridList} from 'material-ui/GridList';
 import RepresentativeInstance from './RepresentativeInstance'
 import logo from './logo.svg';
-import './App.css';
-import './PoliticalPartyDetails.css';
-import './District.css';
+import './assets/css/App.css';
+import './assets/css/PoliticalPartyDetails.css';
+import './assets/css/District.css';
 import all_parties from './assets/all-parties.json';
 import reps_info from './assets/all-reps-endpoint.json';
 import {Timeline} from 'react-twitter-widgets';
@@ -194,7 +194,7 @@ export default class PoliticalPartyDetails extends Component {
                             />
                         </div>
                     </div>
-                    
+
                     <div className="row party-media">
                         <div className="col-sm-6">
                             <h4><b>YouTube Channel</b></h4>
@@ -210,7 +210,7 @@ export default class PoliticalPartyDetails extends Component {
                             <iframe width="353" height="200"
                                frameborder="0" style={{border: "0"}}
                                src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY&q=" + this.state.party["office"]} allowfullscreen>
-                            </iframe>          
+                            </iframe>
                         </div>
                     </div>
 

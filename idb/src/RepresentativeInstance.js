@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import './RepresentativeInstance.css';
+import './assets/css/App.css';
+import './assets/css/RepresentativeInstance.css';
 import { Link } from 'react-router-dom'
 import {GridTile} from 'material-ui/GridList';
 

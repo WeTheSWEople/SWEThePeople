@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
-import './About.css';
+import './assets/css/App.css';
+import './assets/css/About.css';
 import { RingLoader } from 'react-spinners';
 import { a } from 'react-router-dom'
 import Members from './Members'

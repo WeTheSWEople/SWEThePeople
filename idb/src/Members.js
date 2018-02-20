@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import './Members.css';
+import './assets/css/Members.css';
 
 export default class Members extends Component {
 	constructor(props){

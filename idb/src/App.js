@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './assets/css/App.css';
 import DefaultRouter from './Router'
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Navigation from './Navigation'
