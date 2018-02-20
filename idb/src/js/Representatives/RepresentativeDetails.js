@@ -1,12 +1,12 @@
+import RepBills from './Bills.js'
+import '../../assets/css/App.css';
+import '../../assets/css/Bills.css';
 import React, { Component } from 'react';
-import header from './assets/images/header.png'
-import './assets/css/App.css';
-import allReps from './assets/bioguide-endpoint.json';
 import { Link } from 'react-router-dom'
 import {Timeline} from 'react-twitter-widgets'
 import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
-import './assets/css/Bills.css';
-import RepBills from './Bills.js'
+
+import allReps from '../../assets/bioguide-endpoint.json';
 
 
 const styles = {

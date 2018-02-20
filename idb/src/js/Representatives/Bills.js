@@ -1,10 +1,9 @@
+import '../../assets/css/App.css';
+import '../../assets/css/Bills.css';
 import React, { Component } from 'react';
-import header from './assets/images/header.png'
-import './assets/css/App.css';
-import allReps from './assets/bioguide-endpoint.json';
 import { Grid, Row, Col } from 'react-bootstrap';
-import './assets/css/Bills.css';
 
+import allReps from '../../assets/bioguide-endpoint.json';
 
 export default class RepBills extends Component {
   constructor(props){

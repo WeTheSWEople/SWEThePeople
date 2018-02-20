@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './assets/css/App.css';
 import PoliticalPartyInstance from './PoliticalPartyInstance.js';
-import all_parties from './assets/all-parties.json';
-import reps_info from './assets/all-reps-endpoint.json';
+import '../../assets/css/App.css';
+import React, { Component } from 'react';
+
+import all_parties from '../../assets/all-parties.json';
+import reps_info from '../../assets/all-reps-endpoint.json';
 
 var request = require("request");
 

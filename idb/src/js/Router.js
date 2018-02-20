@@ -1,14 +1,14 @@
+import About from './About/About'
+import AllDistricts from './Districts/AllDistricts'
+import Districts from './Districts/District'
+import DistrictsDetails from './Districts/DistrictDetails'
+import PoliticalParty from './Parties/PoliticalParty'
+import PoliticalPartyDetails from './Parties/PoliticalPartyDetails'
+import Representatives from './Representatives/Representatives'
+import RepresentativeDetails from './Representatives/RepresentativeDetails'
+import Splash from './Splash/Splash'
 import React, { Component } from 'react'
 import {Route, Switch} from 'react-router-dom'
-import Splash from './Splash'
-import About from './About'
-import PoliticalParty from './PoliticalParty'
-import PoliticalPartyDetails from './PoliticalPartyDetails'
-import Representatives from './Representatives'
-import RepresentativeDetails from './RepresentativeDetails'
-import Districts from './District'
-import AllDistricts from './AllDistricts'
-import DistrictsDetails from './DistrictDetails'
 
 
 export default class DefaultRouter extends Component {

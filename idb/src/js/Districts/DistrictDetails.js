@@ -1,16 +1,16 @@
+import RepresentativeInstance from '../Representatives/RepresentativeInstance'
+import '../../assets/css/App.css';
+import '../../assets/css/DistrictDetails.css';
 import React, { Component } from 'react';
-import header from './assets/images/header.png'
-import './assets/css/App.css';
-import stateDistrict from './assets/data/census_data.json';
-import districtRep from './assets/data/district_rep.json';
 import { Link } from 'react-router-dom'
 import {Timeline} from 'react-twitter-widgets'
 import { Grid, Row, Col, ProgressBar } from 'react-bootstrap';
-import allReps from './assets/bioguide-endpoint.json';
-import states from './assets/data/state.json'
-import RepresentativeInstance from './RepresentativeInstance'
-import './assets/css/DistrictDetails.css';
 import {PieChart, BarChart} from 'react-easy-chart';
+
+import stateDistrict from '../../assets/data/census_data.json';
+import districtRep from '../../assets/data/district_rep.json';
+import allReps from '../../assets/bioguide-endpoint.json';
+import states from '../../assets/data/state.json'
 
 
 const styles = {
@@ -134,7 +134,7 @@ export default class RepresentativeDetails extends Component {
           <br></br><br></br>
           <Col sm={6} md={6}>
 
-            <img className="district-map-card"src={require("./assets/images/districts/"  + this.state.district_state + this.state.district_num +  ".png")}
+            <img className="district-map-card"src={require("../../assets/images/districts/"  + this.state.district_state + this.state.district_num +  ".png")}
                                            width="500px" height="350px" marginLeft="25px"/>
 
           </Col>
@@ -199,7 +199,7 @@ export default class RepresentativeDetails extends Component {
           </div>
           <div class="col-md-3">
               <Link to={`/party/${this.state.rep_data["party"]}`} >
-                  <img src={require("./assets/images/parties/" + this.state.party_image + ".png")}
+                  <img src={require("../../assets/images/parties/" + this.state.party_image + ".png")}
                                            className="img-responsive" style={styles.imgStyle} />
                   <h3><b>{this.state.rep_data["party"]}</b></h3>
              </Link>

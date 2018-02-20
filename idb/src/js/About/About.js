@@ -1,10 +1,9 @@
+import Members from './Members'
+import '../../assets/css/App.css';
+import '../../assets/css/About.css';
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './assets/css/App.css';
-import './assets/css/About.css';
 import { RingLoader } from 'react-spinners';
 import { a } from 'react-router-dom'
-import Members from './Members'
 
 var request = require("request");
 
@@ -163,7 +162,7 @@ export default class About extends Component {
                 <a href="https://github.com/WeTheSWEople/SWEThePeople/">
                     <div className="col-sm-3">
                         <div className="tools-card">
-                            <img src={require("./assets/images/about/github.png")}
+                            <img src={require("../../assets/images/about/github.png")}
                                  className="img-responsive" />
                             <h5>GitHub</h5>
                             <p>
@@ -176,7 +175,7 @@ export default class About extends Component {
                 <a href="https://www.gitbook.com/@wethesweople">
                     <div className="col-sm-3">
                         <div className="tools-card">
-                            <img src={require("./assets/images/about/gitbook.png")}
+                            <img src={require("../../assets/images/about/gitbook.png")}
                                  className="img-responsive" />
                             <h5>Gitbook</h5>
                             <p>
@@ -188,7 +187,7 @@ export default class About extends Component {
                 <a href="https://reactjs.org/">
                     <div className="col-sm-3">
                         <div className="tools-card">
-                            <img src={require("./assets/images/about/reactjs.png")}
+                            <img src={require("../../assets/images/about/reactjs.png")}
                                  className="img-responsive" />
                             <h5>ReactJS</h5>
                             <p>
@@ -200,7 +199,7 @@ export default class About extends Component {
                 <a href="https://aws.amazon.com/ec2/">
                     <div className="col-sm-3">
                         <div className="tools-card">
-                            <img src={require("./assets/images/about/ec2.jpg")}
+                            <img src={require("../../assets/images/about/ec2.jpg")}
                                  className="img-responsive" />
                             <h5>Amazon EC2</h5>
                             <p>
@@ -213,7 +212,7 @@ export default class About extends Component {
                 <a href="https://getbootstrap.com/">
                     <div className="col-sm-3">
                         <div className="tools-card">
-                            <img src={require("./assets/images/about/bootstrap.png")}
+                            <img src={require("../../assets/images/about/bootstrap.png")}
                                  className="img-responsive" />
                             <h5>Bootstrap</h5>
                             <p>
@@ -226,7 +225,7 @@ export default class About extends Component {
                 <a href="http://flask.pocoo.org/">
                     <div className="col-sm-3">
                         <div className="tools-card">
-                            <img src={require("./assets/images/about/flask.png")}
+                            <img src={require("../../assets/images/about/flask.png")}
                                  className="img-responsive" />
                             <h5>Python Flask</h5>
                             <p>
@@ -238,7 +237,7 @@ export default class About extends Component {
                 <a href="https://www.nginx.com/">
                     <div className="col-sm-3">
                         <div className="tools-card">
-                            <img src={require("./assets/images/about/nginx.png")}
+                            <img src={require("../../assets/images/about/nginx.png")}
                                  className="img-responsive" />
                             <h5>NGINX</h5>
                             <p>
@@ -250,7 +249,7 @@ export default class About extends Component {
                 <a href="https://www.slack.com/">
                     <div className="col-sm-3">
                         <div className="tools-card">
-                            <img src={require("./assets/images/about/slack.png")}
+                            <img src={require("../../assets/images/about/slack.png")}
                                  className="img-responsive" />
                             <h5>Slack</h5>
                             <p>
@@ -271,7 +270,7 @@ export default class About extends Component {
                 <a href="https://projects.propublica.org/api-docs/congress-api/">
                     <div className="col-sm-3">
                         <div className="data-card">
-                            <img src={require("./assets/images/about/propubica.jpg")}
+                            <img src={require("../../assets/images/about/propubica.jpg")}
                                  className="img-responsive" />
                             <h3>ProPublica</h3>
                             <p>
@@ -285,7 +284,7 @@ export default class About extends Component {
                 <a href="https://www.govtrack.us/developers/api">
                     <div className="col-sm-3">
                         <div className="data-card">
-                            <img src={require("./assets/images/about/govtrack.png")}
+                            <img src={require("../../assets/images/about/govtrack.png")}
                                  className="img-responsive" />
                             <h3>GovTrack</h3>
                             <p>
@@ -299,7 +298,7 @@ export default class About extends Component {
                 <a href="https://www.census.gov/data/developers/data-sets/decennial-census.html">
                     <div className="col-sm-3">
                         <div className="data-card">
-                            <img src={require("./assets/images/about/census.png")}
+                            <img src={require("../../assets/images/about/census.png")}
                                  className="img-responsive" />
                             <h3>US Census Bureau</h3>
                             <p>
@@ -313,7 +312,7 @@ export default class About extends Component {
                 <a href="https://theunitedstates.io/images/congress/">
                     <div className="col-sm-3">
                         <div className="data-card">
-                            <img src={require("./assets/images/about/unitedstatesio.png")}
+                            <img src={require("../../assets/images/about/unitedstatesio.png")}
                                  className="img-responsive" />
                             <h3>TheUnitedStates.io</h3>
                             <p>

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap'
 
-import header from './assets/images/header.png'
-import './assets/css/App.css';
+import header from '../../assets/images/header.png'
+import '../../assets/css/App.css';
 
 export default class Navigation extends Component {
     render() {
