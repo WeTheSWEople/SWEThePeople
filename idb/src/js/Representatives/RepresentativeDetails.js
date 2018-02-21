@@ -26,13 +26,16 @@ export default class RepresentativeDetails extends Component {
     this.state = {
       error: false,
       rep_data: {},
-      bioguideid: ''
+      bioguideid: '',
+      name: ''
     }
   }
   componentWillMount () {
     // get the data - in the future call the api
     this.setState({bioguideid: this.props.match.params.bioguideid})
     this.setState({rep_data: allReps[this.props.match.params.bioguideid]})
+    this.setState({name: this.state.rep_data['firstName'] +
+      ' ' + this.state.rep_data['lastName']})
   }
 
   render () {
@@ -108,6 +111,7 @@ export default class RepresentativeDetails extends Component {
             <iframe
               width='600'
               height='340'
+              title = '{this.state.name} YouTube Channel'
               src={'http://www.youtube.com/embed?max-results=1&controls=0' +
                 '&showinfo=0&rel=0&listType=user_uploads&list=' +
                 this.state.rep_data['youtube']}
@@ -121,6 +125,7 @@ export default class RepresentativeDetails extends Component {
               width='600'
               height='450'
               frameborder='0' style={{border: '0'}}
+              title = '{this.state.name} Twitter Feed'
               src={'https://www.google.com/maps/embed/v1/place?' +
               'key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY' +
               '&q=' + this.state.rep_data['office']} allowfullscreen>

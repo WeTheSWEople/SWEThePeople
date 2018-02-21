@@ -130,7 +130,7 @@ export default class RepresentativeDetails extends Component {
             <img className='district-map-card'src={
               require('../../assets/images/districts/' +
               this.state.district_state + this.state.district_num + '.png')}
-            width='500px' height='350px' marginLeft='25px'/>
+            width='500px' height='350px' marginLeft='25px' alt='District Map'/>
 
           </Col>
           <Col sm={6} md={6}>
@@ -213,8 +213,10 @@ export default class RepresentativeDetails extends Component {
             <Link to={`/party/${this.state.rep_data['party']}`} >
               <img src={
                 require('../../assets/images/parties/' +
-                this.state.party_image + '.png')}
-              className='img-responsive' style={styles.imgStyle} />
+                  this.state.party_image + '.png')}
+              alt='Party logo'
+              className='img-responsive'
+              style={styles.imgStyle} />
               <h3><b>{this.state.rep_data['party']}</b></h3>
             </Link>
           </div>

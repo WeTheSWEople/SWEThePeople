@@ -62,7 +62,7 @@ export default class Districts extends Component {
       }
 
       districtsList.sort(function (a, b) {
-        return parseInt(a.district) - parseInt(b.district)
+        return parseInt(a.district, 10) - parseInt(b.district, 10)
       })
       this.setState({districts: repJSON['results'].length,
         total_reps: reps,

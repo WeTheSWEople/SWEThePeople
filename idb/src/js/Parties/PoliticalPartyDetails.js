@@ -74,7 +74,7 @@ export default class PoliticalPartyDetails extends Component {
     })
 
     districtsArr.sort(function (a, b) {
-      return parseInt(a.district) - parseInt(b.district)
+      return parseInt(a.district, 10) - parseInt(b.district, 10)
     })
     this.setState({num_reps: repCount,
       reps: repsMap,
@@ -192,7 +192,9 @@ export default class PoliticalPartyDetails extends Component {
                 src={'http://www.youtube.com/embed?max-results=1&controls=0&' +
                   'showinfo=0&rel=0&listType=user_uploads&list=' +
                   this.state.party['youtube']}
-                frameborder='10' allowfullscreen>
+                frameborder='10' allowfullscreen
+                title={this.props.match.params.name + ' YouTube Channel'}
+              >
               </iframe>
             </div>
 
@@ -203,7 +205,9 @@ export default class PoliticalPartyDetails extends Component {
                 frameborder='0' style={{border: '0'}}
                 src={'https://www.google.com/maps/embed/v1/place?key=AIzaSyDO' +
                   'CxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY&q=' +
-                  this.state.party['office']} allowfullscreen>
+                  this.state.party['office']}
+                allowfullscreen
+                title={this.props.match.params.name + ' Google Maps Location'}>
               </iframe>
             </div>
           </div>

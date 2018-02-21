@@ -52,6 +52,7 @@ export default class StateInstance extends Component {
                 this.props.state + '.png')}
                 className='img-responsive'
                 style={styles.imgStyle}
+                alt='State'
               />
             </div>
             <div class='col-md-4 text-md-left'>

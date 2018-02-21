@@ -198,7 +198,7 @@ export default class About extends Component {
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/github.png')}
-                    className='img-responsive' />
+                    className='img-responsive' alt='GitHub logo'/>
                   <h5>GitHub</h5>
                   <p>
                     Used to manage versions betwen different branches of the
@@ -211,7 +211,7 @@ export default class About extends Component {
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/gitbook.png')}
-                    className='img-responsive' />
+                    className='img-responsive' alt='Gitbook logo' />
                   <h5>Gitbook</h5>
                   <p>Used to document the project and its API.</p>
                 </div>
@@ -221,7 +221,7 @@ export default class About extends Component {
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/reactjs.png')}
-                    className='img-responsive' />
+                    className='img-responsive' alt='ReactJS logo'/>
                   <h5>ReactJS</h5>
                   <p>The JavaScript library the site is built on.</p>
                 </div>
@@ -231,7 +231,7 @@ export default class About extends Component {
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/ec2.jpg')}
-                    className='img-responsive' />
+                    className='img-responsive' alt='EC2 logo'/>
                   <h5>Amazon EC2</h5>
                   <p>Container being used to host the production site.</p>
                 </div>
@@ -241,7 +241,7 @@ export default class About extends Component {
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/bootstrap.png')}
-                    className='img-responsive' />
+                    className='img-responsive' alt='Bootstrap logo'/>
                   <h5>Bootstrap</h5>
                   <p>CSS and JavaScript toolkit used to beautify pages.</p>
                 </div>
@@ -251,7 +251,7 @@ export default class About extends Component {
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/flask.png')}
-                    className='img-responsive' />
+                    className='img-responsive' alt='Flask logo'/>
                   <h5>Python Flask</h5>
                   <p>Web framework used for the production site.</p>
                 </div>
@@ -261,7 +261,7 @@ export default class About extends Component {
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/nginx.png')}
-                    className='img-responsive' />
+                    className='img-responsive' alt='NGINX logo'/>
                   <h5>NGINX</h5>
                   <p>Webserver to serve the production site.</p>
                 </div>
@@ -271,7 +271,7 @@ export default class About extends Component {
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/slack.png')}
-                    className='img-responsive' />
+                    className='img-responsive' alt='Slack logo'/>
                   <h5>Slack</h5>
                   <p>
                     Used to communicate between members to organize meetings and
@@ -292,7 +292,7 @@ export default class About extends Component {
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/propubica.jpg')}
-                    className='img-responsive' />
+                    className='img-responsive' alt='ProPublica logo'/>
                   <h3>ProPublica</h3>
                   <p>
                     Used to get information about all of U.S. representatives,
@@ -305,7 +305,7 @@ export default class About extends Component {
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/govtrack.png')}
-                    className='img-responsive' />
+                    className='img-responsive' alt='GovTrack logo'/>
                   <h3>GovTrack</h3>
                   <p>
                     Used to get information about recent bills sponsored by each
@@ -318,7 +318,7 @@ export default class About extends Component {
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/census.png')}
-                    className='img-responsive' />
+                    className='img-responsive' alt='US Census logo'/>
                   <h3>US Census Bureau</h3>
                   <p>
                     Used to get socioeconomics information based on either
@@ -333,7 +333,7 @@ export default class About extends Component {
                 <div className='data-card'>
                   <img src={
                     require('../../assets/images/about/unitedstatesio.png')}
-                  className='img-responsive' />
+                  className='img-responsive' alt='theunitedstates.io logo'/>
                   <h3>TheUnitedStates.io</h3>
                   <p>
                     Used to get images of representatives based on their
