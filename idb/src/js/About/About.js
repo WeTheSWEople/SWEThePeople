@@ -71,13 +71,13 @@ export default class About extends Component {
 
       this.setState({totalCommits: totalCommits})
       // let eof = false
-      // let page = 1
+      //let page = 1
       // loop doesn't work for some reason
       // while(!eof){
-      // var options = { method: 'GET',
-      // url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all&per_page=100&page=' + String(page),
-      // qs: { state: 'all' },
-      // };
+      var options = { method: 'GET',
+      url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all&per_page=100&page=' + String(1),
+      qs: { state: 'all' },
+      };
 
       request(options, function (error, response, body) {
         if (error) {
