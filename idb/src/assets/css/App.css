@@ -1,0 +1,57 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 50px;
+}
+
+.App-header {
+  background-color: black;
+  height: 75px;
+  padding: 20px;
+  color: white;
+}
+
+.App-header-white {
+  background-color: white;
+  height: 25px;
+  color: white;
+}
+
+.About-header-white {
+  background-color: white;
+  height: 50px;
+  color: white;
+}
+
+.Rep-Details-header {
+  background-color: #e2e1e0;
+  height: 75px;
+  color: #fff;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.h1 {
+  font: times;
+  color: white
+}
+
+.carousel-parent {
+    width: 100%;
+    background-color: black;
+}
+
+.carousel-parent .carousel {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
