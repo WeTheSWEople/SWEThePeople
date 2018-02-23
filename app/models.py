@@ -35,7 +35,7 @@ class Representative(db.Model):
 	    }
 
 	def __repr__(self):
-		return '<Representative {}: {!r} {}>'.format(self.bioguide, self.lastname, self.bioguide)
+		return '<Representative {}: {!r} {}>'.format(self.bioguide, self.firstname, self.lastname, self.party, self.state, self.district, self.twitter, self.youtube, self.office, self.votes_with_party_pct, self.url, self.image_uri)
 
 class Bill(db.Model):
 	__tablename__ = 'Bill'
