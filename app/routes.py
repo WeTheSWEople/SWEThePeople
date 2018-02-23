@@ -19,7 +19,7 @@ def endpoints():
 
 @rep_route.route('/')
 def representatives():
-    return jsonify([getResponse(rep) for rep in Representative.query.limit(50).all()])
+    return jsonify([getResponse(rep) for rep in Representative.query.limit(500).all()])
 
 @rep_route.route('/<bioguide>')
 def representative(bioguide):
