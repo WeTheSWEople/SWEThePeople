@@ -18,8 +18,17 @@ def endpoints():
 	return send_from_directory('static', 'index.html')
 
 @rep_route.route('/')
-def representatives():
-    return jsonify([getResponse(rep) for rep in Representative.query.limit(500).all()])
+def all_representatives():
+    return jsonify([getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
+
+@rep_route.route('/<num>')
+def representatives_by_page(num):
+	num = int(num)
+	if num < 0:
+		return jsonify("Invalid Page Number")
+	offset = num * 25
+	return jsonify([getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(offset).limit(25).all()])  
+
 
 @rep_route.route('/<bioguide>')
 def representative(bioguide):
