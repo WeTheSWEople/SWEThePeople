@@ -2,8 +2,8 @@ import requests
 import json
 import os
 #import apikeys
+from app.app import create_app, db
 from app.models import Representative, Bill
-from app.app import create_app
 
 CURRENT_CONGRESS = 115
 API_KEY = 'icU6XnQ63Mu9qDhEg1QCz0Emb7wt5n9GoLEAEnmI'
@@ -16,14 +16,28 @@ headers = {
 
 app = create_app()
 app.app_context().push()
-#rep = Representative(bioguide=‘R000570’, firstname=‘Paul’, lastname=‘Ryan’, party=‘Republican’, state=‘WI’, district=1, twitter=‘speakerryan’, youtube=“reppaulryan”, office=“1233 Longhorn”, votes_with_party_pct = 85.71, url=“”,  image_uri=’www.google.com')
+#rep = Representative(bioguide='C001111', firstname='Charlie', lastname='Crist', party='Republican', state='FL', district=13, twitter='', youtube='', office='', votes_with_party_pct = 89.45, url = "", image_uri = '')
 
 response = requests.request('GET', url, headers=headers)
-members = response["members"]
-print(members)
-
+members = response.json()
+for mem in members['results'][0]['members']:
+	rep = Representative(
+		bioguide = mem['id'],
+		firstname = mem['first_name'],
+		lastname = mem['last_name'],
+		party = 'Republican' if mem['party'] == 'R' else 'Democrat',
+		state = mem['state'],
+		district = mem['district'],
+		twitter = mem['twitter_account'],
+		youtube = mem['youtube_account'],
+		votes_with_party_pct = mem['votes_with_party_pct'],
+		url = mem['url'],
+		image_uri = ''
+		)
+	db.session.add(rep)
+	db.session.commit()
 
 with open(os.path.join('./idb/src/assets/data/representatives.json'), 'w') as file1:
-	file1.write(response.text)
-db.session.add(rep)
-db.session.commit()
+	file1.write(response.text.encode('utf-8'))
+#db.session.add(rep)
+#db.session.commit()
