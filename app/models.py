@@ -7,7 +7,7 @@ class Representative(db.Model):
 	lastname = db.Column(db.String(255))
 	party = db.Column(db.String(50))
 	state = db.Column(db.String(50))
-	district = db.Column(db.Integer)
+	district = db.Column(db.String(50))
 	twitter = db.Column(db.String(75))
 	youtube = db.Column(db.String(255))
 	office = db.Column(db.String(255))

@@ -27,15 +27,16 @@ for mem in members['results'][0]['members']:
 		lastname = mem['last_name'],
 		party = 'Republican' if mem['party'] == 'R' else 'Democrat',
 		state = mem['state'],
-		district = mem['district'],
+		district = str(mem['district']),
 		twitter = mem['twitter_account'],
 		youtube = mem['youtube_account'],
 		votes_with_party_pct = mem['votes_with_party_pct'],
 		url = mem['url'],
-		image_uri = ''
+		image_uri = 'https://theunitedstates.io/images/congress/225x275/' + mem['id'] +'.jpg'
 		)
 	db.session.add(rep)
 	db.session.commit()
+
 
 with open(os.path.join('./idb/src/assets/data/representatives.json'), 'w') as file1:
 	file1.write(response.text.encode('utf-8'))
