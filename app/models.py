@@ -31,11 +31,11 @@ class Representative(db.Model):
 			"votes_with_party_pct" : self.votes_with_party_pct,
 			"url" : self.url,
 	        "image_uri": self.image_uri,
-	        "bills" : [x for x in self.bills]
+	        "bills" : [x.format() for x in self.bills]
 	    }
 
 	def __repr__(self):
-		return '<Representative {}: {!r} {}>'.format(self.bioguide, self.lastname, self.bioguide)
+		return '<Representative {}: {} {}>'.format(self.bioguide, self.lastname, self.bioguide)
 
 class Bill(db.Model):
 	__tablename__ = 'Bill'
@@ -49,17 +49,16 @@ class Bill(db.Model):
 
 	def format(self):
 	    return {
-	        "id": self.id,
 	        "number": self.number,
 	        "short_title": self.short_title,
 	        "sponsor_id": self.sponsor_id,
 	        "congressdotgov_url": self.congressdotgov_url,
-	        "introducted_date": self.introducted_date,
+	        "introduced_date": self.introduced_date,
 	        "latest_major_action" : self.latest_major_action
 	    }
 
 	def __repr__(self):
-		return '<Bills {}: {!r} {}>'.format(self.id, self.number)
+		return '<Bill {}: {}>'.format(self.id, self.number)
 
 
 
