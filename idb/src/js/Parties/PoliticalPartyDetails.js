@@ -56,16 +56,13 @@ export default class PoliticalPartyDetails extends Component {
         let repName = result['firstName'] + ' ' + result['lastName']
         let party = thisParty['name']
         let cssColor = 'light-blue'
-        // TODO: need to figuire out how to set the CSS color
-        // let party = 'Democratic'
-        // let cssColor = 'light-blue'
-        // if (result['party'] === 'Republican') {
-        //   party = 'Republican'
-        //   cssColor = 'light-red'
-        // } else if (result['party'] === 'Libertarian') {
-        //   party = 'Libertarian'
-        //   cssColor = 'light-yellow'
-        // }
+        if (result['party'] === 'Republican') {
+          party = 'Republican'
+          cssColor = 'light-red'
+        } else if (result['party'] === 'Libertarian') {
+          party = 'Libertarian'
+          cssColor = 'light-yellow'
+        }
 
         districtsArr.push({'district': result['district'],
           'state': result['state'],
@@ -88,6 +85,17 @@ export default class PoliticalPartyDetails extends Component {
   }
 
   render () {
+    let colors = []
+    for (let i = 0; i < this.state.party['color'].length; i++) {
+      if (i !== 0) {
+        colors.push(', ')
+      }
+
+      colors.push(<span style={{color: this.state.party['color'][i]}} key={i}>
+        {this.state.party['color'][i]}
+      </span>)
+    }
+
     const styles = {
       divStyle: {
         paddingTop: '50px',
@@ -206,9 +214,7 @@ export default class PoliticalPartyDetails extends Component {
               </p>
               <p>
                 <span className='party-info-header'>Party color:</span>
-                <span style={styles.partyColor}>
-                  {this.state.party['color']}
-                </span>
+                {colors}
               </p>
               <p>
                 <span className='party-info-header'>Website:</span>
