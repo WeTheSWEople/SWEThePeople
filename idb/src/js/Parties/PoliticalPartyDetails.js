@@ -90,10 +90,13 @@ export default class PoliticalPartyDetails extends Component {
   render () {
     const styles = {
       divStyle: {
-        paddingTop: '50px'
+        paddingTop: '50px',
+        width: '100%'
       },
       imgStyle: {
-        width: '10%'
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto'
       },
       partyColor: {
         color: this.state.party['color']
@@ -183,7 +186,11 @@ export default class PoliticalPartyDetails extends Component {
       <div style={styles.divStyle} className='App'>
         <div className='container'>
           <div className='party-header'>
-            <img src="" alt="fullimg" />
+            <img src={require('../../assets/images/parties/full/' +
+              this.state.party['path'] + '.png')}
+            className='img-responsive'
+            alt={this.state.party['path']}
+            style={styles.imgStyle}/>
             <h1>{this.state.party['name']}</h1>
           </div>
 
