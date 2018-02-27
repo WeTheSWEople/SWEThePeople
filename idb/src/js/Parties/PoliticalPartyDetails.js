@@ -137,6 +137,48 @@ export default class PoliticalPartyDetails extends Component {
       </Link>
     )
 
+    let twitter = 'No twitter handle'
+    if (this.state.party['twitter_handle'] !== '') {
+      twitter = <div>
+        <Timeline dataSource={{sourceType: 'profile',
+          screenName: this.state.party['twitter_handle']}}
+        options={{username: this.state.party['twitter_handle'],
+          height: '300'}} />
+      </div>
+    }
+
+    let youtube = 'No youtube channel'
+    if (this.state.party['youtube'] !== '') {
+      youtube = <div>
+        <h4><b>YouTube Channel</b></h4>
+        <h4>{this.state.party['youtube']}</h4>
+        <iframe width='353' height='200'
+          src={'http://www.youtube.com/embed?max-results=1&controls=0&' +
+            'showinfo=0&rel=0&listType=user_uploads&list=' +
+            this.state.party['youtube']}
+          frameBorder='10' allowFullScreen
+          title={this.props.match.params.name + ' YouTube Channel'}
+        >
+        </iframe>
+      </div>
+    }
+
+    let office = 'No office location'
+    if (this.state.party['office'] !== '') {
+      office = <div>
+        <h4><b>Office Location:</b></h4>
+        <h4>{this.state.party['office']}</h4>
+        <iframe width='353' height='200'
+          frameBorder='0' style={{border: '0'}}
+          src={'https://www.google.com/maps/embed/v1/place?key=AIzaSyDO' +
+            'CxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY&q=' +
+            this.state.party['office']}
+          allowFullScreen
+          title={this.props.match.params.name + ' Google Maps Location'}>
+        </iframe>
+      </div>
+    }
+
     return (
       <div style={styles.divStyle} className='App'>
         <div className='container'>
@@ -179,38 +221,17 @@ export default class PoliticalPartyDetails extends Component {
             </div>
 
             <div className='col-sm-5'>
-              <Timeline dataSource={{sourceType: 'profile',
-                screenName: this.state.party['twitter_handle']}}
-              options={{username: this.state.party['twitter_handle'],
-                height: '300'}} />
+              {twitter}
             </div>
           </div>
 
           <div className='row party-media'>
             <div className='col-sm-6'>
-              <h4><b>YouTube Channel</b></h4>
-              <h4>{this.state.party['youtube']}</h4>
-              <iframe width='353' height='200'
-                src={'http://www.youtube.com/embed?max-results=1&controls=0&' +
-                  'showinfo=0&rel=0&listType=user_uploads&list=' +
-                  this.state.party['youtube']}
-                frameBorder='10' allowFullScreen
-                title={this.props.match.params.name + ' YouTube Channel'}
-              >
-              </iframe>
+              {youtube}
             </div>
 
             <div className='col-sm-6'>
-              <h4><b>Office Location:</b></h4>
-              <h4>{this.state.party['office']}</h4>
-              <iframe width='353' height='200'
-                frameBorder='0' style={{border: '0'}}
-                src={'https://www.google.com/maps/embed/v1/place?key=AIzaSyDO' +
-                  'CxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY&q=' +
-                  this.state.party['office']}
-                allowFullScreen
-                title={this.props.match.params.name + ' Google Maps Location'}>
-              </iframe>
+              {office}
             </div>
           </div>
 
