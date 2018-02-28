@@ -42,6 +42,10 @@
     margin-right: 5px;
 }
 
+.top-info .quick-facts .party-info-info {
+    float: right;
+}
+
 .media h2 {
     margin-top: 20px;
     margin-bottom: 50px;

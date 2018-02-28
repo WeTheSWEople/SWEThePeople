@@ -93,9 +93,12 @@ export default class PoliticalPartyDetails extends Component {
         colors.push(', ')
       }
 
-      colors.push(<span style={{color: this.state.party['color'][i]}} key={i}>
-        {this.state.party['color'][i]}
-      </span>)
+      const c = this.state.party['color'][i]
+      let cssColor = c
+      if (c === 'White' || c === 'Azure') {
+        cssColor = 'Black'
+      }
+      colors.push(<span style={{color: cssColor}} key={i}>{c}</span>)
     }
 
     const styles = {
@@ -198,21 +201,29 @@ export default class PoliticalPartyDetails extends Component {
             <h3>Quick Facts</h3>
             <p>
               <span className='party-info-header'>Party chair:</span>
-              {this.state.party['chair']}
+              <span className='party-info-info'>
+                {this.state.party['chair']}
+              </span>
             </p>
             <p>
               <span className='party-info-header'>Formation date:</span>
-              {this.state.party['formation_date']}
+              <span className='party-info-info'>
+                {this.state.party['formation_date']}
+              </span>
             </p>
             <p>
               <span className='party-info-header'>Party colors:</span>
-              {colors}
+              <span className='party-info-info'>
+                {colors}
+              </span>
             </p>
             <p>
               <span className='party-info-header'>Website:</span>
-              <a href={this.state.party['website']}>
-                {this.state.party['website']}
-              </a>
+              <span className='party-info-info'>
+                <a href={this.state.party['website']}>
+                  {this.state.party['website']}
+                </a>
+              </span>
             </p>
             <p className='party-info-header'>House Control:</p>
             <div className='progress'>
