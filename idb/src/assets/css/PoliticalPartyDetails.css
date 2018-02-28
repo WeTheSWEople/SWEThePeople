@@ -51,16 +51,25 @@
     margin-bottom: 25px;
 }
 
-.party-rep-card {
+.reps-grid {
+    margin-top: 75px;
+}
+
+.reps-grid .party-rep-card {
     padding-bottom: 25px;
     margin-bottom: 25px;
 }
 
-.party-rep-card .district-card {
+.districts-grid {
+    margin-top: 75px;
+}
+
+.districts-grid .party-rep-card .district-card {
     color: #000;
 }
 
-.rep-header {
+.reps-grid h2,
+.districts-grid h2 {
     margin-bottom: 35px;
     padding-bottom: 20px;
     border-bottom: 1px solid #AAA;

@@ -21,6 +21,7 @@ export default class PoliticalPartyDetails extends Component {
       error: false,
       party: {},
       num_reps: 0,
+      totalReps: 435,
       reps: {},
       districts: []
     }
@@ -81,6 +82,7 @@ export default class PoliticalPartyDetails extends Component {
     this.setState({num_reps: repCount,
       reps: repsMap,
       districts: districtsArr,
+      totalReps: repsInfo.length,
       ready: true})
   }
 
@@ -101,7 +103,7 @@ export default class PoliticalPartyDetails extends Component {
         color: this.state.party['color']
       },
       progressStyle: {
-        width: ((this.state.num_reps / 4) * 100) + '%',
+        width: ((this.state.num_reps / this.state.totalReps) * 100) + '%',
         backgroundImage: 'none',
         backgroundColor: this.state.party['color']
       }
@@ -109,7 +111,7 @@ export default class PoliticalPartyDetails extends Component {
 
     let controlText = ''
     if (this.state.num_reps > 0) {
-      controlText = this.state.num_reps + '/4'
+      controlText = this.state.num_reps + '/' + this.state.totalReps
     }
 
     let repsGrid = Object.keys(this.state.reps).map((key) =>
@@ -238,15 +240,15 @@ export default class PoliticalPartyDetails extends Component {
           </div>
         </div>
 
-        <div>
-          <h3 className='rep-header'>Representatives</h3>
+        <div className='reps-grid'>
+          <h2>Representatives</h2>
           <div className='row'>
             {repsGrid}
           </div>
         </div>
 
-        <div>
-          <h3 className='rep-header'>Districts</h3>
+        <div className='districts-grid'>
+          <h2>Districts</h2>
           <div className='row'>
             {districtsGrid}
           </div>
