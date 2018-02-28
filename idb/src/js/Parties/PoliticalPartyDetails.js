@@ -97,15 +97,6 @@ export default class PoliticalPartyDetails extends Component {
     }
 
     const styles = {
-      divStyle: {
-        paddingTop: '50px',
-        width: '100%'
-      },
-      imgStyle: {
-        display: 'block',
-        marginLeft: 'auto',
-        marginRight: 'auto'
-      },
       partyColor: {
         color: this.state.party['color']
       },
@@ -154,13 +145,13 @@ export default class PoliticalPartyDetails extends Component {
         <Timeline dataSource={{sourceType: 'profile',
           screenName: this.state.party['twitter_handle']}}
         options={{username: this.state.party['twitter_handle'],
-          height: '300'}} />
+          height: '500'}} />
       </div>
     }
 
     let youtube = 'No youtube channel'
     if (this.state.party['youtube'] !== '') {
-      youtube = <div>
+      youtube = <div className='youtube-div'>
         <h4><b>YouTube Channel</b></h4>
         <h4>{this.state.party['youtube']}</h4>
         <iframe width='353' height='200'
@@ -191,75 +182,73 @@ export default class PoliticalPartyDetails extends Component {
     }
 
     return (
-      <div style={styles.divStyle} className='App'>
-        <div className='container'>
-          <div className='party-header'>
+      <div className='App party-content container'>
+        <div className='row party-card top-info'>
+          <div className='party-header col-sm-6'>
             <img src={require('../../assets/images/parties/full/' +
               this.state.party['path'] + '.png')}
             className='img-responsive'
-            alt={this.state.party['path']}
-            style={styles.imgStyle}/>
+            alt={this.state.party['path']} />
             <h1>{this.state.party['name']}</h1>
           </div>
 
-          <div className='row party-info-top'>
-            <div className='col-sm-5 col-sm-offset-1 party-info'>
-              <p>
-                <span className='party-info-header'>Party chair:</span>
-                {this.state.party['chair']}
-              </p>
-              <p>
-                <span className='party-info-header'>Formation date:</span>
-                {this.state.party['formation_date']}
-              </p>
-              <p>
-                <span className='party-info-header'>Party color:</span>
-                {colors}
-              </p>
-              <p>
-                <span className='party-info-header'>Website:</span>
-                <a href={this.state.party['website']}>
-                  {this.state.party['website']}
-                </a>
-              </p>
-              <p className='party-info-header'>House Control:</p>
-              <div className='progress'>
-                <div className='progress-bar' role='progressbar'
-                  style={styles.progressStyle}
-                  aria-valuenow='50' aria-valuemin='0'
-                  aria-valuemax='435'>
-                  {controlText}
-                </div>
+          <div className='col-sm-6 quick-facts'>
+            <h3>Quick Facts</h3>
+            <p>
+              <span className='party-info-header'>Party chair:</span>
+              {this.state.party['chair']}
+            </p>
+            <p>
+              <span className='party-info-header'>Formation date:</span>
+              {this.state.party['formation_date']}
+            </p>
+            <p>
+              <span className='party-info-header'>Party colors:</span>
+              {colors}
+            </p>
+            <p>
+              <span className='party-info-header'>Website:</span>
+              <a href={this.state.party['website']}>
+                {this.state.party['website']}
+              </a>
+            </p>
+            <p className='party-info-header'>House Control:</p>
+            <div className='progress'>
+              <div className='progress-bar' role='progressbar'
+                style={styles.progressStyle}
+                aria-valuenow='50' aria-valuemin='0'
+                aria-valuemax='435'>
+                {controlText}
               </div>
             </div>
+          </div>
+        </div>
 
-            <div className='col-sm-5'>
+        <div className='media party-card row'>
+          <h2>Media</h2>
+          <div className='row'>
+            <div className='col-md-6'>
+              {youtube}
+              {office}
+            </div>
+
+            <div className='col-md-6'>
               {twitter}
             </div>
           </div>
+        </div>
 
-          <div className='row party-media'>
-            <div className='col-sm-6'>
-              {youtube}
-            </div>
-
-            <div className='col-sm-6'>
-              {office}
-            </div>
+        <div>
+          <h3 className='rep-header'>Representatives</h3>
+          <div className='row'>
+            {repsGrid}
           </div>
+        </div>
 
-          <div>
-            <h3 className='rep-header'>Representatives</h3>
-            <div className='row'>
-              {repsGrid}
-            </div>
-          </div>
-
-          <div>
-            <h3 className='rep-header'>Districts</h3>
-            <div className='row'>
-              {districtsGrid}
-            </div>
+        <div>
+          <h3 className='rep-header'>Districts</h3>
+          <div className='row'>
+            {districtsGrid}
           </div>
         </div>
       </div>
