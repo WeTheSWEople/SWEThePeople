@@ -35,7 +35,7 @@ class Representative(db.Model):
 	    }
 
 	def __repr__(self):
-		return '<Representative {}: {!r} {}>'.format(self.bioguide, self.firstname, self.lastname, self.party, self.state, self.district, self.twitter, self.youtube, self.office, self.votes_with_party_pct, self.url, self.image_uri)
+		return '<Representatives {}: {!r} {}>'.format(self.bioguide, self.firstname, self.lastname, self.party, self.state, self.district, self.twitter, self.youtube, self.office, self.votes_with_party_pct, self.url, self.image_uri)
 
 class Bill(db.Model):
 	__tablename__ = 'Bill'
@@ -61,11 +61,49 @@ class Bill(db.Model):
 	def __repr__(self):
 		return '<Bills {}: {!r} {}>'.format(self.id, self.number)
 
+class District(db.Model):
+	__tablename__ = 'District'
+	id = db.Column(db.Integer, primary_key=True)
+	state = db.Column(db.Integer, db.ForeignKey('state.alpha_num'), nullable=False)
+	number = db.Column(db.Integer)
+	representative_id = db.Column(db.String(255), db.ForeignKey('representative.bioguide'), nullable=False)
+	population = db.Column(db.Integer)
+	median_age = db.Column(db.Integer)
+	median_age_men = db.Column(db.Integer)
+	median_age_women = db.Column(db.Integer)
+	population_male = db.Column(db.Integer)
+	population_white = db.Column(db.Integer)
+	population_black_or_african_american = db.Column(db.Integer)
+	population_american_indian_and_alaska_native = db.Column(db.Integer)
+	population_asian = db.Column(db.Integer)
+	population_native_hawaiian_and_other_pacific_islander =
+		db.Column(db.Integer)
+	population_some_other_race = db.Column(db.Integer)
+	population_two_or_more_races = db.Column(db.Integer)
 
+	def format(self):
+	    return {
+	        "id": self.id,
+	        "state": self.state,
+			"number": self.number,
+			"representative_id": self.representative_id,
+	        "population": self.population,
+	        "median_age": self.median_age,
+	        "median_age_men": self.median_age_men,
+			"median_age_women": self.median_age_women,
+			"population_male": self.population_male,
+			"population_white": self.population_white,
+			"population_black_or_african_american":
+				self.population_black_or_african_american,
+			"population_american_indian_and_alaska_native":
+				self.population_american_indian_and_alaska_native,
+			"population_asian": self.population_asian,
+			"population_native_hawaiian_and_other_pacific_islander":
+				self.population_native_hawaiian_and_other_pacific_islander,
+			"population_some_other_race": self.population_some_other_race,
+			"population_two_or_more_races": self.population_two_or_more_races,
+	    }
 
-
-
-
-
-
-
+	def __repr__(self):
+		return '<Districts {}: {!r} {}>'.format(self.id,
+			self.state, self.number)
