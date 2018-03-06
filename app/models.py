@@ -64,7 +64,7 @@ class Bill(db.Model):
 class District(db.Model):
 	__tablename__ = 'District'
 	id = db.Column(db.Integer, primary_key=True)
-	state = db.Column(db.Integer, db.ForeignKey('state.alpha_num'), nullable=False)
+	state = db.Column(db.Integer, db.ForeignKey('state.number'), nullable=False)
 	number = db.Column(db.Integer)
 	representative_id = db.Column(db.String(255), db.ForeignKey('representative.bioguide'), nullable=False)
 	population = db.Column(db.Integer)
@@ -107,3 +107,19 @@ class District(db.Model):
 	def __repr__(self):
 		return '<Districts {}: {!r} {}>'.format(self.id,
 			self.state, self.number)
+
+class State(db.Model):
+	__tablename__ = 'State'
+	number = db.Column(db.Integer, index=True, nullable=False, primary_key=True)
+	name = db.String(255)
+	fips_code = db.Column(db.String(2))
+
+	def format(self):
+	    return {
+	        "number": self.number,
+	        "name": self.name,
+			"fips_code": self.fips_code
+	    }
+
+	def __repr__(self):
+		return '<States {}: {!r} {}>'.format(self.number, self.name)
