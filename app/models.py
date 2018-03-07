@@ -63,7 +63,7 @@ class Bill(db.Model):
 
 class District(db.Model):
 	__tablename__ = 'District'
-	id = db.Column(db.Integer, primary_key=True)
+	alpha_num = db.Column(db.String(10), index=True, nullable=False, primary_key=True)
 	state = db.Column(db.Integer, db.ForeignKey('state.number'), nullable=False)
 	number = db.Column(db.Integer)
 	representative_id = db.Column(db.String(255), db.ForeignKey('representative.bioguide'), nullable=False)
@@ -83,7 +83,7 @@ class District(db.Model):
 
 	def format(self):
 	    return {
-	        "id": self.id,
+	        "alpha_num": self.alpha_num,
 	        "state": self.state,
 			"number": self.number,
 			"representative_id": self.representative_id,
@@ -112,13 +112,14 @@ class State(db.Model):
 	__tablename__ = 'State'
 	number = db.Column(db.Integer, index=True, nullable=False, primary_key=True)
 	name = db.String(255)
-	fips_code = db.Column(db.String(2))
+	usps_abbreviation = db.Column(db.String(2))
+	districts = db.relationship('District', lazy=True)
 
 	def format(self):
 	    return {
 	        "number": self.number,
 	        "name": self.name,
-			"fips_code": self.fips_code
+			"usps_abbreviation": self.usps_abbreviation
 	    }
 
 	def __repr__(self):
