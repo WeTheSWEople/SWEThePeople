@@ -19,8 +19,8 @@ class CensusURL:
 
     def getURL(self):
         global CENSUS_API_KEY
-        return 'https://api.census.gov/data/2010/sf1/?get=' + self.endpoint +
-            '&for=congressional%20district:*&in=state:' + self.state +
+        return 'https://api.census.gov/data/2010/sf1/?get=' + self.endpoint + \
+            '&for=congressional%20district:*&in=state:' + self.state + \
             '&key=' + CENSUS_API_KEY
 
 endpoints = json.load(open('./dictionaries/census_endpoints.json'))
@@ -57,7 +57,7 @@ for num in range(1, 57):
 
     for district_key in districts.keys():
 
-        MemberURL = 'https://api.propublica.org/congress/v1/members/house/' +
+        MemberURL = 'https://api.propublica.org/congress/v1/members/house/' + \
             abbrev + '/' + district_key + '/current.json'
         response = requests.request('GET', MemberURL, headers=headers)
 
@@ -91,43 +91,43 @@ for num in range(1, 57):
             State.number == state.number).first()
 
         if state_result == None:
-        	db.session.add(state)
-        	db.session.commit()
+            db.session.add(state)
+            db.session.commit()
         else:
-        	state_result.number = state.number
+            state_result.number = state.number
             state_result.name = state.name
             state_result.usps_abbreviation = state.usps_abbreviation
-        	db.session.commit()
+            db.session.commit()
 
         dist_result = Distritc.query.filter(
             District.alpha_num == dist.alpha_num).first()
 
         if dist_result == None:
-        	db.session.add(dist)
-        	db.session.commit()
+            db.session.add(dist)
+            db.session.commit()
         else:
-        	dist_result.alpha_num = dist.alpha_num
-        	dist_result.state = dist.state
-        	dist_result.number = dist.number
-        	dist_result.representative_id = dist.representative_id
-        	dist_result.population = dist.population
-        	dist_result.median_age = dist.median_age
-        	dist_result.median_age_men = dist.median_age_men
-        	dist_result.median_age_women = dist.median_age_women
-        	dist_result.population_male = dist.population_male
+            dist_result.alpha_num = dist.alpha_num
+            dist_result.state = dist.state
+            dist_result.number = dist.number
+            dist_result.representative_id = dist.representative_id
+            dist_result.population = dist.population
+            dist_result.median_age = dist.median_age
+            dist_result.median_age_men = dist.median_age_men
+            dist_result.median_age_women = dist.median_age_women
+            dist_result.population_male = dist.population_male
             dist_result.population_white = dist.population_white
-            dist_result.population_black_or_african_american =
+            dist_result.population_black_or_african_american = \
                 dist.population_black_or_african_american
-            dist_result.population_american_indian_and_alaska_native =
+            dist_result.population_american_indian_and_alaska_native = \
                 dist.population_american_indian_and_alaska_native
             dist_result.population_asian = dist.population_asian
-            dist_result.population_native_hawaiian_and_other_pacific_islander =
+            dist_result.population_native_hawaiian_and_other_pacific_islander = \
                 dist.population_native_hawaiian_and_other_pacific_islander
-        	dist_result.population_some_other_race =
+            dist_result.population_some_other_race = \
                 dist.population_some_other_race
-        	dist_result.population_two_or_more_races =
+            dist_result.population_two_or_more_races = \
                 dist.population_two_or_more_races
-        	db.session.commit()
+            db.session.commit()
 
 
         # with open(os.path.join('./idb/src/assets/data/representatives.json'), 'w') as file1:
