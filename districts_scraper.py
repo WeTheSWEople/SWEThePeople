@@ -73,16 +73,16 @@ for num in range(1, 57):
             median_age_women = district['median_age_women'],
             population_male = district['population_male'],
             population_white = district['population_white'],
-            population_black_or_african_american =
+            population_black_or_african_american = \
                 district['population_black_or_african_american'],
-            population_american_indian_and_alaska_native =
+            population_american_indian_and_alaska_native = \
                 district['population_american_indian_and_alaska_native'],
             population_asian = district['population_asian'],
-            population_native_hawaiian_and_other_pacific_islander =
+            population_native_hawaiian_and_other_pacific_islander = \
                 district['population_native_hawaiian_and_other' +
                     '_pacific_islander'],
             population_some_other_race = district['population_some_other_race'],
-            population_two_or_more_races =
+            population_two_or_more_races = \
                 district['population_two_or_more_races']
         )
         state.districts.append(dist)

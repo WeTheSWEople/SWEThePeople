@@ -76,7 +76,7 @@ class District(db.Model):
 	population_black_or_african_american = db.Column(db.Integer)
 	population_american_indian_and_alaska_native = db.Column(db.Integer)
 	population_asian = db.Column(db.Integer)
-	population_native_hawaiian_and_other_pacific_islander =
+	population_native_hawaiian_and_other_pacific_islander = \
 		db.Column(db.Integer)
 	population_some_other_race = db.Column(db.Integer)
 	population_two_or_more_races = db.Column(db.Integer)
