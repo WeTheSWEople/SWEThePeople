@@ -113,6 +113,7 @@ export default class PoliticalPartyDetails extends Component {
     }
 
     let controlText = ''
+    let noControl = ''
     let repsInfo = ''
     if (this.state.num_reps > 0) {
       controlText = this.state.num_reps + '/' + this.state.totalReps
@@ -129,6 +130,8 @@ export default class PoliticalPartyDetails extends Component {
           {repsGrid}
         </div>
       </div>
+    } else {
+      noControl = '0/' + this.state.totalReps
     }
 
     let districtsInfo = ''
@@ -245,6 +248,7 @@ export default class PoliticalPartyDetails extends Component {
             </p>
             <p className='party-info-header'>House Control:</p>
             <div className='progress'>
+              {noControl}
               <div className='progress-bar' role='progressbar'
                 style={styles.progressStyle}
                 aria-valuenow='50' aria-valuemin='0'
