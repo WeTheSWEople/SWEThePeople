@@ -113,36 +113,54 @@ export default class PoliticalPartyDetails extends Component {
     }
 
     let controlText = ''
+    let repsInfo = ''
     if (this.state.num_reps > 0) {
       controlText = this.state.num_reps + '/' + this.state.totalReps
+
+      let repsGrid = Object.keys(this.state.reps).map((key) =>
+        <div className='col-sm-3 party-rep-card'>
+          <RepresentativeInstance key={key} rep={this.state.reps[key]} />
+        </div>
+      )
+
+      repsInfo = <div className='reps-grid'>
+        <h2>Representatives</h2>
+        <div className='row'>
+          {repsGrid}
+        </div>
+      </div>
     }
 
-    let repsGrid = Object.keys(this.state.reps).map((key) =>
-      <div className='col-sm-3 party-rep-card'>
-        <RepresentativeInstance key={key} rep={this.state.reps[key]} />
-      </div>
-    )
-
-    let districtsGrid = this.state.districts.map((district) =>
-      <Link to={`/districts/${district['state']}/${district['district']}`}>
-        <div className='col-sm-3 party-rep-card'>
-          <div className={'district-card ' + district.cssColor}>
-            <h3><b>{district.districtName}</b></h3>
-            <h5><b>Population: </b>{district.population}</h5>
-            <br />
-            <h4><b>Representative:</b></h4>
-            <h4>{district.rep}</h4>
-            <img src={'https://theunitedstates.io/images/congress/225x275/' +
-              district['rep_id'] + '.jpg'}
-            alt={district.name}
-            className='rep_img' />
-            <br />
-            <br />
-            <h4>Party: {district.party}</h4>
+    let districtsInfo = ''
+    if (this.state.districts.length > 0) {
+      let districtsGrid = this.state.districts.map((district) =>
+        <Link to={`/districts/${district['state']}/${district['district']}`}>
+          <div className='col-sm-3 party-rep-card'>
+            <div className={'district-card ' + district.cssColor}>
+              <h3><b>{district.districtName}</b></h3>
+              <h5><b>Population: </b>{district.population}</h5>
+              <br />
+              <h4><b>Representative:</b></h4>
+              <h4>{district.rep}</h4>
+              <img src={'https://theunitedstates.io/images/congress/225x275/' +
+                district['rep_id'] + '.jpg'}
+              alt={district.name}
+              className='rep_img' />
+              <br />
+              <br />
+              <h4>Party: {district.party}</h4>
+            </div>
           </div>
+        </Link>
+      )
+
+      districtsInfo = <div className='districts-grid'>
+        <h2>Districts</h2>
+        <div className='row'>
+          {districtsGrid}
         </div>
-      </Link>
-    )
+      </div>
+    }
 
     let twitter = 'No twitter handle'
     if (this.state.party['twitter_handle'] !== '') {
@@ -242,6 +260,7 @@ export default class PoliticalPartyDetails extends Component {
           <div className='row'>
             <div className='col-md-6'>
               {youtube}
+              <br />
               {office}
             </div>
 
@@ -251,19 +270,8 @@ export default class PoliticalPartyDetails extends Component {
           </div>
         </div>
 
-        <div className='reps-grid'>
-          <h2>Representatives</h2>
-          <div className='row'>
-            {repsGrid}
-          </div>
-        </div>
-
-        <div className='districts-grid'>
-          <h2>Districts</h2>
-          <div className='row'>
-            {districtsGrid}
-          </div>
-        </div>
+        {repsInfo}
+        {districtsInfo}
       </div>
     )
   }
