@@ -66,29 +66,31 @@ How to run the scraper files:
 ```
 cd app/
 
+```
 
 2. Create virtual environment and install modules
 
 ```
 virtualenv venv
+```
 
 ```
 source venv/bin/activate
+```
 
 ```
 pip install -r requirements.txt
+```
 
 ```
 export PYTHONPATH=.:$PYTHONPATH
-
+```
 
 3. Go to the main directory and run the scraper file: 
-```
-cd ..
 
 ```
 python districts_scraper.py
-
+```
 
 ## Running the API Locally:
 1. cd into the app folder 
@@ -97,25 +99,28 @@ python districts_scraper.py
 
 ```
 python main.py
-
+```
 4. Visit the api at http://0.0.0.0:4040/representative/A000374
 
-## Setting up PgAdmin (development platform for PostgressSQL (ex: phpmyadmin)):
+## Setting up PgAdmin for Postgress:
 
 1. Download PgAdmin 4 from here: https://www.pgadmin.org/download/
+
 2. Create a new server 
-	i. Right click on servers -> create server
-   ii. Fill in the name as "swethepeople"
-  iii. Fill in the "host name/address" under the connection tab (look for host address in slack)
-   iv. Save 
+
+Right click on servers -> create server
+Fill in the name as "swethepeople"
+Fill in the "host name/address" under the connection tab (look for host address in slack)
+Save 
 
 3. Connect to the server
-	i. Right click and connect to the server
-   ii. Fill in the username and password 
+
+Right click and connect to the server
+Fill in the username and password 
 
 4. Accesing Tables
-	i. Expand the server tab
-   ii. Go to Databases -> Swethepeople -> Schemas -> Tables
+Expand the server tab
+Go to Databases -> Swethepeople -> Schemas -> Tables
 
 
 
