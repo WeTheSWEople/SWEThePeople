@@ -104,28 +104,21 @@ python main.py
 
 ## Setting up PgAdmin for Postgress:
 
-1. Download PgAdmin 4 from here: https://www.pgadmin.org/download/
+**Download PgAdmin 4 from here:** https://www.pgadmin.org/download/
 
-2. Create a new server 
+**Create a new server** 
+- Right click on servers -> create server
+- Fill in the name as "swethepeople"
+- Fill in the "host name/address" under the connection tab (look for host address in slack)
+- Save
 
-Right click on servers -> create server
-Fill in the name as "swethepeople"
-Fill in the "host name/address" under the connection tab (look for host address in slack)
-Save 
+**Connect to the server**
+- Right click and connect to the server
+- Fill in the username and password 
 
-3. Connect to the server
-
-Right click and connect to the server
-Fill in the username and password 
-
-4. Accesing Tables
-Expand the server tab
-Go to Databases -> Swethepeople -> Schemas -> Tables
-
-
-
-
-
+**Accesing Tables**
+- Expand the server tab
+- Go to Databases -> Swethepeople -> Schemas -> Tables
 
 
 
