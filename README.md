@@ -59,27 +59,48 @@ Make sure you are in your ec2 instance. You can access it via ssh.
 
 
 
-### API Setup:
+## Collecting Data:
 How to run the scraper files:
 1. cd into the app folder 
 
-Commands:
+```
 cd app/
 
-2. Create virtual environment
 
-Commands:
+2. Create virtual environment and install modules
+
+```
 virtualenv venv
+
+```
 source venv/bin/activate
+
+```
 pip install -r requirements.txt
+
+```
 export PYTHONPATH=.:$PYTHONPATH
 
-3. Go to the main directory (cd ..)
-Run the scraper file: 
+
+3. Go to the main directory and run the scraper file: 
+```
+cd ..
+
+```
 python districts_scraper.py
 
 
-### Setting up PgAdmin (development platform for PostgressSQL (ex: phpmyadmin)):
+## Running the API Locally:
+1. cd into the app folder 
+2. Create virtual environment (same step as above)
+3. Run the main python file
+
+```
+python main.py
+
+4. Visit the api at http://0.0.0.0:4040/representative/A000374
+
+## Setting up PgAdmin (development platform for PostgressSQL (ex: phpmyadmin)):
 
 1. Download PgAdmin 4 from here: https://www.pgadmin.org/download/
 2. Create a new server 
