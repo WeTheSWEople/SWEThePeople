@@ -21,15 +21,15 @@ def endpoints():
 def all_representatives():
     return jsonify([getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
 
-@rep_route.route('/<num>')
+
+@rep_route.route('/<bioguide>')
+def representative(bioguide):
+    return jsonify(getResponse(Representative.query.filter(Representative.bioguide == bioguide).first()))
+
+@rep_route.route('/page/<num>')
 def representatives_by_page(num):
 	num = int(num)
 	if num < 0:
 		return jsonify("Invalid Page Number")
 	offset = num * 25
 	return jsonify([getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(offset).limit(25).all()])  
-
-
-@rep_route.route('/<bioguide>')
-def representative(bioguide):
-    return jsonify(getResponse(Representative.query.filter(Representative.bioguide == bioguide).first()))
