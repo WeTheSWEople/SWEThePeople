@@ -55,3 +55,70 @@ Make sure you are in your ec2 instance. You can access it via ssh.
 3. Run `pip install -r requirements.txt`
 4. You have a choice here. You can either run this app using Gunicorn via `gunicorn router:app -b localhost:8000 & -D` or with flask itself `python router.py &`
 5. Go to your public DNS and add a :5000 and watch your website go live!
+
+
+
+
+## Collecting Data:
+How to run the scraper files:
+1. cd into the app folder 
+
+```
+cd app/
+
+```
+
+2. Create virtual environment and install modules
+
+```
+virtualenv venv
+```
+
+```
+source venv/bin/activate
+```
+
+```
+pip install -r requirements.txt
+```
+
+```
+export PYTHONPATH=.:$PYTHONPATH
+```
+
+3. Go to the main directory and run the scraper file: 
+
+```
+python districts_scraper.py
+```
+
+## Running the API Locally:
+1. cd into the app folder 
+2. Create virtual environment (same step as above)
+3. Run the main python file
+
+```
+python main.py
+```
+4. Visit the api at http://0.0.0.0:4040/representative/A000374
+
+## Setting up PgAdmin for Postgress:
+
+**Download PgAdmin 4 from here:** https://www.pgadmin.org/download/
+
+**Create a new server** 
+- Right click on servers -> create server
+- Fill in the name as "swethepeople"
+- Fill in the "host name/address" under the connection tab (look for host address in slack)
+- Save
+
+**Connect to the server**
+- Right click and connect to the server
+- Fill in the username and password 
+
+**Accesing Tables**
+- Expand the server tab
+- Go to Databases -> Swethepeople -> Schemas -> Tables
+
+
+
