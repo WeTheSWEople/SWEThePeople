@@ -68,6 +68,7 @@ class PoliticalParty(db.Model):
     __tablename__ = 'political_party'
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(255))
+    path = db.Column(db.String(255))
     chair = db.Column(db.String(255))
     formation_date = db.Column(db.String(255))
     twitter_handle = db.Column(db.String(255))
@@ -81,6 +82,7 @@ class PoliticalParty(db.Model):
         return {
             "id": self.id,
             "name": self.name,
+            "path": self.path,
             "chair": self.chair,
             "formation_date": self.formation_date,
             "twitter_handle": self.twitter_handle,

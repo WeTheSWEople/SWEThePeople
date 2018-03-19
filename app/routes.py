@@ -33,3 +33,7 @@ def representatives_by_page(num):
 		return jsonify("Invalid Page Number")
 	offset = num * 25
 	return jsonify([getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(offset).limit(25).all()])  
+
+@party_route.route("/")
+def all_parties():
+    return jsonify([getResponse(party) for party in PoliticalParty.query.order_by(PoliticalParty.id).all()])
