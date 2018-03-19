@@ -38,7 +38,7 @@ class Representative(db.Model):
 		return '<Representatives {}: {!r} {}>'.format(self.bioguide, self.firstname, self.lastname, self.party, self.state, self.district, self.twitter, self.youtube, self.office, self.votes_with_party_pct, self.url, self.image_uri)
 
 class Bill(db.Model):
-	__tablename__ = 'Bill'
+	__tablename__ = 'bill'
 	id = db.Column(db.Integer, primary_key=True)
 	number = db.Column(db.String(255))
 	short_title = db.Column(db.Text)
@@ -61,8 +61,25 @@ class Bill(db.Model):
 	def __repr__(self):
 		return '<Bills {}: {!r} {}>'.format(self.id, self.number)
 
+class State(db.Model):
+	__tablename__ = 'state'
+	number = db.Column(db.Integer, index=True, nullable=False, primary_key=True)
+	name = db.String(255)
+	usps_abbreviation = db.Column(db.String(2))
+	districts = db.relationship('District', lazy=True)
+
+	def format(self):
+	    return {
+	        "number": self.number,
+	        "name": self.name,
+			"usps_abbreviation": self.usps_abbreviation
+	    }
+
+	def __repr__(self):
+		return '<States {}: {!r} {}>'.format(self.number, self.name)
+
 class District(db.Model):
-	__tablename__ = 'District'
+	__tablename__ = 'district'
 	alpha_num = db.Column(db.String(10), index=True, nullable=False, primary_key=True)
 	state = db.Column(db.Integer, db.ForeignKey('state.number'), nullable=False)
 	number = db.Column(db.Integer)
@@ -107,20 +124,3 @@ class District(db.Model):
 	def __repr__(self):
 		return '<Districts {}: {!r} {}>'.format(self.id,
 			self.state, self.number)
-
-class State(db.Model):
-	__tablename__ = 'State'
-	number = db.Column(db.Integer, index=True, nullable=False, primary_key=True)
-	name = db.String(255)
-	usps_abbreviation = db.Column(db.String(2))
-	districts = db.relationship('District', lazy=True)
-
-	def format(self):
-	    return {
-	        "number": self.number,
-	        "name": self.name,
-			"usps_abbreviation": self.usps_abbreviation
-	    }
-
-	def __repr__(self):
-		return '<States {}: {!r} {}>'.format(self.number, self.name)
