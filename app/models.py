@@ -30,11 +30,11 @@ class Representative(db.Model):
 			"votes_with_party_pct" : self.votes_with_party_pct,
 			"url" : self.url,
 	        "image_uri": self.image_uri,
-	        "bills" : [x for x in self.bills]
+	        "bills" : [x.format() for x in self.bills]
 	    }
 
 	def __repr__(self):
-		return '<Representatives {}: {!r} {}>'.format(self.bioguide, self.firstname, self.lastname, self.party, self.state, self.district, self.twitter, self.youtube, self.office, self.votes_with_party_pct, self.url, self.image_uri)
+		return '<Representatives {}: {!r} {}>'.format(self.bioguide, self.firstname, self.lastname, self.party_id, self.state, self.district, self.twitter, self.youtube, self.office, self.votes_with_party_pct, self.url, self.image_uri)
 
 class Bill(db.Model):
 	__tablename__ = 'bill'
@@ -53,12 +53,12 @@ class Bill(db.Model):
 	        "short_title": self.short_title,
 	        "sponsor_id": self.sponsor_id,
 	        "congressdotgov_url": self.congressdotgov_url,
-	        "introducted_date": self.introducted_date,
+	        "introduced_date": self.introduced_date,
 	        "latest_major_action" : self.latest_major_action
 	    }
 
 	def __repr__(self):
-		return '<Bills {}: {!r} {}>'.format(self.id, self.number)
+		return '<Bills {}: {}>'.format(self.id, self.number)
 
 class State(db.Model):
 	__tablename__ = 'state'
@@ -76,7 +76,7 @@ class State(db.Model):
 	    }
 
 	def __repr__(self):
-		return '<States {}: {!r} {}>'.format(self.number, self.name)
+		return '<States {}: {}>'.format(self.number, self.name)
 
 class District(db.Model):
 	__tablename__ = 'district'
@@ -124,3 +124,52 @@ class District(db.Model):
 	def __repr__(self):
 		return '<Districts {}: {!r} {}>'.format(self.id,
 			self.state, self.id)
+
+class PoliticalParty(db.Model):
+    __tablename__ = 'political_party'
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(255))
+    path = db.Column(db.String(255))
+    chair = db.Column(db.String(255))
+    formation_date = db.Column(db.String(255))
+    twitter_handle = db.Column(db.String(255))
+    youtube = db.Column(db.String(255))
+    office = db.Column(db.String(255))
+    website = db.Column(db.String(255))
+    colors = db.relationship('PartyColor', lazy = True)
+    representatives = db.relationship('Representative', lazy = True)
+
+    def format(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "path": self.path,
+            "chair": self.chair,
+            "formation_date": self.formation_date,
+            "twitter_handle": self.twitter_handle,
+            "youtube": self.youtube,
+            "office": self.office,
+            "website": self.website,
+            "colors": [c.format() for c in self.colors],
+            "representatives": [r.format() for r in self.representatives]
+        }
+
+    def __repr__(self):
+        return '<PoliticalParty {}: {}>'.format(self.id, self.name)
+
+class PartyColor(db.Model):
+    __tablename__ = 'party_color'
+    id = db.Column(db.Integer, primary_key = True)
+    party_id = db.Column(db.Integer,
+        db.ForeignKey('political_party.id'), nullable = False)
+    color = db.Column(db.String(255))
+
+    def format(self):
+        return {
+            "id": self.id,
+            "party_id": self.party_id,
+            "color": self.color
+        }
+
+    def __repr__(self):
+        return '<PartyColor {}: {}>'.format(self.id, self.color)

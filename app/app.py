@@ -9,13 +9,10 @@ def create_app():
 	app = Flask(__name__, static_folder='static')
 	CORS(app)
 	app.config.from_json(config_file)
-
-	db.init_app(app)
-	db.create_all(app=app)
-
-	from routes import rep_route, root_route, error_route
-	app.register_blueprint(error_route)
+	from routes import rep_route, root_route, party_route
 	app.register_blueprint(root_route, url_prefix='/')
 	app.register_blueprint(rep_route, url_prefix='/representative')
-	
+	app.register_blueprint(party_route, url_prefix='/party')
+	db.init_app(app)
+	db.create_all(app=app)	
 	return app
