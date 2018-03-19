@@ -1,5 +1,6 @@
 {
     "Democratic Party": {
+        "id": "1",
         "path": "democratic_party",
         "name": "Democratic Party",
         "chair": "Tom Perez",
@@ -11,6 +12,7 @@
         "website": "https://democrats.org/"
     },
     "Republican Party": {
+        "id": "2",
         "path": "republican_party",
         "name": "Republican Party",
         "chair": "Ronna Romney McDaniel",
@@ -22,6 +24,7 @@
         "website": "https://www.gop.com/"
     },
     "Libertarian Party": {
+        "id": "3",
         "path": "libertarian_party",
         "name": "Libertarian Party",
         "chair": "Wes Benedict",
@@ -33,6 +36,7 @@
         "website": "https://www.lp.org/"
     },
     "American Freedom Party": {
+        "id": "4",
         "path": "american_freedom_party",
         "name": "American Freedom Party",
         "chair": "William Daniel Johnson",
@@ -44,6 +48,7 @@
         "website": "theamericanfreedomparty.us"
     } ,
     "America First Party": {
+        "id": "5",
         "path": "america_first_party",
         "name": "America First Party",
         "chair": "Jonathan M. Hill",
@@ -55,6 +60,7 @@
         "website": "americafirstparty.org"
     },
     "American Solidarity Party": {
+        "id": "6",
         "path": "american_solidarity_party",
         "name": "American Solidarity Party",
         "chair": "H. Lillian Vogl",
@@ -66,6 +72,7 @@
         "website": "solidarity-party.org"
     },
     "American Delta Party": {
+        "id": "7",
         "path": "american_delta_party",
         "name": "American Delta Party",
         "chair": "Rocky De La Fuente",
@@ -77,6 +84,7 @@
         "website": "americandeltaparty.org"
     },
     "American Populist Party": {
+        "id": "8",
         "path": "american_populist_party",
         "name": "American Populist Party",
         "chair": "None",
@@ -88,6 +96,7 @@
         "website": "americanpopulistparty.org"
     },
     "America's Party": {
+        "id": "9",
         "path": "americas_party",
         "name": "America's Party",
         "chair": "Tom Hoefling",
@@ -99,6 +108,7 @@
         "website": "selfgovernment.us"
     },
     "Black Riders Liberation Party": {
+        "id": "10",
         "path": "black_riders_liberation_party",
         "name": "Black Riders Liberation Party",
         "chair": "Mischa Culton",
@@ -110,6 +120,7 @@
         "website": "2servethapeople.wix.com/brlp"
     },
     "Christian Liberty Party": {
+        "id": "11",
         "path": "christian_liberty_party",
         "name": "Christian Liberty Party",
         "chair": "Daniel Eby",
@@ -121,6 +132,7 @@
         "website": "christianlibertyparty.org"
     },
     "Citizens Party": {
+        "id": "12",
         "path": "citizens_party",
         "name": "Citizens Party",
         "chair": "Michael Thompson",
@@ -132,6 +144,7 @@
         "website": "votecitizens.org"
     },
     "Communist Party USA": {
+        "id": "13",
         "path": "communist_party_usa",
         "name": "Communist Party USA",
         "chair": "John Bachtell",
@@ -143,6 +156,7 @@
         "website": "cpusa.org"
     },
     "Constitution Party": {
+        "id": "14",
         "path": "constitution_party",
         "name": "Constitution Party",
         "chair": "Frank Fluckiger",
@@ -154,6 +168,7 @@
         "website": "constitutionparty.com"
     },
     "Freedom Socialist Party": {
+        "id": "15",
         "path": "freedom_socialist_party",
         "name": "Freedom Socialist Party",
         "chair": "Doug Barnes",
@@ -165,6 +180,7 @@
         "website": "socialism.com"
     },
     "Green Party": {
+        "id": "16",
         "path": "green_party",
         "name": "Green Party",
         "chair": "Green National Committee",
@@ -176,6 +192,7 @@
         "website": "gp.org"
     },
     "Humane Party": {
+        "id": "17",
         "path": "humane_party",
         "name": "Humane Party",
         "chair": "",
@@ -187,6 +204,7 @@
         "website": "humaneparty.org"
     },
     "American Independent Party": {
+        "id": "18",
         "path": "american_independent_party",
         "name": "American Independent Party",
         "chair": "Will Christensen",
@@ -198,6 +216,7 @@
         "website": "independentamericanparty.org"
     },
     "Justice Party": {
+        "id": "19",
         "path": "justice_party",
         "name": "Justice Party",
         "chair": "Laura Bonham, Jonathan Ruga",
@@ -209,6 +228,7 @@
         "website": "justicepartyusa.org"
     },
     "Legal Marijuana Now Party": {
+        "id": "20",
         "path": "legal_marijuana_now_party",
         "name": "Legal Marijuana Now Party",
         "chair": "Michael Ford",
@@ -220,6 +240,7 @@
         "website": "legalcannabisnow.org"
     },
     "Modern Whig Party": {
+        "id": "21",
         "path": "modern_whig_party",
         "name": "Modern Whig Party",
         "chair": "",
@@ -231,6 +252,7 @@
         "website": "modernwhig.org"
     },
     "National Socialist Movement": {
+        "id": "22",
         "path": "national_socialist_movement",
         "name": "National Socialist Movement",
         "chair": "Jeff Schoep",
@@ -242,6 +264,7 @@
         "website": "nsm88.org"
     },
     "New Black Panther Party": {
+        "id": "23",
         "path": "new_black_panther_party",
         "name": "New Black Panther Party",
         "chair": "Hashim Nzinga",
@@ -253,6 +276,7 @@
         "website": "nbpp.org/home.html"
     },
     "Objectivist Party": {
+        "id": "24",
         "path": "objectivist_party",
         "name": "Objectivist Party",
         "chair": "Tom Stevens",
@@ -264,6 +288,7 @@
         "website": "objectivistparty.us"
     },
     "Party for Socialism and Liberation": {
+        "id": "25",
         "path": "party_for_socialism_and_liberation",
         "name": "Party for Socialism and Liberation",
         "chair": "Central Committee",
@@ -275,6 +300,7 @@
         "website": "pslweb.org"
     },
     "Peace and Freedom Party": {
+        "id": "26",
         "path": "peace_and_freedom_party",
         "name": "Peace and Freedom Party",
         "chair": "",
@@ -286,6 +312,7 @@
         "website": "peaceandfreedom.org"
     },
     "Prohibition Party": {
+        "id": "27",
         "path": "prohibition_party",
         "name": "Prohibition Party",
         "chair": "Rick Knox",
@@ -297,6 +324,7 @@
         "website": "prohibitionparty.org"
     },
     "Reform Party": {
+        "id": "28",
         "path": "reform_party",
         "name": "Reform Party",
         "chair": "Bill C. Merrell",
@@ -308,6 +336,7 @@
         "website": "reformparty.org"
     },
     "Socialist Action Party": {
+        "id": "29",
         "path": "socialist_action_party",
         "name": "Socialist Action Party",
         "chair": "Jeff Mackler",
@@ -319,6 +348,7 @@
         "website": "socialistaction.org"
     },
     "Socialist Alternative Party": {
+        "id": "30",
         "path": "socialist_alternative_party",
         "name": "Socialist Alternative Party",
         "chair": "National Committee",
@@ -330,6 +360,7 @@
         "website": "socialistalternative.org"
     },
     "Socialist Equality Party": {
+        "id": "31",
         "path": "socialist_equality_party",
         "name": "Socialist Equality Party",
         "chair": "David North, Joe Kishore",
@@ -341,6 +372,7 @@
         "website": "socialequality.com"
     },
     "Socialist Party": {
+        "id": "32",
         "path": "socialist_party",
         "name": "Socialist Party",
         "chair": "Jennifer Rampollo, Pat Noble",
@@ -352,6 +384,7 @@
         "website": "socialistparty-usa.net"
     },
     "Socialist Labor Party": {
+        "id": "33",
         "path": "socialist_labor_party",
         "name": "Socialist Labor Party",
         "chair": "",
@@ -363,6 +396,7 @@
         "website": "slp.org"
     },
     "Socialist Workers Party": {
+        "id": "34",
         "path": "socialist_workers_party",
         "name": "Socialist Workers Party",
         "chair": "Jack Barnes",
@@ -374,6 +408,7 @@
         "website": "themilitant.com"
     },
     "Traditionalist Worker Party": {
+        "id": "35",
         "path": "traditionalist_worker_party",
         "name": "Traditionalist Worker Party",
         "chair": "",
@@ -385,9 +420,10 @@
         "website": "tradworker.org"
     },
     "United States Marijuana Party": {
+        "id": "36",
         "path": "united_states_marijuana_party",
         "name": "United States Marijuana Party",
-        "chair": "Nick Apuzzo, William A. Chengelis, Kenneth Peeler, Sheree Krider, Jeffrey Kabik, Jim Johnson, Tom Johnson, Arther C. Miller, Robert Hawthorne, John Johnson III, Cindy Spencer, Cris Ericson",
+        "chair": "Nick Apuzzo",
         "formation_date": "2002",
         "color": ["Red", "White", "Blue", "Green"],
         "twitter_handle": "USMJParty",
@@ -396,6 +432,7 @@
         "website": "usmjparty.org"
     },
     "United States Pacifist Party": {
+        "id": "37",
         "path": "united_states_pacifist_party",
         "name": "United States Pacifist Party",
         "chair": "",
@@ -407,6 +444,7 @@
         "website": "uspacifistparty.org"
     },
     "United States Pirate Party": {
+        "id": "38",
         "path": "united_states_pirate_party",
         "name": "United States Pirate Party",
         "chair": "Lindsay-Anne Gorski",
@@ -418,6 +456,7 @@
         "website": "pirate-party.us"
     },
     "Unity Party of America": {
+        "id": "39",
         "path": "unity_party_of_america",
         "name": "Unity Party of America",
         "chair": "Bill Hammons",
@@ -429,6 +468,7 @@
         "website": "unityparty.us"
     },
     "Veterans Party of America": {
+        "id": "40",
         "path": "veterans_party_of_america",
         "name": "Veterans Party of America",
         "chair": "Mark Wilder",
@@ -440,6 +480,7 @@
         "website": "veteranspartyofamerica.org"
     },
     "Workers World Party": {
+        "id": "41",
         "path": "workers_world_party",
         "name": "Workers World Party",
         "chair": "Larry Holmes",
