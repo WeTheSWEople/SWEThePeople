@@ -1,17 +1,9 @@
-from flask import jsonify, Blueprint, send_from_directory
+from flask import jsonify, Blueprint, send_from_directory, render_template, request
 from models import Representative
+from util import get_all_items, get_single_item
 root_route = Blueprint('root', __name__)
 rep_route = Blueprint('representative', __name__)
-
-
-
-
-def getResponse(data):
-	if data is None:
-		return None
-	else:
-		return data.format()
-
+error_route = Blueprint('error', __name__)
 
 @root_route.route('/')
 def endpoints():
@@ -19,17 +11,24 @@ def endpoints():
 
 @rep_route.route('/')
 def all_representatives():
-    return jsonify([getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
-
-@rep_route.route('/<num>')
-def representatives_by_page(num):
-	num = int(num)
-	if num < 0:
-		return jsonify("Invalid Page Number")
-	offset = num * 25
-	return jsonify([getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(offset).limit(25).all()])  
+    return get_all_items(Representative, Representative.bioguide, 'Representative')
 
 
 @rep_route.route('/<bioguide>')
 def representative(bioguide):
-    return jsonify(getResponse(Representative.query.filter(Representative.bioguide == bioguide).first()))
+    return get_single_item(Representative, Representative.bioguide, bioguide)
+
+@rep_route.route('/page/<num>')
+def representatives_by_page(num):
+	num = int(num)
+	if num < 0:
+		response = jsonify({"Error": "Data Not Found."})
+		response.status_code = 404
+		return response
+	offset = num * 25
+	return jsonify([getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(offset).limit(25).all()])
+
+
+@error_route.app_errorhandler(404)
+def url_not_found(e):
+    return send_from_directory('static/templates', '404.html')

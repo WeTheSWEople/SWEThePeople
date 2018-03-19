@@ -14,7 +14,7 @@ class Representative(db.Model):
 	votes_with_party_pct = db.Column(db.Float)
 	url = db.Column(db.String(255))
 	image_uri = db.Column(db.String(255))
-	bills = db.relationship('Bill', lazy=True)
+	bills = db.relationship('bill', lazy=True)
 
 
 	def format(self):
@@ -66,7 +66,7 @@ class State(db.Model):
 	number = db.Column(db.Integer, index=True, nullable=False, primary_key=True)
 	name = db.String(255)
 	usps_abbreviation = db.Column(db.String(2))
-	districts = db.relationship('District', lazy=True)
+	districts = db.relationship('district', lazy=True)
 
 	def format(self):
 	    return {
