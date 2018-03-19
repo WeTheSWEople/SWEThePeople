@@ -37,3 +37,7 @@ def representatives_by_page(num):
 @party_route.route("/")
 def all_parties():
     return jsonify([getResponse(party) for party in PoliticalParty.query.order_by(PoliticalParty.id).all()])
+
+@party_route.route("/<path>")
+def party_by_path(path):
+    return jsonify(getResponse(PoliticalParty.query.filter_by(path=path).first()))
