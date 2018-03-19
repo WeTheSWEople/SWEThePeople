@@ -27,7 +27,7 @@ for mem in members['results'][0]['members']:
 			bioguide = mem['id'],
 			firstname = mem['first_name'],
 			lastname = mem['last_name'],
-			party = 'Republican' if mem['party'] == 'R' else 'Democrat',
+			party_id = 2 if mem['party'] == 'R' else 1,
 			state = mem['state'],
 			district = str(mem['district']),
 			twitter = mem['twitter_account'],

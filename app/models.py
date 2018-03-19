@@ -5,7 +5,7 @@ class Representative(db.Model):
 	bioguide = db.Column(db.String(50), index=True, nullable=False, primary_key=True)
 	firstname = db.Column(db.String(255))
 	lastname = db.Column(db.String(255))
-	party = db.Column(db.String(50))
+	party_id = db.Column(db.Integer, db.ForeignKey('political_party.id'), nullable = False)
 	state = db.Column(db.String(50))
 	district = db.Column(db.String(50))
 	twitter = db.Column(db.String(75))
@@ -21,7 +21,7 @@ class Representative(db.Model):
 	        "bioguide": self.bioguide,
 	        "firstname": self.firstname,
 	        "lastname": self.lastname,
-	        "party": self.party,
+	        "party_id": self.party_id,
 	        "state": self.state,
 	        "district": self.district,
 	        "twitter" : self.twitter,
