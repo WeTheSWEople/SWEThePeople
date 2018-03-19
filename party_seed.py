@@ -5,6 +5,11 @@ from app.models import PoliticalParty, PartyColor
 app = create_app()
 app.app_context().push()
 
+print(PoliticalParty.query.delete())
+db.session.commit()
+print(PartyColor.query.delete())
+db.session.commit()
+
 parties = json.load(open("idb/src/assets/parties.json"))
 color_id = len(PartyColor.query.all()) + 1
 for name, p in parties.items():

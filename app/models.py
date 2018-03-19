@@ -6,9 +6,8 @@ class Representative(db.Model):
         primary_key=True)
     firstname = db.Column(db.String(255))
     lastname = db.Column(db.String(255))
-    # party = db.Column(db.Integer, 
-    #     db.ForeignKey('political_party.id'), nullable = False)
-    party = db.Column(db.Integer)
+    party_id = db.Column(db.Integer,
+        db.ForeignKey('political_party.id'), nullable = False)
     state = db.Column(db.String(50))
     district = db.Column(db.Integer)
     twitter = db.Column(db.String(75))
@@ -76,7 +75,7 @@ class PoliticalParty(db.Model):
     office = db.Column(db.String(255))
     website = db.Column(db.String(255))
     colors = db.relationship('PartyColor', lazy = True)
-    # representatives = db.relationship('representative', lazy = True)
+    representatives = db.relationship('representative', lazy = True)
 
     def format(self):
         return {
@@ -90,7 +89,7 @@ class PoliticalParty(db.Model):
             "office": self.office,
             "website": self.website,
             "colors": [c.format() for c in self.colors],
-            # "representatives": [r.format() for r in self.representatives]
+            "representatives": [r.format() for r in self.representatives]
         }
 
     def __repr__(self):
