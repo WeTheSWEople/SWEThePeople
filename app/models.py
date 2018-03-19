@@ -2,12 +2,13 @@ from app import db
 
 class Representative(db.Model):
     __tablename__ = 'representative'
-    bioguide = db.Column(db.String(50), index=True, nullable=False, \
+    bioguide = db.Column(db.String(50), index=True, nullable=False, 
         primary_key=True)
     firstname = db.Column(db.String(255))
     lastname = db.Column(db.String(255))
-    party = db.Column(db.Integer, \
-        db.ForeignKey('political_party.id', nullable = False)
+    # party = db.Column(db.Integer, 
+    #     db.ForeignKey('political_party.id'), nullable = False)
+    party = db.Column(db.Integer)
     state = db.Column(db.String(50))
     district = db.Column(db.Integer)
     twitter = db.Column(db.String(75))
@@ -36,7 +37,7 @@ class Representative(db.Model):
         }
 
     def __repr__(self):
-        return '<Representative {}: {} {}>'.format(self.bioguide, \
+        return '<Representative {}: {} {}>'.format(self.bioguide, 
             self.lastname, self.bioguide)
 
 class Bill(db.Model):
@@ -44,7 +45,7 @@ class Bill(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.String(255))
     short_title = db.Column(db.Text)
-    sponsor_id = db.Column(db.String(255), \
+    sponsor_id = db.Column(db.String(255), 
         db.ForeignKey('representative.bioguide'), nullable=False)
     congressdotgov_url = db.Column(db.String(255))
     introduced_date = db.Column(db.String(100))
@@ -74,7 +75,7 @@ class PoliticalParty(db.Model):
     office = db.Column(db.String(255))
     website = db.Column(db.String(255))
     colors = db.relationship('PartyColor', lazy = True)
-    representatives = db.relationship('representative', lazy = True)
+    # representatives = db.relationship('representative', lazy = True)
 
     def format(self):
         return {
@@ -86,8 +87,8 @@ class PoliticalParty(db.Model):
             "youtube": self.youtube,
             "office": self.office,
             "website": self.website,
-            "colors": [c.format() for c in self.colors]
-            "representatives": [r.format() for r in self.representatives]
+            "colors": [c.format() for c in self.colors],
+            # "representatives": [r.format() for r in self.representatives]
         }
 
     def __repr__(self):
@@ -96,8 +97,8 @@ class PoliticalParty(db.Model):
 class PartyColor(db.Model):
     __tablename__ = 'party_color'
     id = db.Column(db.Integer, primary_key = True)
-    party_id = db.Column(db.Integer, \
-        db.ForeignKey('political_party.id', nullable = False))
+    party_id = db.Column(db.Integer,
+        db.ForeignKey('political_party.id'), nullable = False)
     color = db.Column(db.String(255))
 
     def format(self):

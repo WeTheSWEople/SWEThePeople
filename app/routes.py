@@ -1,16 +1,16 @@
 from flask import jsonify, Blueprint, send_from_directory
 from models import Representative
+from models import PoliticalParty
+from models import PartyColor
 root_route = Blueprint('root', __name__)
 rep_route = Blueprint('representative', __name__)
-
-
-
+party_route = Blueprint('political_party', __name__)
 
 def getResponse(data):
-	if data is None:
-		return None
-	else:
-		return data.format()
+    if data is None:
+        return None
+    else:
+        return data.format()
 
 
 @root_route.route('/')
