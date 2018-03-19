@@ -14,8 +14,7 @@ class Representative(db.Model):
 	votes_with_party_pct = db.Column(db.Float)
 	url = db.Column(db.String(255))
 	image_uri = db.Column(db.String(255))
-	bills = db.relationship('bill', lazy=True)
-
+	bills = db.relationship('Bill', lazy=True)
 
 	def format(self):
 	    return {
@@ -66,13 +65,14 @@ class State(db.Model):
 	number = db.Column(db.Integer, index=True, nullable=False, primary_key=True)
 	name = db.String(255)
 	usps_abbreviation = db.Column(db.String(2))
-	districts = db.relationship('district', lazy=True)
+	districts = db.relationship('District', lazy=True)
 
 	def format(self):
 	    return {
 	        "number": self.number,
 	        "name": self.name,
-			"usps_abbreviation": self.usps_abbreviation
+			"usps_abbreviation": self.usps_abbreviation,
+			"districts" : [x for x in self.districts]
 	    }
 
 	def __repr__(self):
@@ -80,14 +80,14 @@ class State(db.Model):
 
 class District(db.Model):
 	__tablename__ = 'district'
-	alpha_num = db.Column(db.String(10), index=True, nullable=False, primary_key=True)
+	alpha_num = db.Column(db.String(11), index=True, nullable=False, primary_key=True)
 	state = db.Column(db.Integer, db.ForeignKey('state.number'), nullable=False)
-	number = db.Column(db.Integer)
-	representative_id = db.Column(db.String(255), db.ForeignKey('representative.bioguide'), nullable=False)
+	id = db.Column(db.String(8))
+	representative_id = db.Column(db.String(255), db.ForeignKey('representative.bioguide'))
 	population = db.Column(db.Integer)
-	median_age = db.Column(db.Integer)
-	median_age_men = db.Column(db.Integer)
-	median_age_women = db.Column(db.Integer)
+	median_age = db.Column(db.Float)
+	median_age_male = db.Column(db.Float)
+	median_age_female = db.Column(db.Float)
 	population_male = db.Column(db.Integer)
 	population_white = db.Column(db.Integer)
 	population_black_or_african_american = db.Column(db.Integer)
@@ -102,12 +102,12 @@ class District(db.Model):
 	    return {
 	        "alpha_num": self.alpha_num,
 	        "state": self.state,
-			"number": self.number,
+			"id": self.id,
 			"representative_id": self.representative_id,
 	        "population": self.population,
 	        "median_age": self.median_age,
-	        "median_age_men": self.median_age_men,
-			"median_age_women": self.median_age_women,
+	        "median_age_male": self.median_age_male,
+			"median_age_female": self.median_age_female,
 			"population_male": self.population_male,
 			"population_white": self.population_white,
 			"population_black_or_african_american":
@@ -123,4 +123,4 @@ class District(db.Model):
 
 	def __repr__(self):
 		return '<Districts {}: {!r} {}>'.format(self.id,
-			self.state, self.number)
+			self.state, self.id)
