@@ -40,7 +40,7 @@ def all_parties():
     #return jsonify([getResponse(party) for party in PoliticalParty.query.order_by(PoliticalParty.id).all()])
     party_name = request.args.get('party_name')
     if party_name == 'True':
-    	return jsonify({party.id : party.name for party in PoliticalParty.query.with_entities(PoliticalParty.id, PoliticalParty.name).order_by(PoliticalParty.id).all()})
+    	return jsonify({party.id : [party.name, party.path] for party in PoliticalParty.query.with_entities(PoliticalParty.id, PoliticalParty.name, PoliticalParty.path).order_by(PoliticalParty.id).all()})
     return get_all_items(PoliticalParty, PoliticalParty.id, 'PoliticalParty')
 
 @party_route.route("/<path>")
