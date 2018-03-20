@@ -27,7 +27,7 @@ export default class DefaultRouter extends Component {
         <Route path="/districts/:districtid/:districtnum"
           component={DistrictsDetails}/>
         <Route path="/parties" component={PoliticalParty} />
-        <Route path="/party/:name" component={PoliticalPartyDetails} />
+        <Route path="/party/:path" component={PoliticalPartyDetails} />
       </Switch>
     )
   }

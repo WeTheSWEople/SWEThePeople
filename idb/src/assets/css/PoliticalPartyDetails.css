@@ -1,46 +1,80 @@
-.party-header {
+.party-content {
+    padding-top: 50px;
+}
+
+.party-card {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #FFF;
+    padding: 25px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.top-info .party-header {
     text-align: center;
     padding-top: 25px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #AAA;
     margin-bottom: 50px;
 }
 
-.party-rep-card {
-    padding-bottom: 25px;
-    margin-bottom: 25px;
+.top-info .party-header img {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.party-rep-card .district-card {
-    color: #000;
+.top-info .quick-facts {
+    margin-top: 50px;
+    font-size: 1.2em;
 }
 
-.rep-header {
-    margin-bottom: 35px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #AAA;
+.top-info .quick-facts a:link,
+.top-info .quick-facts a:visited {
+    color: #3472D8;
 }
 
-.party-info {
+.top-info .quick-facts p {
     text-align: left;
-    font-size: 1.3em;
-    margin-bottom: 30px;
 }
 
-.party-info p {
-    width: 100%;
-}
-
-.party-info-header {
+.top-info .quick-facts .party-info-header {
     font-weight: bold;
     margin-right: 5px;
 }
 
-.party-info-top {
-    margin-bottom: 125px;
+.top-info .quick-facts .party-info-info {
+    float: right;
 }
 
-.party-media {
-    margin-top: 50px;
+.media h2 {
+    margin-top: 20px;
     margin-bottom: 50px;
+}
+
+.media .youtube-div {
+    margin-bottom: 25px;
+}
+
+.reps-grid {
+    margin-top: 75px;
+}
+
+.reps-grid .party-rep-card {
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+
+.districts-grid {
+    margin-top: 75px;
+}
+
+.districts-grid .party-rep-card .district-card {
+    color: #000;
+}
+
+.reps-grid h2,
+.districts-grid h2 {
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #AAA;
 }

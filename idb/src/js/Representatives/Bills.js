@@ -12,17 +12,15 @@ export default class RepBills extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      error: false,
-      bills_data: {},
-      bioguideid: '',
+      bills_data: null,
       bill_colors: []
     }
     this.getRandomColor = this.getRandomColor.bind(this)
   }
   componentWillMount () {
     // get the data - in the future call the api
-    this.setState({bioguideid: this.props.bioguideid})
-    this.setState({bills_data: allReps[this.props.bioguideid]['bills']})
+    //this.setState({bioguideid: this.props.bioguideid})
+    this.setState({bills_data: this.props.data})
     // shorten the latest major action
   }
 

@@ -1,0 +1,15 @@
+{
+    "B01001_001E": "population",
+    "B01001_002E": "population_male",
+    "B01001_026E": "population_female",
+    "B01002_001E": "median_age",
+    "B01002_002E": "median_age_male",
+    "B01002_003E": "median_age_female",
+    "B01001A_001E": "population_white",
+    "B01001B_001E": "population_black_or_african_american",
+    "B01001C_001E": "population_american_indian_and_alaska_native",
+    "B01001D_001E": "population_asian",
+    "B01001E_001E": "population_native_hawaiian_and_other_pacific_islander",
+    "B01001F_001E": "population_some_other_race",
+    "B01001G_001E": "population_two_or_more_races"
+}
