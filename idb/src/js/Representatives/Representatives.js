@@ -98,7 +98,7 @@ export default class Representatives extends Component {
               style={styles.gridList}
             >
               {this.state.all_reps.map((item) => (
-                <RepresentativeInstance key={item.bioguide} rep = {item} party_name = {this.state.party_name[item.party_id]} />
+                <RepresentativeInstance key={item.bioguide} rep = {item} party_name = {this.state.party_name[item.party_id][0]} />
               ))}
             </GridList>
           </div>
