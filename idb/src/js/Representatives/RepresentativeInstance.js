@@ -17,28 +17,7 @@ const styles = {
 }
 
 export default class RepresentativeInstance extends Component {
-  // constructor (props) {
-  //     super(props)
-  //     this.state = {
-  //         party_name : undefined,
-  //     }
-  //   }
-  // componentWillMount () {
-  //   axios.get(`http://api.swethepeople.me/party/${this.props.rep.party_id}?party_name=True`)
-  //   .then((response)=>{
-  //     this.setState({
-  //       party_name:response.data
-  //     })
-  //   })
-  //   .catch((error)=>{
-  //     this.setState({
-  //         party_name: -1
-  //     })
-  //   })
-  // }
-
   render () {
-      console.log("PT: " + this.props.party_name)
       return (
         <Link
           to={`/representatives/${this.props.rep.bioguide}`}

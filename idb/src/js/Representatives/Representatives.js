@@ -50,7 +50,6 @@ export default class Representatives extends Component {
     // get the reps data
     axios.get(`http://api.swethepeople.me/representative/`)
     .then((response)=>{
-      console.log(response)
       this.setState({
         all_reps:response.data
       })
@@ -58,13 +57,11 @@ export default class Representatives extends Component {
       return axios.get(`http://api.swethepeople.me/party?party_name=True`)
     })
     .then((response)=>{
-      console.log(response)
       this.setState({
         party_name:response.data
       })
     })
     .catch((error)=>{
-      console.log(error)
       this.setState({
           all_reps: -1,
           party_name: -1
@@ -101,7 +98,7 @@ export default class Representatives extends Component {
               style={styles.gridList}
             >
               {this.state.all_reps.map((item) => (
-                <RepresentativeInstance key={item.bioguide} rep = {item} party_name = {this.party_name[item.party_id]} />
+                <RepresentativeInstance key={item.bioguide} rep = {item} party_name = {this.state.party_name[item.party_id]} />
               ))}
             </GridList>
           </div>
