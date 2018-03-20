@@ -4,9 +4,14 @@ import {Grid, Row, Col, ProgressBar} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {Timeline} from 'react-twitter-widgets'
 import RepBills from './Bills.js'
+import {RingLoader} from 'react-spinners'
+
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
 import '../../assets/css/Bills.css'
+
+import axios from 'axios'
+
 
 import allReps from '../../assets/bioguide-endpoint.json'
 
@@ -14,6 +19,14 @@ const styles = {
   hyperlink: {
     textDecoration: 'none',
     color: 'black'
+  },
+  center:{
+    display: 'flex',
+    flexWrap: 'wrap',
+    paddingTop: '50%',
+    paddingLeft: '50px',
+    paddingRight: '50px',
+    justifyContent: 'space-around'
   },
   roundcorner: {
     borderRadius: '13%'
@@ -24,28 +37,54 @@ export default class RepresentativeDetails extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      error: false,
-      rep_data: {},
-      bioguideid: '',
-      name: ''
+        rep_data : null,
     }
   }
+
   componentWillMount () {
-    // get the data - in the future call the api
-    this.setState({bioguideid: this.props.match.params.bioguideid})
-    this.setState({rep_data: allReps[this.props.match.params.bioguideid]})
-    this.setState({name: this.state.rep_data['firstName'] +
-      ' ' + this.state.rep_data['lastName']})
+    axios.get(`http://api.swethepeople.me/representative/${this.props.match.params.bioguideid}`)
+    .then((response)=>{
+      console.log("Fro Component: " + response)
+      this.setState({
+        rep_data:response.data
+      })
+    })
+    .catch((error)=>{
+      this.setState({
+          rep_data: -1
+      })
+    })
+
+    // // get the data - in the future call the api
+    // this.setState({bioguideid: this.props.match.params.bioguideid})
+    // this.setState({rep_data: allReps[this.props.match.params.bioguideid]})
+    // this.setState({name: this.state.rep_data['firstName'] +
+    //   ' ' + this.state.rep_data['lastName']})
   }
 
   render () {
-    return (
+    if (this.state.rep_data === null){
+      return(
+      <div style={styles.center}>
+      <RingLoader color={'#123abc'} loading={true} />
+       </div>)
+    }
+    else if (this.state.all_reps === -1){
+      return (
+          <div style={styles.root}>
+           <p> Data Not Found </p>
+          </div>)
+    }
+    else{
+      console.log("QQQQQQQQQQQQQQQQ")
+      console.log(this.state.rep_data)
+      return (
       <div className='App'>
         <header className='Rep-Details-header'> </header>
         <Row>
           <Col sm={12} md={4}>
             <img src={'https://theunitedstates.io/images/congress/225x275/' +
-              this.state.bioguideid + '.jpg'} alt='' style={styles.roundcorner}
+              this.state.rep_data.bioguide + '.jpg'} alt='' style={styles.roundcorner}
             />
           </Col>
           <Col sm={12} md={4}>
@@ -54,14 +93,15 @@ export default class RepresentativeDetails extends Component {
                 <p style={{paddingTop: '10px'}}>
                   <font size='8'>
                     <b>
-                      {this.state.rep_data['firstName']}
-                      {this.state.rep_data['lastName']}
+                      {this.state.rep_data['firstname']} 
+                      {` `}
+                      {this.state.rep_data['lastname']}
                     </b>
                   </font>
                 </p>
                 <p> <b>Party: </b>
-                  <Link to={`/party/${this.state.rep_data['party']}`}>
-                    {this.state.rep_data['party']} </Link>
+                  <Link to={`/party/${this.state.rep_data['party_id']}`}>
+                    {this.state.rep_data['party_id']} </Link>
                 </p>
                 <p> <b> State: </b> {this.state.rep_data['state']}</p>
                 <p> <b> District: </b>
@@ -100,10 +140,10 @@ export default class RepresentativeDetails extends Component {
           </Col>
         </Row>
 
-        <h3 class='bills-header'>Bills Sponsored</h3>
+        <h3 class='bills-header'>Recent Bills Sponsored</h3>
 
         <Row style={{paddingLeft: '160px'}}>
-          <RepBills bioguideid = {this.state.bioguideid} />
+          <RepBills data = {this.state.rep_data.bills} />
         </Row>
         <Row>
           <Col>
@@ -111,7 +151,7 @@ export default class RepresentativeDetails extends Component {
             <iframe
               width='600'
               height='340'
-              title = '{this.state.name} YouTube Channel'
+              title = '{this.state.firstname} {this.state.lastname} YouTube Channel'
               src={'http://www.youtube.com/embed?max-results=1&controls=0' +
                 '&showinfo=0&rel=0&listType=user_uploads&list=' +
                 this.state.rep_data['youtube']}
@@ -125,14 +165,18 @@ export default class RepresentativeDetails extends Component {
               width='600'
               height='450'
               frameborder='0' style={{border: '0'}}
-              title = '{this.state.name} Twitter Feed'
+              title = '{this.state.firstname} {this.state.lastname} Twitter Feed'
               src={'https://www.google.com/maps/embed/v1/place?' +
               'key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY' +
-              '&q=' + this.state.rep_data['office']} allowfullscreen>
+              '&q=' + this.state.rep_data.office} allowfullscreen>
             </iframe>
           </Col>
         </Row>
       </div>
     )
+      
+    }
+
+    
   }
 }

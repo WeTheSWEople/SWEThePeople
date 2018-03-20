@@ -7,7 +7,7 @@ import {RingLoader} from 'react-spinners'
 import RepresentativeInstance from './RepresentativeInstance'
 import '../../assets/css/App.css'
 
-import allReps from '../../assets/all-reps-endpoint.json'
+//import allReps from '../../assets/all-reps-endpoint.json'
 import axios from 'axios'
 
 const styles = {
