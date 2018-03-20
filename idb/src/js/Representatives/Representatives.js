@@ -6,8 +6,6 @@ import {RingLoader} from 'react-spinners'
 /* eslint-disable no-unused-vars */
 import RepresentativeInstance from './RepresentativeInstance'
 import '../../assets/css/App.css'
-
-//import allReps from '../../assets/all-reps-endpoint.json'
 import axios from 'axios'
 
 const styles = {
@@ -59,6 +57,7 @@ export default class Representatives extends Component {
       })
     })
   }
+  
   render () {
     if (this.state.all_reps === null){
       return(

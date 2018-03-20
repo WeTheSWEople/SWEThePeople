@@ -43,6 +43,9 @@ def all_parties():
 @party_route.route("/<path>")
 def party_by_path(path):
     #return jsonify(getResponse(PoliticalParty.query.filter(PoliticalParty.id == path).first()))
+    party_name = request.args.get('party_name')
+    if party_name == 'True':
+    	return jsonify(PoliticalParty.query.with_entities(PoliticalParty.id, PoliticalParty.name).filter(PoliticalParty.id == path).first())
     return get_single_item(PoliticalParty, PoliticalParty.id, path)
 
 @error_route.app_errorhandler(404)

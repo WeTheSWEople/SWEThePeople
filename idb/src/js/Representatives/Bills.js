@@ -34,7 +34,6 @@ export default class RepBills extends Component {
   }
 
   render () {
-    console.log("BILS DATA: " + this.state.bills_data)
     for (let i = 0; i < this.state.bills_data.length; i++) {
       let bill = this.state.bills_data[i]
       if (bill['latest_major_action'].length > 115) {

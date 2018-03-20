@@ -9,11 +9,7 @@ import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
 import '../../assets/css/Bills.css'
-
 import axios from 'axios'
-
-
-import allReps from '../../assets/bioguide-endpoint.json'
 
 const styles = {
   hyperlink: {
@@ -44,7 +40,6 @@ export default class RepresentativeDetails extends Component {
   componentWillMount () {
     axios.get(`http://api.swethepeople.me/representative/${this.props.match.params.bioguideid}`)
     .then((response)=>{
-      console.log("Fro Component: " + response)
       this.setState({
         rep_data:response.data
       })
@@ -69,15 +64,13 @@ export default class RepresentativeDetails extends Component {
       <RingLoader color={'#123abc'} loading={true} />
        </div>)
     }
-    else if (this.state.all_reps === -1){
+    else if (this.state.rep_data === -1){
       return (
           <div style={styles.root}>
            <p> Data Not Found </p>
           </div>)
     }
     else{
-      console.log("QQQQQQQQQQQQQQQQ")
-      console.log(this.state.rep_data)
       return (
       <div className='App'>
         <header className='Rep-Details-header'> </header>
