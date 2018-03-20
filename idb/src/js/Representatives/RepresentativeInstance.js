@@ -25,7 +25,8 @@ export default class RepresentativeInstance extends Component {
           <img
             src={'https://theunitedstates.io/images/congress/225x275/' +
             this.props.rep.bioguide + '.jpg'}
-            alt={this.props.rep.firstName} class='rep_img'
+            alt={this.props.rep.firstName} class='rep_img' onError={(e)=>{e.target.src=require('../../assets/images/reps/default.png')}}
+
           />
           <div class='rep_info'>
             <h3 class='title'>

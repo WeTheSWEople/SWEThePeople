@@ -19,6 +19,14 @@ const styles = {
     paddingRight: '50px',
     justifyContent: 'space-around'
   },
+  center:{
+    display: 'flex',
+    flexWrap: 'wrap',
+    paddingTop: '50%',
+    paddingLeft: '50px',
+    paddingRight: '50px',
+    justifyContent: 'space-around'
+  },
   gridList: {
     width: '100%',
     height: '100%',
@@ -26,13 +34,7 @@ const styles = {
   }
 }
 
-axios.get('/user?ID=12345')
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+
 
 
 export default class Representatives extends Component {
@@ -47,13 +49,11 @@ export default class Representatives extends Component {
   componentDidMount(){
     axios.get(`http://api.swethepeople.me/representative/`)
     .then((response)=>{
-      console.log("resp: " + JSON.stringify(response))
       this.setState({
         all_reps:response.data
       })
     })
     .catch((error)=>{
-      console.log(error)
       this.setState({
           all_reps: -1
       })
@@ -62,19 +62,17 @@ export default class Representatives extends Component {
   render () {
     if (this.state.all_reps === null){
       return(
-      <div style={styles.root}>
+      <div style={styles.center}>
       <RingLoader color={'#123abc'} loading={true} />
        </div>)
     }
     else if (this.state.all_reps === -1){
-      console.log("hey: " + this.state.all_reps)
       return (
           <div style={styles.root}>
            <p> Data Not Found </p>
           </div>)
     }
     else{
-      console.log(this.state.all_reps)
       return (
         <div className='App'>
           <header className='App-header-white'></header>
