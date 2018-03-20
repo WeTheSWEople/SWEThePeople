@@ -38,14 +38,14 @@ def representatives_by_page(num):
 @party_route.route("/")
 def all_parties():
     #return jsonify([getResponse(party) for party in PoliticalParty.query.order_by(PoliticalParty.id).all()])
+    party_name = request.args.get('party_name')
+    if party_name == 'True':
+    	return jsonify({party.id : party.name for party in PoliticalParty.query.with_entities(PoliticalParty.id, PoliticalParty.name).order_by(PoliticalParty.id).all()})
     return get_all_items(PoliticalParty, PoliticalParty.id, 'PoliticalParty')
 
 @party_route.route("/<path>")
 def party_by_path(path):
     #return jsonify(getResponse(PoliticalParty.query.filter(PoliticalParty.id == path).first()))
-    party_name = request.args.get('party_name')
-    if party_name == 'True':
-    	return jsonify(PoliticalParty.query.with_entities(PoliticalParty.id, PoliticalParty.name).filter(PoliticalParty.id == path).first())
     return get_single_item(PoliticalParty, PoliticalParty.id, path)
 
 @error_route.app_errorhandler(404)

@@ -17,43 +17,28 @@ const styles = {
 }
 
 export default class RepresentativeInstance extends Component {
-  constructor (props) {
-      super(props)
-      this.state = {
-          party_name : undefined,
-      }
-    }
-  componentWillMount () {
-    console.log(`http://api.swethepeople.me/party/${this.props.rep.party_id}?party_name=True`)
-    axios.get(`http://api.swethepeople.me/party/${this.props.rep.party_id}?party_name=True`)
-    .then((response)=>{
-      console.log(response)
-      this.setState({
-        party_name:response.data
-      })
-    })
-    .catch((error)=>{
-      this.setState({
-          party_name: -1
-      })
-    })
-  }
+  // constructor (props) {
+  //     super(props)
+  //     this.state = {
+  //         party_name : undefined,
+  //     }
+  //   }
+  // componentWillMount () {
+  //   axios.get(`http://api.swethepeople.me/party/${this.props.rep.party_id}?party_name=True`)
+  //   .then((response)=>{
+  //     this.setState({
+  //       party_name:response.data
+  //     })
+  //   })
+  //   .catch((error)=>{
+  //     this.setState({
+  //         party_name: -1
+  //     })
+  //   })
+  // }
 
   render () {
-    if (this.state.party_name === undefined){
-      return(
-      <div style={styles.center}>
-      <RingLoader color={'#123abc'} loading={true} />
-       </div>)
-    }
-    else if (this.state.party_name === -1){
-      return (
-          <div style={styles.root}>
-           <p> Data Not Found </p>
-          </div>
-      )
-    }
-    else{
+      console.log("PT: " + this.props.party_name)
       return (
         <Link
           to={`/representatives/${this.props.rep.bioguide}`}
@@ -71,7 +56,7 @@ export default class RepresentativeInstance extends Component {
                 {this.props.rep.firstname +
                 ' ' + this.props.rep.lastname}
               </h3>
-              <h4 class='party'>{this.state.party_name}</h4>
+              <h4 class='party'>{this.props.party_name}</h4>
               <h4 class='district'><i>
                 {this.props.rep.state + ' - ' + this.props.rep.district}
               </i></h4>
@@ -79,6 +64,5 @@ export default class RepresentativeInstance extends Component {
           </GridTile>
         </Link>
       )
-    }
   }
 }

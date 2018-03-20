@@ -40,32 +40,51 @@ export default class Representatives extends Component {
     super(props)
     this.state = {
         all_reps : null,
+        party_name : null
     };
   }
 
  
   componentDidMount(){
+
+    // get the reps data
     axios.get(`http://api.swethepeople.me/representative/`)
     .then((response)=>{
+      console.log(response)
       this.setState({
         all_reps:response.data
       })
+      // get the party names
+      return axios.get(`http://api.swethepeople.me/party?party_name=True`)
     })
-    .catch((error)=>{
+    .then((response)=>{
+      console.log(response)
       this.setState({
-          all_reps: -1
+        party_name:response.data
       })
     })
+    .catch((error)=>{
+      console.log(error)
+      this.setState({
+          all_reps: -1,
+          party_name: -1
+
+      })
+    })
+
+    
+      
+
   }
-  
+
   render () {
-    if (this.state.all_reps === null){
+    if (this.state.all_reps === null || this.state.party_name === null){
       return(
       <div style={styles.center}>
       <RingLoader color={'#123abc'} loading={true} />
        </div>)
     }
-    else if (this.state.all_reps === -1){
+    else if (this.state.all_reps === -1  || this.state.party_name === -1){
       return (
           <div style={styles.root}>
            <p> Data Not Found </p>
@@ -82,7 +101,7 @@ export default class Representatives extends Component {
               style={styles.gridList}
             >
               {this.state.all_reps.map((item) => (
-                <RepresentativeInstance key={item.bioguide} rep = {item} />
+                <RepresentativeInstance key={item.bioguide} rep = {item} party_name = {this.party_name[item.party_id]} />
               ))}
             </GridList>
           </div>
