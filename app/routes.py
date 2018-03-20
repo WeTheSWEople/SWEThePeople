@@ -25,8 +25,6 @@ def all_representatives():
 def representative(bioguide):
     return get_single_item(Representative, Representative.bioguide, bioguide)
 
-
-
 @rep_route.route('/page/<num>')
 def representatives_by_page(num):
 	num = int(num)
@@ -39,11 +37,13 @@ def representatives_by_page(num):
 
 @party_route.route("/")
 def all_parties():
-    return jsonify([getResponse(party) for party in PoliticalParty.query.order_by(PoliticalParty.id).all()])
+    #return jsonify([getResponse(party) for party in PoliticalParty.query.order_by(PoliticalParty.id).all()])
+    return get_all_items(PoliticalParty, PoliticalParty.id, 'PoliticalParty')
 
 @party_route.route("/<path>")
 def party_by_path(path):
-    return jsonify(getResponse(PoliticalParty.query.filter_by(path=path).first()))
+    #return jsonify(getResponse(PoliticalParty.query.filter(PoliticalParty.id == path).first()))
+    return get_single_item(PoliticalParty, PoliticalParty.id, path)
 
 @error_route.app_errorhandler(404)
 def url_not_found(e):
