@@ -20,6 +20,6 @@ install:
 
 
 script:
-    - python app/main.py
-    - python router.py
+    - python app/main.py &
+    - python router.py &
     - python app/tests.py
