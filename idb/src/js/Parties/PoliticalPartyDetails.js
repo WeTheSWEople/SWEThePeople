@@ -33,7 +33,6 @@ export default class PoliticalPartyDetails extends Component {
     this.setState({ready: false})
 
     axios.get('http://api.swethepeople.me/district').then((response) => {
-    // axios.get('http://0.0.0.0:4040/district').then((response) => {
       console.log('districts get')
       let disMap = {}
       for (let i = 0; i < response.data.length; i++) {
