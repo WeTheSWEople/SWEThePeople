@@ -129,7 +129,7 @@ export default class RepresentativeDetails extends Component {
 
             <img className='district-map-card'src={
               require('../../assets/images/districts/' +
-              this.state.district_state + this.state.district_num + '.png')}
+              this.state.district_state + '-' + this.state.district_num + '.tif')}
             width='500px' height='350px' marginLeft='25px' alt='District Map'/>
 
           </Col>
