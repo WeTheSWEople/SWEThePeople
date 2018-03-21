@@ -12,7 +12,7 @@
 	</noscript>
 	<font face="verdana" size="2">
 	<h1 style="text-align: center">SWEThePeople API</h1>
-	<h2>Representatives Endpoints:</h2>
+	<h2>Representative Endpoints:</h2>
 	<h3 style="margin-left:50px">
 
 		<!-- Rep Endpoint 1 -->
@@ -36,7 +36,10 @@
 
 
 	  <br><br>
+  </h3>
 
+  <h2>Party Endpoints:</h2>
+  <h3 style="margin-left:50px">
 	  <!-- Party Endpoint 1 -->
 	  <a href="/party">/party</a>
 	  <br>
@@ -45,16 +48,61 @@
       </p3>
 	  <br><br>
 
-	  <!-- Party Endpoint 2 -->
-	  <a href="/party/Democratic">/party/&ltname&gt</a>
-	  <br>
-	  <p3 style="font-weight: normal">
+    <!-- Party Endpoint 2 -->
+    <a href="/party/Democratic">/party/&ltname&gt</a>
+    <br>
+    <p3 style="font-weight: normal">
         Returns information about a political party based on its name.
       </p3>
-	  <br><br>
+    <br><br>
+  </h3>
 
+  <h2>State Endpoints:</h2>
+  <h3 style="margin-left:50px">
+    <!-- State Endpoint 1 -->
+    <a href="/state">/state</a>
+    <br>
+    <p3 style="font-weight: normal">
+        Returns list of all U.S. states
+      </p3>
+    <br><br>
 
-	</h3>
+    <!-- State Endpoint 2 -->
+    <a href="/state/AL">/state/&ltUSPS state abbreviation&gt</a>
+    <br>
+    <p3 style="font-weight: normal">
+        Returns a single state
+      </p3>
+    <br><br>
+  </h3>
+
+  <h2>District Endpoints:</h2>
+  <h3 style="margin-left:50px">
+    <!-- District Endpoint 1 -->
+    <a href="/district">/district</a>
+    <br>
+    <p3 style="font-weight: normal">
+        Returns list of all U.S. congressional districts
+      </p3>
+    <br><br>
+
+    <!-- District Endpoint 2 -->
+    <a href="/district/AL">/district/&ltUSPS state abbreviation&gt</a>
+    <br>
+    <p3 style="font-weight: normal">
+        Returns list of all U.S. congressional districts in a state
+      </p3>
+    <br><br>
+
+    <!-- District Endpoint 2 -->
+    <a href="/district/AL/1">/district/&ltUSPS state abbreviation&gt/&ltdistrict id&gt</a>
+    <br>
+    <p3 style="font-weight: normal">
+        Returns a single congressional district
+      </p3>
+    <br><br>
+  </h3>
+
 	</font>
   </body>
 </html>
