@@ -32,8 +32,8 @@ export default class PoliticalPartyDetails extends Component {
   componentDidMount () {
     this.setState({ready: false})
 
-    // axios.get('http://api.swethepeople.me/district').then((response) => {
-    axios.get('http://0.0.0.0:4040/district').then((response) => {
+    axios.get('http://api.swethepeople.me/district').then((response) => {
+    // axios.get('http://0.0.0.0:4040/district').then((response) => {
       console.log('districts get')
       let disMap = {}
       for (let i = 0; i < response.data.length; i++) {
@@ -184,8 +184,8 @@ export default class PoliticalPartyDetails extends Component {
             <h5><b>Population: </b>{districts[key].population}</h5>
             <br />
             <h4><b>Representative:</b></h4>
-            <h4>{this.state.reps[key].firstName + ' ' +
-              this.state.reps[key].lastName}</h4>
+            <h4>{this.state.reps[key].firstname + ' ' +
+              this.state.reps[key].lastname}</h4>
             <img src={'https://theunitedstates.io/images/congress/225x275/' +
               key + '.jpg'}
             alt={districts[key].name}
