@@ -17,22 +17,22 @@ export default class Parties extends Component {
     }
 
     let mapping = Object.keys(this.props.party_data).map((key) =>
-      <Link to={`/party/${this.props.party_data[key]['name']}`}>
-        <div class='row party-index-card'>
-          <div class='col-md-8 col-md-offset-2'>
-            <div class='row'>
-              <div class='col-md-6'>
-                <div key={key} class='center-div'>
-                  <img src={require('../../assets/images/parties/' + key +
-                    '.png')}
+      <Link to={`/party/${this.props.party_data[key]['path']}`} key={key}>
+        <div className='row party-index-card'>
+          <div className='col-md-8 col-md-offset-2'>
+            <div className='row'>
+              <div className='col-md-6'>
+                <div className='center-div'>
+                  <img src={require('../../assets/images/parties/index/' +
+                    this.props.party_data[key]['path'] + '.png')}
                   className='img-responsive'
                   style={styles.imgStyle}
                   alt={key} />
                 </div>
               </div>
 
-              <div class='col-md-6 party-index-name'>
-                <h3>{key} Party</h3>
+              <div className='col-md-6 party-index-name'>
+                <h3>{this.props.party_data[key]['name']}</h3>
                 <p>
                   <span style={styles.itemHeader}>
                     Number of representatives:
@@ -51,7 +51,7 @@ export default class Parties extends Component {
     )
 
     return (
-      <div class='container'>
+      <div className='container'>
         {mapping}
       </div>
     )

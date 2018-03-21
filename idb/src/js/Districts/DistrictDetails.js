@@ -4,6 +4,9 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Grid, Row, Col, ProgressBar} from 'react-bootstrap'
 import {PieChart, BarChart} from 'react-easy-chart'
+import axios from 'axios'
+import {RingLoader} from 'react-spinners'
+
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
 import '../../assets/css/DistrictDetails.css'
@@ -17,213 +20,374 @@ const styles = {
   imgStyle: {
     width: '100%',
     height: '100%'
+  },
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    paddingTop: '50px',
+    paddingLeft: '50px',
+    paddingRight: '50px',
+    justifyContent: 'space-around'
+  },
+  center:{
+    display: 'flex',
+    flexWrap: 'wrap',
+    paddingTop: '50%',
+    paddingLeft: '50px',
+    paddingRight: '50px',
+    justifyContent: 'space-around'
+  },
+  gridList: {
+    width: '100%',
+    height: '100%',
+    overflowY: 'auto'
   }
 }
 
-export default class RepresentativeDetails extends Component {
+export default class DistrictDetails extends Component {
   constructor (props) {
     super(props)
+    // this.state = {
+    //   district_data: null,
+    //   rep_data: null,
+    //   party_data: null
+    // }
     this.state = {
-      error: false,
-      district_data: {},
+      district_data: null,
+      rep_data: null,
+      party_data: null,
+      races_pop: null,
+      legend: null,
       district_num: '',
       district_state: '',
-      bioguide: '',
-      rep_data: {},
-      races_pop: {},
-      party_image: {},
-      legend: {}
+      bioguide: ''
+      //party_image: {},
+      
     }
   }
   componentWillMount () {
+
+    axios.get(`http://api.swethepeople.me/district/${this.props.match.params.districtid}/${this.props.match.params.districtnum}`)
+    .then((response)=>{
+      console.log("CENSUS")
+      console.log(response.data)
+      this.setState({
+        district_data:response.data,
+        district_num : response.data.id,
+        district_state : response.data.state,
+        bioguide: response.representative_id
+      })
+
+      console.log("PRINTIN")
+      console.log(response.data.population_american_indian_and_alaska_native)
+      let result = []
+      if (response.data.population_american_indian_and_alaska_native !== null){
+        result.push({'x': 'AIAAN', 'y': response.data.population_american_indian_and_alaska_native})
+      }
+      if (response.data.population_asian !== null){
+        result.push({'x': 'A', 'y': response.data.population_asian})
+      }
+
+      if(response.data.population_black_or_african_american !== null){
+        result.push({'x': 'BOAA', 'y': response.data.population_black_or_african_american})
+      }
+
+      if(response.data.population_native_hawaiian_and_other_pacific_islander !== null){
+        result.push({'x': 'NHAOPI', 'y': response.data.population_native_hawaiian_and_other_pacific_islander})
+      }
+      
+      if(response.data.population_some_other_race !== null){
+        result.push({'x': 'SOR', 'y': response.data.population_some_other_race})
+      }
+      
+      if(response.data.population_two_or_more_races !== null){
+        result.push({'x': 'TR', 'y': response.data.population_two_or_more_races})
+      }
+      
+      if(response.data.population_white !== null){
+        result.push({'x': 'W', 'y': response.data.population_white})
+      }
+      
+      let legendTemp = []
+      legendTemp.push({key: 'TR', value: 'Two or More Races'})
+      legendTemp.push({key: 'W', value: 'White'})
+      legendTemp.push({key: 'BOAA', value: 'Black Or African American'})
+      legendTemp.push({key: 'AIAAN', value: 'American Indian And Alaska Native'})
+      legendTemp.push({key: 'A', value: 'Asian'})
+      legendTemp.push({key: 'NHAOPI', value: 'Native Hawaiian And Other Pacific Islander'})
+      legendTemp.push({key: 'SOR', value: 'Some Other Race'})
+
+      this.setState({races_pop: result})
+      this.setState({legend: legendTemp})
+
+
+
+      axios.get(`http://api.swethepeople.me/representative/${response.data.representative_id}`)
+      .then((response)=>{
+          console.log("REP")
+          console.log(response.data)
+          this.setState({
+            rep_data:response.data
+          })
+
+          // set party image
+          let party = response.data.party_id
+          if (party === 1) {
+            this.setState({party_image: 'Democratic'})
+          } else if (party === 2) {
+            this.setState({party_image: 'Republican'})
+          } else {
+            this.setState({party_image: 'Libertarian'})
+          }
+
+          axios.get(`http://api.swethepeople.me/party?party_name=True`)
+          .then((response)=>{
+            console.log("PARTY")
+            console.log(response.data)
+            this.setState({
+              party_data:response.data
+            })
+
+          })
+          .catch((error)=>{
+            console.log("PARTY ERROR")
+            this.setState({
+                party_data : -1
+            })
+          })
+      })
+      .catch((error)=>{
+          this.setState({
+              rep_data: -1,
+        })
+      })
+    })
+    .catch((error)=>{
+        console.log("GHRE")
+        this.setState({
+            district_data: -1
+        })
+    })
+
     // get the data - in the future call the api
-    let state = this.props.match.params.districtid
-    let number = this.props.match.params.districtnum
-    let bioGuide = districtRep[state][number]['representative-bioguide']
-    this.setState({district_num: number})
-    this.setState({district_state: state})
-    this.setState({district_data: stateDistrict[state][number]})
-    this.setState({bioguide: bioGuide})
-    this.setState({rep_data: allReps[bioGuide]})
+    // let state = this.props.match.params.districtid
+    // let number = this.props.match.params.districtnum
+    // let bioGuide = districtRep[state][number]['representative-bioguide']
+    // this.setState({district_num: number})
+    // this.setState({district_state: state})
+    // this.setState({district_data: stateDistrict[state][number]})
+    // this.setState({bioguide: bioGuide})
+    // this.setState({rep_data: allReps[bioGuide]})
 
     // set party image
-    let party = allReps[bioGuide]['party']
-    if (party === 'Democrat') {
-      this.setState({party_image: 'Democratic'})
-    } else if (party === 'Libertarian') {
-      this.setState({party_image: 'Libertarian'})
-    } else {
-      this.setState({party_image: 'Republican'})
-    }
+    // let party = allReps[bioGuide]['party']
+    // if (party === 'Democrat') {
+    //   this.setState({party_image: 'Democratic'})
+    // } else if (party === 'Libertarian') {
+    //   this.setState({party_image: 'Libertarian'})
+    // } else {
+    //   this.setState({party_image: 'Republican'})
+    // }
 
     // data for the bar graph
-    let oneRace = stateDistrict[state][number]['race']['one-race']
-    let result = []
-    let legendTemp = []
-    for (let key in oneRace) {
-      if (key !== 'total') {
-        // format the labels
-        let strSplit = key.split('-').map(function (word) {
-          return (word.charAt(0).toUpperCase())
-        })
+    // let oneRace = stateDistrict[state][number]['race']['one-race']
+    // let result = []
+    
+    // for (let key in oneRace) {
+    //   if (key !== 'total') {
+    //     // format the labels
+    //     // let strSplit = key.split('-').map(function (word) {
+    //     //   return (word.charAt(0).toUpperCase())
+    //     // })
 
-        let formatWords = key.split('-').map(function (word) {
-          return (word.charAt(0).toUpperCase()) + word.slice(1)
-        })
+    //     // let formatWords = key.split('-').map(function (word) {
+    //     //   return (word.charAt(0).toUpperCase()) + word.slice(1)
+    //     // })
 
-        strSplit = strSplit.join('')
-        formatWords = formatWords.join(' ')
-        let temp = {}
-        temp['x'] = strSplit
-        temp['y'] = oneRace[key]
-        legendTemp.push({'key': strSplit, 'value': formatWords})
-        result.push(temp)
-      }
-    }
-    let temp = {}
-    temp['x'] = 'TR'
-    temp['y'] = stateDistrict[state][number]['race']['two-or-more-races']
-    result.push(temp)
-    legendTemp.push({key: 'TR', value: 'Two or More Races'})
-    this.setState({races_pop: result})
-    this.setState({legend: legendTemp})
+    //     // strSplit = strSplit.join('')
+    //     // formatWords = formatWords.join(' ')
+    //     let temp = {}
+    //     temp['x'] = strSplit
+    //     temp['y'] = oneRace[key]
+    //     legendTemp.push({'key': strSplit, 'value': formatWords})
+    //     result.push(temp)
+    //   }
+    // }
+    // let temp = {}
+    // temp['x'] = 'TR'
+    // temp['y'] = stateDistrict[state][number]['race']['two-or-more-races']
+    // result.push(temp)
+
+  
+    
+
+    
   }
 
   render () {
-    let repsGrid = <div class='col-sm-6'>
-      <RepresentativeInstance rep={this.state.rep_data} />
-    </div>
 
-    let legend = null
-    legend = Object.keys(this.state.legend).map((item) =>
-      <p style={{textAlign: 'left'}}> <b>{this.state.legend[item]['key']}</b> :
-      {this.state.legend[item]['value']}</p>
-    )
 
-    let genderPopData = []
+    if (this.district_data === null || this.state.rep_data === null || this.state.party_data === null){
+      return(
+      <div style={styles.center}>
+      <RingLoader color={'#123abc'} loading={true} />
+       </div>)
+    }
+    else if (this.district_data === null || this.state.rep_data === -1 || this.state.party_data === -1){
+      return (
+          <div style={styles.root}>
+           <p> Data Not Found </p>
+          </div>)
+    }
+    else{
 
-    let population = this.state.district_data['population']
-    let male = {}
-    male['key'] = 'Male (' +
-      (population['male'] / population['total'] * 100).toFixed(2) + '%)'
-    male['value'] = population['male']
-    male['color'] = '#abcc84'
-
-    let female = {}
-    female['key'] = 'Female (' +
-      (population['female'] / population['total'] * 100).toFixed(2) + '%)'
-    female['value'] = population['female']
-    female['color'] = '#aaac84'
-    genderPopData.push(male)
-    genderPopData.push(female)
-
-    return (
-      <div className='App'>
-        <header className='Rep-Details-header'> </header>
-
-        <Row >
-          <h1><font size='8'><b>{states[this.state.district_state]} District
-          {this.state.district_num}</b></font></h1>
-          <br></br><br></br>
-          <Col sm={6} md={6}>
-
-            <img className='district-map-card'src={
-              require('../../assets/images/districts/' +
-              this.state.district_state + this.state.district_num + '.png')}
-            width='500px' height='350px' marginLeft='25px' alt='District Map'/>
-
-          </Col>
-          <Col sm={6} md={6}>
-            <div style={{textAlign: 'left', padding: '80px'}}>
-              <p><font size='5'>
-                <b>Total Population: </b>
-                {this.state.district_data['population']['total']}
-                people
-              </font></p>
-              <p><font size='5'>
-                <b>Median Age: </b>
-                {this.state.district_data['median-age']['both-sexes']}
-                years
-              </font></p>
-              <p><font size='5'>
-                <b>Median Age (Male): </b>
-                {this.state.district_data['median-age']['male']}
-                years
-              </font></p>
-              <p><font size='5'>
-                <b>Median Age (Female): </b>
-                {this.state.district_data['median-age']['female']}
-                years
-              </font></p>
-            </div>
-          </Col>
-        </Row>
-        <br></br><br></br>
-        <h3 class='bills-header'>
-          <b>
-          Statistics for District {this.state.district_num}
-          </b>
-        </h3>
-        <Row >
-          <Col sm={5} md={5}>
-            <PieChart labels
-              padding={30}
-              data={genderPopData}
-              styles={{
-                '.chart_text': {
-                  fontSize: '1em',
-                  fill: '#fff'
-                }
-              }}
-            />
-            <p><b> Gender Population</b></p>
-          </Col>
-          <Col sm={5} md={5}>
-            <BarChart labels
-              colorBars
-              axes
-              barWidth={20}
-              axisLabels={{x: 'Race', y: 'Number of People'}}
-              height={400}
-              data={this.state.races_pop}
-              styles={{
-                '.chart_text': {
-                  fontSize: '1em',
-                  fill: '#fff'
-                }
-              }}
-            />
-
-            <p><b> Race v.s. Number of People</b></p>
-          </Col>
-          <Col sm={2} md={2}>
-            <div style={{marginTop: '75px', marginRight: '40px'}}>
-              <h5> <b>Legend: </b></h5>
-              {legend}
-            </div>
-          </Col>
-
-        </Row>
-        <h3 class='bills-header'><b>Representative</b></h3>
-        <div class='row'>
-          <div class='col-md-5 col-md-offset-2'>
-            {repsGrid}
-          </div>
-          <div class='col-md-3'>
-            <Link to={`/party/${this.state.rep_data['party']}`} >
-              <img src={
-                require('../../assets/images/parties/' +
-                  this.state.party_image + '.png')}
-              alt='Party logo'
-              className='img-responsive'
-              style={styles.imgStyle} />
-              <h3><b>{this.state.rep_data['party']}</b></h3>
-            </Link>
-          </div>
-        </div>
-        <br></br>
+      console.log("Hawaiian")
+      console.log(this.state.races_pop)
+      let repsGrid = <div class='col-sm-6'>
+        <RepresentativeInstance rep={this.state.rep_data} party_name = {this.state.party_data[this.state.rep_data.party_id][0]}  />
       </div>
 
-    )
+      let legend = null
+      legend = Object.keys(this.state.legend).map((item) =>
+        <p style={{textAlign: 'left'}}> <b>{this.state.legend[item]['key']}</b> :
+        {` `}
+        {this.state.legend[item]['value']}</p>
+      )
+
+      let genderPopData = []
+
+      let population = this.state.district_data.population
+
+      let male = {}
+      male['key'] = 'Male (' +
+        (this.state.district_data.population_male / population * 100).toFixed(2) + '%)'
+      male['value'] = this.state.district_data.population_male
+      male['color'] = '#abcc84'
+
+      let female = {}
+      let female_pop = population - this.state.district_data.population_male
+      female['key'] = 'Female (' +
+        (female_pop / population * 100).toFixed(2) + '%)'
+      female['value'] = population - this.state.district_data.population_male
+      female['color'] = '#aaac84'
+      genderPopData.push(male)
+      genderPopData.push(female)
+      console.log("GENDER")
+      console.log(this.state.races_pop)
+
+      return (
+        <div className='App'>
+          <header className='Rep-Details-header'> </header>
+
+          <Row >
+            <h1><font size='8'><b>{states[this.state.district_state]} District
+            {` `}
+            {this.state.district_data.alpha_num}</b></font></h1>
+            <br></br><br></br>
+            <Col sm={6} md={6}>
+
+              <img src={
+                require('../../assets/images/districts/' +
+                this.state.district_state + '-' + this.state.district_num + '.png')}
+              width='500px' height='350px' marginLeft='25px' alt='District Map'/>
+
+            </Col>
+            <Col sm={6} md={6}>
+              <div style={{textAlign: 'left', padding: '80px'}}>
+                <p><font size='5'>
+                  <b>Total Population: </b>
+                  {this.state.district_data.population}
+                  {` `}
+                  people
+                </font></p>
+                <p><font size='5'>
+                  <b>Median Age: </b>
+                  {this.state.district_data.median_age}
+                  {` `}
+                  years
+                </font></p>
+                <p><font size='5'>
+                  <b>Median Age (Male): </b>
+                  {this.state.district_data.median_age_male}
+                  {` `}
+                  years
+                </font></p>
+                <p><font size='5'>
+                  <b>Median Age (Female): </b>
+                  {this.state.district_data.median_age_female}
+                  {` `}
+                  years
+                </font></p>
+              </div>
+            </Col>
+          </Row>
+          <br></br><br></br>
+          <h3 class='bills-header'>
+            <b>
+            Statistics for District {this.state.district_num}
+            </b>
+          </h3>
+          <Row >
+            <Col sm={5} md={5}>
+              <PieChart labels
+                padding={30}
+                data={genderPopData}
+                styles={{
+                  '.chart_text': {
+                    fontSize: '1em',
+                    fill: '#fff'
+                  }
+                }}
+              />
+              <p><b> Gender Population</b></p>
+            </Col>
+            <Col sm={5} md={5}>
+              <BarChart labels
+                colorBars
+                axes
+                barWidth={20}
+                axisLabels={{x: 'Race', y: 'Number of People'}}
+                height={400}
+                data={this.state.races_pop}
+                styles={{
+                  '.chart_text': {
+                    fontSize: '1em',
+                    fill: '#fff'
+                  }
+                }}
+              />
+
+              <p><b> Race v.s. Number of People</b></p>
+            </Col>
+            <Col sm={2} md={2}>
+              <div style={{marginTop: '75px', marginRight: '40px'}}>
+                <h5> <b>Legend: </b></h5>
+                {legend}
+              </div>
+            </Col>
+
+          </Row>
+          <h3 class='bills-header'><b>Representative</b></h3>
+          <div class='row'>
+            <div class='col-md-5 col-md-offset-2'>
+              {repsGrid}
+            </div>
+            <div class='col-md-3'>
+              <Link to={`/party/${this.state.party_data[this.state.rep_data['party_id']][1]}`} >
+                <img src={
+                  require('../../assets/images/parties/' +
+                    this.state.party_image + '.png')}
+                alt='Party logo'
+                className='img-responsive'
+                style={styles.imgStyle} />
+                <h3><b>{this.state.party_data[this.state.rep_data['party_id']][0]}</b></h3>
+              </Link>
+            </div>
+          </div>
+          <br></br>
+        </div>
+
+      )
+    }
   }
 }
