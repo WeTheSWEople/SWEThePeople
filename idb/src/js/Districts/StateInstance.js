@@ -21,23 +21,8 @@ const styles = {
 export default class StateInstance extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      numReps: 0,
-      numSenators: 0
-    }
   }
-  componentWillMount () {
-    let repJSON = require('../../assets/data/rep_data/' +
-      this.props.state + '.json')
-    let senatorJSON = require('../../assets/data/senate_data/' +
-      this.props.state + '.json')
-    if (repJSON['status'] === 'OK') {
-      this.setState({numReps: repJSON['results'].length})
-    }
-    if (senatorJSON['status'] === 'OK') {
-      this.setState({numSenators: senatorJSON['results'].length})
-    }
-  }
+  
   render () {
     return (
       <Link to={`/districts/${this.props.state}`}
@@ -58,10 +43,7 @@ export default class StateInstance extends Component {
             <div class='col-md-4 text-md-left'>
               <div class='rep_info'>
                 <h3 class='title'>{this.props.full_state}</h3>
-                <h4 class='party'>Districts: {this.state.numReps}</h4>
-                <h4 class='district'>
-                  <i>Senators: {this.state.numSenators}</i>
-                </h4>
+                <h4 class='party'>Districts: {this.props.num_reps}</h4>
               </div>
             </div>
           </div>
