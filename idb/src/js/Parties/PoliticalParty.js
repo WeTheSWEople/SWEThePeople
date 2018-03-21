@@ -75,7 +75,11 @@ export default class PoliticalParty extends Component {
        </div>)
 
     }
-
-    
+        
+    return (
+      <div style={divStyle} className="parties-container">
+        {parties}
+      </div>
+    )
   }
 }

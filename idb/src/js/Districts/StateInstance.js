@@ -22,7 +22,7 @@ export default class StateInstance extends Component {
   constructor (props) {
     super(props)
   }
-  
+
   render () {
     return (
       <Link to={`/districts/${this.props.state}`}
@@ -41,9 +41,9 @@ export default class StateInstance extends Component {
               />
             </div>
             <div class='col-md-4 text-md-left'>
-              <div class='rep_info'>
-                <h3 class='title'>{this.props.full_state}</h3>
-                <h4 class='party'>Districts: {this.props.num_reps}</h4>
+              <div className='rep_info'>
+                <h3 className='title'>{this.props.full_state}</h3>
+                <h4 className='party'>Districts: {this.props.num_reps}</h4>
               </div>
             </div>
           </div>
