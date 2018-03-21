@@ -20,7 +20,7 @@ export default class RepresentativeInstance extends Component {
   render () {
       return (
         <Link
-          to={`'/representatives/${this.props.rep.bioguide}`}
+          to={`/representatives/${this.props.rep.bioguide}`}
           style={styles.hyperlink}>
           <GridTile
             key={this.props.rep.bioguide}

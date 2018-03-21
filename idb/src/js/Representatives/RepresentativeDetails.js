@@ -58,7 +58,6 @@ export default class RepresentativeDetails extends Component {
       })
     })
     .catch((error)=>{
-        console.log("GHRE")
         this.setState({
             rep_data: -1,
             party_name : -1
