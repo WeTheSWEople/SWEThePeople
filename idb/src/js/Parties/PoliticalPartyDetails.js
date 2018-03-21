@@ -18,9 +18,9 @@ export default class PoliticalPartyDetails extends Component {
     this.state = {
       ready: false,
       error: false,
-      party: null,
       num_reps: 0,
       totalReps: 435,
+      party: null,
       reps: null,
       districts: null,
       color: null,
@@ -69,37 +69,6 @@ export default class PoliticalPartyDetails extends Component {
         partyFlag: true,
         ready: true})
     })
-
-    // axios.get('http://api.swethepeople.me/district/' + rep['state'] +
-    //   '/' + rep['district']).then((response) => {
-    //   let districtName = 'District ' + rep['district']
-    //   let population = response.data['population']
-    //   let repName = rep['firstName'] + ' ' + rep['lastName']
-    //   let party = response.data['name']
-    //   let cssColor = 'light-blue'
-    //   if (rep['party'] === 'Republican') {
-    //     party = 'Republican'
-    //     cssColor = 'light-red'
-    //   } else if (rep['party'] === 'Libertarian') {
-    //     party = 'Libertarian'
-    //     cssColor = 'light-yellow'
-    //   }
-
-    //   districtsArr.push({
-    //     'district': rep['district'],
-    //     'state': rep['state'],
-    //     'districtName': districtName,
-    //     'population': population,
-    //     'party': party,
-    //     'cssColor': cssColor,
-    //     'rep': repName,
-    //     'rep_id': rep['bioguide']})
-    // })
-    // })
-
-    // districtsArr.sort(function (a, b) {
-    //   return parseInt(a.district, 10) - parseInt(b.district, 10)
-    // })
   }
 
   render () {
@@ -193,36 +162,6 @@ export default class PoliticalPartyDetails extends Component {
     } else {
       noControl = '0/' + this.state.totalReps
     }
-
-    // let districtsInfo = ''
-
-    // let districtsGrid = this.state.districts.map((district) =>
-    //   <Link to={`/districts/${district['state']}/${district['district']}`}>
-    //     <div className='col-sm-3 party-rep-card'>
-    //       <div className={'district-card ' + district.cssColor}>
-    //         <h3><b>{district.districtName}</b></h3>
-    //         <h5><b>Population: </b>{district.population}</h5>
-    //         <br />
-    //         <h4><b>Representative:</b></h4>
-    //         <h4>{district.rep}</h4>
-    //         <img src={'https://theunitedstates.io/images/congress/225x275/' +
-    //           district['rep_id'] + '.jpg'}
-    //         alt={district.name}
-    //         className='rep_img' />
-    //         <br />
-    //         <br />
-    //         <h4>Party: {district.party}</h4>
-    //       </div>
-    //     </div>
-    //   </Link>
-    // )
-
-    // districtsInfo = <div className='districts-grid'>
-    //   <h2>Districts</h2>
-    //   <div className='row'>
-    //     {districtsGrid}
-    //   </div>
-    // </div>
 
     let twitter = 'No twitter handle'
     if (this.state.party != null && this.state.party['twitter_handle'] !== '') {
