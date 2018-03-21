@@ -32,7 +32,7 @@ export default class Parties extends Component {
               </div>
 
               <div className='col-md-6 party-index-name'>
-                <h3>{key}</h3>
+                <h3>{this.props.party_data[key]['name']}</h3>
                 <p>
                   <span style={styles.itemHeader}>
                     Number of representatives:

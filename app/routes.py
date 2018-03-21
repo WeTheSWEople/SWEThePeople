@@ -47,6 +47,11 @@ def all_parties():
 
 @party_route.route("/<path>")
 def party_by_path(path):
+    return get_single_item(PoliticalParty, PoliticalParty.path, path)
+
+@party_route.route("/id/<party_id>")
+def party_by_id(party_id):
+    return get_single_item(PoliticalParty, PoliticalParty.id, party_id)
     #return jsonify(get_response(PoliticalParty.query.filter(PoliticalParty.id == path).first()))
     return get_single_item(PoliticalParty, PoliticalParty.id, path)
 
@@ -82,6 +87,3 @@ def districts_by_id(abbrev, id):
 @error_route.app_errorhandler(404)
 def url_not_found(e):
     return send_from_directory('static/templates', '404.html')
-
-
-

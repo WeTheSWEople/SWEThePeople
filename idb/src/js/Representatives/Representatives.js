@@ -32,9 +32,6 @@ const styles = {
   }
 }
 
-
-
-
 export default class Representatives extends Component {
   constructor (props) {
     super(props)
