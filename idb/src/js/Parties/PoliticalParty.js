@@ -1,12 +1,23 @@
 /* eslint-disable no-unused-vars */
 import PoliticalPartyInstance from './PoliticalPartyInstance.js'
 import React, {Component} from 'react'
+import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
 
 import '../../assets/css/App.css'
 
 let request = require('request')
 
+const styles = {
+  center:{
+    display: 'flex',
+    flexWrap: 'wrap',
+    paddingTop: '25%',
+    paddingLeft: '50px',
+    paddingRight: '50px',
+    justifyContent: 'space-around'
+  }
+}
 export default class PoliticalParty extends Component {
   constructor (props) {
     super(props)
@@ -45,17 +56,26 @@ export default class PoliticalParty extends Component {
   render () {
     let parties = null
     if (this.state.ready) {
-      parties = <PoliticalPartyInstance party_data = {this.state.parties} />
-    }
-
-    let divStyle = {
+      let divStyle = {
       paddingTop: '70px'
     }
+      parties = <PoliticalPartyInstance party_data = {this.state.parties} />
 
-    return (
-      <div style={divStyle}>
-        {parties}
-      </div>
-    )
+      return (
+        <div style={divStyle}>
+          {parties}
+        </div>
+      )
+    }
+    else {
+
+      return(
+      <div style={styles.center}>
+      <RingLoader color={'#123abc'} loading={true} />
+       </div>)
+
+    }
+
+    
   }
 }
