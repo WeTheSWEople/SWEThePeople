@@ -157,6 +157,11 @@ export default class Districts extends Component {
         `${district.id}`}>
         <div className={'district-card'}>
               <h3><b>{district.alpha_num}</b></h3>
+              <img src={
+                require('../../assets/images/districts/' +
+                district.alpha_num + '.png')}
+              width='250px' height='150px' marginLeft='25px' alt='District Map'
+              />
               <h5><b>Population: </b>{district.population}</h5>
               <h5><b>Meidan Age: </b>{district.median_age}</h5>
               <br></br>
