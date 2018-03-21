@@ -4,13 +4,13 @@ import {Link} from 'react-router-dom'
 import {GridList} from 'material-ui/GridList'
 import {Timeline} from 'react-twitter-widgets'
 import RepresentativeInstance from '../Representatives/RepresentativeInstance'
-/* eslint-enable no-unused-vars */
-
+import {RingLoader} from 'react-spinners'
 import axios from 'axios'
-
+/* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
 import '../../assets/css/PoliticalPartyDetails.css'
 import '../../assets/css/District.css'
+
 
 export default class PoliticalPartyDetails extends Component {
   constructor (props) {
@@ -73,9 +73,15 @@ export default class PoliticalPartyDetails extends Component {
 
   render () {
     if (!(this.state.districtFlag && this.state.partyFlag)) {
-      return (
-        <div className='App party-content container'></div>
-      )
+        return(
+        <div style={{display: 'flex',
+                    flexWrap: 'wrap',
+                    paddingTop: '25%',
+                    paddingLeft: '50px',
+                    paddingRight: '50px',
+                    justifyContent: 'space-around'}}>
+        <RingLoader color={'#123abc'} loading={true} />
+         </div>)
     }
 
     const oldDis = this.state.districts
