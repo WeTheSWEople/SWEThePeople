@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
-import StateInstance from '../Representatives/StateInstance'
+import StateInstance from './StateInstance'
 import {GridList} from 'material-ui/GridList'
 /* eslint-enable no-unused-vars */
 import axios from 'axios'

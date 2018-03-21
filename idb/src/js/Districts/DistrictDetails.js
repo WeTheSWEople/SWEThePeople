@@ -78,16 +78,36 @@ export default class DistrictDetails extends Component {
         bioguide: response.representative_id
       })
 
+      console.log("PRINTIN")
+      console.log(response.data.population_american_indian_and_alaska_native)
       let result = []
-      result.push({'key': 'AIAAN', 'value': this.state.district_data.population_american_indian_and_alaska_native})
-      result.push({'key': 'A', 'value': this.state.district_data.population_asian})
-      result.push({'key': 'BOAA', 'value': this.state.district_data.population_black_or_african_american})
-      result.push({'key': 'NHAOPI', 'value': this.state.district_data.population_native_hawaiian_and_other_pacific_islander})
-      result.push({'key': 'SOR', 'value': this.state.district_data.population_some_other_race})
-      result.push({'key': 'TR', 'value': this.state.district_data.population_two_or_more_races})
-      result.push({'key': 'W', 'value': this.state.district_data.population_white})
+      if (response.data.population_american_indian_and_alaska_native !== null){
+        result.push({'x': 'AIAAN', 'y': response.data.population_american_indian_and_alaska_native})
+      }
+      if (response.data.population_asian !== null){
+        result.push({'x': 'A', 'y': response.data.population_asian})
+      }
 
+      if(response.data.population_black_or_african_american !== null){
+        result.push({'x': 'BOAA', 'y': response.data.population_black_or_african_american})
+      }
 
+      if(response.data.population_native_hawaiian_and_other_pacific_islander !== null){
+        result.push({'x': 'NHAOPI', 'y': response.data.population_native_hawaiian_and_other_pacific_islander})
+      }
+      
+      if(response.data.population_some_other_race !== null){
+        result.push({'x': 'SOR', 'y': response.data.population_some_other_race})
+      }
+      
+      if(response.data.population_two_or_more_races !== null){
+        result.push({'x': 'TR', 'y': response.data.population_two_or_more_races})
+      }
+      
+      if(response.data.population_white !== null){
+        result.push({'x': 'W', 'y': response.data.population_white})
+      }
+      
       let legendTemp = []
       legendTemp.push({key: 'TR', value: 'Two or More Races'})
       legendTemp.push({key: 'W', value: 'White'})
@@ -100,6 +120,8 @@ export default class DistrictDetails extends Component {
       this.setState({races_pop: result})
       this.setState({legend: legendTemp})
 
+
+
       axios.get(`http://api.swethepeople.me/representative/${response.data.representative_id}`)
       .then((response)=>{
           console.log("REP")
@@ -107,6 +129,17 @@ export default class DistrictDetails extends Component {
           this.setState({
             rep_data:response.data
           })
+
+          // set party image
+          let party = response.data.party_id
+          if (party === 1) {
+            this.setState({party_image: 'Democratic'})
+          } else if (party === 2) {
+            this.setState({party_image: 'Republican'})
+          } else {
+            this.setState({party_image: 'Libertarian'})
+          }
+
           axios.get(`http://api.swethepeople.me/party?party_name=True`)
           .then((response)=>{
             console.log("PARTY")
@@ -114,6 +147,7 @@ export default class DistrictDetails extends Component {
             this.setState({
               party_data:response.data
             })
+
           })
           .catch((error)=>{
             console.log("PARTY ERROR")
@@ -207,6 +241,8 @@ export default class DistrictDetails extends Component {
     }
     else{
 
+      console.log("Hawaiian")
+      console.log(this.state.races_pop)
       let repsGrid = <div class='col-sm-6'>
         <RepresentativeInstance rep={this.state.rep_data} party_name = {this.state.party_data[this.state.rep_data.party_id][0]}  />
       </div>
@@ -214,6 +250,7 @@ export default class DistrictDetails extends Component {
       let legend = null
       legend = Object.keys(this.state.legend).map((item) =>
         <p style={{textAlign: 'left'}}> <b>{this.state.legend[item]['key']}</b> :
+        {` `}
         {this.state.legend[item]['value']}</p>
       )
 
@@ -223,17 +260,20 @@ export default class DistrictDetails extends Component {
 
       let male = {}
       male['key'] = 'Male (' +
-        (population['male'] / population * 100).toFixed(2) + '%)'
+        (this.state.district_data.population_male / population * 100).toFixed(2) + '%)'
       male['value'] = this.state.district_data.population_male
       male['color'] = '#abcc84'
 
       let female = {}
+      let female_pop = population - this.state.district_data.population_male
       female['key'] = 'Female (' +
-        (population['female'] / population * 100).toFixed(2) + '%)'
+        (female_pop / population * 100).toFixed(2) + '%)'
       female['value'] = population - this.state.district_data.population_male
       female['color'] = '#aaac84'
       genderPopData.push(male)
       genderPopData.push(female)
+      console.log("GENDER")
+      console.log(this.state.races_pop)
 
       return (
         <div className='App'>
@@ -241,13 +281,14 @@ export default class DistrictDetails extends Component {
 
           <Row >
             <h1><font size='8'><b>{states[this.state.district_state]} District
-            {this.state.district_num}</b></font></h1>
+            {` `}
+            {this.state.district_data.alpha_num}</b></font></h1>
             <br></br><br></br>
             <Col sm={6} md={6}>
 
-              <img className='district-map-card'src={
+              <img src={
                 require('../../assets/images/districts/' +
-                this.state.district_state + this.state.district_num + '.png')}
+                this.state.district_state + '-' + this.state.district_num + '.png')}
               width='500px' height='350px' marginLeft='25px' alt='District Map'/>
 
             </Col>
@@ -256,21 +297,25 @@ export default class DistrictDetails extends Component {
                 <p><font size='5'>
                   <b>Total Population: </b>
                   {this.state.district_data.population}
+                  {` `}
                   people
                 </font></p>
                 <p><font size='5'>
                   <b>Median Age: </b>
                   {this.state.district_data.median_age}
+                  {` `}
                   years
                 </font></p>
                 <p><font size='5'>
                   <b>Median Age (Male): </b>
                   {this.state.district_data.median_age_male}
+                  {` `}
                   years
                 </font></p>
                 <p><font size='5'>
                   <b>Median Age (Female): </b>
                   {this.state.district_data.median_age_female}
+                  {` `}
                   years
                 </font></p>
               </div>
