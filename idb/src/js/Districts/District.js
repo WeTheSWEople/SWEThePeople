@@ -41,13 +41,6 @@ export default class Districts extends Component {
       state_name : null,
       census_json: null
     }
-    // this.state = {
-    //   districts: 0,
-    //   senator_count: 0,
-    //   total_reps: 0,
-    //   district_arr: [],
-    //   state_data: []
-    // }
   }
   componentWillMount () {
     axios.get(`http://api.swethepeople.me/state/${this.props.match.params.districtid}`)
