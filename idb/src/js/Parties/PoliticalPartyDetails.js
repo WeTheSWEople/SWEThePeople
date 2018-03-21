@@ -12,204 +12,92 @@ import '../../assets/css/App.css'
 import '../../assets/css/PoliticalPartyDetails.css'
 import '../../assets/css/District.css'
 
-// import allParties from '../../assets/parties.json'
-// import repsInfo from '../../assets/all-reps-endpoint.json'
-
-let request = require('request')
-
 export default class PoliticalPartyDetails extends Component {
   constructor (props) {
     super(props)
     this.state = {
       ready: false,
       error: false,
-      party: null,
       num_reps: 0,
       totalReps: 435,
+      party: null,
       reps: null,
-      districts: null
+      districts: null,
+      color: null,
+      partyFlag: false,
+      districtFlag: false
     }
   }
 
   componentDidMount () {
     this.setState({ready: false})
 
-    axios.get('http://0.0.0.0:4040/party/' + this.props.match.params.path).then(
-      (response) => {
-        let repsMap = {}
-        let districtsArr = []
-        let censusJSON = require('../../assets/data/census_data.json')
-        let i = 0
-        response.data['representatives'].forEach(function (rep) {
-          repsMap[i++] = rep
-
-          let districtName = 'District ' + rep['district']
-          let censusDistrict = censusJSON[rep['state']][rep['district']]
-          let population = censusDistrict['population']['total']
-          let repName = rep['firstName'] + ' ' + rep['lastName']
-          let party = response.data['name']
-          let cssColor = 'light-blue'
-          if (rep['party'] === 'Republican') {
-            party = 'Republican'
-            cssColor = 'light-red'
-          } else if (rep['party'] === 'Libertarian') {
-            party = 'Libertarian'
-            cssColor = 'light-yellow'
-          }
-
-          districtsArr.push({'district': rep['district'],
-            'state': rep['state'],
-            'districtName': districtName,
-            'population': population,
-            'party': party,
-            'cssColor': cssColor,
-            'rep': repName,
-            'rep_id': rep['bioguide']})
-        })
-
-        districtsArr.sort(function (a, b) {
-          return parseInt(a.district, 10) - parseInt(b.district, 10)
-        })
-
-        this.setState({
-          party: response.data,
-          num_reps: response.data['representatives'].length,
-          reps: repsMap,
-          districts: districtsArr,
-          totalReps: 435,
-          ready: true})
+    axios.get('http://api.swethepeople.me/district').then((response) => {
+      let disMap = {}
+      for (let i = 0; i < response.data.length; i++) {
+        const district = response.data[i]
+        disMap[district['representative_id']] = district
       }
-    )
-    // let options = {method: 'GET',
-    //   url: 'http://0.0.0.0:4040/party/' + this.props.match.params.path}
-    // request(options, function (error, response, body) {
-    //   console.log('1')
-    //   if (error) {
-    //     this.setState({error: true, ready: true})
-    //   } else {
-    //     let repsMap = {}
-    //     let partyJSON = JSON.parse(body)
-    //     let districtsArr = []
-    //     let censusJSON = require('../../assets/data/census_data.json')
-    //     partyJSON['representatives'].forEach(function (key) {
-    //       let rep = partyJSON['representatives'][key]
-    //       repsMap[key] = rep
 
-    //       let districtName = 'District ' + rep['district']
-    //       let censusDistrict = censusJSON[rep['state']][rep['district']]
-    //       let population = censusDistrict['population']['total']
-    //       let repName = rep['firstName'] + ' ' + rep['lastName']
-    //       let party = partyJSON['name']
-    //       let cssColor = 'light-blue'
-    //       if (rep['party'] === 'Republican') {
-    //         party = 'Republican'
-    //         cssColor = 'light-red'
-    //       } else if (rep['party'] === 'Libertarian') {
-    //         party = 'Libertarian'
-    //         cssColor = 'light-yellow'
-    //       }
+      this.setState({districts: disMap, districtFlag: true})
+    })
 
-    //       districtsArr.push({'district': rep['district'],
-    //         'state': rep['state'],
-    //         'districtName': districtName,
-    //         'population': population,
-    //         'party': party,
-    //         'cssColor': cssColor,
-    //         'rep': repName,
-    //         'rep_id': rep['bioguide']})
-    //     })
+    axios.get('http://api.swethepeople.me/party/' +
+      this.props.match.params.path).then((response) => {
+      let repsMap = {}
+      response.data['representatives'].forEach(function (rep) {
+        repsMap[rep['bioguide']] = rep
+      })
 
-    //     districtsArr.sort(function (a, b) {
-    //       return parseInt(a.district, 10) - parseInt(b.district, 10)
-    //     })
+      let p = {
+        name: response.data['name'],
+        path: response.data['path'],
+        chair: response.data['chair'],
+        formation_date: response.data['formation_date'],
+        twitter_handle: response.data['twitter_handle'],
+        youtube: response.data['youtube'],
+        office: response.data['office'],
+        website: response.data['website'],
+        color: response.data['colors'].map((c) => { return c['color'] })
+      }
 
-    //     this.setState({
-    //       party: partyJSON,
-    //       num_reps: partyJSON['representatives'].length,
-    //       reps: repsMap,
-    //       districts: districtsArr,
-    //       totalReps: 435,
-    //       ready: true})
-    //   }
-    // }.bind(this))
-
-    // let thisParty = {}
-    // const keys = Object.keys(allParties)
-    // for (const partyName of keys) {
-    //   if (allParties[partyName]['path'].toUpperCase().startsWith(
-    //     this.props.match.params.path.toUpperCase())) {
-    //     thisParty = allParties[partyName]
-    //     break
-    //   }
-    // }
-    // this.setState({party: thisParty})
-
-    // let censusJSON = require('../../assets/data/census_data.json')
-    // let repsMap = {}
-    // let districtsArr = []
-    // let repCount = 0
-    // Object.keys(repsInfo).forEach(function (key) {
-    //   if (thisParty['name'].startsWith(repsInfo[key]['party'])) {
-    //     let result = repsInfo[key]
-    //     repsMap[key] = result
-    //     repCount += 1
-
-    //     let districtName = 'District ' + result['district']
-    //     let censusDistrict = censusJSON[result['state']][result['district']]
-    //     let population = censusDistrict['population']['total']
-    //     let repName = result['firstName'] + ' ' + result['lastName']
-    //     let party = thisParty['name']
-    //     let cssColor = 'light-blue'
-    //     if (result['party'] === 'Republican') {
-    //       party = 'Republican'
-    //       cssColor = 'light-red'
-    //     } else if (result['party'] === 'Libertarian') {
-    //       party = 'Libertarian'
-    //       cssColor = 'light-yellow'
-    //     }
-
-    //     districtsArr.push({'district': result['district'],
-    //       'state': result['state'],
-    //       'districtName': districtName,
-    //       'population': population,
-    //       'party': party,
-    //       'cssColor': cssColor,
-    //       'rep': repName,
-    //       'rep_id': result['bioguide']})
-    //   }
-    // })
-
-    // districtsArr.sort(function (a, b) {
-    //   return parseInt(a.district, 10) - parseInt(b.district, 10)
-    // })
-    // this.setState({num_reps: repCount,
-    //   reps: repsMap,
-    //   districts: districtsArr,
-    //   totalReps: repsInfo.length,
-    //   ready: true})
+      this.setState({
+        party: p,
+        num_reps: response.data['representatives'].length,
+        reps: repsMap,
+        totalReps: 435,
+        partyFlag: true,
+        ready: true})
+    })
   }
 
   render () {
-    if (this.state.party == null) {
+    if (!(this.state.districtFlag && this.state.partyFlag)) {
       return (
         <div className='App party-content container'></div>
       )
     }
 
-    let colors = []
-    if (this.state.party != null) {
-      for (let i = 0; i < this.state.party['color'].length; i++) {
-        if (i !== 0) {
-          colors.push(', ')
-        }
-
-        const c = this.state.party['color'][i]
-        let cssColor = c
-        if (c === 'White' || c === 'Azure') {
-          cssColor = 'Black'
-        }
-        colors.push(<span style={{color: cssColor}} key={i}>{c}</span>)
+    const oldDis = this.state.districts
+    let districts = {}
+    Object.keys(this.state.reps).forEach(function (repID) {
+      if (oldDis[repID] !== undefined) {
+        districts[repID] = oldDis[repID]
       }
+    })
+
+    let colors = []
+    for (let i = 0; i < this.state.party['color'].length; i++) {
+      if (i !== 0) {
+        colors.push(', ')
+      }
+
+      const c = this.state.party['color'][i]
+      let cssColor = c
+      if (c === 'White' || c === 'Azure') {
+        cssColor = 'Black'
+      }
+      colors.push(<span style={{color: cssColor}} key={i}>{c}</span>)
     }
 
     let styles = {
@@ -217,20 +105,19 @@ export default class PoliticalPartyDetails extends Component {
       progressStyle: {}
     }
 
-    if (this.state.party != null) {
-      styles.partyColor = {
-        color: this.state.party['color']
-      }
-      styles.progressStyle = {
-        width: ((this.state.num_reps / this.state.totalReps) * 100) + '%',
-        backgroundImage: 'none',
-        backgroundColor: this.state.party['color']
-      }
+    styles.partyColor = {
+      color: this.state.party['color']
+    }
+    styles.progressStyle = {
+      width: ((this.state.num_reps / this.state.totalReps) * 100) + '%',
+      backgroundImage: 'none',
+      backgroundColor: this.state.party['color']
     }
 
     let controlText = ''
     let noControl = ''
     let repsInfo = ''
+    let districtsInfo = ''
     if (this.state.num_reps > 0) {
       controlText = this.state.num_reps + '/' + this.state.totalReps
 
@@ -246,31 +133,24 @@ export default class PoliticalPartyDetails extends Component {
           {repsGrid}
         </div>
       </div>
-    } else {
-      noControl = '0/' + this.state.totalReps
-    }
 
-    let districtsInfo = ''
-    if (this.state.districts != null && this.state.districts.length > 0) {
-      let districtsGrid = this.state.districts.map((district) =>
-        <Link to={`/districts/${district['state']}/${district['district']}`}>
-          <div className='col-sm-3 party-rep-card'>
-            <div className={'district-card ' + district.cssColor}>
-              <h3><b>{district.districtName}</b></h3>
-              <h5><b>Population: </b>{district.population}</h5>
-              <br />
-              <h4><b>Representative:</b></h4>
-              <h4>{district.rep}</h4>
-              <img src={'https://theunitedstates.io/images/congress/225x275/' +
-                district['rep_id'] + '.jpg'}
-              alt={district.name}
-              className='rep_img' />
-              <br />
-              <br />
-              <h4>Party: {district.party}</h4>
-            </div>
+      let districtsGrid = Object.keys(districts).map((key) =>
+        <div className='col-sm-3 party-rep-card'>
+          <div className='district-card '>
+            <h3><b>{districts[key].alpha_num}</b></h3>
+            <h5><b>Population: </b>{districts[key].population}</h5>
+            <br />
+            <h4><b>Representative:</b></h4>
+            <h4>{this.state.reps[key].firstname + ' ' +
+              this.state.reps[key].lastname}</h4>
+            <img src={'https://theunitedstates.io/images/congress/225x275/' +
+              key + '.jpg'}
+            alt={districts[key].name}
+            className='rep_img' />
+            <br />
+            <br />
           </div>
-        </Link>
+        </div>
       )
 
       districtsInfo = <div className='districts-grid'>
@@ -279,6 +159,8 @@ export default class PoliticalPartyDetails extends Component {
           {districtsGrid}
         </div>
       </div>
+    } else {
+      noControl = '0/' + this.state.totalReps
     }
 
     let twitter = 'No twitter handle'
