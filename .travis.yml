@@ -4,7 +4,7 @@
   script:
     - echo Running Frontend Tests
     - npm run test --prefix idb &
-    
+
 - stage : Backend
   language: python
 
@@ -25,3 +25,5 @@
       - python app/main.py &
       - python router.py &
       - python app/tests.py
+
+      
