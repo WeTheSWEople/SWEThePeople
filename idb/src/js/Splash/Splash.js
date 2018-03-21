@@ -12,38 +12,38 @@ import 'slick-carousel/slick/slick-theme.css'
 
 export default class Splash extends Component {
   constructor (props) {
-    super(props)
+	super(props)
 
-    this.settings = {
-      dots: true,
-      infinite: true,
-      speed: 300,
-      arrows: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      autoplay: true,
-      centerMode: false,
-      autoplaySpeed: 4000,
-      pauseOnHover: true
-    }
+	this.settings = {
+	  dots: true,
+	  infinite: true,
+	  speed: 300,
+	  arrows: true,
+	  slidesToShow: 1,
+	  slidesToScroll: 1,
+	  autoplay: true,
+	  centerMode: false,
+	  autoplaySpeed: 4000,
+	  pauseOnHover: true
+	}
   }
 
   render () {
-    let pics = [pic1, pic2, pic3]
+	let pics = [pic1, pic2, pic3]
 
-    return (
-      <div className='App'>
-        <header className='App-header'></header>
-        <div className='carousel-parent'>
-          <center>
-            <Slider {...this.settings} className='carousel'>
-              {pics.map((item) => (
-                <div><img src={item} alt=''/></div>
-              ))}
-            </Slider>
-          </center>
-        </div>
-      </div>
-    )
+	return (
+	  <div className='App'>
+		<header className='App-header'></header>
+		<div className='carousel-parent'>
+		  <center>
+			<Slider {...this.settings} className='carousel'>
+			  {pics.map((item) => (
+				<div><img src={item} alt=''/></div>
+			  ))}
+			</Slider>
+		  </center>
+		</div>
+	  </div>
+	)
   }
 }
