@@ -57,12 +57,12 @@ export default class PoliticalParty extends Component {
     let parties = null
     if (this.state.ready) {
       let divStyle = {
-      paddingTop: '70px'
-    }
+        paddingTop: '70px'
+      }
       parties = <PoliticalPartyInstance party_data = {this.state.parties} />
 
       return (
-        <div style={divStyle}>
+        <div style={divStyle} className="parties-container">
           {parties}
         </div>
       )
@@ -75,11 +75,5 @@ export default class PoliticalParty extends Component {
        </div>)
 
     }
-        
-    return (
-      <div style={divStyle} className="parties-container">
-        {parties}
-      </div>
-    )
   }
 }
