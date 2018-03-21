@@ -81,7 +81,6 @@ export default class RepresentativeDetails extends Component {
        </div>)
     }
     else if (this.state.rep_data === -1 || this.state.party_name === -1){
-      console.log("BYE")
       return (
           <div style={styles.root}>
            <p> Data Not Found </p>
