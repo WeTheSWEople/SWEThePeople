@@ -33,7 +33,6 @@ export default class PoliticalPartyDetails extends Component {
     this.setState({ready: false})
 
     axios.get('http://api.swethepeople.me/district').then((response) => {
-      console.log('districts get')
       let disMap = {}
       for (let i = 0; i < response.data.length; i++) {
         const district = response.data[i]
@@ -45,7 +44,6 @@ export default class PoliticalPartyDetails extends Component {
 
     axios.get('http://api.swethepeople.me/party/' +
       this.props.match.params.path).then((response) => {
-      console.log('party get')
       let repsMap = {}
       response.data['representatives'].forEach(function (rep) {
         repsMap[rep['bioguide']] = rep
@@ -62,8 +60,6 @@ export default class PoliticalPartyDetails extends Component {
         website: response.data['website'],
         color: response.data['colors'].map((c) => { return c['color'] })
       }
-
-      console.log('rep get: ' + Object.keys(repsMap).length)
 
       this.setState({
         party: p,
@@ -108,17 +104,10 @@ export default class PoliticalPartyDetails extends Component {
 
   render () {
     if (!(this.state.districtFlag && this.state.partyFlag)) {
-      console.log('not ready')
-      console.log('dis: ' + this.state.districtFlag)
-      console.log('party: ' + this.state.partyFlag)
       return (
         <div className='App party-content container'></div>
       )
     }
-
-    console.log('ready')
-    console.log('reps: ' + Object.keys(this.state.reps).length)
-    console.log('dis:  ' + Object.keys(this.state.districts).length)
 
     const oldDis = this.state.districts
     let districts = {}
