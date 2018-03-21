@@ -74,7 +74,7 @@ export default class Representatives extends Component {
   render () {
     if (this.state.all_reps === null || this.state.party_name === null){
       return(
-      <div style={styles.center}>
+      <div style={styles.center} className="loading">
       <RingLoader color={'#123abc'} loading={true} />
        </div>)
     }
@@ -93,6 +93,7 @@ export default class Representatives extends Component {
               cellHeight={400}
               cols={5}
               style={styles.gridList}
+              className="gridlist-container"
             >
               {this.state.all_reps.map((item) => (
                 <RepresentativeInstance key={item.bioguide} rep = {item} party_name = {this.state.party_name[item.party_id][0]} />
