@@ -1,18 +1,30 @@
-language: python
+jobs:
+  include:
+    - stage: Frontend
+      language: node_js
+        - "node"
+      script:
+        - echo Running Frontend Tests
+        - npm run test --prefix idb &
 
-python:
-   - "2.7"
+    - stage : Backend
+      language: python
 
-before_install:
-    - cat .travis.yml
-    - pip install --upgrade pip
-    - pip --version
+      python:
+         - "2.7"
 
-install:
-    - pip install -r app/requirements.txt
-    - pip install -r requirements.txt
+      before_install:
+          - cat .travis.yml
+          - pip install --upgrade pip
+          - pip --version
 
-script:
-    - python app/main.py &
-    - python router.py &
-    - python app/tests.py
+      install:
+          - pip install -r app/requirements.txt
+          - pip install -r requirements.txt
+
+      script:
+          - echo Running Backend Tests
+          - python app/main.py &
+          - python router.py &
+          - python app/tests.py
+
