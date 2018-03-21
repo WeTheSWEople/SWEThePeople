@@ -24,7 +24,7 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "mocha --require ignore-styles --require babel-polyfill --require babel-core -w test/helpers/browser.js \"test/*.spec.js\"",
+		"test": "mocha --require ignore-styles --require babel-polyfill --require babel-core -w test/helpers/browser.js \"test/tests.js\"",
 		"eject": "react-scripts eject"
 	},
 	"devDependencies": {
