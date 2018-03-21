@@ -198,7 +198,7 @@ export default class PoliticalPartyDetails extends Component {
               </iframe>
             </div>
 
-            <div className='col-sm-6'>
+            <div className='col-sm-6 party-office'>
               <h4><b>Office Location:</b></h4>
               <h4>{this.state.party['office']}</h4>
               <iframe width='353' height='200'

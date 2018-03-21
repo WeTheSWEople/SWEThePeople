@@ -28,12 +28,12 @@ export default class RepresentativeInstance extends Component {
             alt={this.props.rep.firstName} class='rep_img'
           />
           <div class='rep_info'>
-            <h3 class='title'>
+            <h3 className='title'>
               {this.props.rep.firstName +
               ' ' + this.props.rep.lastName}
             </h3>
-            <h4 class='party'>{this.props.rep.party}</h4>
-            <h4 class='district'><i>
+            <h4 className='party'>{this.props.rep.party}</h4>
+            <h4 className='district'><i>
               {this.props.rep.state + ' - ' + this.props.rep.district}
             </i></h4>
           </div>

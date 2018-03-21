@@ -110,7 +110,7 @@ export default class About extends Component {
 
     return (
       <div className='App container about-content'>
-        <h1>swethepeople.me</h1>
+        <h1 className="about-title">swethepeople.me</h1>
         <h3>Brought to you by WeTheSWEople</h3>
         <div className='row about-info'>
           <div className='col-sm-4 col-sm-offset-2'>

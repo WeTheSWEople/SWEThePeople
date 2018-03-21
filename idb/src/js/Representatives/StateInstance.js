@@ -55,11 +55,11 @@ export default class StateInstance extends Component {
                 alt='State'
               />
             </div>
-            <div class='col-md-4 text-md-left'>
-              <div class='rep_info'>
-                <h3 class='title'>{this.props.full_state}</h3>
-                <h4 class='party'>Districts: {this.state.numReps}</h4>
-                <h4 class='district'>
+            <div className='col-md-4 text-md-left'>
+              <div className='rep_info'>
+                <h3 className='title'>{this.props.full_state}</h3>
+                <h4 className='party'>Districts: {this.state.numReps}</h4>
+                <h4 className='district'>
                   <i>Senators: {this.state.numSenators}</i>
                 </h4>
               </div>

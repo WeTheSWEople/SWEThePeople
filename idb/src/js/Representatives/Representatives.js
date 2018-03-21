@@ -33,11 +33,12 @@ export default class Representatives extends Component {
     return (
       <div className='App'>
         <header className='App-header-white'></header>
-        <div style={styles.root}>
+        <div style={styles.root} className="grid-container">
           <GridList
             cellHeight={400}
             cols={5}
             style={styles.gridList}
+            className="gridlist-container"
           >
             {this.state.map((item) => (
               <RepresentativeInstance key={item.bioguide} rep = {item} />
