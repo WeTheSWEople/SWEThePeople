@@ -1,6 +1,6 @@
 from flask import jsonify, Blueprint, send_from_directory, render_template, request
 from models import Representative, PoliticalParty, PartyColor, District, State
-from util import get_all_items, get_single_item
+from util import *
 root_route = Blueprint('root', __name__)
 rep_route = Blueprint('representative', __name__)
 error_route = Blueprint('error', __name__)
@@ -8,11 +8,11 @@ party_route = Blueprint('political_party', __name__)
 state_route = Blueprint('state', __name__)
 district_route = Blueprint('district', __name__)
 
-def get_response(data):
-    if data is None:
-        return None
-    else:
-        return data.format()
+# def get_response(data):
+#     if data is None:
+#         return None
+#     else:
+#         return data.format()
 
 @root_route.route('/')
 def endpoints():
