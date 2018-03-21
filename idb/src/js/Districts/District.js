@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
 import '../../assets/css/District.css'
+import axios from 'axios'
 
 let stateJSON = require('../../assets/data/state.json')
 export default class Districts extends Component {
