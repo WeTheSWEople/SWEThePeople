@@ -71,7 +71,7 @@ for num in range(1, 57):
 		district = districts[district_key]
 		dist = District(
 			alpha_num = abbrev + '-' + str(district_name),
-			state = num,
+			state = abbrev,
 			id = district_name,
 			representative_id = rep_id,
 			population = district['population'],

@@ -62,17 +62,17 @@ class Bill(db.Model):
 
 class State(db.Model):
 	__tablename__ = 'state'
-	number = db.Column(db.Integer, index=True, nullable=False, primary_key=True)
-	name = db.String(255)
-	usps_abbreviation = db.Column(db.String(2))
+	usps_abbreviation = db.Column(db.String(2), primary_key=True, nullable=False, index=True)
+	number = db.Column(db.Integer, nullable=False)
+	name = db.Column(db.String(255), unique=True, nullable=False)
 	districts = db.relationship('District', lazy=True)
 
 	def format(self):
 	    return {
+	        "usps_abbreviation": self.usps_abbreviation,
 	        "number": self.number,
 	        "name": self.name,
-			"usps_abbreviation": self.usps_abbreviation,
-			"districts" : [x for x in self.districts]
+			"districts" : [x.format() for x in self.districts]
 	    }
 
 	def __repr__(self):
@@ -81,7 +81,7 @@ class State(db.Model):
 class District(db.Model):
 	__tablename__ = 'district'
 	alpha_num = db.Column(db.String(11), index=True, nullable=False, primary_key=True)
-	state = db.Column(db.Integer, db.ForeignKey('state.number'), nullable=False)
+	state = db.Column(db.String(2), db.ForeignKey('state.usps_abbreviation'))
 	id = db.Column(db.String(8))
 	representative_id = db.Column(db.String(255), db.ForeignKey('representative.bioguide'))
 	population = db.Column(db.Integer)
@@ -122,7 +122,7 @@ class District(db.Model):
 	    }
 
 	def __repr__(self):
-		return '<Districts {}: {!r} {}>'.format(self.id,
+		return '<Districts {}: {} {}>'.format(self.alpha_num,
 			self.state, self.id)
 
 class PoliticalParty(db.Model):

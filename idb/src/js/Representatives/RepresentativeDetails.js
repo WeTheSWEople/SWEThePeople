@@ -34,6 +34,7 @@ export default class RepresentativeDetails extends Component {
     super(props)
     this.state = {
         rep_data : null,
+        party_name : null
     }
   }
 
@@ -43,12 +44,27 @@ export default class RepresentativeDetails extends Component {
       this.setState({
         rep_data:response.data
       })
-    })
-    .catch((error)=>{
-      this.setState({
-          rep_data: -1
+      axios.get(`http://api.swethepeople.me/party?party_name=True`)
+      .then((response)=>{
+        this.setState({
+          party_name:response.data
+        })
+      })
+      .catch((error)=>{
+        this.setState({
+            rep_data: -1,
+            party_name : -1
+        })
       })
     })
+    .catch((error)=>{
+        console.log("GHRE")
+        this.setState({
+            rep_data: -1,
+            party_name : -1
+      })
+    })
+    
 
     // // get the data - in the future call the api
     // this.setState({bioguideid: this.props.match.params.bioguideid})
@@ -58,19 +74,21 @@ export default class RepresentativeDetails extends Component {
   }
 
   render () {
-    if (this.state.rep_data === null){
+    if (this.state.rep_data === null || this.state.party_name === null){
       return(
       <div style={styles.center}>
       <RingLoader color={'#123abc'} loading={true} />
        </div>)
     }
-    else if (this.state.rep_data === -1){
+    else if (this.state.rep_data === -1 || this.state.party_name === -1){
+      console.log("BYE")
       return (
           <div style={styles.root}>
            <p> Data Not Found </p>
           </div>)
     }
     else{
+      console.log("BYE2")
       return (
       <div className='App'>
         <header className='Rep-Details-header'> </header>
@@ -93,8 +111,8 @@ export default class RepresentativeDetails extends Component {
                   </font>
                 </p>
                 <p> <b>Party: </b>
-                  <Link to={`/party/${this.state.rep_data['party_id']}`}>
-                    {this.state.rep_data['party_id']} </Link>
+                  <Link to={`/party/${this.state.party_name[this.state.rep_data['party_id']][1]}`}>
+                    {this.state.party_name[this.state.rep_data['party_id']][0]} </Link>
                 </p>
                 <p> <b> State: </b> {this.state.rep_data['state']}</p>
                 <p> <b> District: </b>
