@@ -5,6 +5,7 @@ jobs:
       node_js: "8.9"
       script:
         - echo Running Frontend Tests
+        - npm install --prefix idb
         - npm run test --prefix idb
 
     - stage : Backend
