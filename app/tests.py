@@ -5,7 +5,7 @@ app = create_app()
 app.app_context().push()
 from models import Representative
 from flask import jsonify
-url = "http://localhost:3000/"
+url = "http://localhost:5000/"
 api_url = "http://0.0.0.0:4040/"
 live_url = "http://swethepeople.me/"
 live_api_url = "http://api.swethepeople.me/"
