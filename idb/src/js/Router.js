@@ -12,9 +12,11 @@ import PoliticalPartyDetails from './Parties/PoliticalPartyDetails'
 import Representatives from './Representatives/Representatives'
 import RepresentativeDetails from './Representatives/RepresentativeDetails'
 import Splash from './Splash/Splash'
+import NotFound from './NotFound'
 
 export default class DefaultRouter extends Component {
   render () {
+    
     return (
       <Switch>
         <Route exact path="/" component={Splash}/>
@@ -28,6 +30,7 @@ export default class DefaultRouter extends Component {
           component={DistrictsDetails}/>
         <Route path="/parties" component={PoliticalParty} />
         <Route path="/party/:path" component={PoliticalPartyDetails} />
+        <Route component = {NotFound} status={404}/>
       </Switch>
     )
   }
