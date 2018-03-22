@@ -163,6 +163,7 @@ export default class Districts extends Component {
                 require('../../assets/images/districts/' +
                 district.alpha_num + '.png')}
               width='250px' height='150px' marginLeft='25px' alt='District Map'
+              className='img-responsive district-img'
               />
               <br></br>
             </div>
