@@ -141,6 +141,7 @@ export default class PoliticalPartyDetails extends Component {
       </div>
 
       let districtsGrid = Object.keys(districts).map((key) =>
+        
         <Link to={`/districts/${districts[key].state}/${districts[key].id}`}>
           <div className='col-sm-3 party-rep-card'>
             <div className='district-card '>
