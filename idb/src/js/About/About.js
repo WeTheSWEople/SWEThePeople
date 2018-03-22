@@ -308,7 +308,7 @@ export default class About extends Component {
                   className='img-responsive' alt='Slack logo'/>
                   <h5>Amazon RDS</h5>
                   <p>
-                    Used to host our backend databse.
+                    Used to host our backend database.
                   </p>
                 </div>
               </div>
