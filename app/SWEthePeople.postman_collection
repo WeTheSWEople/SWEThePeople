@@ -1,0 +1,400 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SWEthePeople",
+		"_postman_id": "25005514-69b7-66e9-0cf8-36c324f8fa87",
+		"description": "API Docs for WeTheSweople",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Site is up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Live site is deployed correctly"
+			},
+			"response": []
+		},
+		{
+			"name": "All Representative Data Loading",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"JSON length correct\"] = jsonData.length > 400;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/representative/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Representative data loading properly"
+			},
+			"response": []
+		},
+		{
+			"name": "Pagination page 1 test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"JSON length correct\"] = jsonData.length === 25;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/representative/page/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Pagination tests"
+			},
+			"response": []
+		},
+		{
+			"name": "Pagination page 2 test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"JSON length correct\"] = jsonData.length === 25;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/representative/page/2",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Pagination page 2 test"
+			},
+			"response": []
+		},
+		{
+			"name": "Pagination page 3 test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"JSON length correct\"] = jsonData.length === 25;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/representative/page/3",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Pagination page 3 test"
+			},
+			"response": []
+		},
+		{
+			"name": "Pagination page 4 test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"JSON length correct\"] = jsonData.length === 25;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/representative/page/4",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Pagination page 4 test"
+			},
+			"response": []
+		},
+		{
+			"name": "Pagination page 5 test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"JSON length correct\"] = jsonData.length === 25;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/representative/page/5",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Pagination page 5 test"
+			},
+			"response": []
+		},
+		{
+			"name": "Specific Representative endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Rep First Name Test\"] = jsonData[\"firstname\"] === \"Ralph\";",
+							"tests[\"Rep Last Name Test\"] = jsonData[\"lastname\"] === \"Abraham\";",
+							"tests[\"Rep Bioguide Test\"] = jsonData[\"bioguide\"] === \"A000374\";",
+							"tests[\"Rep Office Test\"] = jsonData[\"office\"] === \"417 Cannon House Office Building\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/representative/A000374",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Specific Representative Endpoint"
+			},
+			"response": []
+		},
+		{
+			"name": "All Party Data Loading",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"All Party Data Loading\"] = jsonData.length >= 40;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/party",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "All Party Data Loading Properly"
+			},
+			"response": []
+		},
+		{
+			"name": "Specific Party Endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Party Name Test\"] = jsonData.name === \"Democratic Party\";",
+							"tests[\"Twitter Handle Test\"] = jsonData.twitter_handle === \"TheDemocrats\";",
+							"tests[\"Website Test\"] = jsonData.website === \"https://democrats.org/\""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "api.swethepeople.me/party/democratic_party",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "All State Data Loading",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"States Length Test\"] = jsonData.length === 50;",
+							"tests[\"AL Test\"] = jsonData[0].name === \"Alabama\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/state/",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Specific State Endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"AL test\"] = jsonData.name === \"Alabama\";",
+							"tests[\"District Count Test\"] = jsonData[\"districts\"].length >=3"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/state/AL",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "All District Data Loading",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"District Data Length\"] = jsonData.length > 400;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/district",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "State District Endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"District Length\"] = jsonData.length >= 3;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/district/AL",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Specific District Endpoint Testing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Alpha Num Test\"] = jsonData.alpha_num === \"AL-1\";",
+							"tests[\"ID Test\"] = jsonData.id === \"1\";",
+							"tests[\"State Test\"] = jsonData.state === \"AL\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://api.swethepeople.me/district/AL/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
