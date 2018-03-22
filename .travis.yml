@@ -10,15 +10,11 @@ jobs:
 
     - stage : Backend
       language: python
-
-      python:
-         - "2.7"
-
+      python: "2.7"
       before_install:
           - cat .travis.yml
           - pip install --upgrade pip
           - pip --version
-
       install:
           - pip install -r app/requirements.txt
           - pip install -r requirements.txt
