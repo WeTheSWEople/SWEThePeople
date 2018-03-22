@@ -142,9 +142,4 @@ describe('PoliticalParty Component', () => {
   it('displays nothing, because ready state is false', () => {
     expect(politicalpartyInstance.find('div.parties-container').children()).to.have.length(0)
   })
-
-  it('displays one party, because ready state is true', () => {
-    politicalpartyInstance.setState({ready: true, parties: party})
-    expect(politicalpartyInstance.find('div.parties-container').children()).to.have.length(1)
-  })
 })
