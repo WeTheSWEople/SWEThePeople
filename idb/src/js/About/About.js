@@ -18,7 +18,8 @@ export default class About extends Component {
       totalCommits: 0,
       error: false,
       total_issues: 0,
-      swe_member_data: {}
+      swe_member_data: {},
+      totalTests: 0
     }
   }
 
@@ -36,12 +37,12 @@ export default class About extends Component {
         'Michael is a third-year CS student who trains in Taekwondo and ' +
         'enjoys reading World War II stories.', 'Michael.png',
         'Parties front-end and chief of chief naming', 'Mojo Jojo']
-      sweMembers['copperstick6'] = ['William Han', 0, 0, 0,
+      sweMembers['copperstick6'] = ['William Han', 0, 0, 25,
         'William is a sophomore CS student who enjoys the subtle art of ' +
         'memes and hackathons.', 'William.jpg',
         'Districts front-end, production deployment, and chief of nocturnal' +
         'development', 'Bill']
-      sweMembers['raulcodes'] = ['Raul Camacho', 0, 0, 0,
+      sweMembers['raulcodes'] = ['Raul Camacho', 0, 0, 8,
         'Raul is a senior CS major who will be graduating this semester. ' +
         'Also he\'s tall. Probably too tall.', 'Raul.png',
         'Front-end beautifier and chief ducker of low ceilings',
@@ -55,7 +56,7 @@ export default class About extends Component {
         'Benny is a third-year CS student who enjoys iOS development, ' +
         'reading, and following current events.', 'Benny.jpg',
         'Representatives front-end and chief spammer of GitHub emails', 'Benny']
-      sweMembers['palakhirpara'] = ['Palak Hirpara', 0, 0, 0,
+      sweMembers['palakhirpara'] = ['Palak Hirpara', 0, 0, 14,
         'Palak is a senior who will be graduating this semester with BSCS ' +
         'and likes watching cricket.', 'Palak.png',
         'Representatives front-end and chief misspeller of routes',
@@ -69,15 +70,21 @@ export default class About extends Component {
         totalCommits += commitJSON[i]['total']
       }
 
-      this.setState({totalCommits: totalCommits})
+      let totalTests = 0
+      Object.keys(sweMembers).forEach(function (key) {
+        totalTests += sweMembers[key][3]
+      })
+
+      this.setState({totalCommits: totalCommits, totalTests: totalTests})
       // let eof = false
-      //let page = 1
+      // let page = 1
       // loop doesn't work for some reason
       // while(!eof){
-      var options = { method: 'GET',
-      url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all&per_page=100&page=' + String(1),
-      qs: { state: 'all' },
-      };
+      let options = {method: 'GET',
+        url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues' +
+          '?state=all&per_page=100&page=' + String(1),
+        qs: {state: 'all'}
+      }
 
       request(options, function (error, response, body) {
         if (error) {
@@ -162,7 +169,7 @@ export default class About extends Component {
                 </h4>
                 <h4>
                   Total Unit Tests:
-                  <span className='right-info'>0</span>
+                  <span className='right-info'>{this.state.totalTests}</span>
                 </h4>
               </div>
             </div>
@@ -174,12 +181,22 @@ export default class About extends Component {
           </p>
           <p>
             <a href = 'https://wethesweople.gitbooks.io/report/'>
-              IDB 1 Technical Report
+              Technical Report
             </a>
           </p>
           <p>
             <a href = 'https://wethesweople.gitbooks.io/api/'>
               API Documentation
+            </a>
+          </p>
+          <p>
+            <a href = 'http://api.swethepeople.me'>
+              API
+            </a>
+          </p>
+          <p>
+            <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds/356985218'>
+              Travis CI
             </a>
           </p>
         </div>
@@ -276,6 +293,79 @@ export default class About extends Component {
                   <p>
                     Used to communicate between members to organize meetings and
                     work.
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a href='https://aws.amazon.com/rds/'>
+              <div className='col-sm-3'>
+                <div className='tools-card'>
+                  <img src={require(
+                    '../../assets/images/about/Amazon-RDS1.png')}
+                  className='img-responsive' alt='Slack logo'/>
+                  <h5>Amazon RDS</h5>
+                  <p>
+                    Used to host our backend databse.
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a href='https://www.postgresql.org/'>
+              <div className='col-sm-3'>
+                <div className='tools-card'>
+                  <img src={require('../../assets/images/about/post.png')}
+                    className='img-responsive' alt='Slack logo'/>
+                  <h5>PostgresSQL</h5>
+                  <p>
+                    Database management system used for our backend database
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a href='https://www.sqlalchemy.org/'>
+              <div className='col-sm-3'>
+                <div className='tools-card'>
+                  <img src={require('../../assets/images/about/sqla.png')}
+                    className='img-responsive' alt='Slack logo'/>
+                  <h5>SQLAlchemy</h5>
+                  <p>
+                    Python SQL toolkit used to access our database
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a href='https://mochajs.org/'>
+              <div className='col-sm-3'>
+                <div className='tools-card'>
+                  <img src={require('../../assets/images/about/mochajs.png')}
+                    className='img-responsive' alt='Slack logo'/>
+                  <h5>Mocha</h5>
+                  <p>
+                    JavaScript test framework.
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a href='https://www.seleniumhq.org/'>
+              <div className='col-sm-3'>
+                <div className='tools-card'>
+                  <img src={require('../../assets/images/about/selenium.png')}
+                    className='img-responsive' alt='Slack logo'/>
+                  <h5>Selenium</h5>
+                  <p>
+                    Used to test our front-end routes.
+                  </p>
+                </div>
+              </div>
+            </a>
+            <a href='https://www.travis-ci.com/'>
+              <div className='col-sm-3'>
+                <div className='tools-card'>
+                  <img src={require('../../assets/images/about/travisci.png')}
+                    className='img-responsive' alt='Slack logo'/>
+                  <h5>Travis CI</h5>
+                  <p>
+                    Used for continuous integration of our project.
                   </p>
                 </div>
               </div>
