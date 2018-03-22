@@ -198,7 +198,7 @@ export default class About extends Component {
             </a>
           </p>
           <p>
-            <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds/356985218'>
+            <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds'>
               Travis CI
             </a>
           </p>
