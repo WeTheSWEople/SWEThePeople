@@ -25,3 +25,11 @@ jobs:
           - python router.py &
           - python app/tests.py
 
+    - stage: Postman
+      language: node_js
+      node_js: "8.9"
+      script:
+        - echo Running Postman Tests
+        - npm install newman
+        - node_modules/.bin/newman run app/Postman.json
+
