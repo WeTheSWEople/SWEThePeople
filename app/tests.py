@@ -195,9 +195,8 @@ class TestStringMethods(unittest.TestCase):
 
 	def test_18(self):
 		self.maxDiff = None
-		# insert the rep
+		# insert the party
 		PoliticalParty.query.filter(PoliticalParty.id == 100).delete()
-		#PartyColor.query.filter(PartyColor.party_id == 100).delete()
 		db.session.commit()
 		party = PoliticalParty(
 			id = 100,
@@ -228,11 +227,11 @@ class TestStringMethods(unittest.TestCase):
 		 "youtube": "randomchannel"
 		}
 
-		# query the rep
+		# query the party
 		response = convert(getResponse(PoliticalParty.query.filter(PoliticalParty.id == 100).first()))
 		self.assertEqual(expected, response)
 		
-		# delete the rep
+		# delete the party
 		PoliticalParty.query.filter(PoliticalParty.id == 100).delete()
 		db.session.commit()
 		print("\nTEST 18: Political Party successfully inserted, queried, and removed from the database")
@@ -240,7 +239,7 @@ class TestStringMethods(unittest.TestCase):
 
 	def test_19(self):
 		self.maxDiff = None
-		# insert the rep
+		# insert the party color
 		PartyColor.query.filter(PartyColor.id == 100).delete()
 		db.session.commit()
 		party_color = PartyColor(
@@ -258,18 +257,18 @@ class TestStringMethods(unittest.TestCase):
 	      "party_id": 1
 		}
 
-		# query the rep
+		# query the party color
 		response = convert(getResponse(PartyColor.query.filter(PartyColor.id == 100).first()))
 		self.assertEqual(expected, response)
 		
-		# delete the rep
+		# delete the party color
 		PartyColor.query.filter(PartyColor.id == 100).delete()
 		db.session.commit()
 		print("\nTEST 19: Party Color successfully inserted, queried, and removed from the database")
 
 	def test_20(self):
 		self.maxDiff = None
-		# insert the rep
+		# insert the state
 		State.query.filter(State.usps_abbreviation == "XY").delete()
 		db.session.commit()
 		state = State(
@@ -288,17 +287,71 @@ class TestStringMethods(unittest.TestCase):
 	      "districts" : []
 		}
 
-		# query the rep
+		# query the state
 		response = convert(getResponse(State.query.filter(State.usps_abbreviation == "XY").first()))
 		self.assertEqual(expected, response)
 		
-		# delete the rep
+		# delete the state
 		State.query.filter(State.usps_abbreviation == "XY").delete()
 		db.session.commit()
 		print("\nTEST 20: State successfully inserted, queried, and removed from the database")
 
-# class TestDatabase(unittest.TestCase):
-	
+	def test_21(self):
+		self.maxDiff = None
+		# insert the district
+		District.query.filter(District.alpha_num == "TX-100").delete()
+		db.session.commit()
+		district = District(
+			alpha_num = "TX" + '-' + str(100),
+			state = "TX",
+			id = "100",
+			representative_id = "G000552",
+			population = 12345,
+			median_age = 70.5,
+			median_age_male = 70.5,
+			median_age_female = 70.5,
+			population_male = 12345,
+			population_white = 12345,
+			population_black_or_african_american = 12345,
+			population_american_indian_and_alaska_native = 12345,
+			population_asian = 12345,
+			population_native_hawaiian_and_other_pacific_islander = 12345,
+			population_some_other_race = 12345,
+			population_two_or_more_races = 12345
+		)
+		
+		db.session.add(district)
+		db.session.commit()
+
+		expected = {
+		  "alpha_num": "TX-100", 
+		  "id": "100", 
+		  "median_age": 70.5, 
+		  "median_age_female": 70.5, 
+		  "median_age_male": 70.5, 
+		  "population": 12345, 
+		  "population_american_indian_and_alaska_native": 12345, 
+		  "population_asian": 12345, 
+		  "population_black_or_african_american": 12345, 
+		  "population_male": 12345, 
+		  "population_native_hawaiian_and_other_pacific_islander": 12345, 
+		  "population_some_other_race": 12345, 
+		  "population_two_or_more_races": 12345, 
+		  "population_white": 12345, 
+		  "representative_id": "G000552", 
+		  "state": "TX"
+		}
+
+		# query the district
+		response = convert(getResponse(District.query.filter(District.alpha_num == "TX-100").first()))
+		self.assertEqual(expected, response)
+		
+		# delete the district
+		District.query.filter(District.alpha_num == "TX-100").delete()
+		db.session.commit()
+		print("\nTEST 21: District successfully inserted, queried, and removed from the database")
+
+		
 
 if __name__ == '__main__':
 	print("\n\n\n##########\tBEGINNING BACKEND UNIT TESTS\t##########\n")
