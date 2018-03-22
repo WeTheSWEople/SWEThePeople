@@ -29,6 +29,6 @@ jobs:
 	  language: node_js
 	  node_js: "8.9"
 	  script:
-		- echo Running Postman tests
+		- echo Running Postman Tests
 		- npm install newman
-		- node_modules/.bin/newman run app/SWEthePeople.postman_collection
+		- node_modules/.bin/newman run app/Postman.json
