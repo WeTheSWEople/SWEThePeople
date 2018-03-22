@@ -79,34 +79,37 @@ export default class About extends Component {
       })
 
       this.setState({totalCommits: totalCommits, totalTests: totalTests})
-      // let eof = false
-      // let page = 1
-      // loop doesn't work for some reason
-      // while(!eof){
-      let options = {method: 'GET',
-        url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues' +
-          '?state=all&per_page=100&page=' + String(1),
-        qs: {state: 'all'}
+      var eof = false;
+      var page = 1;
+      var JSON_total_length = 0;
+      while(!eof) {
+        var options = { method: 'GET',
+        url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all&per_page=100&page=' + String(page),
+        qs: { state: 'all' },
+        };
+        page++;
+        //hardcoded value because I don't know how to force this loop to be asynchronous
+        if (page == 5) {
+          break;
+        }
+
+        request(options, function (error, response, body) {
+          if (error) {
+            eof = true;
+            this.setState({error: true, ready: true})
+          }
+          let issueJSON = JSON.parse(body)
+          for (let i = 0; i < issueJSON.length; i++) {
+            sweMembers[String(issueJSON[i]['user']['login'])][2] += 1
+            if (issueJSON[i]['number'] == 1) {
+              eof = true;
+            }
+          }
+         JSON_total_length += issueJSON.length;
+          this.setState({swe_member_data: sweMembers,
+            total_issues: JSON_total_length})
+        }.bind(this))
       }
-
-      request(options, function (error, response, body) {
-        if (error) {
-          this.setState({error: true, ready: true})
-        }
-        let issueJSON = JSON.parse(body)
-        for (let i = 0; i < issueJSON.length; i++) {
-          sweMembers[String(issueJSON[i]['user']['login'])][2] += 1
-        }
-
-        // if (issueJSON[issueJSON.length - 1]['number'] === 1) {
-        //   eof = true
-        // }
-
-        // page += 1
-        this.setState({swe_member_data: sweMembers,
-          total_issues: issueJSON.length})
-      }.bind(this))
-      // }
 
       this.setState({ready: true})
     }.bind(this))
