@@ -62,6 +62,15 @@ const rep = {
   "youtube": "RobertAderholt"
 };
 
+const party = {
+  "Democratic": {
+    "path": "democratic_party",
+    "name": "Democratic Party",
+    "chair": "Tom Perez",
+    "num_reps": "50",
+  }
+};
+
 describe('Splash Page Component', () => {
   it('renders header', () => {
     const wrapper = shallow(<Splash />)
@@ -130,7 +139,12 @@ describe('StateInstance Component', () => {
 describe('PoliticalParty Component', () => {
   const politicalpartyInstance = shallow(<PoliticalParty />)
 
-  it('displays grid of political parties', () => {
+  it('displays nothing, because ready state is false', () => {
     expect(politicalpartyInstance.find('div.parties-container').children()).to.have.length(0)
+  })
+
+  it('displays one party, because ready state is true', () => {
+    politicalpartyInstance.setState({ready: true, parties: party})
+    expect(politicalpartyInstance.find('div.parties-container').children()).to.have.length(1)
   })
 })
