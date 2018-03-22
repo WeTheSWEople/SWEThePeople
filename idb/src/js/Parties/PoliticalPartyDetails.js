@@ -152,8 +152,8 @@ export default class PoliticalPartyDetails extends Component {
               <img src={
                 require('../../assets/images/districts/' +
                 districts[key].alpha_num + '.png')}
-                width='250px' height='150px' marginLeft='25px'
-                alt='District Map'/>
+                alt='District Map'
+                className='img-responsive district-img'/>
             </div>
           </div>
         </Link>

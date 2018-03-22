@@ -36,9 +36,8 @@ export default class About extends Component {
       sweMembers['MTirtowidjojo'] = ['Michael Tirtowidjojo', 0, 0, 0,
         'Michael is a third-year CS student who trains in Taekwondo and ' +
         'enjoys reading World War II stories.', 'Michael.png',
-
-        'Parties front-end and back-end', 'Mojo Jojo']
-      sweMembers['copperstick6'] = ['William Han', 0, 0, 25,
+        'Parties front-end and chief of chief naming', 'Mojo Jojo']
+      sweMembers['copperstick6'] = ['William Han', 0, 0, 44,
         'William is a sophomore CS student who enjoys the subtle art of ' +
         'memes and hackathons.', 'William.jpg',
         'Districts front-end and backend-unit tests ' +
