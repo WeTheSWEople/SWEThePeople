@@ -30,99 +30,101 @@ def convert(data):
         return data
 
 class TestStringMethods(unittest.TestCase):
-	# def test1(self):
-	# 	response = requests.request("GET", url)
-	# 	self.assertEqual(response.ok, True)
-	# 	print("TEST 1: Site is up: Status code response is OK")
+	def test1(self):
+		print("**** API Backend Tests ****")
+		response = requests.request("GET", url)
+		self.assertEqual(response.ok, True)
+		print("\nTEST 1: Site is up: Status code response is OK")
 
-	# def test2(self):
-	# 	response = requests.request("GET", api_url)
-	# 	self.assertEqual(response.ok, True)
-	# 	print("\nTEST 2: API is up: Status code response is OK")
+	def test2(self):
+		response = requests.request("GET", api_url)
+		self.assertEqual(response.ok, True)
+		print("\nTEST 2: API is up: Status code response is OK")
 
-	# def test3(self):
-	# 	response = requests.request("GET", api_url + "representative/")
-	# 	self.assertEqual(response.ok, True)
-	# 	print("\nTEST 3: API is up: Representative response is OK")
+	def test3(self):
+		response = requests.request("GET", api_url + "representative/")
+		self.assertEqual(response.ok, True)
+		print("\nTEST 3: API is up: Representative response is OK")
 
-	# def test4(self):
-	# 	response = requests.request("GET", api_url + "representative/A000374")
-	# 	self.assertEqual(response.ok, True)
-	# 	print("\nTEST 4: API is up: Bioguide Representative response OK")
+	def test4(self):
+		response = requests.request("GET", api_url + "representative/A000374")
+		self.assertEqual(response.ok, True)
+		print("\nTEST 4: API is up: Bioguide Representative response OK")
 
-	# def test5(self):
-	# 	response = requests.request("GET", api_url + "representative/page/1")
-	# 	self.assertEqual(response.ok, True)
-	# 	print("\nTEST 5: API is up: Representative Pagination response OK")
+	def test5(self):
+		response = requests.request("GET", api_url + "representative/page/1")
+		self.assertEqual(response.ok, True)
+		print("\nTEST 5: API is up: Representative Pagination response OK")
 
-	# def test6(self):
-	# 	response = requests.request("GET", api_url + "representative/")
-	# 	result = response.json()
-	# 	with app.app_context():
-	# 		self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
-	# 	print("\nTEST 6: API is up: Representative data consistent with DB data. Response OK")
+	def test6(self):
+		response = requests.request("GET", api_url + "representative/")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
+		print("\nTEST 6: API is up: Representative data consistent with DB data. Response OK")
 
-	# def test7(self):
-	# 	response = requests.request("GET", api_url + "representative/A000374")
-	# 	result = response.json()
-	# 	with app.app_context():
-	# 		self.assertEqual(result, getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
-	# 	print("\nTEST 7: API is up: Representative Bioguide data consistent with DB data. Response OK")
+	def test7(self):
+		response = requests.request("GET", api_url + "representative/A000374")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
+		print("\nTEST 7: API is up: Representative Bioguide data consistent with DB data. Response OK")
 
-	# def test8(self):
-	# 	response = requests.request("GET", api_url + "representative/page/1")
-	# 	result = response.json()
-	# 	with app.app_context():
-	# 		self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(25).limit(25).all()])
-	# 	print("\nTEST 8: API is up: Representative Pagination consistent with DB data. Response OK")
+	def test8(self):
+		response = requests.request("GET", api_url + "representative/page/1")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(25).limit(25).all()])
+		print("\nTEST 8: API is up: Representative Pagination consistent with DB data. Response OK")
 
-	# def test9(self):
-	# 	response = requests.request("GET", live_url)
-	# 	self.assertEqual(response.ok, True)
-	# 	print("\nTEST 9: Live Site is up: Status code response is OK")
+	def test9(self):
+		response = requests.request("GET", live_url)
+		self.assertEqual(response.ok, True)
+		print("\nTEST 9: Live Site is up: Status code response is OK")
 
-	# def test_10(self):
-	# 	response = requests.request("GET", live_api_url)
-	# 	self.assertEqual(response.ok, True)
-	# 	print("\nTEST 10: Live API is up: Status code response is OK")
+	def test_10(self):
+		response = requests.request("GET", live_api_url)
+		self.assertEqual(response.ok, True)
+		print("\nTEST 10: Live API is up: Status code response is OK")
 
-	# def test_11(self):
-	# 	response = requests.request("GET", live_api_url + "representative/")
-	# 	self.assertEqual(response.ok, True)
-	# 	print("\nTEST 11: Live API is up: Representative response is OK")
+	def test_11(self):
+		response = requests.request("GET", live_api_url + "representative/")
+		self.assertEqual(response.ok, True)
+		print("\nTEST 11: Live API is up: Representative response is OK")
 
-	# def test_12(self):
-	# 	response = requests.request("GET", live_api_url + "representative/A000374")
-	# 	self.assertEqual(response.ok, True)
-	# 	print("\nTEST 12: Live API is up: Bioguide Representative response OK")
+	def test_12(self):
+		response = requests.request("GET", live_api_url + "representative/A000374")
+		self.assertEqual(response.ok, True)
+		print("\nTEST 12: Live API is up: Bioguide Representative response OK")
 
-	# def test_13(self):
-	# 	response = requests.request("GET", live_api_url + "representative/page/1")
-	# 	self.assertEqual(response.ok, True)
-	# 	print("\nTEST 13: Live API is up: Representative Pagination response OK")
+	def test_13(self):
+		response = requests.request("GET", live_api_url + "representative/page/1")
+		self.assertEqual(response.ok, True)
+		print("\nTEST 13: Live API is up: Representative Pagination response OK")
 
-	# def test_14(self):
-	# 	response = requests.request("GET", live_api_url + "representative/")
-	# 	result = response.json()
-	# 	with app.app_context():
-	# 		self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
-	# 	print("\nTEST 14: Live API is up: Representative data consistent with DB data. Response OK")
+	def test_14(self):
+		response = requests.request("GET", live_api_url + "representative/")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
+		print("\nTEST 14: Live API is up: Representative data consistent with DB data. Response OK")
 
-	# def test_15(self):
-	# 	response = requests.request("GET", live_api_url + "representative/A000374")
-	# 	result = response.json()
-	# 	with app.app_context():
-	# 		self.assertEqual(result, getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
-	# 	print("\nTEST 15: Live API is up: Representative Bioguide data consistent with DB data. Response OK")
+	def test_15(self):
+		response = requests.request("GET", live_api_url + "representative/A000374")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
+		print("\nTEST 15: Live API is up: Representative Bioguide data consistent with DB data. Response OK")
 
-	# def test_16(self):
-	# 	response = requests.request("GET", live_api_url + "representative/page/1")
-	# 	result = response.json()
-	# 	with app.app_context():
-	# 		self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(25).limit(25).all()])
-	# 	print("\nTEST 16: Live API is up: Representative Pagination consistent with DB data. Response OK")
+	def test_16(self):
+		response = requests.request("GET", live_api_url + "representative/page/1")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(25).limit(25).all()])
+		print("\nTEST 16: Live API is up: Representative Pagination consistent with DB data. Response OK")
 
 	def test_17(self):
+		print("\n**** Database Backend Tests ****")
 		self.maxDiff = None
 		# insert the rep
 		Representative.query.filter(Representative.bioguide == "ABC123").delete()
@@ -189,7 +191,7 @@ class TestStringMethods(unittest.TestCase):
 		Representative.query.filter(Representative.bioguide == "ABC123").delete()
 		Bill.query.filter(Bill.number == "A.B.2018").delete()
 		db.session.commit()
-		print("\nTEST 17: Representative successfull inserted, queried, and removed from the database")
+		print("\nTEST 17: Representative successfully inserted, queried, and removed from the database")
 
 	def test_18(self):
 		self.maxDiff = None
@@ -228,13 +230,72 @@ class TestStringMethods(unittest.TestCase):
 
 		# query the rep
 		response = convert(getResponse(PoliticalParty.query.filter(PoliticalParty.id == 100).first()))
-		# autoincremented primary key
 		self.assertEqual(expected, response)
 		
 		# delete the rep
 		PoliticalParty.query.filter(PoliticalParty.id == 100).delete()
 		db.session.commit()
-		print("\nTEST 18: Political Party successfull inserted, queried, and removed from the database")
+		print("\nTEST 18: Political Party successfully inserted, queried, and removed from the database")
+
+
+	def test_19(self):
+		self.maxDiff = None
+		# insert the rep
+		PartyColor.query.filter(PartyColor.id == 100).delete()
+		db.session.commit()
+		party_color = PartyColor(
+			id = 100,
+            party_id = 1,
+            color = "Orange"
+			)
+		
+		db.session.add(party_color)
+		db.session.commit()
+
+		expected = {
+		  "color": "Orange", 
+	      "id": 100, 
+	      "party_id": 1
+		}
+
+		# query the rep
+		response = convert(getResponse(PartyColor.query.filter(PartyColor.id == 100).first()))
+		self.assertEqual(expected, response)
+		
+		# delete the rep
+		PartyColor.query.filter(PartyColor.id == 100).delete()
+		db.session.commit()
+		print("\nTEST 19: Party Color successfully inserted, queried, and removed from the database")
+
+	def test_20(self):
+		self.maxDiff = None
+		# insert the rep
+		State.query.filter(State.usps_abbreviation == "XY").delete()
+		db.session.commit()
+		state = State(
+			usps_abbreviation = "XY",
+	        number = 55,
+	        name = "New State"
+		)
+		
+		db.session.add(state)
+		db.session.commit()
+
+		expected = {
+		  "usps_abbreviation": "XY",
+	      "number": 55,
+	      "name": "New State",
+	      "districts" : []
+		}
+
+		# query the rep
+		response = convert(getResponse(State.query.filter(State.usps_abbreviation == "XY").first()))
+		self.assertEqual(expected, response)
+		
+		# delete the rep
+		State.query.filter(State.usps_abbreviation == "XY").delete()
+		db.session.commit()
+		print("\nTEST 20: State successfully inserted, queried, and removed from the database")
 
 # class TestDatabase(unittest.TestCase):
 	
