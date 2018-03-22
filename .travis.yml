@@ -6,7 +6,7 @@ jobs:
       script:
         - echo Running Frontend Tests
         - npm install --prefix idb
-        - npm run test --prefix idb
+        - npm run test --prefix idb &
 
     - stage : Backend
       language: python
