@@ -388,13 +388,13 @@ export default class About extends Component {
                     className='img-responsive' alt='ProPublica logo'/>
                   <h3>ProPublica</h3>
                   <p>
-                    Used to get information about all of U.S. representatives,
-                    their party, and corresponding districts.
+                    Used to get information about all of the recent bills sponsored by each
+                    representatives and their current status.
                   </p>
                   <p>
                      <b> How it was scraped:</b> <br/> We got the API Key from the propublica website. 
-                     And we used the key to scrape the data about U.S. representatives. We
-                     received the data in a json format and converted that into a Representative model
+                     And we used the key to scrape the data about recent Bills. We
+                     received the data in a json format and converted that into our Bills model
                     and uploaded it to the PostgresSQL database. All of this is done by a scraper script.
                   </p>
                 </div>
@@ -407,13 +407,13 @@ export default class About extends Component {
                     className='img-responsive' alt='GovTrack logo'/>
                   <h3>GovTrack</h3>
                   <p>
-                    Used to get information about recent bills sponsored by each
-                    representatives and their current status.
+                    Used to get information about all of the U.S. representatives,
+                    their party, and corresponding districts.
                   </p>
-                  <b> How it was scraped:</b> <br/> We used GovTrack to scrape the data about recent Bills. 
+                  <b> How it was scraped:</b> <br/> We used GovTrack to scrape the data about House Representatives. 
                       We did not have to get an API key for this. We received all the data in a json format
-                      and extracted the information about recent Bills. The information then was converted 
-                      into our Bills model and uploaded to the PostgresSQL database. All of this is done by a 
+                      and extracted the information about the representatives. The information then was converted 
+                      into our Representatives model and uploaded to the PostgresSQL database. All of this is done by a 
                       scraper script.
                 </div>
               </div>
