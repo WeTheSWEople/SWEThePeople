@@ -141,3 +141,32 @@ idb/test/tests.js
 ```
 python test/guitests.py
 ```
+
+
+### Backend tests
+```
+pip install -r app/requirements.txt
+```
+
+```
+pip install -r requirements.txt
+```
+
+```
+python app/main.py &
+```
+
+```
+python router.py &
+```
+
+```
+python app/tests.py
+```
+
+
+
+
+
+
+
