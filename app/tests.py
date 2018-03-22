@@ -117,13 +117,77 @@ class TestStringMethods(unittest.TestCase):
 		print("\nTEST 15: Live API is up: Representative Bioguide data consistent with DB data. Response OK")
 
 	def test_16(self):
-		response = requests.request("GET", live_api_url + "representative/page/1")
+		response = requests.request("GET", live_api_url + "party/democratic_party")
 		result = response.json()
 		with app.app_context():
-			self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(25).limit(25).all()])
-		print("\nTEST 16: Live API is up: Representative Pagination consistent with DB data. Response OK")
+			self.assertEqual(result, getResponse(PoliticalParty.query.filter(PoliticalParty.id == 1).first()))
+		print("\nTEST 16: Live API is up: Political Party data consistent with DB data. Response OK")
 
 	def test_17(self):
+		response = requests.request("GET", live_api_url + "state/AL")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, getResponse(State.query.filter(State.usps_abbreviation == "AL").first()))
+		print("\nTEST 17: Live API is up: State data consistent with DB data. Response OK")
+
+	def test_18(self):
+		self.maxDiff = None
+		response = requests.request("GET", live_api_url + "district/AL")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, [getResponse(district) for district in District.query.filter(District.state == "AL").all()])
+		print("\nTEST 18: Live API is up: District and state data consistent with DB data. Response OK")
+
+	def test_19(self):
+		response = requests.request("GET", live_api_url + "district/AL/1")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, getResponse(District.query.filter(District.state == "AL").filter(District.id == "1").first()))
+		print("\nTEST 19: Live API is up: Specific District data consistent with DB data. Response OK")
+
+	def test_20(self):
+		response = requests.request("GET", live_api_url + "representative/A0003745")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 20: Representative Endpoint: Bad bioguide parameter returns correct error response")
+
+	def test_21(self):
+		response = requests.request("GET", live_api_url + "party/bennys_party_for_heroin")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 21: Party Endpoint: Bad party id parameter returns correct error response")
+
+	def test_22(self):
+		response = requests.request("GET", live_api_url + "state/XY")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 21: State Endpoint: Bad state abbreviation parameter returns correct error response")
+
+	def test_23(self):
+		response = requests.request("GET", live_api_url + "district/XY")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 22: District Endpoint: Bad state abbreviation parameter returns correct error response")
+
+	def test_24(self):
+		response = requests.request("GET", live_api_url + "district/AL/100")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 24: District Endpoint: Bad district id parameter returns correct error response")
+
+	def test_25(self):
+		response = requests.request("GET", live_api_url + "district/XY/100")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 25: District Endpoint: Bad state abbreviation and district id and parameters returns correct error response")
+
+	def test_26(self):
 		print("\n**** Database Backend Tests ****")
 		self.maxDiff = None
 		# insert the rep
@@ -191,9 +255,9 @@ class TestStringMethods(unittest.TestCase):
 		Representative.query.filter(Representative.bioguide == "ABC123").delete()
 		Bill.query.filter(Bill.number == "A.B.2018").delete()
 		db.session.commit()
-		print("\nTEST 17: Representative successfully inserted, queried, and removed from the database")
+		print("\nTEST 26: Representative successfully inserted, queried, and removed from the database")
 
-	def test_18(self):
+	def test_27(self):
 		self.maxDiff = None
 		# insert the party
 		PoliticalParty.query.filter(PoliticalParty.id == 100).delete()
@@ -234,10 +298,10 @@ class TestStringMethods(unittest.TestCase):
 		# delete the party
 		PoliticalParty.query.filter(PoliticalParty.id == 100).delete()
 		db.session.commit()
-		print("\nTEST 18: Political Party successfully inserted, queried, and removed from the database")
+		print("\nTEST 27: Political Party successfully inserted, queried, and removed from the database")
 
 
-	def test_19(self):
+	def test_28(self):
 		self.maxDiff = None
 		# insert the party color
 		PartyColor.query.filter(PartyColor.id == 100).delete()
@@ -264,9 +328,9 @@ class TestStringMethods(unittest.TestCase):
 		# delete the party color
 		PartyColor.query.filter(PartyColor.id == 100).delete()
 		db.session.commit()
-		print("\nTEST 19: Party Color successfully inserted, queried, and removed from the database")
+		print("\nTEST 28: Party Color successfully inserted, queried, and removed from the database")
 
-	def test_20(self):
+	def test_29(self):
 		self.maxDiff = None
 		# insert the state
 		State.query.filter(State.usps_abbreviation == "XY").delete()
@@ -294,9 +358,9 @@ class TestStringMethods(unittest.TestCase):
 		# delete the state
 		State.query.filter(State.usps_abbreviation == "XY").delete()
 		db.session.commit()
-		print("\nTEST 20: State successfully inserted, queried, and removed from the database")
+		print("\nTEST 29: State successfully inserted, queried, and removed from the database")
 
-	def test_21(self):
+	def test_30(self):
 		self.maxDiff = None
 		# insert the district
 		District.query.filter(District.alpha_num == "TX-100").delete()
@@ -349,9 +413,10 @@ class TestStringMethods(unittest.TestCase):
 		# delete the district
 		District.query.filter(District.alpha_num == "TX-100").delete()
 		db.session.commit()
-		print("\nTEST 21: District successfully inserted, queried, and removed from the database")
+		print("\nTEST 30: District successfully inserted, queried, and removed from the database")
 
-		
+
+
 
 if __name__ == '__main__':
 	print("\n\n\n##########\tBEGINNING BACKEND UNIT TESTS\t##########\n")
