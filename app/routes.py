@@ -31,7 +31,7 @@ def representative(bioguide):
 def representatives_by_page(num):
 	num = int(num)
 	if num < 0:
-		response = jsonify({"Error": "Data Not Found."})
+		response = jsonify({"Error": "Item Not Found."})
 		response.status_code = 404
 		return response
 	offset = num * 25
@@ -81,7 +81,7 @@ def districts_by_id(abbrev, id):
     #return get_single_item(District, District.state, abbrev)
     data = District.query.filter(District.state == abbrev).filter(District.id == id).first()
     if not data:
-        return error("Item not found for id " + abbrev + " and" + id)
+        return error("Item not found for id " + abbrev + " and " + id)
     return jsonify(get_response(data))
 
 @error_route.app_errorhandler(404)

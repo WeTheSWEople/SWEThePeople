@@ -15,7 +15,7 @@ def error(message):
 def get_all_items(model, orderid, modelname):
 	data = model.query.order_by(orderid).limit(500).all()
 	if not data:
-		return error("Data not found for " + modelname + "model")
+		return error("Item not found for " + modelname + "model")
 	return jsonify([get_response(rep) for rep in data])
 
 def get_single_item(model, model_id, parameter):
