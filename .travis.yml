@@ -1,27 +1,34 @@
 jobs:
   include:
-    - stage: Frontend
-      language: node_js
-      node_js: "8.9"
-      script:
-        - echo Running Frontend Tests
-        - npm install --prefix idb
-        - npm run test --prefix idb &
+	- stage: Frontend
+	  language: node_js
+	  node_js: "8.9"
+	  script:
+		- echo Running Frontend Tests
+		- npm install --prefix idb
+		- npm run test --prefix idb &
 
-    - stage : Backend
-      language: python
-      python: "2.7"
-      before_install:
-          - cat .travis.yml
-          - pip install --upgrade pip
-          - pip --version
-      install:
-          - pip install -r app/requirements.txt
-          - pip install -r requirements.txt
+	- stage : Backend
+	  language: python
+	  python: "2.7"
+	  before_install:
+		  - cat .travis.yml
+		  - pip install --upgrade pip
+		  - pip --version
+	  install:
+		  - pip install -r app/requirements.txt
+		  - pip install -r requirements.txt
 
-      script:
-          - echo Running Backend Tests
-          - python app/main.py &
-          - python router.py &
-          - python app/tests.py
+	  script:
+		  - echo Running Backend Tests
+		  - python app/main.py &
+		  - python router.py &
+		  - python app/tests.py
 
+	- stage: Postman
+	  language: node_js
+	  node_js: "8.9"
+	  script:
+		- echo Running Postman tests
+		- npm install newman
+		- node_modules/.bin/newman run app/SWEthePeople.postman_collection
