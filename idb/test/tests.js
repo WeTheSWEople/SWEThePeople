@@ -17,6 +17,7 @@ import Representatives from '../src/js/Representatives/Representatives.js';
 import StateInstance from '../src/js/Districts/StateInstance.js';
 import PoliticalParty from '../src/js/Parties/PoliticalParty.js';
 import PoliticalPartyDetails from '../src/js/Parties/PoliticalPartyDetails.js';
+import NotFound from '../src/js/NotFound.js';
 
 const rep = {
   "bills": [
@@ -60,6 +61,15 @@ const rep = {
   "url": "https://aderholt.house.gov",
   "votes_with_party_pct": 96.62,
   "youtube": "RobertAderholt"
+};
+
+const party = {
+  "Democratic": {
+    "path": "democratic_party",
+    "name": "Democratic Party",
+    "chair": "Tom Perez",
+    "num_reps": "50",
+  }
 };
 
 describe('Splash Page Component', () => {
@@ -130,7 +140,16 @@ describe('StateInstance Component', () => {
 describe('PoliticalParty Component', () => {
   const politicalpartyInstance = shallow(<PoliticalParty />)
 
-  it('displays grid of political parties', () => {
+  it('displays nothing, because ready state is false', () => {
     expect(politicalpartyInstance.find('div.parties-container').children()).to.have.length(0)
+  })
+})
+
+describe('NotFound Component', () => {
+  const notfoundInstance = shallow(<NotFound />)
+
+  it('displays a 404 page', () => {
+    expect(notfoundInstance.find('h3').text()).to.equal("404 page not found")
+    expect(notfoundInstance.find('p').text()).to.equal("We are sorry but the page you are looking for does not exist.")
   })
 })
