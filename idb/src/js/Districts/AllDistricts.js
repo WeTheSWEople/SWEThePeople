@@ -18,6 +18,14 @@ const styles = {
     width: '80%',
     height: '100%',
     overflowY: 'auto'
+  },
+  center:{
+    display: 'flex',
+    flexWrap: 'wrap',
+    paddingTop: '25%',
+    paddingLeft: '50px',
+    paddingRight: '50px',
+    justifyContent: 'space-around'
   }
 }
 

@@ -28,15 +28,15 @@ export default class RepresentativeInstance extends Component {
             <img
               src={'https://theunitedstates.io/images/congress/225x275/' +
               this.props.rep.bioguide + '.jpg'}
-              alt={this.props.rep.firstName} class='rep_img' onError={(e)=>{e.target.src=require('../../assets/images/reps/default.png')}}
+              alt={this.props.rep.firstName} className='rep_img' onError={(e)=>{e.target.src=require('../../assets/images/reps/default.png')}}
             />
             <div class='rep_info'>
-              <h3 class='title'>
+              <h3 className='title'>
                 {this.props.rep.firstname +
                 ' ' + this.props.rep.lastname}
               </h3>
-              <h4 class='party'>{this.props.party_name}</h4>
-              <h4 class='district'><i>
+              <h4 className='party'>{this.props.party_name}</h4>
+              <h4 className='district'><i>
                 {this.props.rep.state + ' - ' + this.props.rep.district}
               </i></h4>
             </div>

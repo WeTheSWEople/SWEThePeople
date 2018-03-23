@@ -20,7 +20,7 @@ const styles = {
   center:{
     display: 'flex',
     flexWrap: 'wrap',
-    paddingTop: '50%',
+    paddingTop: '20%',
     paddingLeft: '50px',
     paddingRight: '50px',
     justifyContent: 'space-around'
@@ -157,13 +157,14 @@ export default class Districts extends Component {
         `${district.id}`}>
         <div className={'district-card'}>
               <h3><b>{district.alpha_num}</b></h3>
+              <h5><b>Population: </b>{district.population}</h5>
+              <h5><b>Median Age: </b>{district.median_age}</h5>
               <img src={
                 require('../../assets/images/districts/' +
                 district.alpha_num + '.png')}
               width='250px' height='150px' marginLeft='25px' alt='District Map'
+              className='img-responsive district-img'
               />
-              <h5><b>Population: </b>{district.population}</h5>
-              <h5><b>Meidan Age: </b>{district.median_age}</h5>
               <br></br>
             </div>
           </Link>

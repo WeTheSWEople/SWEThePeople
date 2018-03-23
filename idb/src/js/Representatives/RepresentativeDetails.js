@@ -19,7 +19,7 @@ const styles = {
   center:{
     display: 'flex',
     flexWrap: 'wrap',
-    paddingTop: '50%',
+    paddingTop: '25%',
     paddingLeft: '50px',
     paddingRight: '50px',
     justifyContent: 'space-around'
@@ -86,7 +86,42 @@ export default class RepresentativeDetails extends Component {
           </div>)
     }
     else{
-      console.log("BYE2")
+
+      let twitter = ''
+      if (this.state.rep_data['twitter'] !== null) {
+        twitter = <div><Timeline
+              dataSource={{
+                sourceType: 'profile',
+                screenName: this.state.rep_data['twitter']
+              }}
+              options={{
+                username: this.state.rep_data['twitter'],
+                height: '400',
+                width: '400'
+              }}
+          /></div>
+      }
+      else{
+        twitter = <div style={{paddingTop:'20vh'}}> <h3>No Twitter Handle</h3></div>
+      }
+
+      let youtube = ''
+      if(this.state.rep_data['youtube'] !== null){
+        <iframe
+              width='600'
+              height='340'
+              title = '{this.state.firstname} {this.state.lastname} YouTube Channel'
+              src={'http://www.youtube.com/embed?max-results=1&controls=0' +
+                '&showinfo=0&rel=0&listType=user_uploads&list=' +
+                this.state.rep_data['youtube']}
+              frameborder='10' allowfullscreen >
+        </iframe>
+      }
+      else{
+          youtube = <div> <h4>No Youtube Channel</h4></div>
+      }
+
+
       return (
       <div className='App'>
         <header className='Rep-Details-header'> </header>
@@ -135,17 +170,7 @@ export default class RepresentativeDetails extends Component {
             </font>
           </Col>
           <Col sm={12} md={4}>
-            <Timeline
-              dataSource={{
-                sourceType: 'profile',
-                screenName: this.state.rep_data['twitter']
-              }}
-              options={{
-                username: this.state.rep_data['twitter'],
-                height: '400',
-                width: '400'
-              }}
-            />
+            {twitter}
           </Col>
         </Row>
 
@@ -157,15 +182,7 @@ export default class RepresentativeDetails extends Component {
         <Row>
           <Col>
             <h3><b>YouTube Channel</b></h3>
-            <iframe
-              width='600'
-              height='340'
-              title = '{this.state.firstname} {this.state.lastname} YouTube Channel'
-              src={'http://www.youtube.com/embed?max-results=1&controls=0' +
-                '&showinfo=0&rel=0&listType=user_uploads&list=' +
-                this.state.rep_data['youtube']}
-              frameborder='10' allowfullscreen >
-            </iframe>
+            {youtube}
           </Col>
           <Col>
             <h3><b>Office Location</b></h3>

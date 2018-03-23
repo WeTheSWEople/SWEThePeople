@@ -4,13 +4,13 @@ import {Link} from 'react-router-dom'
 import {GridList} from 'material-ui/GridList'
 import {Timeline} from 'react-twitter-widgets'
 import RepresentativeInstance from '../Representatives/RepresentativeInstance'
-/* eslint-enable no-unused-vars */
-
+import {RingLoader} from 'react-spinners'
 import axios from 'axios'
-
+/* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
 import '../../assets/css/PoliticalPartyDetails.css'
 import '../../assets/css/District.css'
+
 
 export default class PoliticalPartyDetails extends Component {
   constructor (props) {
@@ -73,9 +73,15 @@ export default class PoliticalPartyDetails extends Component {
 
   render () {
     if (!(this.state.districtFlag && this.state.partyFlag)) {
-      return (
-        <div className='App party-content container'></div>
-      )
+        return(
+        <div style={{display: 'flex',
+                    flexWrap: 'wrap',
+                    paddingTop: '25%',
+                    paddingLeft: '50px',
+                    paddingRight: '50px',
+                    justifyContent: 'space-around'}}>
+        <RingLoader color={'#123abc'} loading={true} />
+         </div>)
     }
 
     const oldDis = this.state.districts
@@ -135,22 +141,22 @@ export default class PoliticalPartyDetails extends Component {
       </div>
 
       let districtsGrid = Object.keys(districts).map((key) =>
-        <div className='col-sm-3 party-rep-card'>
-          <div className='district-card '>
-            <h3><b>{districts[key].alpha_num}</b></h3>
-            <h5><b>Population: </b>{districts[key].population}</h5>
-            <br />
-            <h4><b>Representative:</b></h4>
-            <h4>{this.state.reps[key].firstname + ' ' +
-              this.state.reps[key].lastname}</h4>
-            <img src={'https://theunitedstates.io/images/congress/225x275/' +
-              key + '.jpg'}
-            alt={districts[key].name}
-            className='rep_img' />
-            <br />
-            <br />
+        
+        <Link to={`/districts/${districts[key].state}/${districts[key].id}`}>
+          <div className='col-sm-3 party-rep-card'>
+            <div className='district-card '>
+              <h3><b>{districts[key].alpha_num}</b></h3>
+              <h5><b>Population: </b>{districts[key].population}</h5>
+              <h5><b>Median Age: </b>{districts[key].median_age}</h5>
+              <br />
+              <img src={
+                require('../../assets/images/districts/' +
+                districts[key].alpha_num + '.png')}
+                alt='District Map'
+                className='img-responsive district-img'/>
+            </div>
           </div>
-        </div>
+        </Link>
       )
 
       districtsInfo = <div className='districts-grid'>

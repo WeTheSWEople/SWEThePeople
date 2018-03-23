@@ -1,45 +1,45 @@
-# WE THE SWEEPLE  
-Iteration 1.0 of our flask/react stack.  
+# WE THE SWEEPLE
+Iteration 1.0 of our flask/react stack.
 
 ## Local Setup
 Clone the repo
 Go to the idb folder `cd idb`
 
 ### Frontend Setup
-Setup the frontend     
+Setup the frontend
 
-Go to the frontend folder  
+Go to the frontend folder
 `cd idb`
 
-Run `npm install` to install dependencies   
+Run `npm install` to install dependencies
 
-Run `npm run build` to bundle and build the static assets for the flask server  
+Run `npm run build` to bundle and build the static assets for the flask server
 
 Proceed to server setup below
 
 ### Server Setup
-To run a virtual environment:  
+To run a virtual environment:
 Create virtual environment
 ```
 virtualenv venv
-```    
+```
 
-Activate the virtual environment  
+Activate the virtual environment
 ```
 source venv/bin/activate
-```  
+```
 
 Install requirements in the virtual environment
 ```
 pip install -r requirements.txt
 ```
 
-Setup PYTHONPATH  
+Setup PYTHONPATH
 ```
 export PYTHONPATH=.:$PYTHONPATH
 ```
 
-Run the server  
+Run the server
 ```
 python router.py
 ```
@@ -48,7 +48,7 @@ Visit 127.0.0.1:5000 for the starter site
 
 
 ## EC2 Setup:
-Make sure you are in your ec2 instance. You can access it via ssh.  
+Make sure you are in your ec2 instance. You can access it via ssh.
 
 1. Clone the repo
 2. Make sure the build folder is up to date with the most recent builds
@@ -61,7 +61,7 @@ Make sure you are in your ec2 instance. You can access it via ssh.
 
 ## Collecting Data:
 How to run the scraper files:
-1. cd into the app folder 
+1. cd into the app folder
 
 ```
 cd app/
@@ -86,14 +86,14 @@ pip install -r requirements.txt
 export PYTHONPATH=.:$PYTHONPATH
 ```
 
-3. Go to the main directory and run the scraper file: 
+3. Go to the main directory and run the scraper file:
 
 ```
 python districts_scraper.py
 ```
 
 ## Running the API Locally:
-1. cd into the app folder 
+1. cd into the app folder
 2. Create virtual environment (same step as above)
 3. Run the main python file
 
@@ -106,7 +106,7 @@ python main.py
 
 **Download PgAdmin 4 from here:** https://www.pgadmin.org/download/
 
-**Create a new server** 
+**Create a new server**
 - Right click on servers -> create server
 - Fill in the name as "swethepeople"
 - Fill in the "host name/address" under the connection tab (look for host address in slack)
@@ -114,11 +114,59 @@ python main.py
 
 **Connect to the server**
 - Right click and connect to the server
-- Fill in the username and password 
+- Fill in the username and password
 
 **Accesing Tables**
 - Expand the server tab
 - Go to Databases -> Swethepeople -> Schemas -> Tables
+
+## Testing
+
+### Frontend unit tests
+1. cd into the idb folder
+2. run the test script
+```
+npm test
+```
+- Test script is at
+```
+idb/test/tests.js
+```
+
+### Frontend acceptance tests (Selenium)
+1. Have firefox installed, along with geckodriver
+2. cd into idb folder
+3. create virtual environment in idb folder (same as above)
+3. run the test script
+```
+python test/guitests.py
+```
+
+
+### Backend tests
+```
+pip install -r app/requirements.txt
+```
+
+```
+pip install -r requirements.txt
+```
+
+```
+python app/main.py &
+```
+
+```
+python router.py &
+```
+
+```
+python app/tests.py
+```
+
+
+
+
 
 
 

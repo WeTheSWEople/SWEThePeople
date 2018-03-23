@@ -32,7 +32,7 @@ const styles = {
   center:{
     display: 'flex',
     flexWrap: 'wrap',
-    paddingTop: '50%',
+    paddingTop: '20%',
     paddingLeft: '50px',
     paddingRight: '50px',
     justifyContent: 'space-around'
