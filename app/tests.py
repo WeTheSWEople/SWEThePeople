@@ -7,8 +7,6 @@ app = create_app()
 app.app_context().push()
 from models import *
 from flask import jsonify
-url = "http://localhost:5000/"
-api_url = "http://0.0.0.0:4040/"
 live_url = "http://swethepeople.me/"
 live_api_url = "http://api.swethepeople.me/"
 
@@ -31,238 +29,116 @@ def convert(data):
 
 class TestStringMethods(unittest.TestCase):
 	def test1(self):
-		print("**** API Backend Tests ****")
-		try:
-			response = requests.request("GET", url)
-			self.assertEqual(response.ok, True)
-		except ConnectionError:
-			pass
-		print("\nTEST 1: Site is up: Status code response is OK")
+		response = requests.request("GET", live_url)
+		self.assertEqual(response.ok, True)
+		print("\nTEST 1: Live Site is up: Status code response is OK")
 
 	def test2(self):
-		try:
-			response = requests.request("GET", api_url)
-			self.assertEqual(response.ok, True)
-		except ConnectionError:
-			pass
-		print("\nTEST 2: API is up: Status code response is OK")
+		response = requests.request("GET", live_api_url)
+		self.assertEqual(response.ok, True)
+		print("\nTEST 2: Live API is up: Status code response is OK")
 
 	def test3(self):
-		try:
-			response = requests.request("GET", api_url + "representative/")
-			self.assertEqual(response.ok, True)
-		except ConnectionError:
-			pass
-		print("\nTEST 3: API is up: Representative response is OK")
+		response = requests.request("GET", live_api_url + "representative/")
+		self.assertEqual(response.ok, True)
+		print("\nTEST 3: Live API is up: Representative response is OK")
 
 	def test4(self):
-		try:
-			response = requests.request("GET", api_url + "representative/A000374")
-			self.assertEqual(response.ok, True)
-		except ConnectionError:
-			pass
-		print("\nTEST 4: API is up: Bioguide Representative response OK")
+		response = requests.request("GET", live_api_url + "representative/A000374")
+		self.assertEqual(response.ok, True)
+		print("\nTEST 4: Live API is up: Bioguide Representative response OK")
 
 	def test5(self):
-		try:
-			response = requests.request("GET", api_url + "representative/page/1")
-			self.assertEqual(response.ok, True)
-		except ConnectionError:
-			pass
-		print("\nTEST 5: API is up: Representative Pagination response OK")
+		response = requests.request("GET", live_api_url + "representative/page/1")
+		self.assertEqual(response.ok, True)
+		print("\nTEST 5: Live API is up: Representative Pagination response OK")
 
 	def test6(self):
-		try:
-			response = requests.request("GET", api_url + "representative/")
-			result = response.json()
-			with app.app_context():
-				self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
-		except ConnectionError:
-			pass
-		print("\nTEST 6: API is up: Representative data consistent with DB data. Response OK")
+		response = requests.request("GET", live_api_url + "representative/")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
+		print("\nTEST 6: Live API is up: Representative data consistent with DB data. Response OK")
 
 	def test7(self):
-		try:
-			response = requests.request("GET", api_url + "representative/A000374")
-			result = response.json()
-			with app.app_context():
-				self.assertEqual(result, getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
-		except ConnectionError:
-			pass
-		print("\nTEST 7: API is up: Representative Bioguide data consistent with DB data. Response OK")
+		response = requests.request("GET", live_api_url + "representative/A000374")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
+		print("\nTEST 7: Live API is up: Representative Bioguide data consistent with DB data. Response OK")
 
 	def test8(self):
-		try:
-			response = requests.request("GET", api_url + "representative/page/1")
-			result = response.json()
-			with app.app_context():
-				self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(25).limit(25).all()])
-		except ConnectionError:
-			pass
-		print("\nTEST 8: API is up: Representative Pagination consistent with DB data. Response OK")
+		response = requests.request("GET", live_api_url + "party/democratic_party")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, getResponse(PoliticalParty.query.filter(PoliticalParty.id == 1).first()))
+		print("\nTEST 8: Live API is up: Political Party data consistent with DB data. Response OK")
 
 	def test9(self):
-		try:
-			response = requests.request("GET", live_url)
-			self.assertEqual(response.ok, True)
-		except ConnectionError:
-			pass
-		print("\nTEST 9: Live Site is up: Status code response is OK")
+		response = requests.request("GET", live_api_url + "state/AL")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, getResponse(State.query.filter(State.usps_abbreviation == "AL").first()))
+		print("\nTEST 9: Live API is up: State data consistent with DB data. Response OK")
 
 	def test_10(self):
-		try:
-			response = requests.request("GET", live_api_url)
-			self.assertEqual(response.ok, True)
-		except ConnectionError:
-			pass
-		print("\nTEST 10: Live API is up: Status code response is OK")
+		self.maxDiff = None
+		response = requests.request("GET", live_api_url + "district/AL")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, [getResponse(district) for district in District.query.filter(District.state == "AL").all()])
+		print("\nTEST 10: Live API is up: District and state data consistent with DB data. Response OK")
 
 	def test_11(self):
-		try:
-			response = requests.request("GET", live_api_url + "representative/")
-			self.assertEqual(response.ok, True)
-		except ConnectionError:
-			pass
-		print("\nTEST 11: Live API is up: Representative response is OK")
+		response = requests.request("GET", live_api_url + "district/AL/1")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, getResponse(District.query.filter(District.state == "AL").filter(District.id == "1").first()))
+		print("\nTEST 11: Live API is up: Specific District data consistent with DB data. Response OK")
 
 	def test_12(self):
-		try:
-			response = requests.request("GET", live_api_url + "representative/A000374")
-			self.assertEqual(response.ok, True)
-		except ConnectionError:
-			pass
-		print("\nTEST 12: Live API is up: Bioguide Representative response OK")
+		response = requests.request("GET", live_api_url + "representative/A0003745")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 12: Representative Endpoint: Bad bioguide parameter returns correct error response")
 
 	def test_13(self):
-		try:
-			response = requests.request("GET", live_api_url + "representative/page/1")
-			self.assertEqual(response.ok, True)
-		except ConnectionError:
-			pass
-		print("\nTEST 13: Live API is up: Representative Pagination response OK")
+		response = requests.request("GET", live_api_url + "party/bennys_party_for_heroin")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 13: Party Endpoint: Bad party id parameter returns correct error response")
 
 	def test_14(self):
-		try:
-			response = requests.request("GET", live_api_url + "representative/")
-			result = response.json()
-			with app.app_context():
-				self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
-		except ConnectionError:
-			pass
-		print("\nTEST 14: Live API is up: Representative data consistent with DB data. Response OK")
+		response = requests.request("GET", live_api_url + "state/XY")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 14: State Endpoint: Bad state abbreviation parameter returns correct error response")
 
 	def test_15(self):
-		try:
-			response = requests.request("GET", live_api_url + "representative/A000374")
-			result = response.json()
-			with app.app_context():
-				self.assertEqual(result, getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
-		except ConnectionError:
-			pass
-		print("\nTEST 15: Live API is up: Representative Bioguide data consistent with DB data. Response OK")
+		response = requests.request("GET", live_api_url + "district/XY")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 15: District Endpoint: Bad state abbreviation parameter returns correct error response")
 
 	def test_16(self):
-		try:
-			response = requests.request("GET", live_api_url + "party/democratic_party")
-			result = response.json()
-			with app.app_context():
-				self.assertEqual(result, getResponse(PoliticalParty.query.filter(PoliticalParty.id == 1).first()))
-		except ConnectionError:
-			pass
-		print("\nTEST 16: Live API is up: Political Party data consistent with DB data. Response OK")
+		response = requests.request("GET", live_api_url + "district/AL/100")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 16: District Endpoint: Bad district id parameter returns correct error response")
 
 	def test_17(self):
-		try:
-			response = requests.request("GET", live_api_url + "state/AL")
-			result = response.json()
-			with app.app_context():
-				self.assertEqual(result, getResponse(State.query.filter(State.usps_abbreviation == "AL").first()))
-		except ConnectionError:
-			pass
-		print("\nTEST 17: Live API is up: State data consistent with DB data. Response OK")
+		response = requests.request("GET", live_api_url + "district/XY/100")
+		error_msg = convert(response.json())
+		self.assertTrue('Error' in error_msg)
+		self.assertEqual(response.status_code, 404)
+		print("\nTEST 17: District Endpoint: Bad state abbreviation and district id and parameters returns correct error response")
 
 	def test_18(self):
-		try:
-			self.maxDiff = None
-			response = requests.request("GET", live_api_url + "district/AL")
-			result = response.json()
-			with app.app_context():
-				self.assertEqual(result, [getResponse(district) for district in District.query.filter(District.state == "AL").all()])
-		except ConnectionError:
-			pass
-		print("\nTEST 18: Live API is up: District and state data consistent with DB data. Response OK")
-
-	def test_19(self):
-		try:
-			response = requests.request("GET", live_api_url + "district/AL/1")
-			result = response.json()
-			with app.app_context():
-				self.assertEqual(result, getResponse(District.query.filter(District.state == "AL").filter(District.id == "1").first()))
-		except ConnectionError:
-			pass
-		print("\nTEST 19: Live API is up: Specific District data consistent with DB data. Response OK")
-
-	def test_20(self):
-		try:
-			response = requests.request("GET", live_api_url + "representative/A0003745")
-			error_msg = convert(response.json())
-			self.assertTrue('Error' in error_msg)
-			self.assertEqual(response.status_code, 404)
-		except ConnectionError:
-			pass
-		print("\nTEST 20: Representative Endpoint: Bad bioguide parameter returns correct error response")
-
-	def test_21(self):
-		try:
-			response = requests.request("GET", live_api_url + "party/bennys_party_for_heroin")
-			error_msg = convert(response.json())
-			self.assertTrue('Error' in error_msg)
-			self.assertEqual(response.status_code, 404)
-		except ConnectionError:
-			pass
-		print("\nTEST 21: Party Endpoint: Bad party id parameter returns correct error response")
-
-	def test_22(self):
-		try:
-			response = requests.request("GET", live_api_url + "state/XY")
-			error_msg = convert(response.json())
-			self.assertTrue('Error' in error_msg)
-			self.assertEqual(response.status_code, 404)
-		except ConnectionError:
-			pass
-		print("\nTEST 21: State Endpoint: Bad state abbreviation parameter returns correct error response")
-
-	def test_23(self):
-		try:
-			response = requests.request("GET", live_api_url + "district/XY")
-			error_msg = convert(response.json())
-			self.assertTrue('Error' in error_msg)
-			self.assertEqual(response.status_code, 404)
-		except ConnectionError:
-			pass
-		print("\nTEST 22: District Endpoint: Bad state abbreviation parameter returns correct error response")
-
-	def test_24(self):
-		try:
-			response = requests.request("GET", live_api_url + "district/AL/100")
-			error_msg = convert(response.json())
-			self.assertTrue('Error' in error_msg)
-			self.assertEqual(response.status_code, 404)
-		except ConnectionError:
-			pass
-		print("\nTEST 24: District Endpoint: Bad district id parameter returns correct error response")
-
-	def test_25(self):
-		try:
-			response = requests.request("GET", live_api_url + "district/XY/100")
-			error_msg = convert(response.json())
-			self.assertTrue('Error' in error_msg)
-			self.assertEqual(response.status_code, 404)
-		except ConnectionError:
-			pass
-		print("\nTEST 25: District Endpoint: Bad state abbreviation and district id and parameters returns correct error response")
-
-	def test_26(self):
 		print("\n**** Database Backend Tests ****")
 		self.maxDiff = None
 		# insert the rep
@@ -330,9 +206,9 @@ class TestStringMethods(unittest.TestCase):
 		Representative.query.filter(Representative.bioguide == "ABC123").delete()
 		Bill.query.filter(Bill.number == "A.B.2018").delete()
 		db.session.commit()
-		print("\nTEST 26: Representative successfully inserted, queried, and removed from the database")
+		print("\nTEST 18: Representative successfully inserted, queried, and removed from the database")
 
-	def test_27(self):
+	def test_19(self):
 		self.maxDiff = None
 		# insert the party
 		PoliticalParty.query.filter(PoliticalParty.id == 100).delete()
@@ -373,10 +249,10 @@ class TestStringMethods(unittest.TestCase):
 		# delete the party
 		PoliticalParty.query.filter(PoliticalParty.id == 100).delete()
 		db.session.commit()
-		print("\nTEST 27: Political Party successfully inserted, queried, and removed from the database")
+		print("\nTEST 19: Political Party successfully inserted, queried, and removed from the database")
 
 
-	def test_28(self):
+	def test_20(self):
 		self.maxDiff = None
 		# insert the party color
 		PartyColor.query.filter(PartyColor.id == 100).delete()
@@ -403,9 +279,9 @@ class TestStringMethods(unittest.TestCase):
 		# delete the party color
 		PartyColor.query.filter(PartyColor.id == 100).delete()
 		db.session.commit()
-		print("\nTEST 28: Party Color successfully inserted, queried, and removed from the database")
+		print("\nTEST 20: Party Color successfully inserted, queried, and removed from the database")
 
-	def test_29(self):
+	def test_21(self):
 		self.maxDiff = None
 		# insert the state
 		State.query.filter(State.usps_abbreviation == "XY").delete()
@@ -433,9 +309,9 @@ class TestStringMethods(unittest.TestCase):
 		# delete the state
 		State.query.filter(State.usps_abbreviation == "XY").delete()
 		db.session.commit()
-		print("\nTEST 29: State successfully inserted, queried, and removed from the database")
+		print("\nTEST 21: State successfully inserted, queried, and removed from the database")
 
-	def test_30(self):
+	def test_22(self):
 		self.maxDiff = None
 		# insert the district
 		District.query.filter(District.alpha_num == "TX-100").delete()
@@ -488,7 +364,7 @@ class TestStringMethods(unittest.TestCase):
 		# delete the district
 		District.query.filter(District.alpha_num == "TX-100").delete()
 		db.session.commit()
-		print("\nTEST 30: District successfully inserted, queried, and removed from the database")
+		print("\nTEST 22: District successfully inserted, queried, and removed from the database")
 
 
 
