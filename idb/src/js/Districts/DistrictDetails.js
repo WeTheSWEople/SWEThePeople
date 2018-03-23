@@ -62,7 +62,7 @@ export default class DistrictDetails extends Component {
       district_state: '',
       bioguide: ''
       //party_image: {},
-      
+
     }
   }
   componentWillMount () {
@@ -95,19 +95,19 @@ export default class DistrictDetails extends Component {
       if(response.data.population_native_hawaiian_and_other_pacific_islander !== null){
         result.push({'x': 'NHAOPI', 'y': response.data.population_native_hawaiian_and_other_pacific_islander})
       }
-      
+
       if(response.data.population_some_other_race !== null){
         result.push({'x': 'SOR', 'y': response.data.population_some_other_race})
       }
-      
+
       if(response.data.population_two_or_more_races !== null){
         result.push({'x': 'TR', 'y': response.data.population_two_or_more_races})
       }
-      
+
       if(response.data.population_white !== null){
         result.push({'x': 'W', 'y': response.data.population_white})
       }
-      
+
       let legendTemp = []
       legendTemp.push({key: 'TR', value: 'Two or More Races'})
       legendTemp.push({key: 'W', value: 'White'})
@@ -192,7 +192,7 @@ export default class DistrictDetails extends Component {
     // data for the bar graph
     // let oneRace = stateDistrict[state][number]['race']['one-race']
     // let result = []
-    
+
     // for (let key in oneRace) {
     //   if (key !== 'total') {
     //     // format the labels
@@ -218,10 +218,10 @@ export default class DistrictDetails extends Component {
     // temp['y'] = stateDistrict[state][number]['race']['two-or-more-races']
     // result.push(temp)
 
-  
-    
 
-    
+
+
+
   }
 
   render () {
@@ -241,8 +241,8 @@ export default class DistrictDetails extends Component {
     }
     else{
 
-      console.log("Hawaiian")
-      console.log(this.state.races_pop)
+      // console.log("Hawaiian")
+      // console.log(this.state.races_pop)
       let repsGrid = <div class='col-sm-6'>
         <RepresentativeInstance rep={this.state.rep_data} party_name = {this.state.party_data[this.state.rep_data.party_id][0]}  />
       </div>

@@ -41,7 +41,7 @@ export default class AllDistricts extends Component {
   componentWillMount () {
     axios.get(`http://api.swethepeople.me/state/`)
     .then((response)=>{
-      console.log(response.data)
+      // console.log(response.data)
       this.setState({
         state_name : response.data
       })
@@ -57,7 +57,7 @@ export default class AllDistricts extends Component {
   render () {
     if (this.state.state_name === null){
       return(
-      <div style={styles.center}>
+      <div style={styles.center} className="loading">
       <RingLoader color={'#123abc'} loading={true} />
        </div>)
     }
@@ -81,7 +81,7 @@ export default class AllDistricts extends Component {
         <div className="App">
           <br />
           <br />
-          <div style={styles.root}>
+          <div style={styles.root} className="alldistricts-grid">
             <GridList>
               {allStates}
             </GridList>
