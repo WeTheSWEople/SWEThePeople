@@ -164,7 +164,15 @@ python router.py &
 python app/tests.py
 ```
 
+### Postman tests
 
+```
+npm install -g newman
+```
+
+```
+newman run Postman.json
+```
 
 
 
