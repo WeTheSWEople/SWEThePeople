@@ -107,7 +107,7 @@ export default class RepresentativeDetails extends Component {
 
       let youtube = ''
       if(this.state.rep_data['youtube'] !== null){
-        <iframe
+        youtube = <iframe
               width='600'
               height='340'
               title = '{this.state.firstname} {this.state.lastname} YouTube Channel'

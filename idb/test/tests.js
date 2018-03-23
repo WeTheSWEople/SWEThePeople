@@ -18,6 +18,7 @@ import StateInstance from '../src/js/Districts/StateInstance.js';
 import PoliticalParty from '../src/js/Parties/PoliticalParty.js';
 import PoliticalPartyDetails from '../src/js/Parties/PoliticalPartyDetails.js';
 import NotFound from '../src/js/NotFound.js';
+import AllDistrict from '../src/js/Districts/AllDistricts.js';
 
 const rep = {
   "bills": [
@@ -71,6 +72,18 @@ const party = {
     "num_reps": "50",
   }
 };
+
+const params = {
+  "districtid": "AL01"
+};
+
+const California = {
+  "name": "California",
+  "usps_abbreviation": "CA",
+  "districts": [
+    1, 2, 3
+  ],
+}
 
 describe('Splash Page Component', () => {
   it('renders header', () => {
@@ -151,5 +164,23 @@ describe('NotFound Component', () => {
   it('displays a 404 page', () => {
     expect(notfoundInstance.find('h3').text()).to.equal("404 page not found")
     expect(notfoundInstance.find('p').text()).to.equal("We are sorry but the page you are looking for does not exist.")
+  })
+})
+
+describe('AllDistrict Component', () => {
+  const alldistrictInstance = shallow(<AllDistrict />)
+
+  it('loading state', () => {
+    expect(alldistrictInstance.find('.loading').children()).to.have.length(1)
+  })
+
+  it('invalid state number, data not found', () => {
+    alldistrictInstance.setState({state_name: -1})
+    expect(alldistrictInstance.find('p').text()).to.equal(" Data Not Found ")
+  })
+
+  it('valid state names', () => {
+    alldistrictInstance.setState({state_name: [California]})
+    expect(alldistrictInstance.find('.alldistricts-grid').children()).to.have.length(1)
   })
 })
