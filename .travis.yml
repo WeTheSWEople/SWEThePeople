@@ -31,5 +31,5 @@ jobs:
       script:
         - echo Running Postman Tests
         - npm install newman
-        - node_modules/.bin/newman run app/Postman.json
+        - node_modules/.bin/newman run Postman.json
 
