@@ -1,1 +1,1 @@
-../idb/src/index.js
+src/index.js

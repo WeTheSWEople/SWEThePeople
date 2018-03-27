@@ -5,8 +5,8 @@ jobs:
       node_js: "8.9"
       script:
         - echo Running Frontend Tests
-        - npm install --prefix idb
-        - npm run test --prefix idb &
+        - npm install --prefix frontend
+        - npm run test --prefix frontend &
 
     - stage : Backend
       language: python
@@ -16,14 +16,14 @@ jobs:
           - pip install --upgrade pip
           - pip --version
       install:
-          - pip install -r app/requirements.txt
+          - pip install -r backend/requirements.txt
           - pip install -r requirements.txt
 
       script:
           - echo Running Backend Tests
-          - python app/main.py &
+          - python backend/main.py &
           - python router.py &
-          - python app/tests.py
+          - python backend/tests.py
 
     - stage: Postman
       language: node_js
@@ -32,4 +32,3 @@ jobs:
         - echo Running Postman Tests
         - npm install newman
         - node_modules/.bin/newman run Postman.json
-
