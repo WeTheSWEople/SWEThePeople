@@ -11,11 +11,6 @@ import {RingLoader} from 'react-spinners'
 import '../../assets/css/App.css'
 import '../../assets/css/DistrictDetails.css'
 
-import stateDistrict from '../../assets/data/census_data.json'
-import districtRep from '../../assets/data/district_rep.json'
-import allReps from '../../assets/bioguide-endpoint.json'
-import states from '../../assets/data/state.json'
-
 const styles = {
   imgStyle: {
     width: '100%',
