@@ -1,1 +1,0 @@
-../idb/test/guitests.py
