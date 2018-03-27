@@ -6,8 +6,6 @@ import {Grid, Row, Col} from 'react-bootstrap'
 import '../../assets/css/App.css'
 import '../../assets/css/Bills.css'
 
-import allReps from '../../assets/bioguide-endpoint.json'
-
 export default class RepBills extends Component {
   constructor (props) {
     super(props)

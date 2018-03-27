@@ -29,7 +29,6 @@ const styles = {
   }
 }
 
-let stateJSON = require('../../assets/data/state.json')
 export default class AllDistricts extends Component {
   constructor (props) {
     super(props)

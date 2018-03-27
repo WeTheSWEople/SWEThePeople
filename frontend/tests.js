@@ -6,19 +6,19 @@ import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
 // Import necessary components for spec
-import Splash from '../src/js/Splash/Splash';
+import Splash from './src/js/Splash/Splash';
 import Slider from 'react-slick';
-import Navigation from '../src/js/Navigation/Navigation';
+import Navigation from './src/js/Navigation/Navigation';
 import { NavItem } from 'react-bootstrap';
-import RepresentativeDetails from '../src/js/Representatives/RepresentativeDetails.js';
-import RepresentativeInstance from '../src/js/Representatives/RepresentativeInstance.js';
-import allReps from '../src/assets/bioguide-endpoint.json';
-import Representatives from '../src/js/Representatives/Representatives.js';
-import StateInstance from '../src/js/Districts/StateInstance.js';
-import PoliticalParty from '../src/js/Parties/PoliticalParty.js';
-import PoliticalPartyDetails from '../src/js/Parties/PoliticalPartyDetails.js';
-import NotFound from '../src/js/NotFound.js';
-import AllDistrict from '../src/js/Districts/AllDistricts.js';
+import RepresentativeDetails from './src/js/Representatives/RepresentativeDetails.js';
+import RepresentativeInstance from './src/js/Representatives/RepresentativeInstance.js';
+import allReps from './src/assets/test/bioguide-endpoint.json';
+import Representatives from './src/js/Representatives/Representatives.js';
+import StateInstance from './src/js/Districts/StateInstance.js';
+import PoliticalParty from './src/js/Parties/PoliticalParty.js';
+import PoliticalPartyDetails from './src/js/Parties/PoliticalPartyDetails.js';
+import NotFound from './src/js/NotFound.js';
+import AllDistrict from './src/js/Districts/AllDistricts.js';
 
 const rep = {
   "bills": [
