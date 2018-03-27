@@ -275,7 +275,7 @@ export default class DistrictDetails extends Component {
           <header className='Rep-Details-header'> </header>
 
           <Row >
-            <h1><font size='8'><b>{states[this.state.district_state]} District
+            <h1><font size='8'><b>District
             {` `}
             {this.state.district_data.alpha_num}</b></font></h1>
             <br></br><br></br>
