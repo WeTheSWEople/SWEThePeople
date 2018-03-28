@@ -4,8 +4,8 @@ from flask_cors import CORS
 
 db = SQLAlchemy()
 
-config_file = 'config.json'
-def create_app(config_file='config.json'):
+config_file = 'config_dev.json'
+def create_app(config_file='config_dev.json'):
 	app = Flask(__name__, static_folder='static')
 	CORS(app)
 	app.config.from_json(config_file)
