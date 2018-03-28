@@ -50,17 +50,8 @@ export default class Representatives extends Component {
 			this.setState({reps:this.state.all_reps})
 		}
 		else{
-			let reduced_dict = {}
-			let reps_arr = []
-			let index = 0
-			for (var item in this.state.all_reps){
-				if (this.state.all_reps[item]["firstname"].toLowerCase().includes(event.target.value.toLowerCase()) || this.state.all_reps[item]["lastname"].toLowerCase().includes(event.target.value.toLowerCase())){
-					reduced_dict[index] = this.state.all_reps[item]
-					reps_arr.push(reduced_dict[index])
-					index++
-				}
-			}
-			this.setState({reps: reps_arr})
+			let filter_arr = this.state.all_reps.filter(item => item["firstname"].toLowerCase().includes(event.target.value.toLowerCase()) || item["lastname"].toLowerCase().includes(event.target.value.toLowerCase()))
+			this.setState({reps: filter_arr})
 		}
 	}
 
