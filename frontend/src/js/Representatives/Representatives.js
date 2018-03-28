@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
-
+import ReactPaginate from 'react-paginate'
 /* eslint-disable no-unused-vars */
 import RepresentativeInstance from './RepresentativeInstance'
 import '../../assets/css/App.css'
@@ -39,9 +39,12 @@ export default class Representatives extends Component {
 		  reps : null,
 		  all_reps: null,
 		  party_name : null,
-		  value: ""
+		  value: "",
+		  cur_page: 0,
+		  displayed_reps: null
 	  };
 	  this.handleChange = this.handleChange.bind(this)
+	  this.handlePageClick = this.handlePageClick.bind(this)
 	}
 
 	handleChange(event){
@@ -51,8 +54,12 @@ export default class Representatives extends Component {
 		}
 		else{
 			let filter_arr = this.state.all_reps.filter(item => item["firstname"].toLowerCase().includes(event.target.value.toLowerCase()) || item["lastname"].toLowerCase().includes(event.target.value.toLowerCase()))
-			this.setState({reps: filter_arr})
+			this.setState({reps: filter_arr, cur_page: filter_arr.length/25, displayed_reps: filter_arr.splice(0, filter_arr.length > 25 ? 25 : filter_arr.length)})
 		}
+	}
+	handlePageClick(data){
+		let cur_result = this.state.reps
+		this.setState({displayed_reps: cur_result.splice(data.selected*25, (data.selected+1)*25)})
 	}
 
 
@@ -63,7 +70,9 @@ export default class Representatives extends Component {
 	  .then((response)=>{
 		this.setState({
 		  reps:response.data,
-		  all_reps: response.data
+		  all_reps: response.data,
+		  cur_page: response.data.length/25,
+		  displayed_reps: response.data.slice(0,25)
 		})
 		// get the party names
 		return axios.get(`http://api.swethepeople.me/party?party_name=True`)
@@ -108,10 +117,21 @@ export default class Representatives extends Component {
 			  style={styles.gridList}
 			  className="gridlist-container"
 			>
-			  {this.state.reps.map((item) => (
+			  {this.state.displayed_reps.map((item) => (
 				<RepresentativeInstance key={item.bioguide} rep = {item} party_name = {this.state.party_name[item.party_id][0]} />
 			  ))}
 			</GridList>
+			<ReactPaginate previousLabel={"previous"}
+				nextLabel={"next"}
+				breakLabel={<a href="">...</a>}
+				breakClassName={"break-me"}
+				pageCount={this.state.cur_page}
+				marginPagesDisplayed={2}
+				pageRangeDisplayed={5}
+				onPageChange={this.handlePageClick}
+				containerClassName={"pagination"}
+				subContainerClassName={"pages pagination"}
+				activeClassName={"active"} />
 		  </div>
 		</div>
 	  )
