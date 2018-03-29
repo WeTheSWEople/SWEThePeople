@@ -32,6 +32,7 @@ for mem in members['results'][0]['members']:
 			district = str(mem['district']),
 			twitter = mem['twitter_account'],
 			youtube = mem['youtube_account'],
+			facebook = mem['facebook_account'],
 			office = mem['office'],
 			votes_with_party_pct = mem['votes_with_party_pct'],
 			url = mem['url'],

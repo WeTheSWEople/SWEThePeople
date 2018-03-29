@@ -63,13 +63,6 @@ export default class RepresentativeDetails extends Component {
             party_name : -1
       })
     })
-    
-
-    // // get the data - in the future call the api
-    // this.setState({bioguideid: this.props.match.params.bioguideid})
-    // this.setState({rep_data: allReps[this.props.match.params.bioguideid]})
-    // this.setState({name: this.state.rep_data['firstName'] +
-    //   ' ' + this.state.rep_data['lastName']})
   }
 
   render () {
@@ -110,7 +103,7 @@ export default class RepresentativeDetails extends Component {
         youtube = <iframe
               width='600'
               height='340'
-              title = '{this.state.firstname} {this.state.lastname} YouTube Channel'
+              title ='YouTube Channel'
               src={'http://www.youtube.com/embed?max-results=1&controls=0' +
                 '&showinfo=0&rel=0&listType=user_uploads&list=' +
                 this.state.rep_data['youtube']}
@@ -119,6 +112,26 @@ export default class RepresentativeDetails extends Component {
       }
       else{
           youtube = <div> <h4>No Youtube Channel</h4></div>
+      }
+
+      let facebook = '{this.state.firstname} {this.state.lastname} YouTube Channel'
+      if(this.state.rep_data['facebook'] !== null) {
+        facebook = <iframe
+          title='Facebook Page'
+          src={"https://www.facebook.com/plugins/page.php?" +
+            "href=https%3A%2F%2Fwww.facebook.com%2F" +
+            this.state.rep_data['facebook'] + "&tabs=timeline&width=340" +
+            "&height=500&small_header=false&adapt_container_width=true" +
+            "&hide_cover=false&show_facepile=true&appId"}
+          width="340"
+          height="500"
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true">
+        </iframe>
+      }
+      else {
+          facebook = <div> <h4>No Facebook Page</h4></div>
       }
 
 
@@ -137,7 +150,7 @@ export default class RepresentativeDetails extends Component {
                 <p style={{paddingTop: '10px'}}>
                   <font size='8'>
                     <b>
-                      {this.state.rep_data['firstname']} 
+                      {this.state.rep_data['firstname']}
                       {` `}
                       {this.state.rep_data['lastname']}
                     </b>
@@ -175,14 +188,18 @@ export default class RepresentativeDetails extends Component {
         </Row>
 
         <h3 class='bills-header'>Recent Bills Sponsored</h3>
-
         <Row style={{paddingLeft: '160px'}}>
           <RepBills data = {this.state.rep_data.bills} />
         </Row>
+
         <Row>
           <Col>
             <h3><b>YouTube Channel</b></h3>
             {youtube}
+          </Col>
+          <Col>
+            <h3><b>Facebook Page</b></h3>
+            {facebook}
           </Col>
           <Col>
             <h3><b>Office Location</b></h3>
@@ -191,7 +208,7 @@ export default class RepresentativeDetails extends Component {
               width='600'
               height='450'
               frameborder='0' style={{border: '0'}}
-              title = '{this.state.firstname} {this.state.lastname} Twitter Feed'
+              title = '{this.state.firstname} {this.state.lastname} Office Location'
               src={'https://www.google.com/maps/embed/v1/place?' +
               'key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY' +
               '&q=' + this.state.rep_data.office} allowfullscreen>
@@ -200,9 +217,9 @@ export default class RepresentativeDetails extends Component {
         </Row>
       </div>
     )
-      
+
     }
 
-    
+
   }
 }
