@@ -26,7 +26,8 @@ export default class Search extends Component {
       parties: null,
       districts: null,
       states: null,
-      party_names: null
+      party_names: null,
+      party_counts: null
     }
   }
 
@@ -40,12 +41,21 @@ export default class Search extends Component {
         names[party.id] = party.name
       }
 
+      let counts = {}
+      for (const rep of response.data.reps) {
+        if (!(rep.party_id in counts)) {
+          counts[rep.party_id] = 1
+        } else {
+          counts[rep.party_id]++
+        }
+      }
+
       this.setState({
         reps: response.data.reps,
         parties: response.data.parties,
         districts: response.data.districts,
         party_names: names,
-        states: null,
+        party_counts: counts
       })
     }).catch((error) => {
       this.setState({
@@ -53,7 +63,7 @@ export default class Search extends Component {
         parties: null,
         districts: null,
         party_names: null,
-        states: null,
+        party_counts: null
       })
     })
   }
@@ -80,7 +90,8 @@ export default class Search extends Component {
     }
 
     let partiesGrid = this.state.parties.map((party) => (
-      <PoliticalPartySingleInstance party={party} />
+      <PoliticalPartySingleInstance party={party}
+        num_reps={this.state.party_counts[party.id]}/>
     ))
 
     let repGrid = this.state.reps.map((rep) => (

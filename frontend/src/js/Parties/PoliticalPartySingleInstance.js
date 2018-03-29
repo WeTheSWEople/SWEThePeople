@@ -16,6 +16,11 @@ export default class PoliticalPartySingleInstance extends Component {
       }
     }
 
+    let num_reps = 0
+    if (this.props.num_reps) {
+      num_reps = this.props.num_reps
+    }
+
     return (
       <Link to={`/party/${this.props.party.path}`}>
         <div className='row party-index-card'>
@@ -35,9 +40,9 @@ export default class PoliticalPartySingleInstance extends Component {
                 <h3>{this.props.party.name}</h3>
                 <p>
                   <span style={styles.itemHeader}>
-                    Number of representatives:
+                    Number of representatives in this search:
                   </span>
-                  TODO FIX THIS
+                  {num_reps}
                 </p>
                 <p>
                   <span style={styles.itemHeader}>Party chair:</span>
