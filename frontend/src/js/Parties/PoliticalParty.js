@@ -30,7 +30,9 @@ export default class PoliticalParty extends Component {
 		all_parties: {}
 	  }
 	  this.handleChange = this.handleChange.bind(this)
+      this.handleSort = this.handleSort.bind(this)
 	}
+
 	handleChange(event){
 		this.setState({value: event.target.value})
 		if (event.target.value.length == 0){
@@ -49,6 +51,10 @@ export default class PoliticalParty extends Component {
 		}
 	}
 
+    handleSort(event) {
+      console.log(this.state.parties)
+    }
+
 	componentWillMount () {
 	  this.setState({ready: false})
 
@@ -59,7 +65,9 @@ export default class PoliticalParty extends Component {
 		} else {
 		  let allParties = JSON.parse(body)
 		  let partiesMap = {}
+          let partiesArr = []
 		  Object.keys(allParties).forEach(function (partyName) {
+            partiesArr.push({})
 			partiesMap[partyName] = {
 			  path: allParties[partyName]['path'],
 			  name: allParties[partyName]['name'],
@@ -84,6 +92,9 @@ export default class PoliticalParty extends Component {
 	  return (
 		<div style={divStyle} className="parties-container">
 		<center><input type="text" value={this.state.value} onChange={this.handleChange} /></center>
+        <center>
+          <button type="text" onClick={this.handleSort}>sort name asc</button>
+        </center>
 		  {parties}
 		</div>
 	  )

@@ -1,0 +1,29 @@
+.search-container {
+    padding-top: 70px;
+}
+
+.model-container {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+.model-container .model-name {
+    text-align: center;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #000;
+}
+
+.reps-grid {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.reps-grid img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
