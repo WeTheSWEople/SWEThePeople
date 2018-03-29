@@ -104,27 +104,48 @@ export default class Search extends Component {
       <DistrictInstance district={district} />
     ))
 
-    return (
-      <div className="search-container">
-        <div className="model-container">
+    let partiesDiv = <h3 className='model-name'>No Political Parties Found</h3>
+    if (this.state.parties.length > 0) {
+        partiesDiv = <div>
           <h3 className="model-name">Political Parties</h3>
           <div className="container party-container">
             {partiesGrid}
           </div>
         </div>
+    }
 
-        <div className="model-container">
-          <h3 className="model-name">Representatives</h3>
-          <GridList cellHeight={400} cols={4} className="reps-grid">
-            {repGrid}
-          </GridList>
+    let repsDiv = <h3 className='model-name'>No Representatives Found</h3>
+    if (this.state.reps.length > 0) {
+      repsDiv = <div>
+        <h3 className="model-name">Representatives</h3>
+        <GridList cellHeight={400} cols={4} className="reps-grid">
+          {repGrid}
+        </GridList>
+      </div>
+    }
+
+    let districtsDiv = <h3 className='model-name'>No Districts Found</h3>
+    if (this.state.districts.length > 0) {
+      districtsDiv = <div>
+        <h3 className="model-name">Districts</h3>
+        <div className='row'>
+          {districtGrid}
+        </div>
+      </div>
+    }
+
+    return (
+      <div className="search-container">
+        <div className='model-container'>
+          {partiesDiv}
         </div>
 
-        <div className="model-container">
-          <h3 className="model-name">Districts</h3>
-          <div className='row'>
-            {districtGrid}
-          </div>
+        <div className='model-container'>
+          {repsDiv}
+        </div>
+
+        <div className='model-container'>
+          {districtsDiv}
         </div>
       </div>
     )
