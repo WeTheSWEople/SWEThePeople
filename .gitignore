@@ -5,3 +5,5 @@ node_modules/
 apikeys.py
 app/*.pyc
 config*.json
+__pycache__/
+backend/*.pyc
