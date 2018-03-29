@@ -33,18 +33,25 @@ export default class Search extends Component {
     axios.get('http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
       'search/?query=' + query).then((response) => {
       console.log(response.data)
+
+      let names = {}
+      for (const party of response.data.parties) {
+        names[party.id] = party.name
+      }
+
       this.setState({
         reps: response.data.reps,
         parties: response.data.parties,
         districts: response.data.districts,
+        party_names: names,
         states: null,
       })
     }).catch((error) => {
-      console.log("error")
       this.setState({
         reps: null,
         parties: null,
         districts: null,
+        party_names: null,
         states: null,
       })
     })
@@ -61,8 +68,7 @@ export default class Search extends Component {
   }
 
   render() {
-    return (<div></div>)
-    if (this.state.reps === null || this.state.party_names === null) {
+    if (this.state.reps === null) {
       return (
         <div className="search-container">
           <center>
@@ -74,7 +80,7 @@ export default class Search extends Component {
 
     let repGrid = this.state.reps.map((rep) => (
       <RepresentativeInstance key={rep.bioguide} rep={rep}
-        party_name={this.state.party_names[rep.party_id][0]} />
+        party_name={this.state.party_names[rep.party_id]} />
     ))
 
     return (
@@ -92,10 +98,6 @@ export default class Search extends Component {
 
         <div className="model-container">
           <h3 className="model-name">Districts</h3>
-        </div>
-
-        <div className="model-container">
-          <h3 className="model-name">States</h3>
         </div>
       </div>
     )
