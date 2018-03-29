@@ -16,6 +16,12 @@
     border-bottom: 1px solid #000;
 }
 
+.party-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .reps-grid {
     width: 100%;
     height: 100%;

@@ -5,6 +5,7 @@ import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
 
 import RepresentativeInstance from './Representatives/RepresentativeInstance'
+import PoliticalPartySingleInstance from './Parties/PoliticalPartySingleInstance'
 import axios from 'axios'
 
 import '../assets/css/Search.css'
@@ -68,7 +69,7 @@ export default class Search extends Component {
   }
 
   render() {
-    if (this.state.reps === null) {
+    if (this.state.reps === null || this.state.parties === null) {
       return (
         <div className="search-container">
           <center>
@@ -77,6 +78,10 @@ export default class Search extends Component {
         </div>
       )
     }
+
+    let partiesGrid = this.state.parties.map((party) => (
+      <PoliticalPartySingleInstance party={party} />
+    ))
 
     let repGrid = this.state.reps.map((rep) => (
       <RepresentativeInstance key={rep.bioguide} rep={rep}
@@ -87,6 +92,9 @@ export default class Search extends Component {
       <div className="search-container">
         <div className="model-container">
           <h3 className="model-name">Political Parties</h3>
+          <div className="container party-container">
+            {partiesGrid}
+          </div>
         </div>
 
         <div className="model-container">
