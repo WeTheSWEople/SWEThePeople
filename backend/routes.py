@@ -133,6 +133,8 @@ def search():
                 "alpha_num": district.alpha_num,
                 "id": district.id,
                 "representative_id": district.representative_id,
+                "population": district.population,
+                "meidan_age": district.median_age,
                 "state": district.state
             }            
             if district_json not in districts_result:
@@ -165,6 +167,8 @@ def search():
                     "alpha_num": district.alpha_num,
                     "id": district.id,
                     "representative_id": district.representative_id,
+                    "population": district.population,
+                    "meidan_age": district.median_age,
                     "state": district.state
                 }            
                 if district_json not in districts_result:
@@ -178,6 +182,8 @@ def search():
                 "alpha_num": district.alpha_num,
                 "id": district.id,
                 "representative_id": district.representative_id,
+                "population": district.population,
+                "meidan_age": district.median_age,
                 "state": district.state
             }       
             districts_result.append(district_json)
@@ -223,6 +229,8 @@ def search():
                         "alpha_num": district.alpha_num,
                         "id": district.id,
                         "representative_id": district.representative_id,
+                        "population": district.population,
+                        "meidan_age": district.median_age,
                         "state": district.state
                     }       
                     districts_result.append(district_json)
