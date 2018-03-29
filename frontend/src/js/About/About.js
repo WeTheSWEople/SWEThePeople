@@ -88,10 +88,11 @@ export default class About extends Component {
         };
         page++;
         //hardcoded value because I don't know how to force this loop to be asynchronous
-        if (page == 5) {
+        if (page === 5) {
           break;
         }
 
+        // eslint-disable-next-line
         request(options, function (error, response, body) {
           if (error) {
             eof = true;
@@ -100,7 +101,7 @@ export default class About extends Component {
           let issueJSON = JSON.parse(body)
           for (let i = 0; i < issueJSON.length; i++) {
             sweMembers[String(issueJSON[i]['user']['login'])][2] += 1
-            if (issueJSON[i]['number'] == 1) {
+            if (issueJSON[i]['number'] === 1) {
               eof = true;
             }
           }
@@ -394,7 +395,7 @@ export default class About extends Component {
                     representatives and their current status.
                   </p>
                   <p>
-                     <b> How it was scraped:</b> <br/> We got the API Key from the propublica website. 
+                     <b> How it was scraped:</b> <br/> We got the API Key from the propublica website.
                      And we used the key to scrape the data about recent Bills. We
                      received the data in a json format and converted that into our Bills model
                     and uploaded it to the PostgresSQL database. All of this is done by a scraper script.
@@ -412,10 +413,10 @@ export default class About extends Component {
                     Used to get information about all of the U.S. representatives,
                     their party, and corresponding districts.
                   </p>
-                  <b> How it was scraped:</b> <br/> We used GovTrack to scrape the data about House Representatives. 
+                  <b> How it was scraped:</b> <br/> We used GovTrack to scrape the data about House Representatives.
                       We did not have to get an API key for this. We received all the data in a json format
-                      and extracted the information about the representatives. The information then was converted 
-                      into our Representatives model and uploaded to the PostgresSQL database. All of this is done by a 
+                      and extracted the information about the representatives. The information then was converted
+                      into our Representatives model and uploaded to the PostgresSQL database. All of this is done by a
                       scraper script.
                 </div>
               </div>
@@ -430,12 +431,12 @@ export default class About extends Component {
                     Used to get socioeconomics information based on either
                     states or districts from the census.
                   </p>
-                  <b> How it was scraped:</b> <br/> The district data scraper pulls information from the 
-                      United State Census Bureau’s 2016 American Community Survey by targeting a 
-                      specific list of thirteen data endpoints. For each district in each state, 
-                      we pulled data for each of the endpoints and  stored those data points for 
-                      the districts. After collecting and storing the data for a district locally, 
-                      the scraper converts the data into a District and State model and commits the 
+                  <b> How it was scraped:</b> <br/> The district data scraper pulls information from the
+                      United State Census Bureau’s 2016 American Community Survey by targeting a
+                      specific list of thirteen data endpoints. For each district in each state,
+                      we pulled data for each of the endpoints and  stored those data points for
+                      the districts. After collecting and storing the data for a district locally,
+                      the scraper converts the data into a District and State model and commits the
                       models to the database.
                 </div>
               </div>
@@ -450,7 +451,7 @@ export default class About extends Component {
                   <h3>TheUnitedStates.io</h3>
                   <p>
                     Used to get images of representatives based on their
-                    bioguide id.      
+                    bioguide id.
                   </p>
                   <b> How it was scraped:</b> <br/> We used the links to the images of representatives using their
                   bioguide id.
