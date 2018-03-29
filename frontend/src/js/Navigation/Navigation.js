@@ -2,6 +2,7 @@
 import React, {Component} from 'react'
 import {Navbar, Nav, NavItem, Button, FormGroup, FormControl} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
+import {Link} from 'react-router-dom'
 /* eslint-enable no-unused-vars */
 
 import header from '../../assets/images/header.png'
@@ -43,9 +44,7 @@ export default class Navigation extends Component {
                 <FormGroup>
                   <FormControl type="text" placeholder="Search" />
                 </FormGroup>{' '}
-                <LinkContainer to="/search">
-                  <Button type="submit">Submit</Button>
-                </LinkContainer>
+                <Link to="/search" > <Button>Submit</Button> </Link>
               </Navbar.Form>
             </Nav>
             </Navbar.Collapse>
