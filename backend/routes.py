@@ -214,8 +214,50 @@ def search():
 
                     if party_json not in parties_result:
                         parties_result.append(party_json)
-            else:
-                print(district.alpha_num)
+
+    states = State.query.search(search_query).all()
+    if states:
+        for state in states:
+            districts = District.query.filter(District.state == state.usps_abbreviation).all()
+            if districts:
+                for district in districts:
+                    district_json = {
+                        "alpha_num": district.alpha_num,
+                        "id": district.id,
+                        "representative_id": district.representative_id,
+                        "state": district.state
+                    }       
+                    districts_result.append(district_json)
+
+                    rep = Representative.query.filter(district.representative_id == Representative.bioguide).first()
+                    if rep:
+                        rep_json = get_response(rep)
+                        del rep_json['bills']
+                        if rep_json not in reps_result:
+                            reps_result.append(rep_json)
+
+
+                        party = PoliticalParty.query.with_entities(PoliticalParty.id, PoliticalParty.name, \
+                                PoliticalParty.chair, \
+                                PoliticalParty.formation_date, \
+                                PoliticalParty.office, \
+                                PoliticalParty.path)\
+                                .filter(PoliticalParty.id == rep.party_id).first()
+
+                                
+                        if party:
+                            party_json = {
+                                "id": party.id,
+                                "name": party.name,
+                                "path": party.path,
+                                "chair": party.chair,
+                                "formation_date": party.formation_date,
+                                "office": party.office,
+                                "path": party.path
+                            }  
+
+                            if party_json not in parties_result:
+                                parties_result.append(party_json)
 
     return jsonify({
         "reps": reps_result,
