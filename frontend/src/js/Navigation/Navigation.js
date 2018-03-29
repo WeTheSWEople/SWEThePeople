@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
-import {Navbar, Nav, NavItem} from 'react-bootstrap'
+import {Navbar, Nav, NavItem, Button, FormGroup, FormControl} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 /* eslint-enable no-unused-vars */
 
@@ -37,9 +37,19 @@ export default class Navigation extends Component {
               <LinkContainer to="/about">
                 <NavItem>About</NavItem>
               </LinkContainer>
-                        </Nav>
-                    </Navbar.Collapse>
-		        </Navbar>
+            </Nav>
+            <Nav pullRight>
+              <Navbar.Form>
+                <FormGroup>
+                  <FormControl type="text" placeholder="Search" />
+                </FormGroup>{' '}
+                <LinkContainer to="/search">
+                  <Button type="submit">Submit</Button>
+                </LinkContainer>
+              </Navbar.Form>
+            </Nav>
+            </Navbar.Collapse>
+		    </Navbar>
 	        </div>
 	);
   }
