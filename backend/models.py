@@ -75,11 +75,13 @@ class Bill(db.Model):
 		return '<Bills {}: {}>'.format(self.id, self.number)
 
 class State(db.Model):
+	query_class = Query
 	__tablename__ = 'state'
 	usps_abbreviation = db.Column(db.String(2), primary_key=True, nullable=False, index=True)
 	number = db.Column(db.Integer, nullable=False)
 	name = db.Column(db.String(255), unique=True, nullable=False)
 	districts = db.relationship('District', lazy=True)
+	search_vector = db.Column(TSVectorType('name'))
 
 	def format(self):
 	    return {
