@@ -107,8 +107,6 @@ def search():
             item = get_response(rep)
             del item['bills']
             reps_result.append(item)
-        #reps_result += [del get_response(rep) ['bills'] for rep in reps]
-        # add the corresponding party stuff
         for rep in reps:
             print(rep.party_id)
             party = PoliticalParty.query.with_entities(PoliticalParty.id, PoliticalParty.name, \

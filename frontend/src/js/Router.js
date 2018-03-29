@@ -31,7 +31,7 @@ export default class DefaultRouter extends Component {
           component={DistrictsDetails}/>
         <Route path="/parties" component={PoliticalParty} />
         <Route path="/party/:path" component={PoliticalPartyDetails} />
-        <Route path="/search" component={Search} />
+        <Route path="/search/:term" component={Search} />
         <Route component = {NotFound} status={404}/>
       </Switch>
     )

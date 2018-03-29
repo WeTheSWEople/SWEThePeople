@@ -13,44 +13,55 @@ export default class Search extends Component {
   constructor(props) {
     super(props)
 
+    this.queryAPI = this.queryAPI.bind(this)
+
+    console.log(this.props.match.params)
+    console.log(this.props.match.params.term)
+
     this.state = {
       ready: false,
       error: false,
       reps: null,
+      parties: null,
+      districts: null,
+      states: null,
       party_names: null
     }
   }
 
-  componentWillMount() {
-    this.setState({ready: false})
+  queryAPI(query) {
+    axios.get('http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
+      'search/?query=' + query).then((response) => {
+      console.log(response.data)
+      this.setState({
+        reps: response.data.reps,
+        parties: response.data.parties,
+        districts: response.data.districts,
+        states: null,
+      })
+    }).catch((error) => {
+      console.log("error")
+      this.setState({
+        reps: null,
+        parties: null,
+        districts: null,
+        states: null,
+      })
+    })
+  }
 
-    this.setState({ready: true})
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.term !== nextProps.match.params.term) {
+      this.queryAPI(nextProps.match.params.term)
+    }
   }
 
   componentDidMount() {
-    axios.get(`http://api.swethepeople.me/representative/`)
-    .then((response)=>{
-      this.setState({
-        reps: response.data,
-      })
-
-      // get the party names
-      return axios.get(`http://api.swethepeople.me/party?party_name=True`)
-    })
-    .then((response)=>{
-      this.setState({
-        party_names: response.data
-      })
-    })
-    .catch((error)=>{
-      this.setState({
-          reps: null,
-          party_names: null
-      })
-    })
+    this.queryAPI(this.props.match.params.term)
   }
 
   render() {
+    return (<div></div>)
     if (this.state.reps === null || this.state.party_names === null) {
       return (
         <div className="search-container">
