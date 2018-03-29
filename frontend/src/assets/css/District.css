@@ -46,3 +46,8 @@
 .district-card {
     min-height: 300px;
 }
+
+.district-instance .district-img {
+    width: 100%;
+    overflow: hidden;
+}

@@ -6,6 +6,7 @@ import {RingLoader} from 'react-spinners'
 
 import RepresentativeInstance from './Representatives/RepresentativeInstance'
 import PoliticalPartySingleInstance from './Parties/PoliticalPartySingleInstance'
+import DistrictInstance from './Districts/DistrictInstance'
 import axios from 'axios'
 
 import '../assets/css/Search.css'
@@ -99,6 +100,10 @@ export default class Search extends Component {
         party_name={this.state.party_names[rep.party_id]} />
     ))
 
+    let districtGrid = this.state.districts.map((district) => (
+      <DistrictInstance district={district} />
+    ))
+
     return (
       <div className="search-container">
         <div className="model-container">
@@ -117,6 +122,9 @@ export default class Search extends Component {
 
         <div className="model-container">
           <h3 className="model-name">Districts</h3>
+          <div className='row'>
+            {districtGrid}
+          </div>
         </div>
       </div>
     )
