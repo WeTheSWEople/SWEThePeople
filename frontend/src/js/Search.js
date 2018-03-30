@@ -68,6 +68,7 @@ export default class Search extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.term !== nextProps.match.params.term) {
+      this.setState({reps: null})
       this.queryAPI(nextProps.match.params.term)
     }
   }
@@ -80,7 +81,9 @@ export default class Search extends Component {
   }
 
   render() {
-    if (this.state.reps === null || this.state.parties === null) {
+    if (this.state.reps === null || this.state.parties === null ||
+      this.state.districts === null || this.state.party_names === null ||
+      this.state.party_counts === null) {
       return (
         <div className="search-container">
           <center>
