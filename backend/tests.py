@@ -372,5 +372,7 @@ live_api_url = "http://api.swethepeople.me/"
 
 if __name__ == '__main__':
 	print("ENV VAR: ", os.environ['DB_PASS'])
+	print("ENV VAR 2: ", os.environ['HOME'])
+	print("ENV VAR 3: ", os.environ['HEELO'])
 	print("\n\n\n##########\tBEGINNING BACKEND UNIT TESTS\t##########\n")
 	#unittest.main()

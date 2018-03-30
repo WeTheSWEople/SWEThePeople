@@ -1,13 +1,5 @@
 jobs:
   include:
-    - stage: Frontend
-      language: node_js
-      node_js: "8.9"
-      script:
-        - echo Running Frontend Tests
-        - npm install --prefix frontend
-        - npm run test --prefix frontend &
-
     - stage : Backend
       language: python
       python: "2.7"
@@ -24,7 +16,13 @@ jobs:
           - python backend/main.py &
           - python router.py &
           - python backend/tests.py
-
+    - stage: Frontend
+      language: node_js
+      node_js: "8.9"
+      script:
+        - echo Running Frontend Tests
+        - npm install --prefix frontend
+        - npm run test --prefix frontend &
     - stage: Postman
       language: node_js
       node_js: "8.9"
