@@ -131,13 +131,15 @@ def search():
                 parties_result.append(party_json)
 
             district = District.query.filter(District.representative_id == rep.bioguide).first()
+            state = State.query.with_entities(State.name, State.usps_abbreviation).filter(State.usps_abbreviation == district.state).first()
             district_json = {
                 "alpha_num": district.alpha_num,
                 "id": district.id,
                 "representative_id": district.representative_id,
                 "population": district.population,
                 "median_age": district.median_age,
-                "state": district.state
+                "state": district.state,
+                "state_full": state.name
             }            
             if district_json not in districts_result:
                 districts_result.append(district_json)        
@@ -166,13 +168,15 @@ def search():
                     reps_result.append(rep_json)
 
                 district = District.query.filter(District.representative_id == rep.bioguide).first()
+                state = State.query.with_entities(State.name, State.usps_abbreviation).filter(State.usps_abbreviation == district.state).first()
                 district_json = {
                     "alpha_num": district.alpha_num,
                     "id": district.id,
                     "representative_id": district.representative_id,
                     "population": district.population,
                     "median_age": district.median_age,
-                    "state": district.state
+                    "state": district.state,
+                    "state_full": state.name
                 }            
                 if district_json not in districts_result:
                     districts_result.append(district_json) 
@@ -182,13 +186,15 @@ def search():
     if districts:
         rank = 3
         for district in districts:
+            state = State.query.with_entities(State.name, State.usps_abbreviation).filter(State.usps_abbreviation == district.state).first()
             district_json = {
                 "alpha_num": district.alpha_num,
                 "id": district.id,
                 "representative_id": district.representative_id,
                 "population": district.population,
                 "median_age": district.median_age,
-                "state": district.state
+                "state": district.state,
+                "state_full": state.name
             }       
             districts_result.append(district_json)
 
@@ -236,7 +242,8 @@ def search():
                         "representative_id": district.representative_id,
                         "population": district.population,
                         "median_age": district.median_age,
-                        "state": district.state
+                        "state": district.state,
+                        "state_full": state.name
                     }       
                     districts_result.append(district_json)
 
