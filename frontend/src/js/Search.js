@@ -4,7 +4,7 @@ import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
 
-import RepresentativeInstance from './Representatives/RepresentativeInstance'
+import RepresentativeSingleInstance from './Representatives/RepresentativeSingleInstance'
 import PoliticalPartySingleInstance from './Parties/PoliticalPartySingleInstance'
 import DistrictInstance from './Districts/DistrictInstance'
 import axios from 'axios'
@@ -91,61 +91,39 @@ export default class Search extends Component {
     }
 
     let partiesGrid = this.state.parties.map((party) => (
-      <PoliticalPartySingleInstance party={party}
-        num_reps={this.state.party_counts[party.id]}/>
+      <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
+        <PoliticalPartySingleInstance party={party}
+          num_reps={this.state.party_counts[party.id]}
+          className='search-component' />
+      </div>
     ))
 
     let repGrid = this.state.reps.map((rep) => (
-      <RepresentativeInstance key={rep.bioguide} rep={rep}
-        party_name={this.state.party_names[rep.party_id]} />
+      <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
+        <RepresentativeSingleInstance key={rep.bioguide} rep={rep}
+          party_name={this.state.party_names[rep.party_id]}
+          className='search-component' />
+      </div>
     ))
 
     let districtGrid = this.state.districts.map((district) => (
-      <DistrictInstance district={district} />
+      <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
+        <DistrictInstance district={district} className='search-component' />
+      </div>
     ))
 
-    let partiesDiv = <h3 className='model-name'>No Political Parties Found</h3>
-    if (this.state.parties.length > 0) {
-        partiesDiv = <div>
-          <h3 className="model-name">Political Parties</h3>
-          <div className="container party-container">
-            {partiesGrid}
-          </div>
-        </div>
-    }
-
-    let repsDiv = <h3 className='model-name'>No Representatives Found</h3>
-    if (this.state.reps.length > 0) {
-      repsDiv = <div>
-        <h3 className="model-name">Representatives</h3>
-        <GridList cellHeight={400} cols={4} className="reps-grid">
-          {repGrid}
-        </GridList>
-      </div>
-    }
-
-    let districtsDiv = <h3 className='model-name'>No Districts Found</h3>
-    if (this.state.districts.length > 0) {
-      districtsDiv = <div>
-        <h3 className="model-name">Districts</h3>
-        <div className='row'>
-          {districtGrid}
-        </div>
-      </div>
-    }
-
     return (
-      <div className="search-container">
-        <div className='model-container'>
-          {partiesDiv}
+      <div className='container search-container'>
+        <div className='search-term'>
+          <h3>
+            Search results for {"\"" + this.props.match.params.term + "\""}
+          </h3>
         </div>
 
-        <div className='model-container'>
-          {repsDiv}
-        </div>
-
-        <div className='model-container'>
-          {districtsDiv}
+        <div classNmae='row'>
+          {partiesGrid}
+          {repGrid}
+          {districtGrid}
         </div>
       </div>
     )

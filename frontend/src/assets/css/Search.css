@@ -1,35 +1,56 @@
 .search-container {
-    padding-top: 70px;
+    padding-top: 100px;
 }
 
-.model-container {
-    width: 85%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 50px;
-}
-
-.model-container .model-name {
+.search-term {
     text-align: center;
-    padding-bottom: 25px;
-    margin-bottom: 25px;
-    border-bottom: 1px solid #000;
 }
 
-.party-container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+.search-card-wrapper {
+    max-height: 500px;
+    overflow-y: hidden;
 }
 
-.reps-grid {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
+.search-component {
+    width: 95%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
-.reps-grid img {
+.search-card {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #FFF;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    min-height: 450px;
+}
+
+.search-card img {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+.party-search-card img {
+    margin-top: 25px;
+    width: 75%;
+}
+
+.district-search-card img {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+@media (max-width: 767px) and (min-width: 655px) {
+    .search-card-wrapper {
+        max-height: 600px;
+    }
+
+    .search-card {
+        min-height: 550px;
+    }
 }
