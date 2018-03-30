@@ -134,7 +134,7 @@ def search():
                 "id": district.id,
                 "representative_id": district.representative_id,
                 "population": district.population,
-                "meidan_age": district.median_age,
+                "median_age": district.median_age,
                 "state": district.state
             }            
             if district_json not in districts_result:
@@ -168,7 +168,7 @@ def search():
                     "id": district.id,
                     "representative_id": district.representative_id,
                     "population": district.population,
-                    "meidan_age": district.median_age,
+                    "median_age": district.median_age,
                     "state": district.state
                 }            
                 if district_json not in districts_result:
@@ -183,7 +183,7 @@ def search():
                 "id": district.id,
                 "representative_id": district.representative_id,
                 "population": district.population,
-                "meidan_age": district.median_age,
+                "median_age": district.median_age,
                 "state": district.state
             }       
             districts_result.append(district_json)
@@ -230,7 +230,7 @@ def search():
                         "id": district.id,
                         "representative_id": district.representative_id,
                         "population": district.population,
-                        "meidan_age": district.median_age,
+                        "median_age": district.median_age,
                         "state": district.state
                     }       
                     districts_result.append(district_json)
