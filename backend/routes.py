@@ -93,6 +93,7 @@ def search():
     reps_result = []
     parties_result = []
     districts_result = []
+    rank = 0
 
     # data = model.query.filter(model_id == parameter).first()
     # if not data:
@@ -103,6 +104,7 @@ def search():
 
     reps = Representative.query.search(search_query).all()
     if reps:
+        rank = 1
         for rep in reps:
             item = get_response(rep)
             del item['bills']
@@ -145,6 +147,7 @@ def search():
 
     parties = PoliticalParty.query.search(search_query).all()
     if parties:
+        rank = 2
         for party in parties:
             item = get_response(party)
             del item['representatives']
@@ -177,6 +180,7 @@ def search():
                    
     districts = District.query.search(search_query).all()
     if districts:
+        rank = 3
         for district in districts:
             district_json = {
                 "alpha_num": district.alpha_num,
@@ -221,6 +225,7 @@ def search():
 
     states = State.query.search(search_query).all()
     if states:
+        rank = 3
         for state in states:
             districts = District.query.filter(District.state == state.usps_abbreviation).all()
             if districts:
@@ -266,9 +271,11 @@ def search():
                                 parties_result.append(party_json)
 
     return jsonify({
+        "rank": rank,
         "reps": reps_result,
         "parties": parties_result,
         "districts": districts_result
+
     })
     # parties = 
     # districts = 
