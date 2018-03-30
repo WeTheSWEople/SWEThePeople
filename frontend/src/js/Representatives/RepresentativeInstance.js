@@ -4,8 +4,6 @@ import {Link} from 'react-router-dom'
 import {GridTile} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 import axios from 'axios'
-import Highlighter from "react-highlight-words";
-
 
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
@@ -15,20 +13,11 @@ const styles = {
   hyperlink: {
     textDecoration: 'none',
     color: 'black'
-  },
-  highlight: {
-    fontWeight: 'bold',
-    backgroundColor: '#FFFF00'
   }
 }
 
 export default class RepresentativeInstance extends Component {
   render () {
-      let query = []
-      if(this.props.search !== null && this.props.search !== undefined) {
-        query = this.props.search.split(" ")
-        query.push(this.props.search)
-      }
       return (
         <Link
           to={`/representatives/${this.props.rep.bioguide}`}
@@ -43,28 +32,13 @@ export default class RepresentativeInstance extends Component {
             />
             <div class='rep_info'>
               <h3 className='title'>
-                  <Highlighter
-                    searchWords={query}
-                    autoEscape={true}
-                    highlightStyle={styles.highlight}
-                    textToHighlight={this.props.rep.firstname +' ' + this.props.rep.lastname}
-                  />
+                {this.props.rep.firstname + ' ' + this.props.rep.lastname}
               </h3>
               <h4 className='party'>
-                     <Highlighter
-                        searchWords={query}
-                        autoEscape={true}
-                        highlightStyle={styles.highlight}
-                        textToHighlight={this.props.party_name}
-                      />
+                {this.props.party_name}
               </h4>
               <h4 className='district'><i>
-                      <Highlighter
-                        searchWords={query}
-                        autoEscape={true}
-                        highlightStyle={styles.highlight}
-                        textToHighlight={this.props.rep.state + '-' + this.props.rep.district}
-                      />
+                {this.props.rep.state + '-' + this.props.rep.district}
               </i></h4>
             </div>
           </GridTile>

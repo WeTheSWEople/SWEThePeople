@@ -98,6 +98,7 @@ export default class Search extends Component {
       <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
         <PoliticalPartySingleInstance party={party}
           num_reps={this.state.party_counts[party.id]}
+          search={this.props.match.params.term}
           className='search-component' />
       </div>
     ))
@@ -106,13 +107,15 @@ export default class Search extends Component {
       <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
         <RepresentativeSingleInstance key={rep.bioguide} rep={rep}
           party_name={this.state.party_names[rep.party_id]}
+          search={this.props.match.params.term}
           className='search-component' />
       </div>
     ))
 
     let districtGrid = this.state.districts.map((district) => (
       <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
-        <DistrictInstance district={district} className='search-component' />
+        <DistrictInstance district={district} className='search-component'
+          search={this.props.match.params.term} />
       </div>
     ))
 
