@@ -16,9 +16,9 @@ def create_app(config_file='config_dev.json'):
 	CORS(app)
 	#app.config.from_json(config_file)
 	print("EEEEEEENNNNVVV: ", os.environ['DB_PASS'])
-	print("EEEEEEENNNNVVVTEST: ", os.environ['DB_TEST'])
+	print("EEEEEEENNNNVVVTEST: ", os.environ['DB_USER'])
 	print("EEEEEEENNNNVVVHHHOOME: ", os.environ['HOME'])
-	app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql+psycopg2://swetheuser:" + os.environ['DB_PASS'] + "@swethepeopledev.ck2wxwtc2yr5.us-east-2.rds.amazonaws.com:5432/swethepeopledev"
+	app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql+psycopg2://" + os.environ['DB_USER'] + ":" + os.environ['DB_PASS'] + "@swethepeopledev.ck2wxwtc2yr5.us-east-2.rds.amazonaws.com:5432/swethepeopledev"
 	app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 	app.config['DEBUG'] = True
 	from routes import rep_route, root_route, party_route, district_route, state_route, search_route
