@@ -2,6 +2,7 @@ import unittest
 import requests
 import unicodedata
 import collections
+import os
 from app import create_app, db
 app = create_app()
 app.app_context().push()
@@ -9,6 +10,9 @@ from models import *
 from flask import jsonify
 live_url = "http://swethepeople.me/"
 live_api_url = "http://api.swethepeople.me/"
+
+
+print("ENV VAR: ", os.environ['DB_PASS'])
 
 
 def getResponse(data):
