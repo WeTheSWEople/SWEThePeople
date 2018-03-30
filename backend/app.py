@@ -16,6 +16,7 @@ def create_app(config_file='config_dev.json'):
 	CORS(app)
 	#app.config.from_json(config_file)
 	print("EEEEEEENNNNVVV: ", os.environ['DB_PASS'])
+	print("EEEEEEENNNNVVVHHHOOME: ", os.environ['HOME'])
 	app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql+psycopg2://swetheuser:" + os.environ['DB_PASS'] + "@swethepeopledev.ck2wxwtc2yr5.us-east-2.rds.amazonaws.com:5432/swethepeopledev"
 	app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 	app.config['DEBUG'] = True
