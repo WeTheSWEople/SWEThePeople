@@ -28,5 +28,3 @@ jobs:
         - echo Running Postman Tests
         - npm install newman
         - node_modules/.bin/newman run Postman.json
-env:
-  secure: F/p4Gii/vlJzmdPmJxLjD1wDIs5Big5sSYJZEG/VAp/PQIBoVGJ2Kep2KTNpmIwse56zvuXQnUxG1lrFI7LkopNMyrOGZUJDi3U8TbC8LnKT81Ae/mQdOCTBsEEdvUQkI7XMrW2Q69xw8JmbG15rr6gd5cua1uOG2H3eLH1HN38jzelmfhMGhWQ7ER/vJKgmImR7s7/Khd7DTR0qQE8QXeeTarG/536oWUS8BtfKQXlHQ7kWxCxZKhYNplH8KwkSQ5PQD/fNElA5kSzwynUzZJFcG3CslnzUZQcY+v+42LxPoChDSi2zXKOhYmVrR7SKt4N1lrxqliIqE1Bzf4ULHDv7gVBYOUxka7QMRHVgAyxPYAS2KdzaoBCFKi3TuhLGSqn46IPMFiffb/FHzZea8CNWne4mNGqnAur7caq2KIs5i6FwfiC8hhY7E7EsmyN3a6tdKKZoaYa6XyNIthayXBHO7xB+J+WK1VuuEhSL/Rgsd7k8e2LYgov4DoB5XJiVhm1uPLO+CI5wPns7tsCJdQd8s/AL3op/FirkGtuXB24WW0gnIcYJijR4ZO4cTyom47l5SHGUAmTaxC/rB4iBREUYf2X+Vo/HrcjPE/1B5nDmBf2s1XQ+HBgX3iS8facR2B7DCNm/Wg+xY0ZnTOs47g0RCQO5qZI1n2pOdsbxMCI=

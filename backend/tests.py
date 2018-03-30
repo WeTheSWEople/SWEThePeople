@@ -63,6 +63,7 @@ class TestStringMethods(unittest.TestCase):
 	# 	print("\nTEST 6: Live API is up: Representative data consistent with DB data. Response OK")
 
 	# def test7(self):
+	# 	self.maxDiff = None
 	# 	response = requests.request("GET", live_api_url + "representative/A000374")
 	# 	result = response.json()
 	# 	print(getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
@@ -78,6 +79,7 @@ class TestStringMethods(unittest.TestCase):
 	# 	print("\nTEST 8: Live API is up: Political Party data consistent with DB data. Response OK")
 
 	# def test9(self):
+	# 	self.maxDiff = None
 	# 	response = requests.request("GET", live_api_url + "state/AL")
 	# 	result = response.json()
 	# 	with app.app_context():
@@ -373,7 +375,5 @@ class TestStringMethods(unittest.TestCase):
 
 
 if __name__ == '__main__':
-	print("ENV VAR: ", os.environ['DB_PASS'])
-	print("ENV VAR 2: ", os.environ['HOME'])
 	print("\n\n\n##########\tBEGINNING BACKEND UNIT TESTS\t##########\n")
 	unittest.main()
