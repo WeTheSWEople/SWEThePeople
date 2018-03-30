@@ -17,3 +17,14 @@
     margin-right: auto;
     width: 90%;
 }
+
+.party-single-card {
+    width: 95%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+.party-single-card img {
+    width: 50%;
+}
