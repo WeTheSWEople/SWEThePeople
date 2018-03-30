@@ -59,7 +59,9 @@ export default class Navigation extends Component {
                   <FormControl onChange={this.handleChange}
                     type="text" placeholder="Search" />
                 </FormGroup>{' '}
-                <Link to="/search" > <Button>Submit</Button> </Link>
+                <Link to={`/search/${this.state.value}`}>
+                  <Button type="submit">Submit</Button>
+                </Link>
               </Navbar.Form>
             </Nav>
             </Navbar.Collapse>
