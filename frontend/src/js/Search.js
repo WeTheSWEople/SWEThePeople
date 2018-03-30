@@ -28,15 +28,14 @@ export default class Search extends Component {
       districts: null,
       states: null,
       party_names: null,
-      party_counts: null
+      party_counts: null,
+      query : null
     }
   }
 
   queryAPI(query) {
     axios.get('http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
       'search/?query=' + query).then((response) => {
-      console.log(response.data)
-
       let names = {}
       for (const party of response.data.parties) {
         names[party.id] = party.name
@@ -50,7 +49,6 @@ export default class Search extends Component {
           counts[rep.party_id]++
         }
       }
-
       this.setState({
         reps: response.data.reps,
         parties: response.data.parties,
@@ -72,11 +70,17 @@ export default class Search extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.term !== nextProps.match.params.term) {
       this.queryAPI(nextProps.match.params.term)
+      this.setState({
+        query : nextProps.match.params.term
+      })
     }
   }
 
   componentDidMount() {
     this.queryAPI(this.props.match.params.term)
+    this.setState({
+        query : this.props.match.params.term
+    })
   }
 
   render() {
