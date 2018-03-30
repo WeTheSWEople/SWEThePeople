@@ -86,6 +86,59 @@ def districts_by_id(abbrev, id):
         return error("Item not found for id " + abbrev + " and " + id)
     return jsonify(get_response(data))
 
+
+def get_party_json(rep_party_id = None, party_param = None):
+    party_json = None
+
+    if rep_party_id:
+        party = PoliticalParty.query.with_entities(PoliticalParty.id, PoliticalParty.name, \
+                        PoliticalParty.chair, \
+                        PoliticalParty.formation_date, \
+                        PoliticalParty.office, \
+                        PoliticalParty.path)\
+                        .filter(PoliticalParty.id == rep_party_id).first()
+    else:
+        party = party_param
+
+    if party: 
+        party_json = {
+            "id": party.id,
+            "name": party.name,
+            "path": party.path,
+            "chair": party.chair,
+            "formation_date": party.formation_date,
+            "office": party.office,
+            "path": party.path
+        }  
+
+    return party_json
+
+
+def get_district_json(rep_bioguide = None, district_param = None, state_param = None):
+    district_json = None
+
+    if rep_bioguide:
+        district = District.query.filter(District.representative_id == rep_bioguide).first()
+        state = State.query.with_entities(State.name, State.usps_abbreviation).filter(State.usps_abbreviation == district.state).first()
+    elif district_param and not state_param:
+        district = district_param
+        state = State.query.with_entities(State.name, State.usps_abbreviation).filter(State.usps_abbreviation == district.state).first()
+    else:
+        district = district_param
+        state = state_param
+
+    if district and state:
+        district_json = {
+            "alpha_num": district.alpha_num,
+            "id": district.id,
+            "representative_id": district.representative_id,
+            "population": district.population,
+            "median_age": district.median_age,
+            "state": district.state,
+            "state_full": state.name
+        }     
+    return district_json
+
 @search_route.route("/")
 def search():
     search_query = request.args.get('query')
@@ -95,13 +148,6 @@ def search():
     districts_result = []
     rank = 0
 
-    # data = model.query.filter(model_id == parameter).first()
-    # if not data:
-    #     return error("Item not found for id " + parameter)
-    # return jsonify(get_response(data))
-
-#with_entities(PoliticalParty.chair, PoliticalParty.colors, PoliticalParty.formation_date, PoliticalParty.name, PoliticalParty.office, PoliticalParty.path).
-
     reps = Representative.query.search(search_query).all()
     if reps:
         rank = 1
@@ -109,57 +155,24 @@ def search():
             item = get_response(rep)
             del item['bills']
             reps_result.append(item)
-        for rep in reps:
-            print(rep.party_id)
-            party = PoliticalParty.query.with_entities(PoliticalParty.id, PoliticalParty.name, \
-                    PoliticalParty.chair, \
-                    PoliticalParty.formation_date, \
-                    PoliticalParty.office, \
-                    PoliticalParty.path)\
-                    .filter(PoliticalParty.id == rep.party_id).first()
-            party_json = {
-                "id": party.id,
-                "name": party.name,
-                "path": party.path,
-                "chair": party.chair,
-                "formation_date": party.formation_date,
-                "office": party.office,
-                "path": party.path
-            }  
 
+            party_json = get_party_json(rep_party_id = rep.party_id)
             if party_json not in parties_result:
                 parties_result.append(party_json)
 
-            district = District.query.filter(District.representative_id == rep.bioguide).first()
-            state = State.query.with_entities(State.name, State.usps_abbreviation).filter(State.usps_abbreviation == district.state).first()
-            district_json = {
-                "alpha_num": district.alpha_num,
-                "id": district.id,
-                "representative_id": district.representative_id,
-                "population": district.population,
-                "median_age": district.median_age,
-                "state": district.state,
-                "state_full": state.name
-            }            
+            district_json = get_district_json(rep_bioguide=rep.bioguide)          
             if district_json not in districts_result:
                 districts_result.append(district_json)        
-
-        # add the corresponding district stuff
 
 
     parties = PoliticalParty.query.search(search_query).all()
     if parties:
         rank = 2
         for party in parties:
-            item = get_response(party)
-            del item['representatives']
-            del item['colors']
-            del item['twitter_handle']
-            del item['website']
-            del item['youtube']
-            parties_result.append(item)
+            party_json = get_party_json(party_param = party)
+            if party_json:
+                parties_result.append(party_json)
 
-        for party in parties:
             reps = Representative.query.filter(party.id == Representative.party_id).all()
             for rep in reps:
                 rep_json = get_response(rep)
@@ -167,17 +180,7 @@ def search():
                 if rep_json not in reps_result:
                     reps_result.append(rep_json)
 
-                district = District.query.filter(District.representative_id == rep.bioguide).first()
-                state = State.query.with_entities(State.name, State.usps_abbreviation).filter(State.usps_abbreviation == district.state).first()
-                district_json = {
-                    "alpha_num": district.alpha_num,
-                    "id": district.id,
-                    "representative_id": district.representative_id,
-                    "population": district.population,
-                    "median_age": district.median_age,
-                    "state": district.state,
-                    "state_full": state.name
-                }            
+                district_json = get_district_json(rep_bioguide=rep.bioguide)   
                 if district_json not in districts_result:
                     districts_result.append(district_json) 
 
@@ -186,19 +189,10 @@ def search():
     if districts:
         rank = 3
         for district in districts:
-            state = State.query.with_entities(State.name, State.usps_abbreviation).filter(State.usps_abbreviation == district.state).first()
-            district_json = {
-                "alpha_num": district.alpha_num,
-                "id": district.id,
-                "representative_id": district.representative_id,
-                "population": district.population,
-                "median_age": district.median_age,
-                "state": district.state,
-                "state_full": state.name
-            }       
-            districts_result.append(district_json)
+            district_json = get_district_json(district_param=district)
+            if district_json:
+                districts_result.append(district_json)
 
-        for district in districts:
             rep = Representative.query.filter(district.representative_id == Representative.bioguide).first()
             if rep:
                 rep_json = get_response(rep)
@@ -206,28 +200,9 @@ def search():
                 if rep_json not in reps_result:
                     reps_result.append(rep_json)
 
-
-                party = PoliticalParty.query.with_entities(PoliticalParty.id, PoliticalParty.name, \
-                        PoliticalParty.chair, \
-                        PoliticalParty.formation_date, \
-                        PoliticalParty.office, \
-                        PoliticalParty.path)\
-                        .filter(PoliticalParty.id == rep.party_id).first()
-
-                        
-                if party:
-                    party_json = {
-                        "id": party.id,
-                        "name": party.name,
-                        "path": party.path,
-                        "chair": party.chair,
-                        "formation_date": party.formation_date,
-                        "office": party.office,
-                        "path": party.path
-                    }  
-
-                    if party_json not in parties_result:
-                        parties_result.append(party_json)
+                party_json = get_party_json(rep_party_id = rep.party_id)
+                if party_json not in parties_result:
+                    parties_result.append(party_json)
 
     states = State.query.search(search_query).all()
     if states:
@@ -236,16 +211,9 @@ def search():
             districts = District.query.filter(District.state == state.usps_abbreviation).all()
             if districts:
                 for district in districts:
-                    district_json = {
-                        "alpha_num": district.alpha_num,
-                        "id": district.id,
-                        "representative_id": district.representative_id,
-                        "population": district.population,
-                        "median_age": district.median_age,
-                        "state": district.state,
-                        "state_full": state.name
-                    }       
-                    districts_result.append(district_json)
+                    district_json = get_district_json(district_param = district, state_param = state) 
+                    if district_json:     
+                        districts_result.append(district_json)
 
                     rep = Representative.query.filter(district.representative_id == Representative.bioguide).first()
                     if rep:
@@ -254,27 +222,9 @@ def search():
                         if rep_json not in reps_result:
                             reps_result.append(rep_json)
 
-
-                        party = PoliticalParty.query.with_entities(PoliticalParty.id, PoliticalParty.name, \
-                                PoliticalParty.chair, \
-                                PoliticalParty.formation_date, \
-                                PoliticalParty.office, \
-                                PoliticalParty.path)\
-                                .filter(PoliticalParty.id == rep.party_id).first()
-    
-                        if party:
-                            party_json = {
-                                "id": party.id,
-                                "name": party.name,
-                                "path": party.path,
-                                "chair": party.chair,
-                                "formation_date": party.formation_date,
-                                "office": party.office,
-                                "path": party.path
-                            }  
-
-                            if party_json not in parties_result:
-                                parties_result.append(party_json)
+                        party_json = get_party_json(rep_party_id = rep.party_id)
+                        if party_json not in parties_result:
+                            parties_result.append(party_json)
 
     return jsonify({
         "rank": rank,
