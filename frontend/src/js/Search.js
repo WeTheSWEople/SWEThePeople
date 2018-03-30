@@ -17,9 +17,6 @@ export default class Search extends Component {
 
     this.queryAPI = this.queryAPI.bind(this)
 
-    console.log(this.props.match.params)
-    console.log(this.props.match.params.term)
-
     this.state = {
       ready: false,
       error: false,
@@ -29,13 +26,14 @@ export default class Search extends Component {
       states: null,
       party_names: null,
       party_counts: null,
-      query : null
+      rank: 1
     }
   }
 
   queryAPI(query) {
     axios.get('http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
       'search/?query=' + query).then((response) => {
+
       let names = {}
       for (const party of response.data.parties) {
         names[party.id] = party.name
@@ -54,7 +52,8 @@ export default class Search extends Component {
         parties: response.data.parties,
         districts: response.data.districts,
         party_names: names,
-        party_counts: counts
+        party_counts: counts,
+        rank: response.data.rank
       })
     }).catch((error) => {
       this.setState({
@@ -70,9 +69,6 @@ export default class Search extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.term !== nextProps.match.params.term) {
       this.queryAPI(nextProps.match.params.term)
-      this.setState({
-        query : nextProps.match.params.term
-      })
     }
   }
 
@@ -119,6 +115,28 @@ export default class Search extends Component {
       </div>
     ))
 
+    let rankedDiv = null
+    if (this.state.rank === 1) {
+      rankedDiv = <div>
+        {repGrid}
+        {partiesGrid}
+        {districtGrid}
+      </div>
+    } else if (this.state.rank === 2) {
+      rankedDiv = <div>
+        {partiesGrid}
+        {repGrid}
+        {districtGrid}
+      </div>
+    } else {
+      rankedDiv = <div>
+        {districtGrid}
+        {repGrid}
+        {partiesGrid}
+      </div>
+    
+    }
+
     return (
       <div className='container search-container'>
         <div className='search-term'>
@@ -127,10 +145,8 @@ export default class Search extends Component {
           </h3>
         </div>
 
-        <div classNmae='row'>
-          {partiesGrid}
-          {repGrid}
-          {districtGrid}
+        <div className='row'>
+          {rankedDiv}
         </div>
       </div>
     )
