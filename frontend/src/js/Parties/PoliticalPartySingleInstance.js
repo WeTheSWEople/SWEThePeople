@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import Highlighter from "react-highlight-words";
+
 /* eslint-enable no-unused-vars */
 
 import '../../assets/css/PoliticalPartyInstance.css'
@@ -13,6 +15,14 @@ export default class PoliticalPartySingleInstance extends Component {
       },
       itemHeader: {
         marginRight: '5px'
+      },
+        highlight: {
+        fontWeight: 'bold',
+        backgroundColor: '#FFFF00'
+      },
+      hyperlink: {
+        textDecoration: 'none',
+        color: 'black'
       }
     }
 
@@ -21,8 +31,14 @@ export default class PoliticalPartySingleInstance extends Component {
       num_reps = this.props.num_reps
     }
 
+    let query = []
+    if(this.props.search !== null && this.props.search !== undefined) {
+      query = this.props.search.split(" ")
+      query.push(this.props.search)
+    }
+
     return (
-      <Link to={`/party/${this.props.party.path}`}>
+      <Link to={`/party/${this.props.party.path}`} style={styles.hyperlink}>
         <div className='row party-index-card'>
           <div className='col-md-8 col-md-offset-2'>
             <div className='row'>
@@ -37,7 +53,14 @@ export default class PoliticalPartySingleInstance extends Component {
               </div>
 
               <div className='col-md-6 party-index-name'>
-                <h3>{this.props.party.name}</h3>
+                <h3>
+                    <Highlighter
+                      searchWords={query}
+                      autoEscape={true}
+                      highlightStyle={styles.highlight}
+                      textToHighlight={this.props.party.name}
+                    />
+                </h3>
                 <p>
                   <span style={styles.itemHeader}>
                     Number of representatives in this search:
@@ -46,7 +69,12 @@ export default class PoliticalPartySingleInstance extends Component {
                 </p>
                 <p>
                   <span style={styles.itemHeader}>Party chair:</span>
-                  {this.props.party.chair}
+                  <Highlighter
+                      searchWords={query}
+                      autoEscape={true}
+                      highlightStyle={styles.highlight}
+                      textToHighlight={this.props.party.chair}
+                  />
                 </p>
               </div>
             </div>

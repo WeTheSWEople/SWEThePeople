@@ -254,8 +254,7 @@ def search():
                                 PoliticalParty.office, \
                                 PoliticalParty.path)\
                                 .filter(PoliticalParty.id == rep.party_id).first()
-
-                                
+    
                         if party:
                             party_json = {
                                 "id": party.id,
