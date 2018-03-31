@@ -1,6 +1,7 @@
 from flask import jsonify, Blueprint, send_from_directory, render_template, request
 from models import Representative, PoliticalParty, PartyColor, District, State
 from util import *
+import json
 from sqlalchemy.orm import load_only, defer
 root_route = Blueprint('root', __name__)
 rep_route = Blueprint('representative', __name__)
@@ -38,6 +39,52 @@ def representatives_by_page(num):
 		return response
 	offset = num * 25
 	return jsonify([get_response(rep) for rep in Representative.query.order_by(Representative.bioguide).offset(offset).limit(25).all()])
+
+@rep_route.route("/filter")
+def representatives_filter():
+    filter_query = request.args.get('filter')
+
+    filter_query = str(filter_query)
+    filter_query = json.loads(filter_query)
+
+    state = str(filter_query['state']) # check state is None
+    party_id = int(filter_query['party_id']) # check party id is None
+    last_name = str(filter_query['last_name']).lower().split('-')
+    votes_pct = str(filter_query['votes_pct']).split('-') # votes pct is none
+    order_by = str(filter_query['order_by'])
+
+    
+    # filtered_result = Representative.query.order_by(Representative.lastname).limit(500).all()
+
+    # if state != 'None':
+    #     filtered_result = filtered_result.filter(Representative.state == state)
+
+    # if party_id != 'None':
+    #     filtered_result = filtered_result.filter(Representative.state == party_id)
+
+    # if votes_pct != 'None':
+    #     filtered_result = filtered_result.filter(Representative.votes_with_party_pct >= float(votes_pct[0]), 
+    #                         Representative.votes_with_party_pct < float(votes_pct[1]))
+
+
+    filtered_result =  Representative.query.filter(Representative.state == state,\
+                                Representative.party_id == party_id, \
+                                Representative.votes_with_party_pct >= float(votes_pct[0]), 
+                                Representative.votes_with_party_pct < float(votes_pct[1]))
+
+    if (order_by == 'last_asc'):
+        filtered_result = filtered_result.order_by(Representative.lastname.asc())
+
+    elif (order_by == 'last_desc'):
+        filtered_result = filtered_result.order_by(Representative.lastname.desc())
+
+    elif (order_by == 'votes_pct_asc'):
+        filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.asc())
+    else:
+        filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.desc())
+    filtered_result = filtered_result.all()
+    filtered_dict_list = [get_response(rep) for rep in filtered_result]
+    return jsonify(filter(lambda s: s['lastname'][0].lower() >= last_name[0] and s['lastname'][0].lower() <= last_name[1], filtered_dict_list))
 
 @party_route.route("/")
 def all_parties():
@@ -288,6 +335,7 @@ def search():
         "districts": districts_result
 
     })
+
 
 
 
