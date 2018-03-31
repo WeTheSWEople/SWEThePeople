@@ -7,7 +7,7 @@
 }
 
 .search-card-wrapper {
-    max-height: 500px;
+    max-height: 550px;
     overflow-y: hidden;
 }
 
@@ -25,7 +25,7 @@
     margin-bottom: 30px;
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
     text-align: center;
-    min-height: 450px;
+    min-height: 500px;
 }
 
 .search-card img {
