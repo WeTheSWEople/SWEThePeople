@@ -4,6 +4,7 @@ import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
 
+import ReactPaginate from 'react-paginate'
 import RepresentativeSingleInstance from './Representatives/RepresentativeSingleInstance'
 import PoliticalPartySingleInstance from './Parties/PoliticalPartySingleInstance'
 import DistrictInstance from './Districts/DistrictInstance'
@@ -16,6 +17,7 @@ export default class Search extends Component {
     super(props)
 
     this.queryAPI = this.queryAPI.bind(this)
+    this.handlePageClick = this.handlePageClick.bind(this)
 
     this.state = {
       ready: false,
@@ -26,7 +28,9 @@ export default class Search extends Component {
       states: null,
       party_names: null,
       party_counts: null,
-      rank: 1
+      rank: 1,
+      cur_page: 0,
+      all_results: null
     }
   }
 
@@ -47,13 +51,52 @@ export default class Search extends Component {
           counts[rep.party_id]++
         }
       }
+
+      let temp_reps = []
+      let temp_parties = []
+      let temp_districts = []
+      let all_results = []
+
+      if (response.data.rank === 1){
+        all_results = all_results.concat(response.data.reps)
+        all_results = all_results.concat(response.data.parties)
+        all_results = all_results.concat(response.data.districts)
+      }
+      else if (response.data.rank == 2){
+        all_results = all_results.concat(response.data.parties)
+        all_results = all_results.concat(response.data.reps)
+        all_results = all_results.concat(response.data.districts)
+      }
+      else{
+        all_results = all_results.concat(response.data.districts)
+        all_results = all_results.concat(response.data.reps)
+        all_results = all_results.concat(response.data.parties)
+        
+        
+      }
+     
+      for(let i = 0; i < 25 && i < all_results.length; i++){
+        let item = all_results[i]
+        if('bioguide' in item){
+          temp_reps.push(item)
+        }
+        else if('chair' in item){
+          temp_parties.push(item)
+        }
+        else{
+          temp_districts.push(item)
+        }
+      }
+
       this.setState({
-        reps: response.data.reps,
-        parties: response.data.parties,
-        districts: response.data.districts,
+        reps: temp_reps,
+        parties: temp_parties,
+        districts: temp_districts,
         party_names: names,
         party_counts: counts,
-        rank: response.data.rank
+        rank: response.data.rank,
+        cur_page: Math.ceil(all_results.length/25),
+        all_results: all_results
       })
     }).catch((error) => {
       this.setState({
@@ -65,6 +108,32 @@ export default class Search extends Component {
       })
     })
   }
+
+  handlePageClick(data){
+    let cur_result = this.state.all_results
+    let temp_reps = []
+    let temp_parties = []
+    let temp_districts = []
+    for(let i = data.selected * 25; i < (data.selected + 1)*25 && i < cur_result.length; i++){
+        let item = cur_result[i]
+        if('bioguide' in item){
+          temp_reps.push(item)
+        }
+        else if('chair' in item){
+          temp_parties.push(item)
+        }
+        else{
+          temp_districts.push(item)
+        }
+    }
+
+    this.setState({
+      reps: temp_reps,
+      parties: temp_parties,
+      districts: temp_districts
+    })
+  }
+
 
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.term !== nextProps.match.params.term) {
@@ -151,7 +220,22 @@ export default class Search extends Component {
         <div className='row'>
           {rankedDiv}
         </div>
+        <div className="App">
+          <ReactPaginate previousLabel={"previous"}
+            nextLabel={"next"}
+            breakLabel={<a href="">...</a>}
+            breakClassName={"break-me"}
+            pageCount={this.state.cur_page}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            disabledClassName={"disabled"}
+            onPageChange={this.handlePageClick}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"} />
+          </div>
       </div>
+      
     )
   }
 }
