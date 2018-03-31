@@ -112,10 +112,6 @@ export default class Search extends Component {
         party_counts: null
       })
     })
-
-
-
-
   }
 
   handlePageClick(data){
@@ -142,7 +138,6 @@ export default class Search extends Component {
       districts: temp_districts
     })
   }
-
 
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params.term !== nextProps.match.params.term) {

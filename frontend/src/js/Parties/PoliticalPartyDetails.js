@@ -4,13 +4,17 @@ import {Link} from 'react-router-dom'
 import {GridList} from 'material-ui/GridList'
 import {Timeline} from 'react-twitter-widgets'
 import RepresentativeInstance from '../Representatives/RepresentativeInstance'
+import DistrictInstance from '../Districts/DistrictInstance.js'
 import {RingLoader} from 'react-spinners'
 import axios from 'axios'
+import Slider from 'react-slick'
 /* eslint-enable no-unused-vars */
+
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import '../../assets/css/App.css'
 import '../../assets/css/PoliticalPartyDetails.css'
 import '../../assets/css/District.css'
-
 
 export default class PoliticalPartyDetails extends Component {
   constructor (props) {
@@ -128,22 +132,14 @@ export default class PoliticalPartyDetails extends Component {
       controlText = this.state.num_reps + '/' + this.state.totalReps
 
       let repsGrid = Object.keys(this.state.reps).map((key) =>
-        <div className='col-sm-3 party-rep-card'>
+        <div className='party-rep-card'>
           <RepresentativeInstance key={key} rep={this.state.reps[key]} />
         </div>
       )
 
-      repsInfo = <div className='reps-grid'>
-        <h2>Representatives</h2>
-        <div className='row'>
-          {repsGrid}
-        </div>
-      </div>
-
       let districtsGrid = Object.keys(districts).map((key) =>
-        
         <Link to={`/districts/${districts[key].state}/${districts[key].id}`}>
-          <div className='col-sm-3 party-rep-card'>
+          <div className='party-rep-card party-district'>
             <div className='district-card '>
               <h3><b>{districts[key].alpha_num}</b></h3>
               <h5><b>Population: </b>{districts[key].population}</h5>
@@ -159,11 +155,28 @@ export default class PoliticalPartyDetails extends Component {
         </Link>
       )
 
+      const settings = {
+        dots: false,
+        infinite: true,
+        arrows: true,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        autoplay: false,
+        centerMode: false
+      }
+
+      repsInfo = <div className='reps-grid'>
+        <h2>Representatives</h2>
+        <Slider {...settings} className='carousel'>
+          {repsGrid}
+        </Slider>
+      </div>
+
       districtsInfo = <div className='districts-grid'>
         <h2>Districts</h2>
-        <div className='row'>
+        <Slider {...settings} className='carousel'>
           {districtsGrid}
-        </div>
+        </Slider>
       </div>
     } else {
       noControl = '0/' + this.state.totalReps
