@@ -38,10 +38,10 @@ export default class Search extends Component {
     axios.get('http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
       'search/?query=' + query).then((response) => {
 
-      let names = {}
-      for (const party of response.data.parties) {
-        names[party.id] = party.name
-      }
+      // let names = {}
+      // for (const party of response.data.parties) {
+      //   names[party.id] = party.name
+      // }
 
       let counts = {}
       for (const rep of response.data.reps) {
@@ -71,11 +71,9 @@ export default class Search extends Component {
         all_results = all_results.concat(response.data.districts)
         all_results = all_results.concat(response.data.reps)
         all_results = all_results.concat(response.data.parties)
-        
-        
       }
      
-      for(let i = 0; i < 25 && i < all_results.length; i++){
+      for(let i = 0; i < 24 && i < all_results.length; i++){
         let item = all_results[i]
         if('bioguide' in item){
           temp_reps.push(item)
@@ -92,11 +90,18 @@ export default class Search extends Component {
         reps: temp_reps,
         parties: temp_parties,
         districts: temp_districts,
-        party_names: names,
         party_counts: counts,
         rank: response.data.rank,
-        cur_page: Math.ceil(all_results.length/25),
+        cur_page: Math.ceil(all_results.length/24),
         all_results: all_results
+      })
+
+      // get the parties name
+      return axios.get(`http://api.swethepeople.me/party?party_name=True`)
+
+    }).then((response)=>{
+      this.setState({
+        party_names:response.data
       })
     }).catch((error) => {
       this.setState({
@@ -107,6 +112,10 @@ export default class Search extends Component {
         party_counts: null
       })
     })
+
+
+
+
   }
 
   handlePageClick(data){
@@ -114,7 +123,7 @@ export default class Search extends Component {
     let temp_reps = []
     let temp_parties = []
     let temp_districts = []
-    for(let i = data.selected * 25; i < (data.selected + 1)*25 && i < cur_result.length; i++){
+    for(let i = data.selected * 24; i < (data.selected + 1)*24 && i < cur_result.length; i++){
         let item = cur_result[i]
         if('bioguide' in item){
           temp_reps.push(item)
@@ -174,7 +183,7 @@ export default class Search extends Component {
     let repGrid = this.state.reps.map((rep) => (
       <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
         <RepresentativeSingleInstance key={rep.bioguide} rep={rep}
-          party_name={this.state.party_names[rep.party_id]}
+          party_name={this.state.party_names[rep.party_id][0]}
           search={this.props.match.params.term}
           className='search-component' />
       </div>
@@ -209,6 +218,24 @@ export default class Search extends Component {
     
     }
 
+    // only show if more than 24 records
+    let pagination_bar = ''
+    if(this.state.all_results.length > 24){
+      pagination_bar = <div className="App">
+                        <ReactPaginate previousLabel={"previous"}
+                          nextLabel={"next"}
+                          breakLabel={<a href="">...</a>}
+                          breakClassName={"break-me"}
+                          pageCount={this.state.cur_page}
+                          marginPagesDisplayed={2}
+                          pageRangeDisplayed={5}
+                          disabledClassName={"disabled"}
+                          onPageChange={this.handlePageClick}
+                          containerClassName={"pagination"}
+                          subContainerClassName={"pages pagination"}
+                          activeClassName={"active"} />
+                    </div>
+    }
     return (
       <div className='container search-container'>
         <div className='search-term'>
@@ -220,22 +247,8 @@ export default class Search extends Component {
         <div className='row'>
           {rankedDiv}
         </div>
-        <div className="App">
-          <ReactPaginate previousLabel={"previous"}
-            nextLabel={"next"}
-            breakLabel={<a href="">...</a>}
-            breakClassName={"break-me"}
-            pageCount={this.state.cur_page}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            disabledClassName={"disabled"}
-            onPageChange={this.handlePageClick}
-            containerClassName={"pagination"}
-            subContainerClassName={"pages pagination"}
-            activeClassName={"active"} />
-          </div>
-      </div>
-      
+        {pagination_bar}
+      </div> 
     )
   }
 }
