@@ -47,7 +47,7 @@ def representatives_filter():
     filter_query = json.loads(filter_query)
 
     state = str(filter_query['state']) # check state is None
-    party_id = int(filter_query['party_id']) # check party id is None
+    party_id = filter_query['party_id'] # check party id is None
     last_name = str(filter_query['last_name']).lower().split('-')
     votes_pct = str(filter_query['votes_pct']).split('-') # votes pct is none
     order_by = str(filter_query['order_by'])
@@ -57,9 +57,10 @@ def representatives_filter():
         filtered_result = filtered_result.filter(Representative.state == state)
 
     if party_id != 'None':
-        filtered_result = filtered_result.filter(Representative.party_id == party_id)
+        filtered_result = filtered_result.filter(Representative.party_id == int(party_id))
 
-    if votes_pct != 'None':
+
+    if votes_pct[0] != 'None':
         filtered_result = filtered_result.filter(Representative.votes_with_party_pct >= float(votes_pct[0]), 
                                 Representative.votes_with_party_pct < float(votes_pct[1]))
 
@@ -73,6 +74,7 @@ def representatives_filter():
         filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.asc())
     else:
         filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.desc())
+
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(rep) for rep in filtered_result]
     return jsonify(filter(lambda s: s['lastname'][0].lower() >= last_name[0] and s['lastname'][0].lower() <= last_name[1], filtered_dict_list))
