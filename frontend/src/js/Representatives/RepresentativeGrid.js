@@ -60,7 +60,11 @@ export default class RepresentativeGrid extends Component {
     // get the reps data
     axios.get(URL + JSON.stringify(filterParams))
     .then((response)=>{
-      this.setState({all_reps: response.data})
+      if (response.data.length === 0) {
+        this.setState({all_reps: -2})
+      } else {
+        this.setState({all_reps: response.data})
+      }
       // get the party names
       return axios.get(`http://api.swethepeople.me/party?party_name=True`)
     })
@@ -110,6 +114,12 @@ export default class RepresentativeGrid extends Component {
           <div style={styles.root}>
            <p> Data Not Found </p>
           </div>)
+    } else if (this.state.all_reps === -2) {
+      return (
+        <div style={styles.root}>
+          <h1>No representatives found, try a different filter.</h1>
+        </div>
+      )
     }
     else{
       return (
