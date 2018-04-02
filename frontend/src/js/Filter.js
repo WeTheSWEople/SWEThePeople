@@ -94,7 +94,7 @@ export default class Filter extends Component {
 
   render() {
     return (
-      <div className='container'>
+      <div style={{marginLeft: '6%', marginRight: '5%', width: '90%'}}>
         <div className='filter-component row'>
           <div className='col-sm-2 filter-control'>
             <b>Filter State:</b>
