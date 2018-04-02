@@ -95,7 +95,7 @@ def party_by_path(path):
 def party_by_id(party_id):
     return get_single_item(PoliticalParty, PoliticalParty.id, party_id)
     #return jsonify(get_response(PoliticalParty.query.filter(PoliticalParty.id == path).first()))
-    return get_single_item(PoliticalParty, PoliticalParty.id, path)
+    #return get_single_item(PoliticalParty, PoliticalParty.id, path)
 
 @party_route.route("/filter")
 def party_filter():
@@ -104,27 +104,53 @@ def party_filter():
     filter_query = json.loads(filter_query)
 
     #ideology = str(filter_query['ideology'])
-    name = str(filter_query['name']).lower().split('-')
-    formation_date = filter_query['formation_date'].split("-")
-    num_reps = filter_query['num_reps'].split("-")
+    social = str(filter_query['social'])
     color = str(filter_query['color'])
-    order_by = str(filter_query['order_by'])
+    formation_date = filter_query['formation_date'].split("-")
+    # name = str(filter_query['name']).lower().split('-') # Default: A-Z
+    # 
+    
+    # order_by = str(filter_query['order_by'])
+
+    # youtube and twitter both
+    # twitter
+    # youtube
+    # Neither
+
+    #social:YT, T, Y, NT, None
+
     filtered_result = PoliticalParty.query
-    if len(formation_date) == 2:
-        filtered_result = filtered_result.filter(int(formation_date[0]) <= PoliticalParty.formation_date <= int(formation_date[1]))
-    if len(num_reps) == 2:
-        filtered_result = filtered_result.filter(int(num_reps[0]) <= len(PoliticalParty.representatives) <= int(num_reps[1]))
-    if color != "None":
-        pass #do later
-    if (order_by == 'name_asc'):
-        filtered_result = filtered_result.order_by(PoliticalParty.name.asc())
-    elif (order_by == 'name_desc'):
-        filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
-    else:
-        filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
+
+    if social != 'None':
+        if social == 'YT':
+            filtered_result = filtered_result.filter(PoliticalParty.youtube != '', PoliticalParty.twitter_handle != '')
+
+        elif social == 'T':
+            filtered_result = filtered_result.filter(PoliticalParty.twitter_handle != '')
+
+        elif social == 'Y':
+            filtered_result = filtered_result.filter(PoliticalParty.youtube != '')
+
+        else: # neither
+            filtered_result = filtered_result.filter(PoliticalParty.youtube == '', PoliticalParty.twitter_handle == '')
+
+    if color != 'None':
+        color = color.title()
+        filtered_result = filtered_result.join(PartyColor).filter(PartyColor.color == color)
+
+
+    # if formation_date[0] != 'None':
+    #     filtered_result = filtered_result.all()
+
+    # if (order_by == 'name_asc'):
+    #     filtered_result = filtered_result.order_by(PoliticalParty.name.asc())
+    # elif (order_by == 'name_desc'):
+    #     filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
+    # else:
+    #     filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(party) for party in filtered_result]
-    return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= last_name[1], filtered_dict_list))
+    return jsonify(filtered_dict_list)
 
 
 
@@ -169,7 +195,7 @@ def districts_filter():
     state = str(filter_query['state'])
     population = str(filter_query['population']).split('-')
     median_age = str(filter_query['median_age']).split('-')
-    order_by = str(filter_query['order_by']).split('-')
+    order_by = str(filter_query['order_by'])
 
     # order by state, alpha num, population  
     filtered_result = District.query
