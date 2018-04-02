@@ -25,7 +25,7 @@ export default class DefaultRouter extends Component {
         <Route exact path="/representatives" component={Representatives}/>
         <Route path="/representatives/:bioguideid"
           component={RepresentativeDetails}/>
-        <Route exact path="/districts" component={AllDistricts}/>
+        <Route exact path="/districts" component={Districts}/>
         <Route exact path="/districts/:districtid" component={Districts}/>
         <Route path="/districts/:districtid/:districtnum"
           component={DistrictsDetails}/>

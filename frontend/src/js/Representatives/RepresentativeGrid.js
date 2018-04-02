@@ -4,34 +4,9 @@ import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 /* eslint-disable no-unused-vars */
 
-import Filter from '../Filter'
 import RepresentativeInstance from './RepresentativeInstance'
 import '../../assets/css/App.css'
 import axios from 'axios'
-
-const styles = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    paddingTop: '50px',
-    paddingLeft: '50px',
-    paddingRight: '50px',
-    justifyContent: 'space-around'
-  },
-  center: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    paddingTop: '10%',
-    paddingLeft: '50px',
-    paddingRight: '50px',
-    justifyContent: 'space-around'
-  },
-  gridList: {
-    width: '100%',
-    height: '100%',
-    overflowY: 'auto'
-  }
-}
 
 const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
   'representative/filter?filter='
@@ -58,8 +33,7 @@ export default class RepresentativeGrid extends Component {
   getRepData(filterParams) {
     this.setState({all_reps: null})
     // get the reps data
-    axios.get(URL + JSON.stringify(filterParams))
-    .then((response)=>{
+    axios.get(URL + JSON.stringify(filterParams)).then((response)=>{
       if (response.data.length === 0) {
         this.setState({all_reps: -2})
       } else {
@@ -103,13 +77,37 @@ export default class RepresentativeGrid extends Component {
   }
 
   render () {
+    const styles = {
+      root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        paddingTop: '50px',
+        paddingLeft: '50px',
+        paddingRight: '50px',
+        justifyContent: 'space-around'
+      },
+      center: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        paddingTop: '10%',
+        paddingLeft: '50px',
+        paddingRight: '50px',
+        justifyContent: 'space-around'
+      },
+      gridList: {
+        width: '100%',
+        height: '100%',
+        overflowY: 'auto'
+      }
+    }
+
     if (this.state.all_reps === null || this.state.party_name === null) {
       return(
-      <div style={styles.center} className="loading">
-      <RingLoader color={'#123abc'} loading={true} />
-       </div>)
-    }
-    else if (this.state.all_reps === -1  || this.state.party_name === -1){
+        <div style={styles.center} className="loading">
+          <RingLoader color={'#123abc'} loading={true} />
+        </div>
+      )
+    } else if (this.state.all_reps === -1  || this.state.party_name === -1) {
       return (
           <div style={styles.root}>
            <p> Data Not Found </p>
@@ -120,8 +118,7 @@ export default class RepresentativeGrid extends Component {
           <h1>No representatives found, try a different filter.</h1>
         </div>
       )
-    }
-    else{
+    } else{
       return (
         <div className='App'>
           <div style={styles.root} className="grid-container">

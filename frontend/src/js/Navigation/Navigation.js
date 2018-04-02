@@ -60,7 +60,7 @@ export default class Navigation extends Component {
                     type="text" placeholder="Search" />
                 </FormGroup>{' '}
                 <Link to={`/search/${this.state.value}`}>
-                  <Button type="submit">Submit</Button>
+                  <Button type="submit"><span className='glyphicon glyphicon-search'></span></Button>
                 </Link>
               </Navbar.Form>
             </Nav>
