@@ -4,12 +4,15 @@ import {Grid, Row, Col, ProgressBar} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {Timeline} from 'react-twitter-widgets'
 import RepBills from './Bills.js'
+import RepArticles from './Articles.js'
 import {RingLoader} from 'react-spinners'
 
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
 import '../../assets/css/Bills.css'
 import axios from 'axios'
+
+let articles = require('../../assets/temp/articles.json')
 
 const styles = {
   hyperlink: {
@@ -34,7 +37,8 @@ export default class RepresentativeDetails extends Component {
     super(props)
     this.state = {
         rep_data : null,
-        party_name : null
+        party_name : null,
+        articles: articles['response']['docs']
     }
   }
 
@@ -66,6 +70,7 @@ export default class RepresentativeDetails extends Component {
   }
 
   render () {
+    console.log(this.state.articles)
     if (this.state.rep_data === null || this.state.party_name === null){
       return(
       <div style={styles.center}>
@@ -190,6 +195,11 @@ export default class RepresentativeDetails extends Component {
         <h3 class='bills-header'>Recent Bills Sponsored</h3>
         <Row style={{paddingLeft: '160px'}}>
           <RepBills data = {this.state.rep_data.bills} />
+        </Row>
+
+        <h3 class='bills-header'>Recent Articles</h3>
+        <Row style={{paddingLeft: '160px'}}>
+          <RepArticles data = {this.state.articles} />
         </Row>
 
         <Row>

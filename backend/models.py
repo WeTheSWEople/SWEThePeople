@@ -16,6 +16,7 @@ class Representative(db.Model):
 	url = db.Column(db.String(255))
 	image_uri = db.Column(db.String(255))
 	bills = db.relationship('Bill', lazy=True)
+	articles = db.relationship('Article', lazy=True)
 
 	def format(self):
 	    return {
@@ -32,7 +33,8 @@ class Representative(db.Model):
 			"votes_with_party_pct" : self.votes_with_party_pct,
 			"url" : self.url,
 	        "image_uri": self.image_uri,
-	        "bills" : [x.format() for x in self.bills]
+	        "bills": [x.format() for x in self.bills]
+			"articles": [x.format() for x in self.articles]
 	    }
 
 	def __repr__(self):
@@ -61,6 +63,32 @@ class Bill(db.Model):
 
 	def __repr__(self):
 		return '<Bills {}: {}>'.format(self.id, self.number)
+
+class Article(db.Model):
+	__tablename__ = 'article'
+	id = db.Column(db.Integer, primary_key=True)
+	title = db.Column(db.String(255))
+	url = db.Column(db.String(255))
+	author = db.Column(db.String(255))
+	text = db.Column(db.String(255))
+	date = db.Column(db.String(255))
+	site = db.Column(db.String(255))
+	representative_id = db.Column(db.String(255), db.ForeignKey('representative.bioguide'), nullable=False)
+
+	def format(self):
+	    return {
+	        "id": self.id,
+	        "title": self.title,
+	        "url": self.url,
+	        "author": self.author,
+			"text": self.author,
+			"date": self.date,
+			"site": self.site,
+	        "representative_id" : self.representative_id
+	    }
+
+	def __repr__(self):
+		return '<Articles {}: {}>'.format(self.id, self.title, self.site, self.date, self.representative_id)
 
 class State(db.Model):
 	__tablename__ = 'state'
