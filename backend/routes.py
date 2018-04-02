@@ -97,6 +97,37 @@ def party_by_id(party_id):
     #return jsonify(get_response(PoliticalParty.query.filter(PoliticalParty.id == path).first()))
     return get_single_item(PoliticalParty, PoliticalParty.id, path)
 
+@party_route.route("/filter")
+def party_filter():
+    filter_query = request.args.get('filter')
+    filter_query = str(filter_query)
+    filter_query = json.loads(filter_query)
+
+    #ideology = str(filter_query['ideology'])
+    name = str(filter_query['name']).lower().split('-')
+    formation_date = filter_query['formation_date'].split("-")
+    num_reps = filter_query['num_reps'].split("-")
+    color = str(filter_query['color'])
+    order_by = str(filter_query['order_by'])
+    filtered_result = PoliticalParty.query
+    if len(formation_date) == 2:
+        filtered_result = filtered_result.filter(int(formation_date[0]) <= PoliticalParty.formation_date <= int(formation_date[1]))
+    if len(num_reps) == 2:
+        filtered_result = filtered_result.filter(int(num_reps[0]) <= len(PoliticalParty.representatives) <= int(num_reps[1]))
+    if color != "None":
+        pass #do later
+    if (order_by == 'name_asc'):
+        filtered_result = filtered_result.order_by(PoliticalParty.name.asc())
+    elif (order_by == 'name_desc'):
+        filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
+    else:
+        filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
+    filtered_result = filtered_result.all()
+    filtered_dict_list = [get_response(party) for party in filtered_result]
+    return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= last_name[1], filtered_dict_list))
+
+
+
 @state_route.route("/")
 def all_states():
     state_usps = request.args.get('state_usps')
