@@ -100,7 +100,7 @@ export default class DistrictGrid extends Component {
     } else{
       let districtsGrid = this.state.districts.map((district) =>
         <div className='col-sm-3 district-grid' key={district.alpha_num}>
-          <Link to={`/district/${district.state}/${district.alpha_num}`}>
+          <Link to={`/districts/${district.state}/${district.id}`}>
             <div className='district-card'>
               <h3><b>{district.alpha_num}</b></h3>
               <h5><b>Population: </b>{district.population}</h5>
