@@ -43,33 +43,25 @@ def representatives_by_page(num):
 @rep_route.route("/filter")
 def representatives_filter():
     filter_query = request.args.get('filter')
-
     filter_query = str(filter_query)
     filter_query = json.loads(filter_query)
 
     state = str(filter_query['state']) # check state is None
-    party_id = int(filter_query['party_id']) # check party id is None
+    party_id = filter_query['party_id'] # check party id is None
     last_name = str(filter_query['last_name']).lower().split('-')
     votes_pct = str(filter_query['votes_pct']).split('-') # votes pct is none
     order_by = str(filter_query['order_by'])
+   
+    filtered_result = Representative.query
+    if state != 'None':
+        filtered_result = filtered_result.filter(Representative.state == state)
 
-    
-    # filtered_result = Representative.query.order_by(Representative.lastname).limit(500).all()
-
-    # if state != 'None':
-    #     filtered_result = filtered_result.filter(Representative.state == state)
-
-    # if party_id != 'None':
-    #     filtered_result = filtered_result.filter(Representative.state == party_id)
-
-    # if votes_pct != 'None':
-    #     filtered_result = filtered_result.filter(Representative.votes_with_party_pct >= float(votes_pct[0]), 
-    #                         Representative.votes_with_party_pct < float(votes_pct[1]))
+    if party_id != 'None':
+        filtered_result = filtered_result.filter(Representative.party_id == int(party_id))
 
 
-    filtered_result =  Representative.query.filter(Representative.state == state,\
-                                Representative.party_id == party_id, \
-                                Representative.votes_with_party_pct >= float(votes_pct[0]), 
+    if votes_pct[0] != 'None':
+        filtered_result = filtered_result.filter(Representative.votes_with_party_pct >= float(votes_pct[0]), 
                                 Representative.votes_with_party_pct < float(votes_pct[1]))
 
     if (order_by == 'last_asc'):
@@ -82,6 +74,7 @@ def representatives_filter():
         filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.asc())
     else:
         filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.desc())
+
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(rep) for rep in filtered_result]
     return jsonify(filter(lambda s: s['lastname'][0].lower() >= last_name[0] and s['lastname'][0].lower() <= last_name[1], filtered_dict_list))
@@ -104,8 +97,42 @@ def party_by_id(party_id):
     #return jsonify(get_response(PoliticalParty.query.filter(PoliticalParty.id == path).first()))
     return get_single_item(PoliticalParty, PoliticalParty.id, path)
 
+@party_route.route("/filter")
+def party_filter():
+    filter_query = request.args.get('filter')
+    filter_query = str(filter_query)
+    filter_query = json.loads(filter_query)
+
+    #ideology = str(filter_query['ideology'])
+    name = str(filter_query['name']).lower().split('-')
+    formation_date = filter_query['formation_date'].split("-")
+    num_reps = filter_query['num_reps'].split("-")
+    color = str(filter_query['color'])
+    order_by = str(filter_query['order_by'])
+    filtered_result = PoliticalParty.query
+    if len(formation_date) == 2:
+        filtered_result = filtered_result.filter(int(formation_date[0]) <= PoliticalParty.formation_date <= int(formation_date[1]))
+    if len(num_reps) == 2:
+        filtered_result = filtered_result.filter(int(num_reps[0]) <= len(PoliticalParty.representatives) <= int(num_reps[1]))
+    if color != "None":
+        pass #do later
+    if (order_by == 'name_asc'):
+        filtered_result = filtered_result.order_by(PoliticalParty.name.asc())
+    elif (order_by == 'name_desc'):
+        filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
+    else:
+        filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
+    filtered_result = filtered_result.all()
+    filtered_dict_list = [get_response(party) for party in filtered_result]
+    return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= last_name[1], filtered_dict_list))
+
+
+
 @state_route.route("/")
 def all_states():
+    state_usps = request.args.get('state_usps')
+    if state_usps == 'True':
+        return jsonify({state.number :state.usps_abbreviation for state in State.query.with_entities(State.number, State.usps_abbreviation).all()})
     return get_all_items(State, State.number, 'State')
 
 
