@@ -95,7 +95,7 @@ def party_by_path(path):
 def party_by_id(party_id):
     return get_single_item(PoliticalParty, PoliticalParty.id, party_id)
     #return jsonify(get_response(PoliticalParty.query.filter(PoliticalParty.id == path).first()))
-    return get_single_item(PoliticalParty, PoliticalParty.id, path)
+    #return get_single_item(PoliticalParty, PoliticalParty.id, path)
 
 @party_route.route("/filter")
 def party_filter():
@@ -104,27 +104,53 @@ def party_filter():
     filter_query = json.loads(filter_query)
 
     #ideology = str(filter_query['ideology'])
-    name = str(filter_query['name']).lower().split('-')
-    formation_date = filter_query['formation_date'].split("-")
-    num_reps = filter_query['num_reps'].split("-")
+    social = str(filter_query['social'])
     color = str(filter_query['color'])
-    order_by = str(filter_query['order_by'])
+    formation_date = filter_query['formation_date'].split("-")
+    # name = str(filter_query['name']).lower().split('-') # Default: A-Z
+    # 
+    
+    # order_by = str(filter_query['order_by'])
+
+    # youtube and twitter both
+    # twitter
+    # youtube
+    # Neither
+
+    #social:YT, T, Y, NT, None
+
     filtered_result = PoliticalParty.query
-    if len(formation_date) == 2:
-        filtered_result = filtered_result.filter(int(formation_date[0]) <= PoliticalParty.formation_date <= int(formation_date[1]))
-    if len(num_reps) == 2:
-        filtered_result = filtered_result.filter(int(num_reps[0]) <= len(PoliticalParty.representatives) <= int(num_reps[1]))
-    if color != "None":
-        pass #do later
-    if (order_by == 'name_asc'):
-        filtered_result = filtered_result.order_by(PoliticalParty.name.asc())
-    elif (order_by == 'name_desc'):
-        filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
-    else:
-        filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
+
+    if social != 'None':
+        if social == 'YT':
+            filtered_result = filtered_result.filter(PoliticalParty.youtube != '', PoliticalParty.twitter_handle != '')
+
+        elif social == 'T':
+            filtered_result = filtered_result.filter(PoliticalParty.twitter_handle != '')
+
+        elif social == 'Y':
+            filtered_result = filtered_result.filter(PoliticalParty.youtube != '')
+
+        else: # neither
+            filtered_result = filtered_result.filter(PoliticalParty.youtube == '', PoliticalParty.twitter_handle == '')
+
+    if color != 'None':
+        color = color.title()
+        filtered_result = filtered_result.join(PartyColor).filter(PartyColor.color == color)
+
+
+    # if formation_date[0] != 'None':
+    #     filtered_result = filtered_result.all()
+
+    # if (order_by == 'name_asc'):
+    #     filtered_result = filtered_result.order_by(PoliticalParty.name.asc())
+    # elif (order_by == 'name_desc'):
+    #     filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
+    # else:
+    #     filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(party) for party in filtered_result]
-    return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= last_name[1], filtered_dict_list))
+    return jsonify(filtered_dict_list)
 
 
 
@@ -160,6 +186,40 @@ def districts_by_id(abbrev, id):
         return error("Item not found for id " + abbrev + " and " + id)
     return jsonify(get_response(data))
 
+@district_route.route("/filter")
+def districts_filter():
+    filter_query = request.args.get('filter')
+    filter_query = str(filter_query)
+    filter_query = json.loads(filter_query)
+
+    state = str(filter_query['state'])
+    population = str(filter_query['population']).split('-')
+    median_age = str(filter_query['median_age']).split('-')
+    order_by = str(filter_query['order_by'])
+
+    # order by state, alpha num, population  
+    filtered_result = District.query
+    if state != 'None':
+        filtered_result = filtered_result.filter(District.state == state)
+
+    if population[0] != 'None':
+        filtered_result = filtered_result.filter(District.population >= int(population[0]), 
+                                District.population < int(population[1]))
+
+    if median_age[0] != 'None':
+       filtered_result = filtered_result.filter(District.median_age >= float(median_age[0]), 
+                                District.median_age < float(median_age[1]))
+    if (order_by == 'state_asc'):
+        filtered_result = filtered_result.order_by(District.state.asc())
+    elif (order_by == 'state_desc'):
+        filtered_result = filtered_result.order_by(District.state.desc())
+    elif (order_by == 'population_desc'):
+        filtered_result = filtered_result.order_by(District.population.desc())
+    else:
+        filtered_result = filtered_result.order_by(District.population.asc())
+    filtered_result = filtered_result.all()
+    filtered_dict_list = [get_response(rep) for rep in filtered_result]
+    return jsonify(filtered_dict_list)
 
 def get_party_json(rep_party_id = None, party_param = None):
     party_json = None
@@ -184,13 +244,11 @@ def get_party_json(rep_party_id = None, party_param = None):
             "office": party.office,
             "path": party.path
         }  
-
     return party_json
 
 
 def get_district_json(rep_bioguide = None, district_param = None, state_param = None):
     district_json = None
-
     if rep_bioguide:
         district = District.query.filter(District.representative_id == rep_bioguide).first()
         state = State.query.with_entities(State.name, State.usps_abbreviation).filter(State.usps_abbreviation == district.state).first()
@@ -340,8 +398,6 @@ def get_all_search_results(search_query, reps_result, parties_result, districts_
 @search_route.route("/")
 def search():
     search_query = request.args.get('query')
-    
-    print(search_query)
     reps_result = []
     parties_result = []
     districts_result = []
@@ -351,7 +407,6 @@ def search():
         search_query_words = search_query.split()
         index = 0
         while index < 5 and index < len(search_query_words):
-            print("I am here: ", index)
             rank = get_brief_search_results(search_query_words[index], reps_result, parties_result, districts_result)
             index = index + 1
 
@@ -362,10 +417,6 @@ def search():
         "districts": districts_result
 
     })
-
-
-
-
 
 @error_route.app_errorhandler(404)
 def url_not_found(e):
