@@ -43,7 +43,6 @@ def representatives_by_page(num):
 @rep_route.route("/filter")
 def representatives_filter():
     filter_query = request.args.get('filter')
-
     filter_query = str(filter_query)
     filter_query = json.loads(filter_query)
 
@@ -52,24 +51,16 @@ def representatives_filter():
     last_name = str(filter_query['last_name']).lower().split('-')
     votes_pct = str(filter_query['votes_pct']).split('-') # votes pct is none
     order_by = str(filter_query['order_by'])
+   
+    filtered_result = Representative.query
+    if state != 'None':
+        filtered_result = filtered_result.filter(Representative.state == state)
 
-    
-    # filtered_result = Representative.query.order_by(Representative.lastname).limit(500).all()
+    if party_id != 'None':
+        filtered_result = filtered_result.filter(Representative.party_id == party_id)
 
-    # if state != 'None':
-    #     filtered_result = filtered_result.filter(Representative.state == state)
-
-    # if party_id != 'None':
-    #     filtered_result = filtered_result.filter(Representative.state == party_id)
-
-    # if votes_pct != 'None':
-    #     filtered_result = filtered_result.filter(Representative.votes_with_party_pct >= float(votes_pct[0]), 
-    #                         Representative.votes_with_party_pct < float(votes_pct[1]))
-
-
-    filtered_result =  Representative.query.filter(Representative.state == state,\
-                                Representative.party_id == party_id, \
-                                Representative.votes_with_party_pct >= float(votes_pct[0]), 
+    if votes_pct != 'None':
+        filtered_result = filtered_result.filter(Representative.votes_with_party_pct >= float(votes_pct[0]), 
                                 Representative.votes_with_party_pct < float(votes_pct[1]))
 
     if (order_by == 'last_asc'):
@@ -106,6 +97,9 @@ def party_by_id(party_id):
 
 @state_route.route("/")
 def all_states():
+    state_usps = request.args.get('state_usps')
+    if state_usps == 'True':
+        return jsonify({state.number :state.usps_abbreviation for state in State.query.with_entities(State.number, State.usps_abbreviation).all()})
     return get_all_items(State, State.number, 'State')
 
 
