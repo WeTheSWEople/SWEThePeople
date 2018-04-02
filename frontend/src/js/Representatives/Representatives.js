@@ -33,6 +33,9 @@ const styles = {
   }
 }
 
+const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
+  'representative/filter?filter='
+
 export default class Representatives extends Component {
   constructor (props) {
     super(props)
@@ -43,11 +46,12 @@ export default class Representatives extends Component {
     }
 
     this.handleFilterClicked = this.handleFilterClicked.bind(this)
+    this.getRepData = this.getRepData.bind(this)
   }
 
-  componentDidMount() {
+  getRepData(filterParams) {
     // get the reps data
-    axios.get(`http://api.swethepeople.me/representative/`)
+    axios.get(URL + JSON.stringify(filterParams))
     .then((response)=>{
       this.setState({
         all_reps:response.data
@@ -72,13 +76,25 @@ export default class Representatives extends Component {
     })
   }
 
+  componentDidMount() {
+    this.getRepData({
+      state: "None",
+      party_id: "None",
+      last_name: "A-Z",
+      votes_pct: "None",
+      order_by: "last_asc"
+    })
+  }
+
   handleFilterClicked(state_value, party_value, vote_value, lastname_value,
     sort_value) {
-    console.log(state_value)
-    console.log(party_value)
-    console.log(vote_value)
-    console.log(lastname_value)
-    console.log(sort_value)
+    this.getRepData({
+      state: state_value,
+      party_id: party_value,
+      last_name: lastname_value,
+      votes_pct: vote_value,
+      order_by: sort_value
+    })
   }
 
   render () {
