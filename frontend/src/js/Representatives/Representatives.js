@@ -2,8 +2,9 @@
 import React, {Component} from 'react'
 import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
-
 /* eslint-disable no-unused-vars */
+
+import Filter from '../Filter'
 import RepresentativeInstance from './RepresentativeInstance'
 import '../../assets/css/App.css'
 import axios from 'axios'
@@ -17,7 +18,7 @@ const styles = {
     paddingRight: '50px',
     justifyContent: 'space-around'
   },
-  center:{
+  center: {
     display: 'flex',
     flexWrap: 'wrap',
     paddingTop: '25%',
@@ -36,14 +37,15 @@ export default class Representatives extends Component {
   constructor (props) {
     super(props)
     this.state = {
-        all_reps : null,
-        party_name : null
-    };
+      all_reps: null,
+      party_name: null,
+      all_states: null
+    }
+
+    this.handleFilterClicked = this.handleFilterClicked.bind(this)
   }
 
-
-  componentDidMount(){
-
+  componentDidMount() {
     // get the reps data
     axios.get(`http://api.swethepeople.me/representative/`)
     .then((response)=>{
@@ -54,25 +56,34 @@ export default class Representatives extends Component {
       return axios.get(`http://api.swethepeople.me/party?party_name=True`)
     })
     .then((response)=>{
-      this.setState({
-        party_name:response.data
-      })
+      this.setState({party_name: response.data})
+
+      axios.get('http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
+        'state/?state_usps=True').then((response) => {
+          this.setState({all_states: response.data})
+        })
     })
     .catch((error)=>{
       this.setState({
           all_reps: -1,
-          party_name: -1
-
+          party_name: -1,
+          all_states: null
       })
     })
+  }
 
-
-
-
+  handleFilterClicked(state_value, party_value, vote_value, lastname_value,
+    sort_value) {
+    console.log(state_value)
+    console.log(party_value)
+    console.log(vote_value)
+    console.log(lastname_value)
+    console.log(sort_value)
   }
 
   render () {
-    if (this.state.all_reps === null || this.state.party_name === null){
+    if (this.state.all_reps === null || this.state.party_name === null ||
+      this.state.all_states === null) {
       return(
       <div style={styles.center} className="loading">
       <RingLoader color={'#123abc'} loading={true} />
@@ -88,6 +99,9 @@ export default class Representatives extends Component {
       return (
         <div className='App'>
           <header className='App-header-white'></header>
+          <Filter states={this.state.all_states}
+            parties={this.state.party_name}
+            buttonHandler={this.handleFilterClicked} />
           <div style={styles.root} className="grid-container">
             <GridList
               cellHeight={400}
