@@ -113,19 +113,19 @@ export default class PoliticalPartyFilter extends Component {
               value={this.state.color_value}
               onChange={this.handleColorDropdownChange}
               options={[
+                {value: 'Azure', label: 'Azure'},
                 {value: 'Black', label: 'Black'},
-                {value: 'White', label: 'White'},
+                {value: 'Blue', label: 'Blue'},
+                {value: 'Buff', label: 'Buff'},
                 {value: 'Gold', label: 'Gold'},
+                {value: 'Gray', label: 'Gray'},
+                {value: 'Green', label: 'Green'},
                 {value: 'Orange', label: 'Orange'},
                 {value: 'Purple', label: 'Purple'},
                 {value: 'Red', label: 'Red'},
-                {value: 'Blue', label: 'Blue'},
-                {value: 'Green', label: 'Green'},
-                {value: 'Gray', label: 'Gray'},
-                {value: 'Azure', label: 'Azure'},
-                {value: 'Yellow', label: 'Yellow'},
                 {value: 'Teal', label: 'Teal'},
-                {value: 'Buff', label: 'Buff'}]} />
+                {value: 'White', label: 'White'},
+                {value: 'Yellow', label: 'Yellow'}]} />
           </div>
 
           <div className='col-sm-2 filter-control'>
