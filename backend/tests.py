@@ -154,6 +154,7 @@ class TestStringMethods(unittest.TestCase):
 			district = "1",
 			twitter = "RepSteven",
 			youtube = "StevenChannel",
+			facebook = "StevenFB",
 			office = "111 Congress",
 			votes_with_party_pct = 50.0,
 			url = "https://test.house.gov",
