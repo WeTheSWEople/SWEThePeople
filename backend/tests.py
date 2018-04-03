@@ -10,7 +10,7 @@ from models import *
 from flask import jsonify
 live_url = "http://swethepeople.me/"
 #live_api_url = "http://api.swethepeople.me/"
-live_api_url = "http://api.swethepeople.me/"
+live_api_url = "http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/"
 
 
 def getResponse(data):
@@ -55,51 +55,51 @@ class TestStringMethods(unittest.TestCase):
 		self.assertEqual(response.ok, True)
 		print("\nTEST 5: Live API is up: Representative Pagination response OK")
 
-	# def test6(self):
-	# 	response = requests.request("GET", live_api_url + "representative/")
-	# 	result = response.json()
-	# 	with app.app_context():
-	# 		self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
-	# 	print("\nTEST 6: Live API is up: Representative data consistent with DB data. Response OK")
+	def test6(self):
+		response = requests.request("GET", live_api_url + "representative/")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
+		print("\nTEST 6: Live API is up: Representative data consistent with DB data. Response OK")
 
-	# def test7(self):
-	# 	self.maxDiff = None
-	# 	response = requests.request("GET", live_api_url + "representative/A000374")
-	# 	result = response.json()
-	# 	print(getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
-	# 	with app.app_context():
-	# 		self.assertEqual(result, getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
-	# 	print("\nTEST 7: Live API is up: Representative Bioguide data consistent with DB data. Response OK")
+	def test7(self):
+		self.maxDiff = None
+		response = requests.request("GET", live_api_url + "representative/A000374")
+		result = response.json()
+		#print(getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
+		with app.app_context():
+			self.assertEqual(result, getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
+		print("\nTEST 7: Live API is up: Representative Bioguide data consistent with DB data. Response OK")
 
-	# def test8(self):
-	# 	response = requests.request("GET", live_api_url + "party/democratic_party")
-	# 	result = response.json()
-	# 	with app.app_context():
-	# 		self.assertEqual(result, getResponse(PoliticalParty.query.filter(PoliticalParty.id == 1).first()))
-	# 	print("\nTEST 8: Live API is up: Political Party data consistent with DB data. Response OK")
+	def test8(self):
+		response = requests.request("GET", live_api_url + "party/democratic_party")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, getResponse(PoliticalParty.query.filter(PoliticalParty.id == 1).first()))
+		print("\nTEST 8: Live API is up: Political Party data consistent with DB data. Response OK")
 
-	# def test9(self):
-	# 	self.maxDiff = None
-	# 	response = requests.request("GET", live_api_url + "state/AL")
-	# 	result = response.json()
-	# 	with app.app_context():
-	# 		self.assertEqual(result, getResponse(State.query.filter(State.usps_abbreviation == "AL").first()))
-	# 	print("\nTEST 9: Live API is up: State data consistent with DB data. Response OK")
+	def test9(self):
+		self.maxDiff = None
+		response = requests.request("GET", live_api_url + "state/AL")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, getResponse(State.query.filter(State.usps_abbreviation == "AL").first()))
+		print("\nTEST 9: Live API is up: State data consistent with DB data. Response OK")
 
-	# def test_10(self):
-	# 	self.maxDiff = None
-	# 	response = requests.request("GET", live_api_url + "district/AL")
-	# 	result = response.json()
-	# 	with app.app_context():
-	# 		self.assertEqual(result, [getResponse(district) for district in District.query.filter(District.state == "AL").all()])
-	# 	print("\nTEST 10: Live API is up: District and state data consistent with DB data. Response OK")
+	def test_10(self):
+		self.maxDiff = None
+		response = requests.request("GET", live_api_url + "district/AL")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, [getResponse(district) for district in District.query.filter(District.state == "AL").all()])
+		print("\nTEST 10: Live API is up: District and state data consistent with DB data. Response OK")
 
-	# def test_11(self):
-	# 	response = requests.request("GET", live_api_url + "district/AL/1")
-	# 	result = response.json()
-	# 	with app.app_context():
-	# 		self.assertEqual(result, getResponse(District.query.filter(District.state == "AL").filter(District.id == "1").first()))
-	# 	print("\nTEST 11: Live API is up: Specific District data consistent with DB data. Response OK")
+	def test_11(self):
+		response = requests.request("GET", live_api_url + "district/AL/1")
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, getResponse(District.query.filter(District.state == "AL").filter(District.id == "1").first()))
+		print("\nTEST 11: Live API is up: Specific District data consistent with DB data. Response OK")
 
 	def test_12(self):
 		response = requests.request("GET", live_api_url + "representative/A0003745")

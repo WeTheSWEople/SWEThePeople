@@ -152,7 +152,7 @@ def party_filter():
 def all_states():
     state_usps = request.args.get('state_usps')
     if state_usps == 'True':
-        return jsonify({state.number :state.usps_abbreviation for state in State.query.with_entities(State.number, State.usps_abbreviation).all()})
+        return jsonify({state.number :[state.usps_abbreviation, state.name] for state in State.query.with_entities(State.number, State.usps_abbreviation, State.name).all()})
     return get_all_items(State, State.number, 'State')
 
 

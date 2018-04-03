@@ -15,8 +15,8 @@ export default class DistrictFilter extends Component {
     let stateArr = []
     Object.keys(this.props.states).forEach((key) =>
       stateArr.push({
-        value: this.props.states[key],
-        label: this.props.states[key]})
+        value: this.props.states[key][0],
+        label: this.props.states[key][1]})
     )
 
     this.state = {
