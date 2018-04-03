@@ -207,9 +207,9 @@ export default class DistrictDetails extends Component {
           <header className='Rep-Details-header'> </header>
 
           <Row >
-            <h1><font size='8'><b>District
+            <h1><font size='8'><b>
             {` `}
-            {this.state.all_states[this.state.district_state]}</b></font></h1>
+            {this.state.all_states[this.state.district_state]+' - District '+this.state.district_num}</b></font></h1>
             <br></br><br></br>
             <Col sm={6} md={6}>
 

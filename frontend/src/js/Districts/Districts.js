@@ -2,16 +2,16 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {RingLoader} from 'react-spinners'
-import DistrictGrid from './DistrictGrid'
-import DistrictFilter from './DistrictFilter'
 /* eslint-enable no-unused-vars */
 
 import axios from 'axios'
+import DistrictGrid from './DistrictGrid'
+import DistrictFilter from './DistrictFilter'
 
 const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/'
 
 export default class Districts extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       all_states: null,
@@ -30,13 +30,13 @@ export default class Districts extends Component {
     this.handleFilterClicked = this.handleFilterClicked.bind(this)
   }
 
-  handleFilterClicked (stateValue, populationValue, medianAgeValue,
-    sortValue) {
+  handleFilterClicked(state_value, population_value, median_age_value,
+    sort_value) {
     this.setState({
-      state_value: stateValue,
-      population_value: populationValue,
-      median_age_value: medianAgeValue,
-      sort_value: sortValue
+      state_value: state_value,
+      population_value: population_value,
+      median_age_value: median_age_value,
+      sort_value: sort_value
     })
   }
 
@@ -69,8 +69,7 @@ export default class Districts extends Component {
           state_value={this.state.state_value}
           population_value={this.state.population_value}
           median_age_value={this.state.median_age_value}
-          sort_value={this.state.sort_value}
-          all_states={this.state.all_states} />
+          sort_value={this.state.sort_value} />
       </div>
     )
   }
