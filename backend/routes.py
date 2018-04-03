@@ -106,21 +106,12 @@ def party_filter():
     #ideology = str(filter_query['ideology'])
     social = str(filter_query['social'])
     color = str(filter_query['color'])
-    formation_date = filter_query['formation_date'].split("-")
-    # name = str(filter_query['name']).lower().split('-') # Default: A-Z
-    # 
-    
+    formation_date = filter_query['date'].split("-")
+    name = str(filter_query['name']).lower().split('-') # Default: A-Z
+
     # order_by = str(filter_query['order_by'])
 
-    # youtube and twitter both
-    # twitter
-    # youtube
-    # Neither
-
-    #social:YT, T, Y, NT, None
-
     filtered_result = PoliticalParty.query
-
     if social != 'None':
         if social == 'YT':
             filtered_result = filtered_result.filter(PoliticalParty.youtube != '', PoliticalParty.twitter_handle != '')
@@ -139,8 +130,17 @@ def party_filter():
         filtered_result = filtered_result.join(PartyColor).filter(PartyColor.color == color)
 
 
-    # if formation_date[0] != 'None':
-    #     filtered_result = filtered_result.all()
+    if formation_date[0] != 'None':
+        filtered_result = filtered_result.all()
+        filtered_dict_list = [get_response(party) for party in filtered_result]
+        for item in filtered_dict_list:
+            print(item)
+            for rep in item['representatives']:
+                del rep['bills']
+                
+        print(filtered_dict_list)
+        date_filtered_dict = filter(lambda s: int(s['formation_date'].split(" ")[-1]) >= int(formation_date[0]) and int(s['formation_date'].split(" ")[-1]) <= int(formation_date[1]), filtered_dict_list)
+        return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= name[1], date_filtered_dict))
 
     # if (order_by == 'name_asc'):
     #     filtered_result = filtered_result.order_by(PoliticalParty.name.asc())
@@ -150,7 +150,7 @@ def party_filter():
     #     filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(party) for party in filtered_result]
-    return jsonify(filtered_dict_list)
+    return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= name[1], filtered_dict_list))
 
 
 
