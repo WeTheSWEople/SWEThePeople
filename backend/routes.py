@@ -11,11 +11,6 @@ state_route = Blueprint('state', __name__)
 district_route = Blueprint('district', __name__)
 search_route = Blueprint('search', __name__)
 
-# def get_response(data):
-#     if data is None:
-#         return None
-#     else:
-#         return data.format()
 
 @root_route.route('/')
 def endpoints():
@@ -140,21 +135,15 @@ def party_filter():
     else:
         filtered_result = filtered_result.order_by(PoliticalParty.id)
 
-    if formation_date[0] != 'None':
-        filtered_result = filtered_result.all()
-        filtered_dict_list = [get_response(party) for party in filtered_result]
-        for item in filtered_dict_list:
-            print(item)
-            for rep in item['representatives']:
-                del rep['bills']
-                
-        print(filtered_dict_list)
-        date_filtered_dict = filter(lambda s: int(s['formation_date'].split(" ")[-1]) >= int(formation_date[0]) and int(s['formation_date'].split(" ")[-1]) <= int(formation_date[1]), filtered_dict_list)
-        return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= name[1], date_filtered_dict))
-
-   
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(party) for party in filtered_result]
+    for item in filtered_dict_list:
+        for rep in item['representatives']:
+            del rep['bills']
+
+    if formation_date[0] != 'None':
+        date_filtered_dict = filter(lambda s: int(s['formation_date'].split(" ")[-1]) >= int(formation_date[0]) and int(s['formation_date'].split(" ")[-1]) <= int(formation_date[1]), filtered_dict_list)
+        return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= name[1], date_filtered_dict))
     return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= name[1], filtered_dict_list))
 
 
