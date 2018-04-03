@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
+import ReactPaginate from 'react-paginate'
 
 import '../../assets/css/App.css'
 import '../../assets/css/District.css'
@@ -12,21 +13,45 @@ import axios from 'axios'
 const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
   'district/filter?filter='
 
+function clone(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    var copy = obj.constructor();
+    for (var attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    }
+    return copy;
+}
+
+Array.prototype.subarray=function(start, end) {
+ if(!end){
+     end = this.length;
+ }
+var newArray = clone(this);
+return newArray.slice(start, end);
+};
+
 export default class DistrictGrid extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      districts: null
+      districts: null,
+      displayed_districts: null,
+      cur_page: -1
     }
+    this.handlePageClick = this.handlePageClick.bind(this)
+  }
+  handlePageClick(data){
+      console.log(this.state.districts)
+      this.setState({displayed_districts: this.state.districts.subarray(data.selected*16, (data.selected + 1)* 16)})
   }
 
   getDistrictData (filterParams) {
     this.setState({districts: null})
     axios.get(URL + JSON.stringify(filterParams)).then((response) => {
       if (response.data.length === 0) {
-        this.setState({districts: -2})
+        this.setState({districts: -2, cur_page: -1, displayed_districts: -2})
       } else {
-        this.setState({districts: response.data})
+        this.setState({districts: response.data, cur_page: response.data.length/16, displayed_districts: response.data.subarray(0, 16)})
       }
     }).catch((error) => {
       this.setState({districts: -1})
@@ -73,7 +98,7 @@ export default class DistrictGrid extends Component {
         </div>
       )
     } else {
-      let districtsGrid = this.state.districts.map((district) =>
+      let districtsGrid = this.state.displayed_districts.map((district) =>
         <div className='col-sm-3 district-grid' key={district.alpha_num}>
           <Link to={`/districts/${district.state}/${district.id}`}>
             <div className='district-card'>
@@ -96,6 +121,18 @@ export default class DistrictGrid extends Component {
           <div className='row' style={{paddingTop: '20px'}}>
             {districtsGrid}
           </div>
+          <center>
+          <ReactPaginate previousLabel={"previous"}
+              nextLabel={"next"}
+              breakLabel={<a>...</a>}
+              breakClassName={"break-me"}
+              pageCount={this.state.cur_page}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={this.handlePageClick}
+              containerClassName={"pagination"}
+              subContainerClassName={"pages pagination"}
+              activeClassName={"active"} /></center>
         </div>
       )
     }
