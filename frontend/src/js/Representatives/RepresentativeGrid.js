@@ -6,6 +6,7 @@ import {RingLoader} from 'react-spinners'
 
 import RepresentativeInstance from './RepresentativeInstance'
 import '../../assets/css/App.css'
+import '../../assets/css/FilterGrid.css'
 import axios from 'axios'
 
 const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
@@ -16,7 +17,7 @@ export default class RepresentativeGrid extends Component {
     super(props)
     this.state = {
       all_reps: null,
-      party_name: null,
+      party_name: null
     }
 
     this.getRepData = this.getRepData.bind(this)
@@ -30,41 +31,38 @@ export default class RepresentativeGrid extends Component {
     })
   }
 
-  getRepData(filterParams) {
+  getRepData (filterParams) {
     this.setState({all_reps: null})
-    // get the reps data
-    axios.get(URL + JSON.stringify(filterParams)).then((response)=>{
+    axios.get(URL + JSON.stringify(filterParams)).then((response) => {
       if (response.data.length === 0) {
         this.setState({all_reps: -2})
       } else {
         this.setState({all_reps: response.data})
       }
+
       // get the party names
       return axios.get(`http://api.swethepeople.me/party?party_name=True`)
-    })
-    .then((response)=>{
+    }).then((response) => {
       this.setState({party_name: response.data})
-    })
-    .catch((error)=>{
-      console.log(error)
+    }).catch((error) => {
       this.setState({
-          all_reps: -1,
-          party_name: -1
+        all_reps: -1,
+        party_name: -1
       })
     })
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.getRepData({
-      state: "None",
-      party_id: "None",
-      last_name: "A-Z",
-      votes_pct: "None",
-      order_by: "last_asc"
+      state: 'None',
+      party_id: 'None',
+      last_name: 'A-Z',
+      votes_pct: 'None',
+      order_by: 'last_asc'
     })
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (this.props !== nextProps) {
       this.getRepData({
         state: nextProps.state_value,
@@ -77,65 +75,43 @@ export default class RepresentativeGrid extends Component {
   }
 
   render () {
-    const styles = {
-      root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        paddingTop: '50px',
-        paddingLeft: '50px',
-        paddingRight: '50px',
-        justifyContent: 'space-around'
-      },
-      center: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        paddingTop: '10%',
-        paddingLeft: '50px',
-        paddingRight: '50px',
-        justifyContent: 'space-around'
-      },
-      gridList: {
-        width: '100%',
-        height: '100%',
-        overflowY: 'auto'
-      }
-    }
-
     if (this.state.all_reps === null || this.state.party_name === null) {
-      return(
-        <div style={styles.center} className="loading">
+      return (
+        <div className='loading filter-grid-center'>
           <RingLoader color={'#123abc'} loading={true} />
         </div>
       )
-    } else if (this.state.all_reps === -1  || this.state.party_name === -1) {
+    } else if (this.state.all_reps === -1 || this.state.party_name === -1) {
       return (
-          <div style={styles.root}>
-           <p> Data Not Found </p>
-          </div>)
+        <div className='filter-grid-root'>
+          <p>Data Not Found</p>
+        </div>
+      )
     } else if (this.state.all_reps === -2) {
       return (
-        <div style={styles.root}>
+        <div className='filter-grid-root'>
           <h1>No representatives found, try a different filter.</h1>
         </div>
       )
-    } else{
+    } else {
       return (
         <div className='App'>
-          <div style={styles.root} className="grid-container">
+          <div className='grid-container filter-grid-root'>
             <GridList
               cellHeight={400}
               cols={5}
-              style={styles.gridList}
-              className="gridlist-container"
+              className='gridlist-container filter-grid-list'
             >
               {this.state.all_reps.map((item) => (
-                <RepresentativeInstance key={item.bioguide} rep = {item} party_name = {this.state.party_name[item.party_id][0]} />
+                <RepresentativeInstance
+                  key={item.bioguide}
+                  rep={item}
+                  party_name={this.state.party_name[item.party_id][0]} />
               ))}
             </GridList>
           </div>
         </div>
       )
     }
-
   }
 }

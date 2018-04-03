@@ -1,27 +1,26 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
 
 import '../../assets/css/App.css'
 import '../../assets/css/District.css'
+import '../../assets/css/FilterGrid.css'
 import axios from 'axios'
-import {RingLoader} from 'react-spinners'
 
 const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
   'district/filter?filter='
 
 export default class DistrictGrid extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
-      districts: null,
-      state_name : null,
-      census_json: null
+      districts: null
     }
   }
 
-  getDistrictData(filterParams) {
+  getDistrictData (filterParams) {
     this.setState({districts: null})
     axios.get(URL + JSON.stringify(filterParams)).then((response) => {
       if (response.data.length === 0) {
@@ -34,16 +33,16 @@ export default class DistrictGrid extends Component {
     })
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.getDistrictData({
-      state: "None",
-      population: "None",
-      median_age: "None",
-      order_by: "state_asc"
+      state: 'None',
+      population: 'None',
+      median_age: 'None',
+      order_by: 'state_asc'
     })
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (this.props !== nextProps) {
       this.getDistrictData({
         state: nextProps.state_value,
@@ -55,49 +54,49 @@ export default class DistrictGrid extends Component {
   }
 
   render () {
-    const styles = {
-      root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        paddingTop: '50px',
-        paddingLeft: '50px',
-        paddingRight: '50px',
-        justifyContent: 'space-around'
-      },
-      center:{
-        display: 'flex',
-        flexWrap: 'wrap',
-        paddingTop: '20%',
-        paddingLeft: '50px',
-        paddingRight: '50px',
-        justifyContent: 'space-around'
-      },
-      gridList: {
-        width: '100%',
-        height: '100%',
-        overflowY: 'auto'
-      }
-    }
+    // const styles = {
+    //   root: {
+    //     display: 'flex',
+    //     flexWrap: 'wrap',
+    //     paddingTop: '50px',
+    //     paddingLeft: '50px',
+    //     paddingRight: '50px',
+    //     justifyContent: 'space-around'
+    //   },
+    //   center: {
+    //     display: 'flex',
+    //     flexWrap: 'wrap',
+    //     paddingTop: '20%',
+    //     paddingLeft: '50px',
+    //     paddingRight: '50px',
+    //     justifyContent: 'space-around'
+    //   },
+    //   gridList: {
+    //     width: '100%',
+    //     height: '100%',
+    //     overflowY: 'auto'
+    //   }
+    // }
 
     if (this.state.districts === null) {
-      return(
-        <div style={styles.center}>
+      return (
+        <div className='filter-grid-center'>
           <RingLoader color={'#123abc'} loading={true} />
         </div>
       )
     } else if (this.state.districts === -1) {
       return (
-        <div style={styles.root}>
+        <div className='filter-grid-root'>
           <p>Data Not Found</p>
         </div>
       )
     } else if (this.state.districts === -2) {
       return (
-        <div style={styles.root}>
+        <div className='filter-grid-root'>
           <h1>No districts found, try a different filter.</h1>
         </div>
       )
-    } else{
+    } else {
       let districtsGrid = this.state.districts.map((district) =>
         <div className='col-sm-3 district-grid' key={district.alpha_num}>
           <Link to={`/districts/${district.state}/${district.id}`}>
