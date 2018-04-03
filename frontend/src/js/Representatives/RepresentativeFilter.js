@@ -5,11 +5,10 @@ import {RingLoader} from 'react-spinners'
 import Select from 'react-select'
 /* eslint-disable no-unused-vars */
 
-import '../assets/css/Filter.css'
+import '../../assets/css/Filter.css'
 import 'react-select/dist/react-select.css'
-import axios from 'axios'
 
-export default class Filter extends Component {
+export default class RepresentativeFilter extends Component {
   constructor(props) {
     super(props)
 
@@ -41,6 +40,7 @@ export default class Filter extends Component {
     this.handleLastnameDropdownChange = this.handleLastnameDropdownChange.bind(this)
     this.handleSortDropdownChange = this.handleSortDropdownChange.bind(this)
     this.handleFilterClicked = this.handleFilterClicked.bind(this)
+    this.handleResetClicked = this.handleResetClicked.bind(this)
   }
 
   handleStateDropdownChange(selectedOption) {
@@ -90,6 +90,17 @@ export default class Filter extends Component {
     }
 
     this.props.buttonHandler(state, party, votes, lastname, sort)
+  }
+
+  handleResetClicked(e) {
+    this.setState({
+      state_value: null,
+      party_value: null,
+      vote_value: null,
+      lastname_value: null,
+      sort_value: null
+    })
+    this.props.buttonHandler('None', 'None', 'None', 'A-Z', 'last_asc')
   }
 
   render() {
@@ -153,6 +164,11 @@ export default class Filter extends Component {
             <button className="btn btn-primary"
               onClick={this.handleFilterClicked}>
               Filter
+            </button>
+
+            <button className="btn btn-danger reset-button"
+              onClick={this.handleResetClicked}>
+              Reset
             </button>
           </div>
         </div>
