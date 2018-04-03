@@ -204,9 +204,9 @@ def districts_filter():
        filtered_result = filtered_result.filter(District.median_age >= float(median_age[0]), 
                                 District.median_age < float(median_age[1]))
     if (order_by == 'state_asc'):
-        filtered_result = filtered_result.order_by(District.state.asc())
+        filtered_result = filtered_result.order_by(District.alpha_num.asc())
     elif (order_by == 'state_desc'):
-        filtered_result = filtered_result.order_by(District.state.desc())
+        filtered_result = filtered_result.order_by(District.alpha_num.desc())
     elif (order_by == 'population_desc'):
         filtered_result = filtered_result.order_by(District.population.desc())
     else:
