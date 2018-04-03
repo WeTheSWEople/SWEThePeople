@@ -63,7 +63,7 @@ export default class PoliticalPartyFilter extends Component {
 
     let formationDate = 'None'
     if (this.state.formation_date_value !== null) {
-      formationDate = this.state.formation_date_value
+      formationDate = this.state.formation_date_value.value
     }
 
     let name = 'A-Z'
