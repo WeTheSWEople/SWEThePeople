@@ -33,7 +33,7 @@ class Representative(db.Model):
 			"votes_with_party_pct" : self.votes_with_party_pct,
 			"url" : self.url,
 	        "image_uri": self.image_uri,
-	        "bills": [x.format() for x in self.bills]
+	        "bills": [x.format() for x in self.bills],
 			"articles": [x.format() for x in self.articles]
 	    }
 
@@ -113,12 +113,16 @@ class District(db.Model):
 	alpha_num = db.Column(db.String(11), index=True, nullable=False, primary_key=True)
 	state = db.Column(db.String(2), db.ForeignKey('state.usps_abbreviation'))
 	id = db.Column(db.String(8))
-	representative_id = db.Column(db.String(255), db.ForeignKey('representative.bioguide'))
+	representative_id = \
+		db.Column(db.String(255), db.ForeignKey('representative.bioguide'))
+
 	population = db.Column(db.Integer)
+	population_male = db.Column(db.Integer)
+
 	median_age = db.Column(db.Float)
 	median_age_male = db.Column(db.Float)
 	median_age_female = db.Column(db.Float)
-	population_male = db.Column(db.Integer)
+
 	population_white = db.Column(db.Integer)
 	population_black_or_african_american = db.Column(db.Integer)
 	population_american_indian_and_alaska_native = db.Column(db.Integer)
@@ -128,6 +132,67 @@ class District(db.Model):
 	population_some_other_race = db.Column(db.Integer)
 	population_two_or_more_races = db.Column(db.Integer)
 
+	ethnicity_not_hispanic_or_latino = db.Column(db.Integer)
+	ethnicity_not_hispanic_or_latino = db.Column(db.Integer)
+
+	ethnicity_hispanic_or_latino = db.Column(db.Integer)
+	citizenship_us_citizen_born_in_us = db.Column(db.Integer)
+	citizenship_us_citizen_born_in_pr_or_us_island_areas = db.Column(db.Integer)
+	citizenship_us_citizen_born_abroad_of_american_parents = \
+		db.Column(db.Integer)
+	citizenship_us_citizen_by_naturalization = db.Column(db.Integer)
+	citizenship_not_a_us_citizen = db.Column(db.Integer)
+
+	language_speak_only_english = db.Column(db.Integer)
+	language_speak_spanish = db.Column(db.Integer)
+	language_speak_other_languages = db.Column(db.Integer)
+
+	marriage_never_married = db.Column(db.Integer)
+	marriage_now_married = db.Column(db.Integer)
+	marriage_divorced = db.Column(db.Integer)
+	marriage_separated = db.Column(db.Integer)
+	marriage_widowed = db.Column(db.Integer)
+
+	education_less_than_hs = db.Column(db.Integer)
+	education_hs_grad = db.Column(db.Integer)
+	education_some_college = db.Column(db.Integer)
+	education_bachelors = db.Column(db.Integer)
+	education_grad_prof = db.Column(db.Integer)
+
+	income_none = db.Column(db.Integer)
+	income_9999_less = db.Column(db.Integer)
+	income_10000_14999 = db.Column(db.Integer)
+	income_15000_24999 = db.Column(db.Integer)
+	income_20000_24999 = db.Column(db.Integer)
+	income_25000_29999 = db.Column(db.Integer)
+	income_30000_34999 = db.Column(db.Integer)
+	income_35000_39999 = db.Column(db.Integer)
+	income_40000_44999 = db.Column(db.Integer)
+	income_45000_49999 = db.Column(db.Integer)
+	income_50000_59999 = db.Column(db.Integer)
+	income_60000_74999 = db.Column(db.Integer)
+	income_75000_99999 = db.Column(db.Integer)
+	income_100000_124999 = db.Column(db.Integer)
+	income_125000_149999 = db.Column(db.Integer)
+	income_150000_199999 = db.Column(db.Integer)
+	income_200000_more = db.Column(db.Integer)
+
+	veteran = db.Column(db.Integer)
+
+	computers_has_one_or_more = db.Column(db.Integer)
+	computers_has_desktop_laptop = db.Column(db.Integer)
+	computers_has_smartphone = db.Column(db.Integer)
+	computers_has_tablet = db.Column(db.Integer)
+	computers_has_other = db.Column(db.Integer)
+	computers_none = db.Column(db.Integer)
+
+	internet_has = db.Column(db.Integer)
+	internet_has_dialup = db.Column(db.Integer)
+	internet_has_broadband = db.Column(db.Integer)
+	internet_has_cellular_data = db.Column(db.Integer)
+	internet_has_satellite = db.Column(db.Integer)
+	internet_none = db.Column(db.Integer)
+
 	def format(self):
 	    return {
 	        "alpha_num": self.alpha_num,
@@ -135,10 +200,12 @@ class District(db.Model):
 			"id": self.id,
 			"representative_id": self.representative_id,
 	        "population": self.population,
+			"population_male": self.population_male,
+
 	        "median_age": self.median_age,
 	        "median_age_male": self.median_age_male,
 			"median_age_female": self.median_age_female,
-			"population_male": self.population_male,
+
 			"population_white": self.population_white,
 			"population_black_or_african_american":
 				self.population_black_or_african_american,
@@ -149,7 +216,71 @@ class District(db.Model):
 				self.population_native_hawaiian_and_other_pacific_islander,
 			"population_some_other_race": self.population_some_other_race,
 			"population_two_or_more_races": self.population_two_or_more_races,
-	    }
+
+			"ethnicity_not_hispanic_or_latino":
+				self.ethnicity_not_hispanic_or_latino,
+			"ethnicity_hispanic_or_latino": self.ethnicity_hispanic_or_latino,
+
+			"citizenship_us_citizen_born_in_us":
+				self.citizenship_us_citizen_born_in_us,
+			"citizenship_us_citizen_born_in_pr_or_us_island_areas":
+				self.citizenship_us_citizen_born_in_pr_or_us_island_areas,
+			"citizenship_us_citizen_born_abroad_of_american_parents":
+				self.citizenship_us_citizen_born_abroad_of_american_parents,
+			"citizenship_us_citizen_by_naturalization":
+				self.citizenship_us_citizen_by_naturalization,
+			"citizenship_not_a_us_citizen": self.citizenship_not_a_us_citizen,
+
+			"language_speak_only_english": self.language_speak_only_english,
+			"language_speak_spanish": self.language_speak_spanish,
+			"language_speak_other_languages":
+				self.language_speak_other_languages,
+			"marriage_never_married": self.marriage_never_married,
+			"marriage_now_married": self.marriage_now_married,
+			"marriage_divorced": self.marriage_divorced,
+			"marriage_separated": self.marriage_separated,
+			"marriage_widowed": self.marriage_widowed,
+
+			"education_less_than_hs": self.education_less_than_hs,
+			"education_hs_grad": self.education_hs_grad,
+			"education_some_college": self.education_some_college,
+			"education_bachelors": self.education_bachelors,
+			"education_grad_prof": self.education_grad_prof,
+
+			"income_none": self.income_none,
+			"income_9999_less": self.income_9999_less,
+			"income_10000_14999": self.income_10000_14999,
+			"income_15000_19999": self.income_15000_19999,
+			"income_20000_24999": self.income_20000_24999,
+			"income_25000_29999": self.income_25000_29999,
+			"income_30000_34999": self.income_30000_34999,
+			"income_35000_39999": self.income_35000_39999,
+			"income_40000_44999": self.income_40000_44999,
+			"income_45000_49999": self.income_45000_49999,
+			"income_50000_59999": self.income_50000_59999,
+			"income_60000_74999": self.income_60000_74999,
+			"income_75000_99999": self.income_75000_99999,
+			"income_100000_124999": self.income_100000_124999,
+			"income_125000_149999": self.income_125000_149999,
+			"income_150000_199999": self.income_150000_199999,
+			"income_200000_more": self.income_200000_more,
+
+			"veteran": self.veteran,
+
+			"computers_has_one_or_more": self.computers_has_one_or_more,
+			"computers_has_desktop_laptop": self.computers_has_desktop_laptop,
+			"computers_has_smartphone": self.computers_has_smartphone,
+			"computers_has_tablet": self.computers_has_tablet,
+			"computers_has_other": self.computers_has_other,
+			"computers_none": self.computers_none,
+
+			"internet_has": self.internet_has,
+			"internet_has_dialup": self.internet_has_dialup,
+			"internet_has_broadband": self.internet_has_broadband,
+			"internet_has_cellular_data": self.internet_has_cellular_data,
+			"internet_has_satellite": self.internet_has_satellite,
+			"internet_none": self.internet_none
+		}
 
 	def __repr__(self):
 		return '<Districts {}: {} {}>'.format(self.alpha_num,
