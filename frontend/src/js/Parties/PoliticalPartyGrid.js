@@ -31,8 +31,6 @@ export default class PoliticalPartyGrid extends Component {
       if (response.data.length === 0) {
         this.setState({parties: -2})
       } else {
-        console.log(response.data)
-
         let counts = {}
         for (const party of response.data) {
           counts[party.id] = party.representatives.length
