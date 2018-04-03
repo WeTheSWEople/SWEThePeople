@@ -19,22 +19,6 @@ const styles = {
   }
 }
 
-function clone(obj) {
-	if (null == obj || "object" != typeof obj) return obj;
-	var copy = obj.constructor();
-	for (var attr in obj) {
-		if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
-	}
-	return copy;
-}
-
-Array.prototype.subarray=function(start, end) {
-   if(!end){
-	 end = this.length;
-   }
-  var newArray = clone(this);
-  return newArray.slice(start, end);
-};
 
 export default class PoliticalParty extends Component {
   constructor (props) {

@@ -52,8 +52,7 @@ export default class RepresentativeGrid extends Component {
   }
 
   handlePageClick(data){
-		let cur_result = this.state.all_reps
-		this.setState({displayed_reps: cur_result.subarray(data.selected*25, (data.selected+1)*25)})
+		this.setState({displayed_reps: this.state.all_reps.subarray(data.selected*25, (data.selected+1)*25)})
 	}
 
 
