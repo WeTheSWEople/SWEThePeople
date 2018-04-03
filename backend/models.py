@@ -66,9 +66,8 @@ class Bill(db.Model):
 
 class Article(db.Model):
 	__tablename__ = 'article'
-	id = db.Column(db.Integer, primary_key=True)
 	title = db.Column(db.String(255))
-	url = db.Column(db.String(255))
+	url = db.Column(db.String(255), index=True, nullable=False, primary_key=True)
 	author = db.Column(db.String(255))
 	text = db.Column(db.String(255))
 	date = db.Column(db.String(255))
