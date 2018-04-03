@@ -11,6 +11,7 @@ import {RingLoader} from 'react-spinners'
 import '../../assets/css/App.css'
 import '../../assets/css/DistrictDetails.css'
 
+const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/'
 const styles = {
   imgStyle: {
     width: '100%',
@@ -42,11 +43,6 @@ const styles = {
 export default class DistrictDetails extends Component {
   constructor (props) {
     super(props)
-    // this.state = {
-    //   district_data: null,
-    //   rep_data: null,
-    //   party_data: null
-    // }
     this.state = {
       district_data: null,
       rep_data: null,
@@ -55,8 +51,8 @@ export default class DistrictDetails extends Component {
       legend: null,
       district_num: '',
       district_state: '',
-      bioguide: ''
-      //party_image: {},
+      bioguide: '',
+      all_states: null
 
     }
   }
@@ -64,8 +60,6 @@ export default class DistrictDetails extends Component {
 
     axios.get(`http://api.swethepeople.me/district/${this.props.match.params.districtid}/${this.props.match.params.districtnum}`)
     .then((response)=>{
-      console.log("CENSUS")
-      console.log(response.data)
       this.setState({
         district_data:response.data,
         district_num : response.data.id,
@@ -73,8 +67,6 @@ export default class DistrictDetails extends Component {
         bioguide: response.representative_id
       })
 
-      console.log("PRINTIN")
-      console.log(response.data.population_american_indian_and_alaska_native)
       let result = []
       if (response.data.population_american_indian_and_alaska_native !== null){
         result.push({'x': 'AIAAN', 'y': response.data.population_american_indian_and_alaska_native})
@@ -119,8 +111,6 @@ export default class DistrictDetails extends Component {
 
       axios.get(`http://api.swethepeople.me/representative/${response.data.representative_id}`)
       .then((response)=>{
-          console.log("REP")
-          console.log(response.data)
           this.setState({
             rep_data:response.data
           })
@@ -137,15 +127,17 @@ export default class DistrictDetails extends Component {
 
           axios.get(`http://api.swethepeople.me/party?party_name=True`)
           .then((response)=>{
-            console.log("PARTY")
-            console.log(response.data)
             this.setState({
               party_data:response.data
             })
+             axios.get(URL + 'state/?state_usps=True').then((response) => {
+              this.setState({all_states: response.data})
+             }).catch((error) => {
+              this.setState({all_states: -1})
+             })
 
           })
           .catch((error)=>{
-            console.log("PARTY ERROR")
             this.setState({
                 party_data : -1
             })
@@ -158,86 +150,28 @@ export default class DistrictDetails extends Component {
       })
     })
     .catch((error)=>{
-        console.log("GHRE")
         this.setState({
             district_data: -1
         })
     })
-
-    // get the data - in the future call the api
-    // let state = this.props.match.params.districtid
-    // let number = this.props.match.params.districtnum
-    // let bioGuide = districtRep[state][number]['representative-bioguide']
-    // this.setState({district_num: number})
-    // this.setState({district_state: state})
-    // this.setState({district_data: stateDistrict[state][number]})
-    // this.setState({bioguide: bioGuide})
-    // this.setState({rep_data: allReps[bioGuide]})
-
-    // set party image
-    // let party = allReps[bioGuide]['party']
-    // if (party === 'Democrat') {
-    //   this.setState({party_image: 'Democratic'})
-    // } else if (party === 'Libertarian') {
-    //   this.setState({party_image: 'Libertarian'})
-    // } else {
-    //   this.setState({party_image: 'Republican'})
-    // }
-
-    // data for the bar graph
-    // let oneRace = stateDistrict[state][number]['race']['one-race']
-    // let result = []
-
-    // for (let key in oneRace) {
-    //   if (key !== 'total') {
-    //     // format the labels
-    //     // let strSplit = key.split('-').map(function (word) {
-    //     //   return (word.charAt(0).toUpperCase())
-    //     // })
-
-    //     // let formatWords = key.split('-').map(function (word) {
-    //     //   return (word.charAt(0).toUpperCase()) + word.slice(1)
-    //     // })
-
-    //     // strSplit = strSplit.join('')
-    //     // formatWords = formatWords.join(' ')
-    //     let temp = {}
-    //     temp['x'] = strSplit
-    //     temp['y'] = oneRace[key]
-    //     legendTemp.push({'key': strSplit, 'value': formatWords})
-    //     result.push(temp)
-    //   }
-    // }
-    // let temp = {}
-    // temp['x'] = 'TR'
-    // temp['y'] = stateDistrict[state][number]['race']['two-or-more-races']
-    // result.push(temp)
-
-
-
-
-
   }
 
   render () {
 
 
-    if (this.district_data === null || this.state.rep_data === null || this.state.party_data === null){
+    if (this.district_data === null || this.state.rep_data === null || this.state.party_data === null || this.state.all_states === null){
       return(
       <div style={styles.center}>
       <RingLoader color={'#123abc'} loading={true} />
        </div>)
     }
-    else if (this.district_data === null || this.state.rep_data === -1 || this.state.party_data === -1){
+    else if (this.district_data === null || this.state.rep_data === -1 || this.state.party_data === -1 || this.state.all_states === -1){
       return (
           <div style={styles.root}>
            <p> Data Not Found </p>
           </div>)
     }
     else{
-
-      // console.log("Hawaiian")
-      // console.log(this.state.races_pop)
       let repsGrid = <div class='col-sm-6'>
         <RepresentativeInstance rep={this.state.rep_data} party_name = {this.state.party_data[this.state.rep_data.party_id][0]}  />
       </div>
@@ -267,9 +201,7 @@ export default class DistrictDetails extends Component {
       female['color'] = '#aaac84'
       genderPopData.push(male)
       genderPopData.push(female)
-      console.log("GENDER")
-      console.log(this.state.races_pop)
-
+      console.log(this.state.all_states)
       return (
         <div className='App'>
           <header className='Rep-Details-header'> </header>
@@ -277,7 +209,7 @@ export default class DistrictDetails extends Component {
           <Row >
             <h1><font size='8'><b>District
             {` `}
-            {this.state.district_data.alpha_num}</b></font></h1>
+            {this.state.all_states[this.state.district_state]}</b></font></h1>
             <br></br><br></br>
             <Col sm={6} md={6}>
 

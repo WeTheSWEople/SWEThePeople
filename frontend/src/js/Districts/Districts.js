@@ -70,7 +70,7 @@ export default class Districts extends Component {
           population_value={this.state.population_value}
           median_age_value={this.state.median_age_value}
           sort_value={this.state.sort_value}
-          state_names={this.state.all_states} />
+          all_states={this.state.all_states} />
       </div>
     )
   }
