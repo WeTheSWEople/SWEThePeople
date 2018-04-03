@@ -224,6 +224,11 @@ export default class PoliticalPartyDetails extends Component {
       </div>
     }
 
+    let website = this.state.party.website
+    if (!website.startsWith('http')) {
+      website = 'http://' + website
+    }
+
     return (
       <div className='App party-content container'>
         <div className='row party-card top-info'>
@@ -258,7 +263,7 @@ export default class PoliticalPartyDetails extends Component {
             <p>
               <span className='party-info-header'>Website:</span>
               <span className='party-info-info'>
-                <a href={this.state.party['website']}>
+                <a href={website}>
                   {this.state.party['website']}
                 </a>
               </span>
