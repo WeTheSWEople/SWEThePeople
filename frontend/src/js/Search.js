@@ -37,12 +37,6 @@ export default class Search extends Component {
   queryAPI(query) {
     axios.get('http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
       'search/?query=' + query).then((response) => {
-
-      // let names = {}
-      // for (const party of response.data.parties) {
-      //   names[party.id] = party.name
-      // }
-
       let counts = {}
       for (const rep of response.data.reps) {
         if (!(rep.party_id in counts)) {

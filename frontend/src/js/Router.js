@@ -10,6 +10,7 @@ import PoliticalParty from './Parties/PoliticalParty'
 import PoliticalPartyDetails from './Parties/PoliticalPartyDetails'
 import Representatives from './Representatives/Representatives'
 import RepresentativeDetails from './Representatives/RepresentativeDetails'
+import PoliticalParties from './Parties/PoliticalParties.js'
 import Splash from './Splash/Splash'
 import Search from './Search'
 import NotFound from './NotFound'
@@ -26,7 +27,7 @@ export default class DefaultRouter extends Component {
         <Route exact path="/districts" component={Districts}/>
         <Route path="/districts/:districtid/:districtnum"
           component={DistrictsDetails}/>
-        <Route path="/parties" component={PoliticalParty} />
+        <Route path="/parties" component={PoliticalParties} />
         <Route path="/party/:path" component={PoliticalPartyDetails} />
         <Route path="/search/:term" component={Search} />
         <Route component = {NotFound} status={404}/>

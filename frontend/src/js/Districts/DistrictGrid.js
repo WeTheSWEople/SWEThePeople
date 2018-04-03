@@ -54,30 +54,6 @@ export default class DistrictGrid extends Component {
   }
 
   render () {
-    // const styles = {
-    //   root: {
-    //     display: 'flex',
-    //     flexWrap: 'wrap',
-    //     paddingTop: '50px',
-    //     paddingLeft: '50px',
-    //     paddingRight: '50px',
-    //     justifyContent: 'space-around'
-    //   },
-    //   center: {
-    //     display: 'flex',
-    //     flexWrap: 'wrap',
-    //     paddingTop: '20%',
-    //     paddingLeft: '50px',
-    //     paddingRight: '50px',
-    //     justifyContent: 'space-around'
-    //   },
-    //   gridList: {
-    //     width: '100%',
-    //     height: '100%',
-    //     overflowY: 'auto'
-    //   }
-    // }
-
     if (this.state.districts === null) {
       return (
         <div className='filter-grid-center'>
