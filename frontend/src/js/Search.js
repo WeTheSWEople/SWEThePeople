@@ -36,7 +36,7 @@ export default class Search extends Component {
 
   queryAPI(query) {
     axios.get('http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
-      'search/?query=' + query).then((response) => {
+      'search/?query="' + query + '"').then((response) => {
       let counts = {}
       for (const rep of response.data.reps) {
         if (!(rep.party_id in counts)) {
@@ -51,17 +51,17 @@ export default class Search extends Component {
       let temp_districts = []
       let all_results = []
 
-      if (response.data.rank === 1){
+      if (response.data.rank === '1'){
         all_results = all_results.concat(response.data.reps)
         all_results = all_results.concat(response.data.parties)
         all_results = all_results.concat(response.data.districts)
       }
-      else if (response.data.rank == 2){
+      else if (response.data.rank === '2'){
         all_results = all_results.concat(response.data.parties)
         all_results = all_results.concat(response.data.reps)
         all_results = all_results.concat(response.data.districts)
       }
-      else{
+      else {
         all_results = all_results.concat(response.data.districts)
         all_results = all_results.concat(response.data.reps)
         all_results = all_results.concat(response.data.parties)
