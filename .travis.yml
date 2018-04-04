@@ -2,6 +2,8 @@ jobs:
   include:
     - stage : Backend
       language: python
+      git:
+        depth: 3
       python: "2.7"
       before_install:
           - cat .travis.yml
@@ -17,6 +19,8 @@ jobs:
     - stage: Frontend
       language: node_js
       node_js: "8.9"
+      git:
+        depth: 3
       script:
         - echo Running Frontend Tests
         - npm install --prefix frontend
@@ -24,6 +28,8 @@ jobs:
     - stage: Postman
       language: node_js
       node_js: "8.9"
+      git:
+        depth: 3
       script:
         - echo Running Postman Tests
         - npm install newman

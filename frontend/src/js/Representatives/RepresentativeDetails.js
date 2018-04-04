@@ -10,6 +10,7 @@ import {RingLoader} from 'react-spinners'
 import '../../assets/css/App.css'
 import '../../assets/css/Bills.css'
 import axios from 'axios'
+import url from '../../assets/resource.json'
 
 const styles = {
   hyperlink: {
@@ -54,12 +55,12 @@ export default class RepresentativeDetails extends Component {
   }
 
   componentWillMount () {
-    axios.get(`http://api.swethepeople.me/representative/${this.props.match.params.bioguideid}`)
+    axios.get(url.api_url + `representative/${this.props.match.params.bioguideid}`)
     .then((response)=>{
       this.setState({
         rep_data:response.data
       })
-      axios.get(`http://api.swethepeople.me/party?party_name=True`)
+      axios.get(url.api_url + `party?party_name=True`)
       .then((response)=>{
         this.setState({
           party_name:response.data
@@ -78,13 +79,6 @@ export default class RepresentativeDetails extends Component {
             party_name : -1
       })
     })
-
-
-    // // get the data - in the future call the api
-    // this.setState({bioguideid: this.props.match.params.bioguideid})
-    // this.setState({rep_data: allReps[this.props.match.params.bioguideid]})
-    // this.setState({name: this.state.rep_data['firstName'] +
-    //   ' ' + this.state.rep_data['lastName']})
   }
 
   render () {
