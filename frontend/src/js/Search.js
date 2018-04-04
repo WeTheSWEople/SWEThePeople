@@ -9,8 +9,8 @@ import RepresentativeSingleInstance from './Representatives/RepresentativeSingle
 import PoliticalPartySingleInstance from './Parties/PoliticalPartySingleInstance'
 import DistrictInstance from './Districts/DistrictInstance'
 import axios from 'axios'
-
 import '../assets/css/Search.css'
+import url from '../assets/resource.json'
 
 export default class Search extends Component {
   constructor(props) {
@@ -35,7 +35,7 @@ export default class Search extends Component {
   }
 
   queryAPI(query) {
-    axios.get('http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
+    axios.get(url.api_url +
       'search/?query=' + query).then((response) => {
       let counts = {}
       for (const rep of response.data.reps) {
@@ -91,7 +91,7 @@ export default class Search extends Component {
       })
 
       // get the parties name
-      return axios.get(`http://api.swethepeople.me/party?party_name=True`)
+      return axios.get(url.api_url + `party?party_name=True`)
 
     }).then((response)=>{
       this.setState({

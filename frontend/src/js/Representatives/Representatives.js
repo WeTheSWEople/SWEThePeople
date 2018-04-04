@@ -8,8 +8,10 @@ import axios from 'axios'
 import RepresentativeFilter from './RepresentativeFilter'
 import RepresentativeGrid from './RepresentativeGrid'
 import '../../assets/css/App.css'
+import url from '../../assets/resource.json'
 
-const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/'
+
+// const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/'
 
 export default class Representatives extends Component {
   constructor (props) {
@@ -24,10 +26,10 @@ export default class Representatives extends Component {
       sort_value: 'last_asc'
     }
     
-    axios.get(URL + 'party?party_name=True').then((response) => {
+    axios.get(url.api_url + 'party?party_name=True').then((response) => {
       this.setState({all_parties: response.data})
 
-      axios.get(URL + 'state/?state_usps=True').then((response) => {
+      axios.get(url.api_url + 'state/?state_usps=True').then((response) => {
         this.setState({all_states: response.data})
       }).catch((error) => {
         this.setState({all_parties: null, all_states: null})

@@ -7,8 +7,7 @@ import {RingLoader} from 'react-spinners'
 import axios from 'axios'
 import DistrictGrid from './DistrictGrid'
 import DistrictFilter from './DistrictFilter'
-
-const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/'
+import url from '../../assets/resource.json'
 
 export default class Districts extends Component {
   constructor(props) {
@@ -21,7 +20,7 @@ export default class Districts extends Component {
       sort_value: 'last_asc'
     }
 
-    axios.get(URL + 'state/?state_usps=True').then((response) => {
+    axios.get(url.api_url + 'state/?state_usps=True').then((response) => {
       this.setState({all_states: response.data})
     }).catch((error) => {
       this.setState({all_states: null})

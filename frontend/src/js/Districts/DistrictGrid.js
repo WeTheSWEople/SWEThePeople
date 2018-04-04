@@ -9,9 +9,10 @@ import '../../assets/css/App.css'
 import '../../assets/css/District.css'
 import '../../assets/css/FilterGrid.css'
 import axios from 'axios'
+import url from '../../assets/resource.json'
 
-const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
-  'district/filter?filter='
+// const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
+//   'district/filter?filter='
 
 function clone(obj) {
 	if (null == obj || "object" !== typeof obj) return obj;
@@ -46,16 +47,16 @@ export default class DistrictGrid extends Component {
   }
 
   getDistrictData (filterParams) {
-	this.setState({districts: null})
-	axios.get(URL + JSON.stringify(filterParams)).then((response) => {
-	  if (response.data.length === 0) {
-		this.setState({districts: -2, cur_page: -1, displayed_districts: -2})
-	  } else {
-		this.setState({districts: response.data, cur_page: response.data.length/16, displayed_districts: response.data.subarray(0, 16)})
-	  }
-	}).catch((error) => {
-	  this.setState({districts: -1})
-	})
+    this.setState({districts: null})
+    axios.get(url.api_url + 'district/filter?filter=' + JSON.stringify(filterParams)).then((response) => {
+      if (response.data.length === 0) {
+        this.setState({districts: -2, cur_page: -1, displayed_districts: -2})
+      } else {
+        this.setState({districts: response.data, cur_page: response.data.length/16, displayed_districts: response.data.subarray(0, 16)})
+      }
+    }).catch((error) => {
+      this.setState({districts: -1})
+    })
   }
 
   componentDidMount () {

@@ -9,9 +9,10 @@ import RepresentativeInstance from './RepresentativeInstance'
 import '../../assets/css/App.css'
 import '../../assets/css/FilterGrid.css'
 import axios from 'axios'
+import url from '../../assets/resource.json'
 
-const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
-  'representative/filter?filter='
+// const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
+//   'representative/filter?filter='
 
 function clone(obj) {
 	if (null == obj || "object" !== typeof obj) return obj;
@@ -58,15 +59,14 @@ export default class RepresentativeGrid extends Component {
 
   getRepData (filterParams) {
 	this.setState({all_reps: null})
-	axios.get(URL + JSON.stringify(filterParams)).then((response) => {
+	axios.get(url.api_url + 'representative/filter?filter=' + JSON.stringify(filterParams)).then((response) => {
 	  if (response.data.length === 0) {
 		this.setState({all_reps: -2, displayed_reps: -2})
 	  } else {
 		this.setState({all_reps: response.data, displayed_reps: response.data.slice(0,25), cur_page: response.data.length/25,})
 	  }
-
 	  // get the party names
-	  return axios.get(`http://api.swethepeople.me/party?party_name=True`)
+	  return axios.get(url.api_url + `party?party_name=True`)
 	}).then((response) => {
 	  this.setState({party_name: response.data})
 	}).catch((error) => {
