@@ -414,7 +414,7 @@ def get_all_search_results(search_query, reps_result, parties_result,
         for state in states:
             districts = District.query.filter(
                 District.state == state.usps_abbreviation).all()
-            if disticts:
+            if districts:
                 for district in districts:
                     district_json = get_district_json(district_param=district,
                         state_param=state)
