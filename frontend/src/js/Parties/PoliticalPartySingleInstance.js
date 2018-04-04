@@ -38,7 +38,21 @@ export default class PoliticalPartySingleInstance extends Component {
                   </p>
     }
 
-
+    let chair = ''
+    if (this.props.party.chair === '') {
+      chair = <p>
+                Party chair:<br /> None
+              </p>
+    } else {
+      chair = <p>
+                Party chair:<br />
+                <Highlighter
+                    searchWords={query}
+                    autoEscape={true}
+                    highlightStyle={styles.highlight}
+                    textToHighlight={this.props.party.chair} />
+              </p>
+    }
 
 
     return (
@@ -58,14 +72,7 @@ export default class PoliticalPartySingleInstance extends Component {
                 textToHighlight={this.props.party.name} />
             </h3>
             {searched}
-            <p>
-              Party chair:<br />
-              <Highlighter
-                  searchWords={query}
-                  autoEscape={true}
-                  highlightStyle={styles.highlight}
-                  textToHighlight={this.props.party.chair} />
-            </p>
+            {chair}
           </div>
         </div>
       </Link>

@@ -53,6 +53,10 @@ export default class PoliticalPartyDetails extends Component {
         repsMap[rep['bioguide']] = rep
       })
 
+      if (response.data['chair'] === '') {
+        response.data['chair'] = 'None'
+      }
+
       let p = {
         name: response.data['name'],
         path: response.data['path'],
