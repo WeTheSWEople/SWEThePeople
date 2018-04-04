@@ -10,8 +10,9 @@ import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
 import '../../assets/css/DistrictDetails.css'
+import url from '../../assets/resource.json'
 
-const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/'
+
 const styles = {
   imgStyle: {
     width: '100%',
@@ -57,8 +58,7 @@ export default class DistrictDetails extends Component {
     }
   }
   componentWillMount () {
-
-    axios.get(`http://api.swethepeople.me/district/${this.props.match.params.districtid}/${this.props.match.params.districtnum}`)
+    axios.get(url.api_url + `district/${this.props.match.params.districtid}/${this.props.match.params.districtnum}`)
     .then((response)=>{
       this.setState({
         district_data:response.data,
@@ -109,7 +109,7 @@ export default class DistrictDetails extends Component {
 
 
 
-      axios.get(`http://api.swethepeople.me/representative/${response.data.representative_id}`)
+      axios.get(url.api_url + `representative/${response.data.representative_id}`)
       .then((response)=>{
           this.setState({
             rep_data:response.data
@@ -125,12 +125,12 @@ export default class DistrictDetails extends Component {
             this.setState({party_image: 'Libertarian'})
           }
 
-          axios.get(`http://api.swethepeople.me/party?party_name=True`)
+          axios.get(url.api_url + `party?party_name=True`)
           .then((response)=>{
             this.setState({
               party_data:response.data
             })
-             axios.get(URL + 'state/?state_usps=True').then((response) => {
+             axios.get(url.api_url + 'state/?state_usps=True').then((response) => {
               this.setState({all_states: response.data})
              }).catch((error) => {
               this.setState({all_states: -1})
@@ -201,7 +201,6 @@ export default class DistrictDetails extends Component {
       female['color'] = '#aaac84'
       genderPopData.push(male)
       genderPopData.push(female)
-      console.log(this.state.all_states)
       return (
         <div className='App'>
           <header className='Rep-Details-header'> </header>

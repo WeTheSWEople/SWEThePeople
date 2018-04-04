@@ -4,7 +4,7 @@ import {RingLoader} from 'react-spinners'
 import {a} from 'react-router-dom'
 import Members from './Members'
 /* eslint-enable no-unused-vars */
-
+import url from '../../assets/resource.json'
 import '../../assets/css/App.css'
 import '../../assets/css/About.css'
 
@@ -24,6 +24,7 @@ export default class About extends Component {
   }
 
   componentWillMount () {
+    
     this.setState({ready: false})
 
     let options = {method: 'GET',
@@ -195,7 +196,7 @@ export default class About extends Component {
             </a>
           </p>
           <p>
-            <a href = 'http://api.swethepeople.me'>
+            <a href = {url.api_url}>
               API
             </a>
           </p>

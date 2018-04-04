@@ -9,9 +9,11 @@ import '../../assets/css/App.css'
 import '../../assets/css/District.css'
 import '../../assets/css/FilterGrid.css'
 import axios from 'axios'
+import url from '../../assets/resource.json'
 
-const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
-  'party/filter?filter='
+
+// const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
+//   'party/filter?filter='
 
 export default class PoliticalPartyGrid extends Component {
   constructor (props) {
@@ -27,7 +29,7 @@ export default class PoliticalPartyGrid extends Component {
 
   getPartyData (filterParams) {
     this.setState({parties: null})
-    axios.get(URL + JSON.stringify(filterParams)).then((response) => {
+    axios.get(url.api_url + 'party/filter?filter=' + JSON.stringify(filterParams)).then((response) => {
       if (response.data.length === 0) {
         this.setState({parties: -2})
       } else {
