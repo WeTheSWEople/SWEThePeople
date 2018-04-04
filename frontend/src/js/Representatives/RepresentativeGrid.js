@@ -14,7 +14,7 @@ const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
   'representative/filter?filter='
 
 function clone(obj) {
-	if (null == obj || "object" != typeof obj) return obj;
+	if (null == obj || "object" !== typeof obj) return obj;
 	var copy = obj.constructor();
 	for (var attr in obj) {
 		if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];

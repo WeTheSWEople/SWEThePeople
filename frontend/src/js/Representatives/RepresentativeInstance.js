@@ -12,7 +12,7 @@ import '../../assets/css/RepresentativeInstance.css'
 const styles = {
   hyperlink: {
     textDecoration: 'none',
-    color: 'black'
+    color: 'blue'
   }
 }
 

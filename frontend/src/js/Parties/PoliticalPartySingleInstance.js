@@ -21,11 +21,25 @@ export default class PoliticalPartySingleInstance extends Component {
       num_reps = this.props.num_reps
     }
 
+    let searched = ''
     let query = []
     if(this.props.search !== null && this.props.search !== undefined) {
       query = this.props.search.split(" ")
       query.push(this.props.search)
+      searched =  <p>
+                      Representatives in search: {num_reps}
+                  </p>
+
     }
+
+    if (this.props.search === undefined) {
+      searched =  <p>
+                      Representatives: {num_reps}
+                  </p>
+    }
+
+
+
 
     return (
       <Link to={`/party/${this.props.party.path}`}>
@@ -34,7 +48,7 @@ export default class PoliticalPartySingleInstance extends Component {
             this.props.party.path + '.png')}
           className='img-responsive'
           alt={this.props.party.path} />
-          
+
           <div>
             <h3>
               <Highlighter
@@ -43,9 +57,7 @@ export default class PoliticalPartySingleInstance extends Component {
                 highlightStyle={styles.highlight}
                 textToHighlight={this.props.party.name} />
             </h3>
-            <p>
-              Representatives in search: {num_reps}
-            </p>
+            {searched}
             <p>
               Party chair:<br />
               <Highlighter
