@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
-import {Grid, Row, Col, ProgressBar} from 'react-bootstrap'
+import {Grid, Row, Col, ProgressBar, Tabs, Tab} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {Timeline} from 'react-twitter-widgets'
 import RepBills from './Bills.js'
@@ -16,7 +16,7 @@ const styles = {
     textDecoration: 'none',
     color: 'black'
   },
-  center:{
+  center: {
     display: 'flex',
     flexWrap: 'wrap',
     paddingTop: '25%',
@@ -24,8 +24,23 @@ const styles = {
     paddingRight: '50px',
     justifyContent: 'space-around'
   },
-  roundcorner: {
-    borderRadius: '13%'
+  rep_pic: {
+    borderRadius: '5%',
+    marginTop: '40px'
+  },
+  box: {
+    background: 'white',
+    margin: '5px',
+    fontFamily: 'EB Garamond'
+  },
+  tabBox: {
+    paddingTop: '5px',
+    fontFamily: 'EB Garamond'
+  },
+  progress: {
+    maxWidth: '60%',
+    margin: 'auto',
+    paddingBottom: '30px'
   }
 }
 
@@ -63,7 +78,7 @@ export default class RepresentativeDetails extends Component {
             party_name : -1
       })
     })
-    
+
 
     // // get the data - in the future call the api
     // this.setState({bioguideid: this.props.match.params.bioguideid})
@@ -108,8 +123,8 @@ export default class RepresentativeDetails extends Component {
       let youtube = ''
       if(this.state.rep_data['youtube'] !== null){
         youtube = <iframe
-              width='600'
-              height='340'
+              width='350'
+              height='200'
               title = '{this.state.firstname} {this.state.lastname} YouTube Channel'
               src={'http://www.youtube.com/embed?max-results=1&controls=0' +
                 '&showinfo=0&rel=0&listType=user_uploads&list=' +
@@ -126,18 +141,60 @@ export default class RepresentativeDetails extends Component {
       <div className='App'>
         <header className='Rep-Details-header'> </header>
         <Row>
-          <Col sm={12} md={4}>
-            <img src={'https://theunitedstates.io/images/congress/225x275/' +
-              this.state.rep_data.bioguide + '.jpg'} alt='' style={styles.roundcorner}
-            />
+          <Col sm={0} md={1}></ Col>
+          <Col sm={12} md={3}>
+            <div style={styles.box}>
+              <img src={'https://theunitedstates.io/images/congress/225x275/' +
+                this.state.rep_data.bioguide + '.jpg'} alt='' style={styles.rep_pic}
+                width={"175px"}
+              />
+              <font size='5'>
+                <div style={{textAlign: 'center'}}>
+                  <p style={{paddingTop: '10px'}}>
+                    <font size='6'>
+                      <b>
+                        {this.state.rep_data['firstname']}
+                        {` `}
+                        {this.state.rep_data['lastname']}
+                      </b>
+                    </font>
+                  </p>
+                  <p> <b>Party: </b>
+                    <Link to={`/party/${this.state.party_name[this.state.rep_data['party_id']][1]}`}>
+                      {this.state.party_name[this.state.rep_data['party_id']][0]} </Link>
+                  </p>
+                  <p> <b> State: </b> {this.state.rep_data['state']}</p>
+                  <p> <b> District: </b>
+                    <Link
+                      to={`/districts/${this.state.rep_data['state']}/` +
+                      `${this.state.rep_data['district']}`}>
+                      {this.state.rep_data['district']}
+                    </Link>
+                  </p>
+                  <p>
+                    <b> Site: </b>
+                    <a href={this.state.rep_data['url']}>Website</a>
+                  </p>
+                  <p>
+                    <b>Votes with Party (%): </b>
+                    <div style={styles.progress}>
+                      <ProgressBar bsStyle='success'
+                        now={this.state.rep_data['votes_with_party_pct']}
+                        label={`${this.state.rep_data['votes_with_party_pct']}%`}
+                      />
+                    </div>
+                  </p>
+                </div>
+              </font>
+            </div>
           </Col>
-          <Col sm={12} md={4}>
+          {/* <Col sm={12} md={4}>
             <font size='5'>
               <div style={{textAlign: 'left'}}>
                 <p style={{paddingTop: '10px'}}>
                   <font size='8'>
                     <b>
-                      {this.state.rep_data['firstname']} 
+                      {this.state.rep_data['firstname']}
                       {` `}
                       {this.state.rep_data['lastname']}
                     </b>
@@ -168,41 +225,53 @@ export default class RepresentativeDetails extends Component {
                 </p>
               </div>
             </font>
-          </Col>
-          <Col sm={12} md={4}>
-            {twitter}
+          </Col> */}
+          <Col sm={12} md={7}>
+            <div style={styles.box}>
+              <div style={styles.tabBox}>
+                <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
+                  <Tab eventKey={1} title="Social Media">
+                    <Row>
+                      <Col md={6}>
+                        {twitter}
+                      </ Col>
+                      <Col md={6}>
+                        <h3><b>YouTube Channel</b></h3>
+                        {youtube}
+                      </Col>
+                    </ Row>
+                  </Tab>
+                  <Tab eventKey={2} title="Recent Bills">
+                    <h3 class='bills-header'>Recent Bills Sponsored</h3>
+                    <Row style={{paddingLeft: '5px'}}>
+                      <RepBills data = {this.state.rep_data.bills} />
+                    </Row>
+                  </Tab>
+                  <Tab eventKey={3} title="Office Location">
+                    <h3><b>Office Location</b></h3>
+                    <h4>{this.state.rep_data['office']}</h4>
+                    <iframe
+                      width='600'
+                      height='450'
+                      frameborder='0' style={{border: '0'}}
+                      title = '{this.state.firstname} {this.state.lastname} Twitter Feed'
+                      src={'https://www.google.com/maps/embed/v1/place?' +
+                      'key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY' +
+                      '&q=' + this.state.rep_data.office} allowfullscreen>
+                    </iframe>
+                  </Tab>
+                </Tabs>
+              </div>
+            </div>
+
           </Col>
         </Row>
 
-        <h3 class='bills-header'>Recent Bills Sponsored</h3>
-
-        <Row style={{paddingLeft: '160px'}}>
-          <RepBills data = {this.state.rep_data.bills} />
-        </Row>
-        <Row>
-          <Col>
-            <h3><b>YouTube Channel</b></h3>
-            {youtube}
-          </Col>
-          <Col>
-            <h3><b>Office Location</b></h3>
-            <h4>{this.state.rep_data['office']}</h4>
-            <iframe
-              width='600'
-              height='450'
-              frameborder='0' style={{border: '0'}}
-              title = '{this.state.firstname} {this.state.lastname} Twitter Feed'
-              src={'https://www.google.com/maps/embed/v1/place?' +
-              'key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY' +
-              '&q=' + this.state.rep_data.office} allowfullscreen>
-            </iframe>
-          </Col>
-        </Row>
       </div>
     )
-      
+
     }
 
-    
+
   }
 }
