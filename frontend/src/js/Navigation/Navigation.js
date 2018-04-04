@@ -1,13 +1,28 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
-import {Navbar, Nav, NavItem} from 'react-bootstrap'
+import {Navbar, Nav, NavItem, Button, FormGroup, FormControl} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
+import {Link} from 'react-router-dom'
 /* eslint-enable no-unused-vars */
 
 import header from '../../assets/images/header.png'
 import '../../assets/css/App.css'
 
 export default class Navigation extends Component {
+  constructor(props) {
+    super(props)
+
+    this.handleChange = this.handleChange.bind(this)
+
+    this.state = {
+      value: ''
+    }
+  }
+
+  handleChange(e) {
+    this.setState({value: e.target.value})
+  }
+
   render () {
     return (
       <div>
@@ -37,9 +52,20 @@ export default class Navigation extends Component {
               <LinkContainer to="/about">
                 <NavItem>About</NavItem>
               </LinkContainer>
-                        </Nav>
-                    </Navbar.Collapse>
-		        </Navbar>
+            </Nav>
+            <Nav pullRight>
+              <Navbar.Form>
+                <FormGroup>
+                  <FormControl onChange={this.handleChange}
+                    type="text" placeholder="Search" />
+                </FormGroup>{' '}
+                <Link to={`/search/${this.state.value}`}>
+                  <Button type="submit"><span className='glyphicon glyphicon-search'></span></Button>
+                </Link>
+              </Navbar.Form>
+            </Nav>
+            </Navbar.Collapse>
+		    </Navbar>
 	        </div>
 	);
   }

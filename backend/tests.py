@@ -2,13 +2,15 @@ import unittest
 import requests
 import unicodedata
 import collections
+import os
 from app import create_app, db
 app = create_app()
 app.app_context().push()
 from models import *
 from flask import jsonify
 live_url = "http://swethepeople.me/"
-live_api_url = "http://api.swethepeople.me/"
+#live_api_url = "http://api.swethepeople.me/"
+live_api_url = "http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/"
 
 
 def getResponse(data):
@@ -61,8 +63,10 @@ class TestStringMethods(unittest.TestCase):
 		print("\nTEST 6: Live API is up: Representative data consistent with DB data. Response OK")
 
 	def test7(self):
+		self.maxDiff = None
 		response = requests.request("GET", live_api_url + "representative/A000374")
 		result = response.json()
+		#print(getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
 		with app.app_context():
 			self.assertEqual(result, getResponse(Representative.query.filter(Representative.bioguide == "A000374").first()))
 		print("\nTEST 7: Live API is up: Representative Bioguide data consistent with DB data. Response OK")
@@ -75,6 +79,7 @@ class TestStringMethods(unittest.TestCase):
 		print("\nTEST 8: Live API is up: Political Party data consistent with DB data. Response OK")
 
 	def test9(self):
+		self.maxDiff = None
 		response = requests.request("GET", live_api_url + "state/AL")
 		result = response.json()
 		with app.app_context():

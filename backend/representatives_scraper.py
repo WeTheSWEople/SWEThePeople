@@ -19,9 +19,13 @@ app = create_app()
 app.app_context().push()
 #rep = Representative(bioguide='C001111', firstname='Charlie', lastname='Crist', party='Republican', state='FL', district=13, twitter='', youtube='', office='', votes_with_party_pct = 89.45, url = "", image_uri = '')
 
+
 response = requests.request('GET', RepURL, headers=headers)
 members = response.json()
+count = 0
 for mem in members['results'][0]['members']:
+	print(count)
+	count = count + 1
 	if mem['title'] == 'Representative' and mem['in_office']:
 		rep = Representative(
 			bioguide = mem['id'],

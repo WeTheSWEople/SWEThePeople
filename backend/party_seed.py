@@ -1,6 +1,6 @@
 import json
-from app.app import create_app, db
-from app.models import PoliticalParty, PartyColor
+from app import create_app, db
+from models import PoliticalParty, PartyColor
 
 app = create_app()
 app.app_context().push()
@@ -10,7 +10,7 @@ db.session.commit()
 print(PartyColor.query.delete())
 db.session.commit()
 
-parties = json.load(open("src/parties.json"))
+parties = json.load(open("scrapers/src/parties.json"))
 color_id = len(PartyColor.query.all()) + 1
 for name, p in parties.items():
     party = PoliticalParty(

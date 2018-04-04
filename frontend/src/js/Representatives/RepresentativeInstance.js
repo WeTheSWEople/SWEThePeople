@@ -32,12 +32,13 @@ export default class RepresentativeInstance extends Component {
             />
             <div class='rep_info'>
               <h3 className='title'>
-                {this.props.rep.firstname +
-                ' ' + this.props.rep.lastname}
+                {this.props.rep.firstname + ' ' + this.props.rep.lastname}
               </h3>
-              <h4 className='party'>{this.props.party_name}</h4>
+              <h4 className='party'>
+                {this.props.party_name}
+              </h4>
               <h4 className='district'><i>
-                {this.props.rep.state + ' - ' + this.props.rep.district}
+                {this.props.rep.state + '-' + this.props.rep.district}
               </i></h4>
             </div>
           </GridTile>
