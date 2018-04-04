@@ -15,6 +15,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import '../../assets/css/App.css'
 import '../../assets/css/PoliticalPartyDetails.css'
 import '../../assets/css/District.css'
+import url from '../../assets/resource.json'
 
 export default class PoliticalPartyDetails extends Component {
   constructor (props) {
@@ -36,7 +37,7 @@ export default class PoliticalPartyDetails extends Component {
   componentDidMount () {
     this.setState({ready: false})
 
-    axios.get('http://api.swethepeople.me/district').then((response) => {
+    axios.get(url.api_url + 'district/').then((response) => {
       let disMap = {}
       for (let i = 0; i < response.data.length; i++) {
         const district = response.data[i]
@@ -46,7 +47,7 @@ export default class PoliticalPartyDetails extends Component {
       this.setState({districts: disMap, districtFlag: true})
     })
 
-    axios.get('http://api.swethepeople.me/party/' +
+    axios.get(url.api_url + 'party/' +
       this.props.match.params.path).then((response) => {
       let repsMap = {}
       response.data['representatives'].forEach(function (rep) {
