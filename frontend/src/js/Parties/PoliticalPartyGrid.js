@@ -10,12 +10,14 @@ import '../../assets/css/App.css'
 import '../../assets/css/District.css'
 import '../../assets/css/FilterGrid.css'
 import axios from 'axios'
+import url from '../../assets/resource.json'
 
-const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
-  'party/filter?filter='
+
+// const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
+//   'party/filter?filter='
 
 function clone(obj) {
-	if (null == obj || "object" != typeof obj) return obj;
+	if (null == obj || "object" !== typeof obj) return obj;
 	var copy = obj.constructor();
 	for (var attr in obj) {
 		if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
@@ -50,15 +52,15 @@ export default class PoliticalPartyGrid extends Component {
   }
 
   getPartyData (filterParams) {
-	this.setState({parties: null})
-	axios.get(URL + JSON.stringify(filterParams)).then((response) => {
-	  if (response.data.length === 0) {
-		this.setState({parties: -2})
-	  } else {
-		let counts = {}
-		for (const party of response.data) {
-		  counts[party.id] = party.representatives.length
-		}
+    this.setState({parties: null})
+    axios.get(url.api_url + 'party/filter?filter=' + JSON.stringify(filterParams)).then((response) => {
+      if (response.data.length === 0) {
+        this.setState({parties: -2})
+      } else {
+        let counts = {}
+        for (const party of response.data) {
+          counts[party.id] = party.representatives.length
+        }
 
 		this.setState({parties: response.data, party_counts: counts, displayed_parties: response.data.subarray(0, 12), cur_page: response.data.length/12})
 	  }

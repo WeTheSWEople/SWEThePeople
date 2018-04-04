@@ -5,6 +5,8 @@ import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
 import ReactPaginate from 'react-paginate'
 import '../../assets/css/App.css'
+import url from '../../assets/resource.json'
+
 
 let request = require('request')
 
@@ -34,12 +36,10 @@ export default class PoliticalParty extends Component {
 	this.handlePageClick = this.handlePageClick.bind(this)
   }
 handlePageClick(data){
-	console.log(this.state.parties)
 	let new_map = {}
 	new_map["0"] = this.state.parties[data.selected*3]
 	new_map["1"] = this.state.parties[data.selected*3 + 1]
 	new_map["2"] = this.state.parties[data.selected*3 + 2]
-	console.log(new_map)
 	this.setState({displayed_parties: new_map})
 
 }
@@ -47,7 +47,7 @@ handlePageClick(data){
   componentWillMount () {
 	this.setState({ready: false})
 
-	let options = {method: 'GET', url: 'http://api.swethepeople.me/party/'}
+	let options = {method: 'GET', url: url.api_url + 'party/'}
 	request(options, function (error, response, body) {
 	  if (error) {
 		this.setState({error: true, ready: true})
