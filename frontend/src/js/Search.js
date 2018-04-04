@@ -35,8 +35,7 @@ export default class Search extends Component {
   }
 
   queryAPI(query) {
-    axios.get(url.api_url +
-      'search/?query=' + query).then((response) => {
+    axios.get(url.api_url + 'search/?query="' + query + '"').then((response) => {
       let counts = {}
       for (const rep of response.data.reps) {
         if (!(rep.party_id in counts)) {
@@ -51,17 +50,17 @@ export default class Search extends Component {
       let temp_districts = []
       let all_results = []
 
-      if (response.data.rank === 1){
+      if (response.data.rank === '1'){
         all_results = all_results.concat(response.data.reps)
         all_results = all_results.concat(response.data.parties)
         all_results = all_results.concat(response.data.districts)
       }
-      else if (response.data.rank == 2){
+      else if (response.data.rank === '2'){
         all_results = all_results.concat(response.data.parties)
         all_results = all_results.concat(response.data.reps)
         all_results = all_results.concat(response.data.districts)
       }
-      else{
+      else {
         all_results = all_results.concat(response.data.districts)
         all_results = all_results.concat(response.data.reps)
         all_results = all_results.concat(response.data.parties)
@@ -143,7 +142,7 @@ export default class Search extends Component {
   componentDidMount() {
     this.queryAPI(this.props.match.params.term)
     this.setState({
-        query : this.props.match.params.term
+        query: this.props.match.params.term
     })
   }
 
@@ -225,6 +224,13 @@ export default class Search extends Component {
                           activeClassName={"active"} />
                     </div>
     }
+    
+    if (this.state.all_results.length === 0) {
+      rankedDiv = <div style={{textAlign: 'center'}}>
+        <h3>No results found, try a different search.</h3>
+      </div>
+    }
+
     return (
       <div className='container search-container'>
         <div className='search-term'>

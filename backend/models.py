@@ -2,146 +2,151 @@ from app import db
 from flask_sqlalchemy import SQLAlchemy, BaseQuery
 from sqlalchemy_searchable import SearchQueryMixin
 from sqlalchemy_utils.types import TSVectorType
-# from sqlalchemy_searchable import make_searchable
 from sqlalchemy.ext.declarative import declarative_base
 
-
-
-
 class Query(BaseQuery, SearchQueryMixin):
-	pass
+    pass
 
 class Representative(db.Model):
-	query_class = Query
-	__tablename__ = 'representative'
-	bioguide = db.Column(db.String(50), index=True, nullable=False, primary_key=True)
-	firstname = db.Column(db.String(255))
-	lastname = db.Column(db.String(255))
-	party_id = db.Column(db.Integer, db.ForeignKey('political_party.id'), nullable = False)
-	state = db.Column(db.String(50))
-	district = db.Column(db.String(50))
-	twitter = db.Column(db.String(75))
-	youtube = db.Column(db.String(255))
-	office = db.Column(db.String(255))
-	votes_with_party_pct = db.Column(db.Float)
-	url = db.Column(db.String(255))
-	image_uri = db.Column(db.String(255))
-	bills = db.relationship('Bill', lazy=True)
+    query_class = Query
+    __tablename__ = 'representative'
+    bioguide = db.Column(db.String(50), index=True, nullable=False,
+        primary_key=True)
+    firstname = db.Column(db.String(255))
+    lastname = db.Column(db.String(255))
+    party_id = db.Column(db.Integer, db.ForeignKey('political_party.id'),
+        nullable = False)
+    state = db.Column(db.String(50))
+    district = db.Column(db.String(50))
+    twitter = db.Column(db.String(75))
+    youtube = db.Column(db.String(255))
+    office = db.Column(db.String(255))
+    votes_with_party_pct = db.Column(db.Float)
+    url = db.Column(db.String(255))
+    image_uri = db.Column(db.String(255))
+    bills = db.relationship('Bill', lazy=True)
 
-	search_vector = db.Column(TSVectorType('firstname', 'lastname'))
+    search_vector = db.Column(TSVectorType('firstname', 'lastname'))
 
-	def format(self):
-	    return {
-	        "bioguide": self.bioguide,
-	        "firstname": self.firstname,
-	        "lastname": self.lastname,
-	        "party_id": self.party_id,
-	        "state": self.state,
-	        "district": self.district,
-	        "twitter" : self.twitter,
-			"youtube" : self.youtube,
-			"office" : self.office,
-			"votes_with_party_pct" : self.votes_with_party_pct,
-			"url" : self.url,
-	        "image_uri": self.image_uri,
-	        "bills" : [x.format() for x in self.bills]
-	    }
+    def format(self):
+        return {
+            "bioguide": self.bioguide,
+            "firstname": self.firstname,
+            "lastname": self.lastname,
+            "party_id": self.party_id,
+            "state": self.state,
+            "district": self.district,
+            "twitter" : self.twitter,
+            "youtube" : self.youtube,
+            "office" : self.office,
+            "votes_with_party_pct" : self.votes_with_party_pct,
+            "url" : self.url,
+            "image_uri": self.image_uri,
+            "bills" : [x.format() for x in self.bills]
+        }
 
-	def __repr__(self):
-		return '<Representatives {}: {!r} {}>'.format(self.bioguide, self.firstname, self.lastname, self.party_id, self.state, self.district, self.twitter, self.youtube, self.office, self.votes_with_party_pct, self.url, self.image_uri)
+    def __repr__(self):
+        return '<Representatives {}: {!r} {}>'.format(self.bioguide,
+            self.firstname, self.lastname, self.party_id, self.state,
+            self.district, self.twitter, self.youtube, self.office,
+            self.votes_with_party_pct, self.url, self.image_uri)
 
 class Bill(db.Model):
-	__tablename__ = 'bill'
-	id = db.Column(db.Integer, primary_key=True)
-	number = db.Column(db.String(255))
-	short_title = db.Column(db.Text)
-	sponsor_id = db.Column(db.String(255), db.ForeignKey('representative.bioguide'), nullable=False)
-	congressdotgov_url = db.Column(db.String(255))
-	introduced_date = db.Column(db.String(100))
-	latest_major_action = db.Column(db.Text)
+    __tablename__ = 'bill'
+    id = db.Column(db.Integer, primary_key=True)
+    number = db.Column(db.String(255))
+    short_title = db.Column(db.Text)
+    sponsor_id = db.Column(db.String(255),
+        db.ForeignKey('representative.bioguide'), nullable=False)
+    congressdotgov_url = db.Column(db.String(255))
+    introduced_date = db.Column(db.String(100))
+    latest_major_action = db.Column(db.Text)
 
-	def format(self):
-	    return {
-	        "id": self.id,
-	        "number": self.number,
-	        "short_title": self.short_title,
-	        "sponsor_id": self.sponsor_id,
-	        "congressdotgov_url": self.congressdotgov_url,
-	        "introduced_date": self.introduced_date,
-	        "latest_major_action" : self.latest_major_action
-	    }
+    def format(self):
+        return {
+            "id": self.id,
+            "number": self.number,
+            "short_title": self.short_title,
+            "sponsor_id": self.sponsor_id,
+            "congressdotgov_url": self.congressdotgov_url,
+            "introduced_date": self.introduced_date,
+            "latest_major_action" : self.latest_major_action
+        }
 
-	def __repr__(self):
-		return '<Bills {}: {}>'.format(self.id, self.number)
+    def __repr__(self):
+        return '<Bills {}: {}>'.format(self.id, self.number)
 
 class State(db.Model):
-	query_class = Query
-	__tablename__ = 'state'
-	usps_abbreviation = db.Column(db.String(2), primary_key=True, nullable=False, index=True)
-	number = db.Column(db.Integer, nullable=False)
-	name = db.Column(db.String(255), unique=True, nullable=False)
-	districts = db.relationship('District', lazy=True)
-	search_vector = db.Column(TSVectorType('name'))
+    query_class = Query
+    __tablename__ = 'state'
+    usps_abbreviation = db.Column(db.String(2), primary_key=True,
+        nullable=False, index=True)
+    number = db.Column(db.Integer, nullable=False)
+    name = db.Column(db.String(255), unique=True, nullable=False)
+    districts = db.relationship('District', lazy=True)
+    search_vector = db.Column(TSVectorType('name'))
 
-	def format(self):
-	    return {
-	        "usps_abbreviation": self.usps_abbreviation,
-	        "number": self.number,
-	        "name": self.name,
-			"districts" : [x.format() for x in self.districts]
-	    }
+    def format(self):
+        return {
+            "usps_abbreviation": self.usps_abbreviation,
+            "number": self.number,
+            "name": self.name,
+            "districts" : [x.format() for x in self.districts]
+        }
 
-	def __repr__(self):
-		return '<States {}: {}>'.format(self.number, self.name)
+    def __repr__(self):
+        return '<States {}: {}>'.format(self.number, self.name)
 
 class District(db.Model):
-	query_class = Query
-	__tablename__ = 'district'
-	alpha_num = db.Column(db.String(11), index=True, nullable=False, primary_key=True)
-	state = db.Column(db.String(2), db.ForeignKey('state.usps_abbreviation'))
-	id = db.Column(db.String(8))
-	representative_id = db.Column(db.String(255), db.ForeignKey('representative.bioguide'))
-	population = db.Column(db.Integer)
-	median_age = db.Column(db.Float)
-	median_age_male = db.Column(db.Float)
-	median_age_female = db.Column(db.Float)
-	population_male = db.Column(db.Integer)
-	population_white = db.Column(db.Integer)
-	population_black_or_african_american = db.Column(db.Integer)
-	population_american_indian_and_alaska_native = db.Column(db.Integer)
-	population_asian = db.Column(db.Integer)
-	population_native_hawaiian_and_other_pacific_islander = \
-		db.Column(db.Integer)
-	population_some_other_race = db.Column(db.Integer)
-	population_two_or_more_races = db.Column(db.Integer)
-	search_vector = db.Column(TSVectorType('alpha_num', 'id', 'state'))
+    query_class = Query
+    __tablename__ = 'district'
+    alpha_num = db.Column(db.String(11), index=True, nullable=False,
+        primary_key=True)
+    state = db.Column(db.String(2), db.ForeignKey('state.usps_abbreviation'))
+    id = db.Column(db.String(8))
+    representative_id = db.Column(db.String(255),
+        db.ForeignKey('representative.bioguide'))
+    population = db.Column(db.Integer)
+    median_age = db.Column(db.Float)
+    median_age_male = db.Column(db.Float)
+    median_age_female = db.Column(db.Float)
+    population_male = db.Column(db.Integer)
+    population_white = db.Column(db.Integer)
+    population_black_or_african_american = db.Column(db.Integer)
+    population_american_indian_and_alaska_native = db.Column(db.Integer)
+    population_asian = db.Column(db.Integer)
+    population_native_hawaiian_and_other_pacific_islander = \
+        db.Column(db.Integer)
+    population_some_other_race = db.Column(db.Integer)
+    population_two_or_more_races = db.Column(db.Integer)
+    search_vector = db.Column(TSVectorType('alpha_num', 'id', 'state'))
 
-	def format(self):
-	    return {
-	        "alpha_num": self.alpha_num,
-	        "state": self.state,
-			"id": self.id,
-			"representative_id": self.representative_id,
-	        "population": self.population,
-	        "median_age": self.median_age,
-	        "median_age_male": self.median_age_male,
-			"median_age_female": self.median_age_female,
-			"population_male": self.population_male,
-			"population_white": self.population_white,
-			"population_black_or_african_american":
-				self.population_black_or_african_american,
-			"population_american_indian_and_alaska_native":
-				self.population_american_indian_and_alaska_native,
-			"population_asian": self.population_asian,
-			"population_native_hawaiian_and_other_pacific_islander":
-				self.population_native_hawaiian_and_other_pacific_islander,
-			"population_some_other_race": self.population_some_other_race,
-			"population_two_or_more_races": self.population_two_or_more_races,
-	    }
+    def format(self):
+        return {
+            "alpha_num": self.alpha_num,
+            "state": self.state,
+            "id": self.id,
+            "representative_id": self.representative_id,
+            "population": self.population,
+            "median_age": self.median_age,
+            "median_age_male": self.median_age_male,
+            "median_age_female": self.median_age_female,
+            "population_male": self.population_male,
+            "population_white": self.population_white,
+            "population_black_or_african_american":
+                self.population_black_or_african_american,
+            "population_american_indian_and_alaska_native":
+                self.population_american_indian_and_alaska_native,
+            "population_asian": self.population_asian,
+            "population_native_hawaiian_and_other_pacific_islander":
+                self.population_native_hawaiian_and_other_pacific_islander,
+            "population_some_other_race": self.population_some_other_race,
+            "population_two_or_more_races": self.population_two_or_more_races,
+        }
 
-	def __repr__(self):
-		return '<Districts {}: {} {}>'.format(self.alpha_num,
-			self.state, self.id)
+    def __repr__(self):
+        return '<Districts {}: {} {}>'.format(self.alpha_num, self.state,
+            self.id)
 
 class PoliticalParty(db.Model):
     query_class = Query
