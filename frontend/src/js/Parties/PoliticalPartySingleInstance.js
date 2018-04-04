@@ -21,20 +21,48 @@ export default class PoliticalPartySingleInstance extends Component {
       num_reps = this.props.num_reps
     }
 
+    let searched = ''
     let query = []
     if(this.props.search !== null && this.props.search !== undefined) {
       query = this.props.search.split(" ")
       query.push(this.props.search)
+      searched =  <p>
+                      Representatives in search: {num_reps}
+                  </p>
+
     }
 
+    if (this.props.search === undefined) {
+      searched =  <p>
+                      Representatives: {num_reps}
+                  </p>
+    }
+
+    let chair = ''
+    if (this.props.party.chair === '') {
+      chair = <p>
+                Party chair:<br /> None
+              </p>
+    } else {
+      chair = <p>
+                Party chair:<br />
+                <Highlighter
+                    searchWords={query}
+                    autoEscape={true}
+                    highlightStyle={styles.highlight}
+                    textToHighlight={this.props.party.chair} />
+              </p>
+    }
+
+
     return (
-      <Link to={`/party/${this.props.party.path}`}>
+      <Link to={`/party/${this.props.party.path}`} className='search-card-link'>
         <div className='search-card party-search-card'>
           <img src={require('../../assets/images/parties/index/' +
             this.props.party.path + '.png')}
           className='img-responsive'
           alt={this.props.party.path} />
-          
+
           <div>
             <h3>
               <Highlighter
@@ -43,17 +71,8 @@ export default class PoliticalPartySingleInstance extends Component {
                 highlightStyle={styles.highlight}
                 textToHighlight={this.props.party.name} />
             </h3>
-            <p>
-              Representatives in search: {num_reps}
-            </p>
-            <p>
-              Party chair:<br />
-              <Highlighter
-                  searchWords={query}
-                  autoEscape={true}
-                  highlightStyle={styles.highlight}
-                  textToHighlight={this.props.party.chair} />
-            </p>
+            {searched}
+            {chair}
           </div>
         </div>
       </Link>

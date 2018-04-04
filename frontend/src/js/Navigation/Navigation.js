@@ -13,6 +13,7 @@ export default class Navigation extends Component {
     super(props)
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
 
     this.state = {
       value: ''
@@ -21,6 +22,11 @@ export default class Navigation extends Component {
 
   handleChange(e) {
     this.setState({value: e.target.value})
+  }
+
+  handleSubmit (e) {
+    e.preventDefault()
+    window.location.href = '/search/' + this.state.value
   }
 
   render () {
@@ -55,13 +61,15 @@ export default class Navigation extends Component {
             </Nav>
             <Nav pullRight>
               <Navbar.Form>
-                <FormGroup>
-                  <FormControl onChange={this.handleChange}
-                    type="text" placeholder="Search" />
-                </FormGroup>{' '}
-                <Link to={`/search/${this.state.value}`}>
-                  <Button type="submit"><span className='glyphicon glyphicon-search'></span></Button>
-                </Link>
+                <form onSubmit={this.handleSubmit}>
+                  <FormGroup>
+                    <FormControl onChange={this.handleChange}
+                      type="text" placeholder="Search" />
+                      <Button type="submit">
+                        <span className='glyphicon glyphicon-search'></span>
+                      </Button>
+                  </FormGroup>{' '}
+                </form>
               </Navbar.Form>
             </Nav>
             </Navbar.Collapse>
