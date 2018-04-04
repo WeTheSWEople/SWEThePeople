@@ -394,7 +394,7 @@ def get_all_search_results(search_query, reps_result, parties_result,
                 districts_result.append(district_json)
 
             rep = Representative.query.filter(
-                district_json.representative_id == Representative.bioguide).first()
+                district_json['representative_id'] == Representative.bioguide).first()
             if rep:
                 rep_json = get_response(rep)
                 del rep_json['bills']
