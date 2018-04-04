@@ -138,7 +138,7 @@ export default class RepresentativeGrid extends Component {
 				nextLabel={"next"}
 				breakLabel={<a>...</a>}
 				breakClassName={"break-me"}
-				pageCount={this.state.cur_page}
+				pageCount={Math.ceil(this.state.cur_page)}
 				marginPagesDisplayed={2}
 				pageRangeDisplayed={5}
 				onPageChange={this.handlePageClick}

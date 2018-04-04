@@ -37,17 +37,34 @@ def representatives_by_page(num):
 
 @rep_route.route("/filter")
 def representatives_filter():
-    filter_query = request.args.get('filter')
-    filter_query = str(filter_query)
-    filter_query = json.loads(filter_query)
+    try:
+        filter_query = request.args.get('filter')  
+        filter_query = str(filter_query)
+        filter_query = json.loads(filter_query)
+    except:
+        return error("Filter Query Invalid")
 
-    state = str(filter_query['state']) # check state is None
-    party_id = filter_query['party_id'] # check party id is None
-    last_name = str(filter_query['last_name']).lower().split('-')
-    votes_pct = str(filter_query['votes_pct']).split('-') # votes pct is none
-    order_by = str(filter_query['order_by'])
+    state = 'None'
+    last_name = 'None'
+    party_id = 'None'
+    votes_pct = 'None'
+    order_by = 'None'
+    if 'state' in filter_query:
+       state = str(filter_query['state'])
+
+    if 'party_id' in filter_query:
+        party_id = filter_query['party_id'] # check party id is None
+
+    if 'last_name' in filter_query:
+        last_name = str(filter_query['last_name']).lower().split('-')
+    
+    if 'votes_pct' in filter_query:
+        votes_pct = str(filter_query['votes_pct']).split('-') # votes pct is none
+
+    if 'order_by' in filter_query:
+        order_by = str(filter_query['order_by'])
    
-    filtered_result = Representative.query
+    filtered_result = Representative.query.order_by(Representative.lastname.asc())
     if state != 'None':
         filtered_result = filtered_result.filter(Representative.state == state)
 
@@ -55,24 +72,29 @@ def representatives_filter():
         filtered_result = filtered_result.filter(Representative.party_id == int(party_id))
 
 
-    if votes_pct[0] != 'None':
+    if votes_pct != 'None' and votes_pct[0] != 'None':
         filtered_result = filtered_result.filter(Representative.votes_with_party_pct >= float(votes_pct[0]), 
                                 Representative.votes_with_party_pct < float(votes_pct[1]))
 
-    if (order_by == 'last_asc'):
-        filtered_result = filtered_result.order_by(Representative.lastname.asc())
+    if order_by != 'None':
+        if (order_by == 'last_asc'):
+            filtered_result = filtered_result.order_by(Representative.lastname.asc())
 
-    elif (order_by == 'last_desc'):
-        filtered_result = filtered_result.order_by(Representative.lastname.desc())
+        elif (order_by == 'last_desc'):
+            filtered_result = filtered_result.order_by(Representative.lastname.desc())
 
-    elif (order_by == 'votes_pct_asc'):
-        filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.asc())
-    else:
-        filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.desc())
+        elif (order_by == 'votes_pct_asc'):
+            filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.asc())
+        else:
+            filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.desc())
 
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(rep) for rep in filtered_result]
-    return jsonify(filter(lambda s: s['lastname'][0].lower() >= last_name[0] and s['lastname'][0].lower() <= last_name[1], filtered_dict_list))
+
+    if last_name != 'None':
+        return jsonify(filter(lambda s: s['lastname'][0].lower() >= last_name[0] and s['lastname'][0].lower() <= last_name[1], filtered_dict_list))
+    else:
+        return jsonify(filtered_dict_list)
 
 @party_route.route("/")
 def all_parties():
@@ -94,18 +116,32 @@ def party_by_id(party_id):
 
 @party_route.route("/filter")
 def party_filter():
-    filter_query = request.args.get('filter')
-    filter_query = str(filter_query)
-    filter_query = json.loads(filter_query)
+    try:
+        filter_query = request.args.get('filter')
+        filter_query = str(filter_query)
+        filter_query = json.loads(filter_query)
+    except:
+        return error("Filter Query Invalid")
 
     #ideology = str(filter_query['ideology'])
-    social = str(filter_query['social'])
-    color = str(filter_query['color'])
-    formation_date = filter_query['date'].split("-")
-    name = str(filter_query['name']).lower().split('-') # Default: A-Z
-    order_by = str(filter_query['order_by'])
+    social = 'None'
+    color = 'None'
+    formation_date = 'None'
+    name = 'None'
+    order_by = 'None'
 
-    filtered_result = PoliticalParty.query
+    if 'social' in filter_query:
+        social = str(filter_query['social'])
+    if 'color' in filter_query:
+        color = str(filter_query['color'])
+    if 'date' in filter_query:
+        formation_date = filter_query['date'].split("-")
+    if 'name' in filter_query:
+        name = str(filter_query['name']).lower().split('-') # Default: A-Z
+    if 'order_by' in filter_query:
+        order_by = str(filter_query['order_by'])
+
+    filtered_result = PoliticalParty.query.order_by(PoliticalParty.id)
     if social != 'None':
         if social == 'YT':
             filtered_result = filtered_result.filter(PoliticalParty.youtube != '', PoliticalParty.twitter_handle != '')
@@ -124,27 +160,36 @@ def party_filter():
         filtered_result = filtered_result.join(PartyColor).filter(PartyColor.color == color)
 
 
-    if (order_by == 'name_asc'):
-        filtered_result = filtered_result.order_by(PoliticalParty.name.asc())
-    elif (order_by == 'name_desc'):
-        filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
-    elif (order_by == 'chair_name_asc'):
-        filtered_result = filtered_result.order_by(PoliticalParty.chair.asc())
-    elif (order_by == 'chair_name_desc'):
-        filtered_result = filtered_result.order_by(PoliticalParty.chair.desc())
-    else:
-        filtered_result = filtered_result.order_by(PoliticalParty.id)
+    if order_by != 'None':
+        if (order_by == 'name_asc'):
+            filtered_result = filtered_result.order_by(PoliticalParty.name.asc())
+        elif (order_by == 'name_desc'):
+            filtered_result = filtered_result.order_by(PoliticalParty.name.desc())
+        elif (order_by == 'chair_name_asc'):
+            filtered_result = filtered_result.order_by(PoliticalParty.chair.asc())
+        elif (order_by == 'chair_name_desc'):
+            filtered_result = filtered_result.order_by(PoliticalParty.chair.desc())
+        else:
+            filtered_result = filtered_result.order_by(PoliticalParty.id)
 
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(party) for party in filtered_result]
+
     for item in filtered_dict_list:
         for rep in item['representatives']:
             del rep['bills']
 
-    if formation_date[0] != 'None':
-        date_filtered_dict = filter(lambda s: int(s['formation_date'].split(" ")[-1]) >= int(formation_date[0]) and int(s['formation_date'].split(" ")[-1]) <= int(formation_date[1]), filtered_dict_list)
-        return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= name[1], date_filtered_dict))
-    return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= name[1], filtered_dict_list))
+    if formation_date != 'None' and formation_date[0] != 'None':
+        if name != 'None':
+            date_filtered_dict = filter(lambda s: int(s['formation_date'].split(" ")[-1]) >= int(formation_date[0]) and int(s['formation_date'].split(" ")[-1]) <= int(formation_date[1]), filtered_dict_list)
+            return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= name[1], date_filtered_dict))
+        else:
+            return jsonify(date_filtered_dict)
+    else:
+        if name != 'None':
+            return jsonify(filter(lambda s: s['name'][0].lower() >= name[0] and s['name'][0].lower() <= name[1], filtered_dict_list))
+        else:
+            return jsonify(filtered_dict_list)
 
 
 
@@ -174,7 +219,6 @@ def districts_by_state(abbrev):
 
 @district_route.route("/<abbrev>/<id>")
 def districts_by_id(abbrev, id):
-    #return get_single_item(District, District.state, abbrev)
     data = District.query.filter(District.state == abbrev).filter(District.id == id).first()
     if not data:
         return error("Item not found for id " + abbrev + " and " + id)
@@ -182,35 +226,55 @@ def districts_by_id(abbrev, id):
 
 @district_route.route("/filter")
 def districts_filter():
-    filter_query = request.args.get('filter')
-    filter_query = str(filter_query)
-    filter_query = json.loads(filter_query)
+    try:
+        filter_query = request.args.get('filter')
+        filter_query = str(filter_query)
+        filter_query = json.loads(filter_query)
+    except:
+        return error("Filter Query Invalid")
 
-    state = str(filter_query['state'])
-    population = str(filter_query['population']).split('-')
-    median_age = str(filter_query['median_age']).split('-')
-    order_by = str(filter_query['order_by'])
+
+    state = 'None'
+    population = 'None'
+    median_age = 'None'
+    order_by = 'None'
+
+    if 'state' in filter_query:
+        state = str(filter_query['state'])
+
+    if 'population' in filter_query:
+        population = str(filter_query['population']).split('-')
+
+    if 'median_age' in filter_query:
+        median_age = str(filter_query['median_age']).split('-')
+
+    if 'order_by' in filter_query:
+        order_by = str(filter_query['order_by'])
+
 
     # order by state, alpha num, population  
-    filtered_result = District.query
+    filtered_result = District.query.order_by(District.alpha_num.asc())
     if state != 'None':
         filtered_result = filtered_result.filter(District.state == state)
 
-    if population[0] != 'None':
+    if population != 'None' and population[0] != 'None':
         filtered_result = filtered_result.filter(District.population >= int(population[0]), 
                                 District.population < int(population[1]))
 
-    if median_age[0] != 'None':
+    if median_age != 'None' and median_age[0] != 'None':
        filtered_result = filtered_result.filter(District.median_age >= float(median_age[0]), 
                                 District.median_age < float(median_age[1]))
-    if (order_by == 'state_asc'):
-        filtered_result = filtered_result.order_by(District.alpha_num.asc())
-    elif (order_by == 'state_desc'):
-        filtered_result = filtered_result.order_by(District.alpha_num.desc())
-    elif (order_by == 'population_desc'):
-        filtered_result = filtered_result.order_by(District.population.desc())
-    else:
-        filtered_result = filtered_result.order_by(District.population.asc())
+
+    if order_by != 'None':
+        if (order_by == 'state_asc'):
+            filtered_result = filtered_result.order_by(District.alpha_num.asc())
+        elif (order_by == 'state_desc'):
+            filtered_result = filtered_result.order_by(District.alpha_num.desc())
+        elif (order_by == 'population_desc'):
+            filtered_result = filtered_result.order_by(District.population.desc())
+        else:
+            filtered_result = filtered_result.order_by(District.population.asc())
+
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(rep) for rep in filtered_result]
     return jsonify(filtered_dict_list)
