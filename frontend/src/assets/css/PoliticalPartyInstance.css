@@ -28,3 +28,10 @@
 .party-single-card img {
     width: 50%;
 }
+
+.search-card-link:link,
+.search-card-link:visited,
+.search-card-link:hover,
+.search-card-link:active {
+    color: #000;
+}

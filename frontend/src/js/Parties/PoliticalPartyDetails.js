@@ -54,6 +54,10 @@ export default class PoliticalPartyDetails extends Component {
         repsMap[rep['bioguide']] = rep
       })
 
+      if (response.data['chair'] === '') {
+        response.data['chair'] = 'None'
+      }
+
       let p = {
         name: response.data['name'],
         path: response.data['path'],
@@ -183,7 +187,7 @@ export default class PoliticalPartyDetails extends Component {
       noControl = '0/' + this.state.totalReps
     }
 
-    let twitter = 'No twitter handle'
+    let twitter = <h4><b>No Twitter handle</b></h4>
     if (this.state.party != null && this.state.party['twitter_handle'] !== '') {
       twitter = <div>
         <Timeline dataSource={{sourceType: 'profile',
@@ -193,7 +197,7 @@ export default class PoliticalPartyDetails extends Component {
       </div>
     }
 
-    let youtube = 'No youtube channel'
+    let youtube = <h4><b>No YouTube channel</b></h4>
     if (this.state.party != null && this.state.party['youtube'] !== '') {
       youtube = <div className='youtube-div'>
         <h4><b>YouTube Channel</b></h4>
@@ -209,7 +213,7 @@ export default class PoliticalPartyDetails extends Component {
       </div>
     }
 
-    let office = 'No office location'
+    let office = <h4><b>No office location</b></h4>
     if (this.state.party != null && this.state.party['office'] !== '') {
       office = <div>
         <h4><b>Office Location:</b></h4>
