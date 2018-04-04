@@ -33,7 +33,7 @@ class AcceptanceTest(unittest.TestCase):
         driver.execute_script("window.history.go(-1)")
         driver.find_element_by_link_text("GitHub Repository").click()
         driver.execute_script("window.history.go(-1)")
-        driver.find_element_by_link_text("IDB 1 Technical Report").click()
+        driver.find_element_by_link_text("Technical Report").click()
         driver.execute_script("window.history.go(-1)")
         driver.find_element_by_link_text("API Documentation").click()
 
