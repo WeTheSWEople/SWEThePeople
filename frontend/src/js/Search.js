@@ -156,12 +156,17 @@ export default class Search extends Component {
       )
     }
 
-    let grid = this.state.paginate_results.map((result) =>
-      this.buildCard(result))
+    let grid = <h3 style={{textAlign: 'center'}}>
+        No results found, try a different search.
+    </h3>
+    if (this.state.results.length > 0) {
+      grid = this.state.paginate_results.map((result) =>
+        this.buildCard(result))
+    }
 
     // only show if more than 24 records
     let pagination_bar = ''
-    if(this.state.results.length > 24){
+    if (this.state.results.length > 24) {
       pagination_bar = <div className="App">
                         <ReactPaginate previousLabel={"previous"}
                           nextLabel={"next"}
