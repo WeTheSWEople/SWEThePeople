@@ -57,7 +57,7 @@ export default class About extends Component {
         'Benny is a third-year CS student who enjoys iOS development, ' +
         'reading, and following current events.', 'Benny.jpg',
         'Representatives front-end, District back-end, Documentation', 'Benny']
-      sweMembers['palakhirpara'] = ['Palak Hirpara', 0, 0, 33,
+      sweMembers['palakhirpara'] = ['Palak Hirpara', 0, 0, 34,
 
         'Palak is a senior who will be graduating this semester with BSCS ' +
         'and likes watching cricket.', 'Palak.png',
