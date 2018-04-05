@@ -371,6 +371,15 @@ class TestStringMethods(unittest.TestCase):
 		db.session.commit()
 		print("\nTEST 22: District successfully inserted, queried, and removed from the database")
 
+	# def test_23(self):
+	# 	self.maxDiff = None
+	# 	# insert the district
+	# 	response = requests.request("GET", live_api_url + 'representative/filter?filter={"state":"TX","party_id":"1","last_name":"D-Z","votes_pct":"30-90","order_by":"last_desc"}')
+	# 	print(live_api_url + "representative/filter?filter={"'state'":"'TX'","'party_id'":"'1'","'last_name'":"'D-Z'","'votes_pct'":"'30-90'","'order_by'":"'last_desc'"}")
+	# 	result = response.json()
+	# 	with app.app_context():
+	# 	 	self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
+	# 	print("\nTEST 6: Filtering API: Representative Model filtering data consistent")
 
 
 
