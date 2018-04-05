@@ -18,7 +18,7 @@ import StateInstance from './src/js/Districts/StateInstance.js';
 import PoliticalParty from './src/js/Parties/PoliticalParty.js';
 import PoliticalPartyDetails from './src/js/Parties/PoliticalPartyDetails.js';
 import NotFound from './src/js/NotFound.js';
-import AllDistrict from './src/js/Districts/AllDistricts.js';
+import DistrictGrid from './src/js/Districts/DistrictGrid.js';
 
 const rep = {
   "bills": [
@@ -123,7 +123,7 @@ describe('RepresentativeInstance Component', () => {
   it('displays representative name and info', () => {
     expect(instance.find('h3.title').text()).to.equal("Robert Aderholt")
     expect(instance.find('h4.party').text()).to.equal("Republican")
-    expect(instance.find('h4.district').text()).to.equal("AL - 4")
+    expect(instance.find('h4.district').text()).to.equal("AL-4")
   })
 })
 
@@ -167,20 +167,21 @@ describe('NotFound Component', () => {
   })
 })
 
-describe('AllDistrict Component', () => {
-  const alldistrictInstance = shallow(<AllDistrict />)
+describe('DistrictGrid Component', () => {
+  const alldistrictInstance = shallow(<DistrictGrid />)
 
-  it('loading state', () => {
-    expect(alldistrictInstance.find('.loading').children()).to.have.length(1)
+  it('loading district', () => {
+    expect(alldistrictInstance.find('.filter-grid-center').children()).to.have.length(1)
   })
 
-  it('invalid state number, data not found', () => {
-    alldistrictInstance.setState({state_name: -1})
-    expect(alldistrictInstance.find('p').text()).to.equal(" Data Not Found ")
+  it('invalid district, data not found', () => {
+    alldistrictInstance.setState({districts: -1})
+    expect(alldistrictInstance.find('p').text()).to.equal("Data Not Found")
   })
 
-  it('valid state names', () => {
-    alldistrictInstance.setState({state_name: [California]})
-    expect(alldistrictInstance.find('.alldistricts-grid').children()).to.have.length(1)
+  it('no districts found', () => {
+    alldistrictInstance.setState({districts: -2})
+    expect(alldistrictInstance.find('h1').text()).to.equal("No districts found, try a different filter.")
   })
+
 })
