@@ -22,6 +22,8 @@ export default class Search extends Component {
     this.state = {
       ready: false,
       error: false,
+      results: null,
+      paginate_results: null,
       reps: null,
       parties: null,
       districts: null,
@@ -32,61 +34,38 @@ export default class Search extends Component {
       cur_page: 0,
       all_results: null
     }
+
+    this.buildCard = this.buildCard.bind(this)
   }
 
   queryAPI(query) {
-    axios.get(url.api_url + 'search/?query="' + query + '"').then((response) => {
+    this.setState({results: null})
+    axios.get(url.api_url + 'search/?query=' + query).then((response) => {
+      let respResult = response.data.sort(function (lhs, rhs) {
+        return rhs.rank - lhs.rank
+      })
+
       let counts = {}
-      for (const rep of response.data.reps) {
-        if (!(rep.party_id in counts)) {
-          counts[rep.party_id] = 1
-        } else {
-          counts[rep.party_id]++
+      for (const entry of respResult) {
+        if ('bioguide' in entry) {
+          if (!(entry.party_id in counts)) {
+            counts[entry.party_id] = 1
+          } else {
+            counts[entry.party_id]++
+          }
         }
       }
 
-      let temp_reps = []
-      let temp_parties = []
-      let temp_districts = []
-      let all_results = []
-
-      if (response.data.rank === '1'){
-        all_results = all_results.concat(response.data.reps)
-        all_results = all_results.concat(response.data.parties)
-        all_results = all_results.concat(response.data.districts)
-      }
-      else if (response.data.rank === '2'){
-        all_results = all_results.concat(response.data.parties)
-        all_results = all_results.concat(response.data.reps)
-        all_results = all_results.concat(response.data.districts)
-      }
-      else {
-        all_results = all_results.concat(response.data.districts)
-        all_results = all_results.concat(response.data.reps)
-        all_results = all_results.concat(response.data.parties)
-      }
-     
-      for(let i = 0; i < 24 && i < all_results.length; i++){
-        let item = all_results[i]
-        if('bioguide' in item){
-          temp_reps.push(item)
-        }
-        else if('chair' in item){
-          temp_parties.push(item)
-        }
-        else{
-          temp_districts.push(item)
-        }
+      let pagResults = []
+      for (let i = 0; i < 24 && i < respResult.length; i++) {
+        pagResults.push(respResult[i])
       }
 
       this.setState({
-        reps: temp_reps,
-        parties: temp_parties,
-        districts: temp_districts,
+        results: respResult,
+        paginate_results: pagResults,
         party_counts: counts,
-        rank: response.data.rank,
-        cur_page: Math.ceil(all_results.length/24),
-        all_results: all_results
+        cur_page: Math.ceil(respResult.length / 24)
       })
 
       // get the parties name
@@ -108,27 +87,15 @@ export default class Search extends Component {
   }
 
   handlePageClick(data){
-    let cur_result = this.state.all_results
-    let temp_reps = []
-    let temp_parties = []
-    let temp_districts = []
-    for(let i = data.selected * 24; i < (data.selected + 1)*24 && i < cur_result.length; i++){
-        let item = cur_result[i]
-        if('bioguide' in item){
-          temp_reps.push(item)
-        }
-        else if('chair' in item){
-          temp_parties.push(item)
-        }
-        else{
-          temp_districts.push(item)
-        }
+    let cur_result = this.state.results
+    let pagResults = []
+    for (let i = data.selected * 24;
+      i < (data.selected + 1) * 24 && i < cur_result.length; i++) {
+        pagResults.push(cur_result[i])
     }
 
     this.setState({
-      reps: temp_reps,
-      parties: temp_parties,
-      districts: temp_districts
+      paginate_results: pagResults
     })
   }
 
@@ -146,10 +113,40 @@ export default class Search extends Component {
     })
   }
 
+  buildCard (result) {
+    if ('bioguide' in result) {
+      // result is a Representative
+      return (
+        <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
+          <RepresentativeSingleInstance key={result.bioguide} rep={result}
+            party_name={this.state.party_names[result.party_id][0]}
+            search={this.props.match.params.term}
+            className='search-component' />
+        </div>
+      )
+    } else if ('alpha_num' in result) {
+      // result is a District
+      return (
+        <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
+          <DistrictInstance district={result} className='search-component'
+            search={this.props.match.params.term} />
+        </div>
+      )
+    } else if ('chair' in result) {
+      // result is a Political Party
+      return (
+        <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
+          <PoliticalPartySingleInstance party={result}
+            num_reps={this.state.party_counts[result.id]}
+            search={this.props.match.params.term}
+            className='search-component' />
+        </div>
+      )
+    }
+  }
+
   render() {
-    if (this.state.reps === null || this.state.parties === null ||
-      this.state.districts === null || this.state.party_names === null ||
-      this.state.party_counts === null) {
+    if (this.state.results === null || this.state.party_names === null) {
       return (
         <div className="search-container">
           <center>
@@ -159,56 +156,12 @@ export default class Search extends Component {
       )
     }
 
-    let partiesGrid = this.state.parties.map((party) => (
-      <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
-        <PoliticalPartySingleInstance party={party}
-          num_reps={this.state.party_counts[party.id]}
-          search={this.props.match.params.term}
-          className='search-component' />
-      </div>
-    ))
-
-    let repGrid = this.state.reps.map((rep) => (
-      <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
-        <RepresentativeSingleInstance key={rep.bioguide} rep={rep}
-          party_name={this.state.party_names[rep.party_id][0]}
-          search={this.props.match.params.term}
-          className='search-component' />
-      </div>
-    ))
-
-    let districtGrid = this.state.districts.map((district) => (
-      <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
-        <DistrictInstance district={district} className='search-component'
-          search={this.props.match.params.term} />
-      </div>
-    ))
-
-    let rankedDiv = null
-    if (this.state.rank === 1) {
-      rankedDiv = <div>
-        {repGrid}
-        {partiesGrid}
-        {districtGrid}
-      </div>
-    } else if (this.state.rank === 2) {
-      rankedDiv = <div>
-        {partiesGrid}
-        {repGrid}
-        {districtGrid}
-      </div>
-    } else {
-      rankedDiv = <div>
-        {districtGrid}
-        {repGrid}
-        {partiesGrid}
-      </div>
-    
-    }
+    let grid = this.state.paginate_results.map((result) =>
+      this.buildCard(result))
 
     // only show if more than 24 records
     let pagination_bar = ''
-    if(this.state.all_results.length > 24){
+    if(this.state.results.length > 24){
       pagination_bar = <div className="App">
                         <ReactPaginate previousLabel={"previous"}
                           nextLabel={"next"}
@@ -224,12 +177,6 @@ export default class Search extends Component {
                           activeClassName={"active"} />
                     </div>
     }
-    
-    if (this.state.all_results.length === 0) {
-      rankedDiv = <div style={{textAlign: 'center'}}>
-        <h3>No results found, try a different search.</h3>
-      </div>
-    }
 
     return (
       <div className='container search-container'>
@@ -240,7 +187,7 @@ export default class Search extends Component {
         </div>
 
         <div className='row'>
-          {rankedDiv}
+          {grid}
         </div>
         {pagination_bar}
       </div> 
