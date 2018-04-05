@@ -65,7 +65,7 @@ def representatives_filter():
     if 'order_by' in filter_query:
         order_by = str(filter_query['order_by'])
    
-    filtered_result = Representative.query.order_by(Representative.lastname.asc())
+    filtered_result = Representative.query
     if state != 'None':
         filtered_result = filtered_result.filter(Representative.state == state)
 
@@ -88,6 +88,8 @@ def representatives_filter():
             filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.asc())
         else:
             filtered_result = filtered_result.order_by(Representative.votes_with_party_pct.desc())
+    else:
+        filtered_result = filtered_result.order_by(Representative.lastname.asc())
 
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(rep) for rep in filtered_result]
@@ -142,7 +144,7 @@ def party_filter():
     if 'order_by' in filter_query:
         order_by = str(filter_query['order_by'])
 
-    filtered_result = PoliticalParty.query.order_by(PoliticalParty.id)
+    filtered_result = PoliticalParty.query
     if social != 'None':
         if social == 'YT':
             filtered_result = filtered_result.filter(PoliticalParty.youtube != '', PoliticalParty.twitter_handle != '')
@@ -172,6 +174,8 @@ def party_filter():
             filtered_result = filtered_result.order_by(PoliticalParty.chair.desc())
         else:
             filtered_result = filtered_result.order_by(PoliticalParty.id)
+    else:
+        filtered_result = filtered_result.order_by(PoliticalParty.id)
 
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(party) for party in filtered_result]
@@ -254,7 +258,7 @@ def districts_filter():
 
 
     # order by state, alpha num, population  
-    filtered_result = District.query.order_by(District.alpha_num.asc())
+    filtered_result = District.query
     if state != 'None':
         filtered_result = filtered_result.filter(District.state == state)
 
@@ -275,6 +279,8 @@ def districts_filter():
             filtered_result = filtered_result.order_by(District.population.desc())
         else:
             filtered_result = filtered_result.order_by(District.population.asc())
+    else:
+        filtered_result = filtered_result.order_by(District.alpha_num.asc())
 
     filtered_result = filtered_result.all()
     filtered_dict_list = [get_response(rep) for rep in filtered_result]
@@ -503,6 +509,13 @@ def get_all_search_results(search_query, reps_result, parties_result,
 @search_route.route("/")
 def search():
     search_query = request.args.get('query')
+    if search_query == '':
+        return jsonify({
+        "rank": 0,
+        "reps": [],
+        "parties": [],
+        "districts": []
+    })
     reps_result = []
     parties_result = []
     districts_result = []
@@ -527,3 +540,5 @@ def search():
 @error_route.app_errorhandler(404)
 def url_not_found(e):
     return send_from_directory('static/templates', '404.html')
+
+
