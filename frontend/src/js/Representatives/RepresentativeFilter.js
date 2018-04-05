@@ -110,7 +110,8 @@ export default class RepresentativeFilter extends Component {
         <div className='filter-component row'>
           <div className='col-sm-2 filter-control'>
             <b>Filter State:</b>
-            <Select name='rep-state'
+            <Select className='state-filter'
+              name='rep-state'
               value={this.state.state_value}
               onChange={this.handleStateDropdownChange}
               options={this.state.all_states}
@@ -119,7 +120,8 @@ export default class RepresentativeFilter extends Component {
 
           <div className='col-sm-2 filter-control'>
             <b>Filter Party:</b>
-            <Select name='rep-party'
+            <Select className='party-filter'
+              name='rep-party'
               value={this.state.party_value}
               onChange={this.handlePartyDropdownChange}
               options={this.state.all_parties}
@@ -128,7 +130,8 @@ export default class RepresentativeFilter extends Component {
 
           <div className='col-sm-2 filter-control'>
             <b>Filter Votes:</b>
-            <Select name='rep-votes'
+            <Select className='vote-filter'
+              name='rep-votes'
               value={this.state.vote_value}
               onChange={this.handleVoteDropdownChange}
               options={[{value: '50-59', label: '50 - 59.99%'},
@@ -141,7 +144,8 @@ export default class RepresentativeFilter extends Component {
 
           <div className='col-sm-2 filter-control'>
             <b>Filter last names:</b>
-            <Select name='rep-lastname'
+            <Select className='lastname-filter'
+              name='rep-lastname'
               value={this.state.lastname_value}
               onChange={this.handleLastnameDropdownChange}
               options={[{value: 'A-L', label: 'A-L'},
@@ -151,7 +155,8 @@ export default class RepresentativeFilter extends Component {
 
           <div className='col-sm-2 sort-control'>
             <b>Sort:</b>
-            <Select name='rep-lastname'
+            <Select className='sort'
+              name='rep-lastname'
               value={this.state.sort_value}
               onChange={this.handleSortDropdownChange}
               options={[{value: 'last_asc', label: 'Last name (ASC)'},

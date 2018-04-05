@@ -97,7 +97,8 @@ export default class PoliticalPartyFilter extends Component {
         <div className='filter-component row'>
           <div className='col-sm-2 filter-control'>
             <b>Filter social media:</b>
-            <Select name='party-social'
+            <Select className='social-filter'
+              name='party-social'
               value={this.state.social_value}
               onChange={this.handleSocialDropdownChange}
               options={[
@@ -109,7 +110,8 @@ export default class PoliticalPartyFilter extends Component {
 
           <div className='col-sm-2 filter-control'>
             <b>Filter party color:</b>
-            <Select name='party-color'
+            <Select className='color-filter'
+              name='party-color'
               value={this.state.color_value}
               onChange={this.handleColorDropdownChange}
               options={[
@@ -130,7 +132,8 @@ export default class PoliticalPartyFilter extends Component {
 
           <div className='col-sm-2 filter-control'>
             <b>Filter formation date:</b>
-            <Select name='party-formation-date'
+            <Select className='formation-filter'
+              name='party-formation-date'
               value={this.state.formation_date_value}
               onChange={this.handleFormationDateDropdownChange}
               options={[
@@ -146,7 +149,8 @@ export default class PoliticalPartyFilter extends Component {
 
           <div className='col-sm-2 filter-control'>
             <b>Filter party name:</b>
-            <Select name='party-name'
+            <Select className='name-filter'
+              name='party-name'
               value={this.state.name_value}
               onChange={this.handleNameDropdownChange}
               options={[
@@ -156,7 +160,8 @@ export default class PoliticalPartyFilter extends Component {
 
           <div className='col-sm-2 filter-control'>
             <b>Sort:</b>
-            <Select name='party-sort'
+            <Select className='sort'
+              name='party-sort'
               value={this.state.sort_value}
               onChange={this.handleSortDropdownChange}
               options={[
