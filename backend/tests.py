@@ -9,8 +9,7 @@ app.app_context().push()
 from models import *
 from flask import jsonify
 live_url = "http://swethepeople.me/"
-#live_api_url = "http://api.swethepeople.me/"
-live_api_url = "http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/"
+live_api_url = "http://api.swethepeople.me/"
 
 
 def getResponse(data):
@@ -878,112 +877,135 @@ class TestStringMethods(unittest.TestCase):
 			self.assertEqual(result, expected)
 		print("\nTEST 34: Filtering API: District - Bad Filter Query  - Response OK")
 
+
+
+#)))))))((((()))))
 	def test_35(self):
 		self.maxDiff = None
 		# insert the district
-		expected = {
-		  "districts": [], 
-		  "parties": [], 
-		  "rank": 0, 
-		  "reps": []
-		}
 		response = requests.request("GET", live_api_url + 'search/?query=random')
 		result = response.json()
 		with app.app_context():
-			self.assertEqual(result, expected)
+			self.assertEqual(result, [])
 		print("\nTEST 35: Searching API: searching 'random' keyword  - search results consistent")
-
-	def test_35(self):
-		self.maxDiff = None
-		# insert the district
-		expected = {
-	      "bioguide": "C001094", 
-	      "district": "8", 
-	      "firstname": "Paul", 
-	      "image_uri": "https://theunitedstates.io/images/congress/225x275/C001094.jpg", 
-	      "lastname": "Cook", 
-	      "office": "1222 Longworth House Office Building", 
-	      "party_id": 2, 
-	      "state": "CA", 
-	      "twitter": "RepPaulCook", 
-	      "url": "https://cook.house.gov", 
-	      "votes_with_party_pct": 95.35, 
-	      "youtube": "RepPaulCook"
-		}
-		
-		response = requests.request("GET", live_api_url + 'search/?query=paul ryan')
-		result = response.json()
-		with app.app_context():
-			self.assertEqual(result['reps'][0], expected)
-			self.assertTrue('Paul' in result['reps'][0].values())
-		print("\nTEST 35: Searching API: searching 'paul ryan' keyword  - search results consistent")
 
 	def test_36(self):
 		self.maxDiff = None
 		# insert the district
 		expected = {
-	      "chair": "Ronna Romney McDaniel", 
-	      "formation_date": "March 20, 1854", 
-	      "id": 2, 
-	      "name": "Republican Party", 
-	      "office": "430 South Capitol Street Southeast Washington, DC 20003", 
-	      "path": "republican_party"
+			"bioguide": "C001094", 
+		    "district": "8", 
+		    "firstname": "Paul", 
+		    "image_uri": "https://theunitedstates.io/images/congress/225x275/C001094.jpg", 
+		    "lastname": "Cook", 
+		    "office": "1222 Longworth House Office Building", 
+		    "party_id": 2, 
+		    "rank": 1, 
+		    "state": "CA", 
+		    "twitter": "RepPaulCook", 
+		    "url": "https://cook.house.gov", 
+		    "votes_with_party_pct": 95.35, 
+		    "youtube": "RepPaulCook"
+		}
+		
+		response = requests.request("GET", live_api_url + 'search/?query=paul ryan')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result[0], expected)
+			self.assertTrue('Paul' in result[0].values())
+		print("\nTEST 36: Searching API: searching 'paul ryan' keyword  - search results consistent")
+
+	def test_37(self):
+		self.maxDiff = None
+		# insert the district
+		expected = {
+		    "chair": "Ronna Romney McDaniel", 
+		    "formation_date": "March 20, 1854", 
+		    "id": 2, 
+		    "name": "Republican Party", 
+		    "office": "430 South Capitol Street Southeast Washington, DC 20003", 
+		    "path": "republican_party", 
+		    "rank": 1
     	}
 		
 		response = requests.request("GET", live_api_url + 'search/?query=republican')
 		result = response.json()
 		with app.app_context():
-			self.assertEqual(result['parties'][0], expected)
-			self.assertEqual(len(result['districts']), 238) # 238 republicans in the house
-			self.assertEqual(len(result['reps']), 238)
-		print("\nTEST 36: Searching API: searching 'republican' keyword  - search results consistent")
-
-
-	def test_37(self):
-		self.maxDiff = None
-		# insert the district
-		response = requests.request("GET", live_api_url + 'search/?query=texas')
-		result = response.json()
-		with app.app_context():
-			self.assertEqual(len(result['reps']), 36)
-			self.assertEqual(len(result['parties']), 2) # 238 republicans in the house
-			self.assertEqual(len(result['districts']), 36)
-		print("\nTEST 37: Searching API: searching 'texas' keyword  - search results consistent")
+			self.assertEqual(result[0], expected)
+			self.assertEqual(len(result), 477)
+		print("\nTEST 37: Searching API: searching 'republican' keyword  - search results consistent")
 
 
 	def test_38(self):
 		self.maxDiff = None
 		# insert the district
-		response = requests.request("GET", live_api_url + 'search/?query=TX-36')
+		response = requests.request("GET", live_api_url + 'search/?query=texas')
 		result = response.json()
 		with app.app_context():
-			self.assertEqual(len(result['reps']), 8) # 8 districts that start with 3 ex: TX-30, 31,...,36
-			self.assertEqual(len(result['parties']), 2) 
-			self.assertEqual(len(result['districts']), 8)
-		print("\nTEST 38: Searching API: searching 'TX-36' keyword  - search results consistent")
+			self.assertEqual(len(result), 74)
+		print("\nTEST 38: Searching API: searching 'texas' keyword  - search results consistent")
+
 
 	def test_39(self):
 		self.maxDiff = None
 		# insert the district
+		expected = {
+			"alpha_num": "TX-36", 
+		    "id": "36", 
+		    "median_age": 36.5, 
+		    "population": 732975, 
+		    "rank": 1, 
+		    "representative_id": "B001291", 
+		    "state": "TX", 
+		    "state_full": "Texas"
+		}
+		response = requests.request("GET", live_api_url + 'search/?query=TX-36')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result[0], expected)
+		print("\nTEST 39: Searching API: searching 'TX-36' keyword  - search results consistent")
+
+	def test_40(self):
+		self.maxDiff = None
+		# insert the district
+		expected = {
+			"chair": "Will Christensen", 
+		    "formation_date": "May 16, 1998", 
+		    "id": 18, 
+		    "name": "American Independent Party", 
+		    "office": "", 
+		    "path": "american_independent_party", 
+		    "rank": 1
+		}
 		response = requests.request("GET", live_api_url + 'search/?query=party')
 		result = response.json()
 		with app.app_context():
-			self.assertEqual(len(result['reps']), 430) # shows all data
-			self.assertEqual(len(result['parties']), 40) 
-			self.assertEqual(len(result['districts']), 430)
-		print("\nTEST 39: Searching API: searching 'party' keyword  - search results consistent")
+			self.assertEqual(len(result), 900) # shows all data
+			self.assertEqual(result[0], expected) 
+		print("\nTEST 40: Searching API: searching 'party' keyword  - search results consistent")
 
 
-	def test_40(self):
+	def test_41(self):
 		self.maxDiff = None
 		# insert the district
 		response = requests.request("GET", live_api_url + 'search/?query=')
 		result = response.json()
 		with app.app_context():
-			self.assertEqual(len(result['reps']), 0)
-			self.assertEqual(len(result['parties']), 0) # 238 republicans in the house
-			self.assertEqual(len(result['districts']), 0)
-		print("\nTEST 40: Searching API: searching empty query  - search results consistent")
+			self.assertEqual(result, [])
+		print("\nTEST 41: Searching API: searching empty query  - search results consistent")
+
+
+	def test_42(self):
+		self.maxDiff = None
+		# insert the district
+		expected = {
+		  "Error": "Search Query Invalid"
+		}
+		response = requests.request("GET", live_api_url + 'search/?')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, expected)
+		print("\nTEST 42: Searching API: bad search query  - search results consistent")
 
 
 
