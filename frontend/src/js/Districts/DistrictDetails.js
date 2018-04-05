@@ -202,6 +202,13 @@ export default class DistrictDetails extends Component {
       genderPopData.push(male)
       genderPopData.push(female)
       let img_src = "https://www.govtrack.us/congress/members/embed/mapframe?state=" + this.state.district_state + "&district=" + this.state.district_num
+      console.log(this.state.district_state)
+
+      if (this.state.district_num == "At-Large"){
+        img_src = "https://www.govtrack.us/congress/members/embed/mapframe?state=" + this.state.district_state + "&district=" + 0
+      }
+
+      console.log(this.state.district_num)
       return (
         <div className='App'>
           <header className='Rep-Details-header'> </header>
