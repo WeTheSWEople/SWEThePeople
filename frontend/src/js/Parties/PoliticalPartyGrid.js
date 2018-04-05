@@ -123,6 +123,7 @@ export default class PoliticalPartyGrid extends Component {
 		  {partiesGrid}
 
 		  <center>
+			<div className="col-md-12">
 		  <ReactPaginate previousLabel={"previous"}
 			  nextLabel={"next"}
 			  breakLabel={<a>...</a>}
@@ -133,7 +134,9 @@ export default class PoliticalPartyGrid extends Component {
 			  onPageChange={this.handlePageClick}
 			  containerClassName={"pagination"}
 			  subContainerClassName={"pages pagination"}
-			  activeClassName={"active"} /></center>
+			  activeClassName={"active"} />
+			</div>
+			</center>
 		</div>
 	  )
 	}
