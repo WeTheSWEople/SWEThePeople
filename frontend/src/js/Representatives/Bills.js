@@ -43,8 +43,8 @@ export default class RepBills extends Component {
 
     let mapping = Object.keys(this.state.bills_data).map((item) =>
       <Col sm={12} md={4}>
-        <div class='tile1 job-bucket' >
-          <div class='front'>
+        <div class='tile1 job-bucket'>
+          <div class='front bill-single shadow'>
             <div class='contents'>
               <div class='backcolor'
                 style={{backgroundColor: `${this.state.bill_colors[item]}`}}>
