@@ -38,13 +38,12 @@ export default class About extends Component {
         'Michael is a third-year CS student who trains in Taekwondo and ' +
         'enjoys reading World War II stories.', 'Michael.png',
         'Parties front-end and chief of chief naming', 'Mojo Jojo']
-      sweMembers['copperstick6'] = ['William Han', 0, 0, 44,
+      sweMembers['copperstick6'] = ['William Han', 0, 0, 68,
         'William is a sophomore CS student who enjoys the subtle art of ' +
         'memes and hackathons.', 'William.jpg',
         'Districts front-end and backend-unit tests ' +
         'deployment', 'Bill']
-      sweMembers['raulcodes'] = ['Raul Camacho', 0, 0, 8,
-
+      sweMembers['raulcodes'] = ['Raul Camacho', 0, 0, 19,
         'Raul is a senior CS major who will be graduating this semester. ' +
         'Also he\'s tall. Probably too tall.', 'Raul.png',
         'Front-end, css, front-end unittests and acceptance tests',
@@ -58,7 +57,7 @@ export default class About extends Component {
         'Benny is a third-year CS student who enjoys iOS development, ' +
         'reading, and following current events.', 'Benny.jpg',
         'Representatives front-end, District back-end, Documentation', 'Benny']
-      sweMembers['palakhirpara'] = ['Palak Hirpara', 0, 0, 14,
+      sweMembers['palakhirpara'] = ['Palak Hirpara', 0, 0, 34,
 
         'Palak is a senior who will be graduating this semester with BSCS ' +
         'and likes watching cricket.', 'Palak.png',
