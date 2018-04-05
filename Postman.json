@@ -135,7 +135,7 @@
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
@@ -161,7 +161,7 @@
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
@@ -189,7 +189,7 @@
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
@@ -214,7 +214,7 @@
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
@@ -240,7 +240,7 @@
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
@@ -264,6 +264,389 @@
 			],
 			"request": {
 				"url": "http://api.swethepeople.me/district/AL/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Multiple Filter Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Bill Test #1 - ID\"] = jsonData[0][\"bills\"][0][\"id\"] === 1197;",
+							"tests[\"Bill Test #2 - Congress URL\"] = jsonData[0][\"bills\"][0][\"congressdotgov_url\"] === \"https://www.congress.gov/bill/115th-congress/house-bill/4940\";",
+							"tests[\"Bill Test #3 - Number\"] = jsonData[0][\"bills\"][0][\"number\"] === \"H.R.4940\""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "api.swethepeople.me/representative/filter?filter={\"state\":\"TX\",\"party_id\":\"1\",\"last_name\":\"D-Z\",\"votes_pct\":\"30-90\",\"order_by\":\"last_desc\"}",
+					"host": [
+						"api",
+						"swethepeople",
+						"me"
+					],
+					"path": [
+						"representative",
+						"filter"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "{\"state\":\"TX\",\"party_id\":\"1\",\"last_name\":\"D-Z\",\"votes_pct\":\"30-90\",\"order_by\":\"last_desc\"}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Filtering - TX Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Filter Test - TX\"] = jsonData[0][\"alpha_num\"] === \"TX-1\";",
+							"tests[\"Filter Test - TX ID\"] = jsonData[0][\"id\"] === \"1\";",
+							"tests[\"Filter Test - TX Med Age\"] = jsonData[0][\"median_age\"] === 36.8;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "api.swethepeople.me/district/filter?filter={\"state\":\"TX\",\"population\":\"1-750000\",\"median_age\":\"1-100\"}",
+					"host": [
+						"api",
+						"swethepeople",
+						"me"
+					],
+					"path": [
+						"district",
+						"filter"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "{\"state\":\"TX\",\"population\":\"1-750000\",\"median_age\":\"1-100\"}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid Filter Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;",
+							"",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Error value\"] = jsonData.Error === \"Filter Query Invalid\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "api.swethepeople.me/district/filter?filter",
+					"host": [
+						"api",
+						"swethepeople",
+						"me"
+					],
+					"path": [
+						"district",
+						"filter"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "",
+							"equals": false,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Paul Ryan Search Query",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Search - First Name Test\"] = jsonData[0][\"firstname\"] === \"Paul\";",
+							"tests[\"Search - Party ID Test\"] = jsonData[0][\"party_id\"] === 2;",
+							"tests[\"Search - Districts test\"] = jsonData[0][\"district\"] === \"8\";",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "api.swethepeople.me/search/?query=paul ryan",
+					"host": [
+						"api",
+						"swethepeople",
+						"me"
+					],
+					"path": [
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "paul ryan",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Republican Search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Chair\"] = jsonData[0].chair === \"Ronna Romney McDaniel\";",
+							"tests[\"Republican name\"] = jsonData[0].name === \"Republican Party\";",
+							"tests[\"Republican ID\"] = jsonData[0][\"id\"] === 2;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "api.swethepeople.me/search/?query=republican",
+					"host": [
+						"api",
+						"swethepeople",
+						"me"
+					],
+					"path": [
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "republican",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "TX-36 Search Query",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"TX 36 Result Check\"] = jsonData[0].alpha_num === \"TX-36\";",
+							"tests[\"TX 36 ID check\"] = jsonData[0].id ===\"36\";",
+							"tests[\"TX 36 Rank\"] = jsonData[0].rank === 1;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "api.swethepeople.me/search/?query=TX-36",
+					"host": [
+						"api",
+						"swethepeople",
+						"me"
+					],
+					"path": [
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "TX-36",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Party Search Query",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Party Chair Result\"] = jsonData[0].name=== \"American Independent Party\";",
+							"tests[\"Party result Rank\"] = jsonData[0].rank === 1;",
+							"tests[\"Second result check\"] = jsonData[1].chair === \"Ronna Romney McDaniel\";",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "api.swethepeople.me/search/?query=party",
+					"host": [
+						"api",
+						"swethepeople",
+						"me"
+					],
+					"path": [
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "party",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Empty Search Query",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Result\"] = jsonData.length === 0;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "api.swethepeople.me/search/?query=",
+					"host": [
+						"api",
+						"swethepeople",
+						"me"
+					],
+					"path": [
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
 				"method": "GET",
 				"header": [],
 				"body": {},
