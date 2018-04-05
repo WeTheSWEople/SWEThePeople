@@ -893,20 +893,97 @@ class TestStringMethods(unittest.TestCase):
 			self.assertEqual(result, expected)
 		print("\nTEST 35: Searching API: searching 'random' keyword  - search results consistent")
 
-	# def test_35(self):
+	def test_35(self):
+		self.maxDiff = None
+		# insert the district
+		expected = {
+	      "bioguide": "C001094", 
+	      "district": "8", 
+	      "firstname": "Paul", 
+	      "image_uri": "https://theunitedstates.io/images/congress/225x275/C001094.jpg", 
+	      "lastname": "Cook", 
+	      "office": "1222 Longworth House Office Building", 
+	      "party_id": 2, 
+	      "state": "CA", 
+	      "twitter": "RepPaulCook", 
+	      "url": "https://cook.house.gov", 
+	      "votes_with_party_pct": 95.35, 
+	      "youtube": "RepPaulCook"
+		}
+		
+		response = requests.request("GET", live_api_url + 'search/?query=paul ryan')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result['reps'][0], expected)
+			self.assertTrue('Paul' in result['reps'][0].values())
+		print("\nTEST 35: Searching API: searching 'paul ryan' keyword  - search results consistent")
+
+	def test_36(self):
+		self.maxDiff = None
+		# insert the district
+		expected = {
+	      "chair": "Ronna Romney McDaniel", 
+	      "formation_date": "March 20, 1854", 
+	      "id": 2, 
+	      "name": "Republican Party", 
+	      "office": "430 South Capitol Street Southeast Washington, DC 20003", 
+	      "path": "republican_party"
+    	}
+		
+		response = requests.request("GET", live_api_url + 'search/?query=republican')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result['parties'][0], expected)
+			self.assertEqual(len(result['districts']), 238) # 238 republicans in the house
+			self.assertEqual(len(result['reps']), 238)
+		print("\nTEST 36: Searching API: searching 'republican' keyword  - search results consistent")
+
+
+	def test_37(self):
+		self.maxDiff = None
+		# insert the district
+		response = requests.request("GET", live_api_url + 'search/?query=texas')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(len(result['reps']), 36)
+			self.assertEqual(len(result['parties']), 2) # 238 republicans in the house
+			self.assertEqual(len(result['districts']), 36)
+		print("\nTEST 37: Searching API: searching 'texas' keyword  - search results consistent")
+
+
+	def test_38(self):
+		self.maxDiff = None
+		# insert the district
+		response = requests.request("GET", live_api_url + 'search/?query=TX-36')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(len(result['reps']), 8) # 8 districts that start with 3 ex: TX-30, 31,...,36
+			self.assertEqual(len(result['parties']), 2) 
+			self.assertEqual(len(result['districts']), 8)
+		print("\nTEST 38: Searching API: searching 'TX-36' keyword  - search results consistent")
+
+	def test_39(self):
+		self.maxDiff = None
+		# insert the district
+		response = requests.request("GET", live_api_url + 'search/?query=party')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(len(result['reps']), 430) # shows all data
+			self.assertEqual(len(result['parties']), 40) 
+			self.assertEqual(len(result['districts']), 430)
+		print("\nTEST 39: Searching API: searching 'party' keyword  - search results consistent")
+
+
+	# def test_38(self):
 	# 	self.maxDiff = None
 	# 	# insert the district
-	# 	expected = {
-	# 	  "districts": [], 
-	# 	  "parties": [], 
-	# 	  "rank": 0, 
-	# 	  "reps": []
-	# 	}
-	# 	response = requests.request("GET", live_api_url + 'search/?query=random')
+	# 	response = requests.request("GET", live_api_url + 'search/?query=')
 	# 	result = response.json()
 	# 	with app.app_context():
-	# 		self.assertEqual(result, expected)
-	# 	print("\nTEST 35: Searching API: searching 'paul' keyword  - search results consistent")
+	# 		self.assertEqual(len(result['reps']), 0)
+	# 		self.assertEqual(len(result['parties']), 0) # 238 republicans in the house
+	# 		self.assertEqual(len(result['districts']), 0)
+	# 	print("\nTEST 38: Searching API: searching empty query  - search results consistent")
 
 
 

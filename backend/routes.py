@@ -509,6 +509,13 @@ def get_all_search_results(search_query, reps_result, parties_result,
 @search_route.route("/")
 def search():
     search_query = request.args.get('query')
+    if search_query == '':
+        return jsonify({
+        "rank": 0,
+        "reps": [],
+        "parties": [],
+        "districts": []
+    })
     reps_result = []
     parties_result = []
     districts_result = []
