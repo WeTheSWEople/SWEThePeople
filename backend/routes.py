@@ -336,206 +336,151 @@ def get_district_json(rep_bioguide = None, district_param = None, state_param = 
         }     
     return district_json
 
-
-def get_brief_search_results(search_query, reps_result, parties_result, districts_result):
-    rank = 0
+def handle_rep_search(query, result, ranks):
     reps = Representative.query.filter(or_(
-        Representative.firstname.like(search_query),
-        Representative.lastname.like(search_query),
-        Representative.state.like(search_query),
-        Representative.district.like(search_query),
-        Representative.twitter.like(search_query),
-        Representative.youtube.like(search_query)
+        Representative.firstname.ilike(query),
+        Representative.lastname.ilike(query),
+        Representative.state.ilike(query),
+        Representative.district.ilike(query),
+        Representative.twitter.ilike(query),
+        Representative.youtube.ilike(query)
     )).all()
-    if reps:
-        rank = 1
-        for rep in reps:
-            item = get_response(rep)
-            del item['bills']
-            if item is not None and item not in reps_result:
-                reps_result.append(item)
 
-    parties = PoliticalParty.query.filter(or_(
-        PoliticalParty.name.like(search_query),
-        PoliticalParty.path.like(search_query),
-        PoliticalParty.chair.like(search_query),
-        PoliticalParty.formation_date.like(search_query),
-        PoliticalParty.twitter_handle.like(search_query),
-        PoliticalParty.youtube.like(search_query)
-    )).all()
-    if parties:
-        rank = 2
-        for party in parties:
-            party_json = get_party_json(party_param = party)
-            if party_json is not None and party_json not in parties_result:
-                parties_result.append(party_json)
-                   
-    districts = District.query.filter(or_(
-        District.alpha_num.like(search_query)
-    )).all()
-    if districts:
-        rank = 3
-        for district in districts:
-            district_json = get_district_json(district_param=district)
-            if district_json is not None and district_json not in districts_result:
-                districts_result.append(district_json)
+    for rep in reps:
+        item = get_response(rep)
+        del item['bills']
+        if item != None:
+            if not item in result:
+                result.append(item)
+                ranks.append(1)
 
-    states = State.query.filter(or_(
-        State.usps_abbreviation.like(search_query),
-        State.name.like(search_query)
-    )).all()
-    if states:
-        rank = 3
-        for state in states:
-            districts = District.query.filter(District.state == state.usps_abbreviation).all()
-            if districts:
-                for district in districts:
-                    district_json = get_district_json(district_param = district, state_param = state) 
-                    if district_json is not None and district_json not in districts_result:     
-                        districts_result.append(district_json)
-    return rank
-
-
-def get_all_search_results(search_query, reps_result, parties_result,
-    districts_result):
-    rank = 0
-    
-    # Get all representatives that match the query
-    reps = Representative.query.filter(or_(
-        Representative.firstname.like(search_query),
-        Representative.lastname.like(search_query),
-        Representative.state.like(search_query),
-        Representative.district.like(search_query),
-        Representative.twitter.like(search_query),
-        Representative.youtube.like(search_query)
-    )).all()
-    if len(reps) > 0:
-        rank = 1
-        for rep in reps:
-            # Get the party and the district that match rep
-            item = get_response(rep)
-            del item['bills']
-            if item != None and not item in reps_result:
-                reps_result.append(item)
-
-            party_json = get_party_json(rep_party_id=rep.party_id)
-            if party_json != None and not party_json in parties_result:
-                parties_result.append(party_json)
-
-            district_json = get_district_json(rep_bioguide=rep.bioguide)
-            if district_json != None and not district_json in districts_result:
-                districts_result.append(district_json)
-
-    parties = PoliticalParty.query.filter(or_(
-        PoliticalParty.name.like(search_query),
-        PoliticalParty.path.like(search_query),
-        PoliticalParty.chair.like(search_query),
-        PoliticalParty.formation_date.like(search_query),
-        PoliticalParty.twitter_handle.like(search_query),
-        PoliticalParty.youtube.like(search_query)
-    )).all()
-    if len(parties) > 0:
-        rank = 2
-        for party in parties:
-            party_json = get_party_json(party_param=party)
-            if party_json != None and not party_json in parties_result:
-                parties_result.append(party_json)
-            
-            for rep in  Representative.query.filter(
-                party.id == Representative.party_id).all():
-                rep_json = get_response(rep)
-                del rep_json['bills']
-                if rep_json != None and not rep_json in reps_result:
-                    reps_result.append(rep_json)
+                party_json = get_party_json(rep_party_id=rep.party_id)
+                if party_json != None and not party_json in result:
+                    result.append(party_json)
+                    ranks.append(0)
 
                 district_json = get_district_json(rep_bioguide=rep.bioguide)
-                if district_json != None and \
-                    not district_json in districts_result:
-                    districts_result.append(district_json)
+                if district_json != None and not district_json in result:
+                    result.append(district_json)
+                    ranks.append(0)
+            else:
+                ranks[result.index(item)] += 1
 
+def handle_district_search(query, result, ranks):
     districts = District.query.filter(or_(
-        District.alpha_num.like(search_query)
+        District.alpha_num.ilike(query)
     )).all()
-    if len(districts) > 0:
-        rank = 3
-        for district in districts:
-            district_json = get_district_json(district_param=district)
-            if district_json != None and not district_json in districts_result:
-                districts_result.append(district_json)
 
-            rep = Representative.query.filter(
-                district_json['representative_id'] == Representative.bioguide).first()
-            if rep:
-                rep_json = get_response(rep)
-                del rep_json['bills']
-                if rep_json != None and not rep_json in reps_result:
-                    reps_result.append(rep_json)
-                
-                party_json = get_party_json(rep_party_id=rep.party_id)
-                if party_json != None and not party_json in parties_result:
-                    parties_result.append(party_json)
+    for district in districts:
+        district_json = get_district_json(district_param=district)
+        if district_json != None:
+            if not district_json in result:
+                result.append(district_json)
+                ranks.append(1)
 
+                rep = Representative.query.filter(
+                    district_json['representative_id'] == Representative.bioguide).first()
+                if rep:
+                    rep_json = get_response(rep)
+                    del rep_json['bills']
+                    if rep_json != None and not rep_json in result:
+                        result.append(rep_json)
+                        ranks.append(0)
+                    
+                    party_json = get_party_json(rep_party_id=rep.party_id)
+                    if party_json != None and not party_json in result:
+                        result.append(party_json)
+                        ranks.append(0)
+            else:
+                ranks[result.index(district_json)] += 1
+
+def handle_party_search(query, result, ranks):
+    parties = PoliticalParty.query.filter(or_(
+        PoliticalParty.name.ilike(query),
+        PoliticalParty.path.ilike(query),
+        PoliticalParty.chair.ilike(query),
+        PoliticalParty.formation_date.ilike(query),
+        PoliticalParty.twitter_handle.ilike(query),
+        PoliticalParty.youtube.ilike(query)
+    )).all()
+
+    for party in parties:
+        party_json = get_party_json(party_param=party)
+        if party_json != None:
+            if not party_json in result:
+                result.append(party_json)
+                ranks.append(1)
+            
+                for rep in  Representative.query.filter(
+                    party.id == Representative.party_id).all():
+                    rep_json = get_response(rep)
+                    del rep_json['bills']
+                    if rep_json != None and not rep_json in result:
+                        result.append(rep_json)
+                        ranks.append(0)
+
+                    district_json = get_district_json(rep_bioguide=rep.bioguide)
+                    if district_json != None and not district_json in result:
+                        result.append(district_json)
+                        ranks.append(0)
+            else:
+                ranks[result.index(party_json)] += 1
+
+def handle_state_search(query, result, ranks):
     states = State.query.filter(or_(
-        State.usps_abbreviation.like(search_query),
-        State.name.like(search_query)
+        State.usps_abbreviation.ilike(query),
+        State.name.ilike(query)
     )).all()
-    if len(states) > 0:
-        rank = 3
-        for state in states:
-            districts = District.query.filter(
-                District.state == state.usps_abbreviation).all()
-            if districts:
-                for district in districts:
-                    district_json = get_district_json(district_param=district,
-                        state_param=state)
-                    if district_json != None and \
-                        not district_json in districts_result:
-                        districts_result.append(district_json)
 
-                    rep = Representative.query.filter(
-                        district.representative_id == Representative.bioguide).first()
-                    if rep:
-                        rep_json = get_response(rep)
-                        del rep_json['bills']
-                        if rep_json != None and not rep_json in reps_result:
-                            reps_result.append(rep_json)
+    for state in states:
+        districts = District.query.filter(
+            District.state == state.usps_abbreviation).all()
+        if districts:
+            for district in districts:
+                district_json = get_district_json(district_param=district,
+                    state_param=state)
+                if district_json != None:
+                    if not district_json in result:
+                        result.append(district_json)
+                        ranks.append(1)
 
-                        party_json = get_party_json(rep_party_id=rep.party_id)
-                        if party_json != None and \
-                            not party_json in parties_result:
-                            parties_result.append(party_json)
-    return rank
+                        rep = Representative.query.filter(
+                            district.representative_id == Representative.bioguide).first()
+                        if rep:
+                            rep_json = get_response(rep)
+                            del rep_json['bills']
+                            if rep_json != None and not rep_json in result:
+                                result.append(rep_json)
+                                ranks.append(0)
+                                
+
+                            party_json = get_party_json(rep_party_id=rep.party_id)
+                            if party_json != None and not party_json in result:
+                                result.append(party_json)
+                                ranks.append(0)
+                    else:
+                        ranks[result.index(district_json)] += 1
 
 @search_route.route("/")
 def search():
-    search_query = request.args.get('query')
-    if search_query == '':
-        return jsonify({
-        "rank": 0,
-        "reps": [],
-        "parties": [],
-        "districts": []
-    })
-    reps_result = []
-    parties_result = []
-    districts_result = []
-    search_query = '%' + search_query[1:-1] + '%'
+    try:
+        query = request.args.get('query').split()
+    except:
+        return error("Search Query Invalid")
+    result = []
+    ranks = []
 
-    rank = get_all_search_results(search_query, reps_result, parties_result, districts_result)
-    if (not reps_result and not parties_result and not districts_result):
-        search_query_words = search_query.split()
-        index = 0
-        while index < 5 and index < len(search_query_words):
-            rank = get_brief_search_results(search_query_words[index], reps_result, parties_result, districts_result)
-            index = index + 1
+    for term in query:
+        term = '%' + term + '%'
+        handle_rep_search(term, result, ranks)
+        handle_district_search(term, result, ranks)
+        handle_party_search(term, result, ranks)
+        handle_state_search(term, result, ranks)
 
-    return jsonify({
-        "rank": rank,
-        "reps": reps_result,
-        "parties": parties_result,
-        "districts": districts_result
+    for i in range(len(result)):
+        result[i]['rank'] = ranks[i]
 
-    })
+    return jsonify(result)
 
 @error_route.app_errorhandler(404)
 def url_not_found(e):
