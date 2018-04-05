@@ -223,7 +223,7 @@ export default class RepresentativeDetails extends Component {
           <Col sm={12} md={7}>
             <div style={styles.box}>
               <div style={styles.tabBox}>
-                <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
+                <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
                   <Tab eventKey={1} title="Social Media">
                     <Row>
                       <Col md={6}>
