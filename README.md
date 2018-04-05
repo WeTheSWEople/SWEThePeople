@@ -152,23 +152,19 @@ python guitests.py
 
 ### Backend tests
 ```
-pip install -r app/requirements.txt
+virtualenv venv
 ```
 
 ```
-pip install -r requirements.txt
+source venv/bin/activate
 ```
 
 ```
-python app/main.py &
+pip install -r backend/requirements.txt
 ```
 
 ```
-python router.py &
-```
-
-```
-python app/tests.py
+python backend/tests.py
 ```
 
 ### Postman tests
