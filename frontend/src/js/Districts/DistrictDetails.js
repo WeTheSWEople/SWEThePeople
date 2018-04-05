@@ -201,6 +201,7 @@ export default class DistrictDetails extends Component {
       female['color'] = '#aaac84'
       genderPopData.push(male)
       genderPopData.push(female)
+      let img_src = "https://www.govtrack.us/congress/members/embed/mapframe?state=" + this.state.district_state + "&district=" + this.state.district_num
       return (
         <div className='App'>
           <header className='Rep-Details-header'> </header>
@@ -211,12 +212,8 @@ export default class DistrictDetails extends Component {
             {this.state.all_states[this.state.district_state]+' - District '+this.state.district_num}</b></font></h1>
             <br></br><br></br>
             <Col sm={6} md={6}>
-
-              <img src={
-                require('../../assets/images/districts/' +
-                this.state.district_state + '-' + this.state.district_num + '.png')}
-              width='500px' height='350px' marginLeft='25px' alt='District Map'/>
-
+              <iframe width="550" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                src={img_src}></iframe>
             </Col>
             <Col sm={6} md={6}>
               <div style={{textAlign: 'left', padding: '80px'}}>
