@@ -86,13 +86,8 @@
     margin-top: 35px;
     margin-left: 40px;
     margin-right: 40px;
-
-
 }
 
-
-
-
-
-
-
+.bill-single {
+    border: 1px solid #000;
+}

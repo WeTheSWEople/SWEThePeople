@@ -9,6 +9,8 @@ import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
 import '../../assets/css/Bills.css'
+import '../../assets/css/Search.css'
+import '../../assets/css/RepresentativeInstance.css'
 import axios from 'axios'
 import url from '../../assets/resource.json'
 
@@ -105,7 +107,7 @@ export default class RepresentativeDetails extends Component {
               }}
               options={{
                 username: this.state.rep_data['twitter'],
-                height: '400',
+                height: '550',
                 width: '400'
               }}
           /></div>
@@ -132,12 +134,13 @@ export default class RepresentativeDetails extends Component {
 
 
       return (
-      <div className='App'>
+      <div className='App container'>
         <header className='Rep-Details-header'> </header>
         <Row>
-          <Col sm={0} md={1}></ Col>
+        {//<Col sm={0} md={1}></ Col>
+        }
           <Col sm={12} md={3}>
-            <div style={styles.box}>
+            <div style={styles.box} className='shadow rep-height'>
               <img src={'https://theunitedstates.io/images/congress/225x275/' +
                 this.state.rep_data.bioguide + '.jpg'} alt='' style={styles.rep_pic}
                 width={"175px"}
@@ -182,46 +185,8 @@ export default class RepresentativeDetails extends Component {
               </font>
             </div>
           </Col>
-          {/* <Col sm={12} md={4}>
-            <font size='5'>
-              <div style={{textAlign: 'left'}}>
-                <p style={{paddingTop: '10px'}}>
-                  <font size='8'>
-                    <b>
-                      {this.state.rep_data['firstname']}
-                      {` `}
-                      {this.state.rep_data['lastname']}
-                    </b>
-                  </font>
-                </p>
-                <p> <b>Party: </b>
-                  <Link to={`/party/${this.state.party_name[this.state.rep_data['party_id']][1]}`}>
-                    {this.state.party_name[this.state.rep_data['party_id']][0]} </Link>
-                </p>
-                <p> <b> State: </b> {this.state.rep_data['state']}</p>
-                <p> <b> District: </b>
-                  <Link
-                    to={`/districts/${this.state.rep_data['state']}/` +
-                    `${this.state.rep_data['district']}`}>
-                    {this.state.rep_data['district']}
-                  </Link>
-                </p>
-                <p>
-                  <b> Site: </b>
-                  <a href={this.state.rep_data['url']}>Website</a>
-                </p>
-                <p>
-                  <b>Votes with Party (%): </b>
-                  <ProgressBar bsStyle='success'
-                    now={this.state.rep_data['votes_with_party_pct']}
-                    label={`${this.state.rep_data['votes_with_party_pct']}%`}
-                  />
-                </p>
-              </div>
-            </font>
-          </Col> */}
-          <Col sm={12} md={7}>
-            <div style={styles.box}>
+          <Col sm={12} md={9}>
+            <div style={styles.box} className='shadow rep-height'>
               <div style={styles.tabBox}>
                 <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
                   <Tab eventKey={1} title="Social Media">

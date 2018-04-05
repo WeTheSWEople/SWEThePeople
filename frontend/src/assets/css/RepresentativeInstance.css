@@ -27,3 +27,11 @@
   padding-top: 20px;
   font-family: 'EB Garamond', serif;
 }
+
+.shadow {
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.rep-height {
+    min-height: 90vh;
+}
