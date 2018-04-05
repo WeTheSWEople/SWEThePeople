@@ -19,6 +19,10 @@ import PoliticalParty from './src/js/Parties/PoliticalParty.js';
 import PoliticalPartyDetails from './src/js/Parties/PoliticalPartyDetails.js';
 import NotFound from './src/js/NotFound.js';
 import DistrictGrid from './src/js/Districts/DistrictGrid.js';
+import Search from './src/js/Search.js';
+import RepresentativeFilter from './src/js/Representatives/RepresentativeFilter.js';
+import PoliticalPartyFilter from './src/js/Parties/PoliticalPartyFilter.js';
+import DistrictFilter from './src/js/Districts/DistrictFilter.js';
 
 const rep = {
   "bills": [
@@ -176,12 +180,94 @@ describe('DistrictGrid Component', () => {
 
   it('invalid district, data not found', () => {
     alldistrictInstance.setState({districts: -1})
-    expect(alldistrictInstance.find('p').text()).to.equal("Data Not Found")
+    expect(alldistrictInstance.update().find('p').text()).to.equal("Data Not Found")
   })
 
   it('no districts found', () => {
     alldistrictInstance.setState({districts: -2})
-    expect(alldistrictInstance.find('h1').text()).to.equal("No districts found, try a different filter.")
+    expect(alldistrictInstance.update().find('h1').text()).to.equal("No districts found, try a different filter.")
+  })
+})
+
+describe('Search Component', () => {
+  const searchInstance = shallow(<Search match={{params: {term: "01"}}}/>)
+
+  it('no search', () => {
+    expect(searchInstance.find('.search-container').children()).to.have.length(1)
   })
 
+  it('no results', () => {
+    searchInstance.setState({all_results: {test: "test"}, party_counts: {paul_ryan: "test"}})
+    expect(searchInstance.update().find('.search-container').children()).to.have.length(1)
+  })
+})
+
+describe('RepresentativeFilter Component', () => {
+  const representativefilterInstance = shallow(<RepresentativeFilter
+    states={{ all_states: [{name: "Texas"}] }}
+    parties={{all_parties: [{name: "Democratic"}] }}
+    buttonHandler={() => {return {state: {name: "Texas"}}}} />)
+
+  it('find state filter', () => {
+    expect(representativefilterInstance.find('.state-filter').length).to.equal(1)
+  })
+
+  it('find party filter', () => {
+    expect(representativefilterInstance.find('.party-filter').length).to.equal(1)
+  })
+
+  it('find vote filter', () => {
+    expect(representativefilterInstance.find('.vote-filter').length).to.equal(1)
+  })
+
+  it('find lastname filter', () => {
+    expect(representativefilterInstance.find('.lastname-filter').length).to.equal(1)
+  })
+
+  it('find sort', () => {
+    expect(representativefilterInstance.find('.sort').length).to.equal(1)
+  })
+})
+
+describe('PoliticalPartyFilter Component', () => {
+  const polpartyInstance = shallow(<PoliticalPartyFilter
+    buttonHandler={() => {return {state: {name: "Texas"}}}} />)
+
+  it('find social filter', () => {
+    expect(polpartyInstance.find('.social-filter').length).to.equal(1)
+  })
+
+  it('find color filter', () => {
+    expect(polpartyInstance.find('.color-filter').length).to.equal(1)
+  })
+
+  it('find name filter', () => {
+    expect(polpartyInstance.find('.name-filter').length).to.equal(1)
+  })
+
+  it('find sort', () => {
+    expect(polpartyInstance.find('.sort').length).to.equal(1)
+  })
+})
+
+describe('DistrictFilter Component', () => {
+  const polpartyInstance = shallow(<DistrictFilter
+    states={{name: "Texas"}}
+    buttonHandler={() => {return {state: {name: "Texas"}}}} />)
+
+  it('find state filter', () => {
+    expect(polpartyInstance.find('.state-filter').length).to.equal(1)
+  })
+
+  it('find population filter', () => {
+    expect(polpartyInstance.find('.pop-filter').length).to.equal(1)
+  })
+
+  it('find age filter', () => {
+    expect(polpartyInstance.find('.age-filter').length).to.equal(1)
+  })
+
+  it('find sort', () => {
+    expect(polpartyInstance.find('.sort').length).to.equal(1)
+  })
 })

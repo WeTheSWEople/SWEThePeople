@@ -93,7 +93,8 @@ export default class DistrictFilter extends Component {
         <div className='filter-component row'>
           <div className='col-sm-2 filter-control'>
             <b>Filter State:</b>
-            <Select name='district-state'
+            <Select className='state-filter'
+              name='district-state'
               value={this.state.state_value}
               onChange={this.handleStateDropdownChange}
               options={this.state.all_states}
@@ -102,7 +103,8 @@ export default class DistrictFilter extends Component {
 
           <div className='col-sm-2 filter-control'>
             <b>Filter Population:</b>
-            <Select name='district-population'
+            <Select className='pop-filter'
+              name='district-population'
               value={this.state.population_value}
               onChange={this.handlePopluationDropdownChange}
               options={[{value: '0-250000', label: '< 250,000'},
@@ -115,7 +117,8 @@ export default class DistrictFilter extends Component {
 
           <div className='col-sm-2 filter-control'>
             <b>Filter Median Age:</b>
-            <Select name='district-median-age'
+            <Select className='age-filter'
+              name='district-median-age'
               value={this.state.median_age_value}
               onChange={this.handleMedianAgeDropdownChange}
               options={[{value: '0-30', label: '<= 29'},
@@ -128,7 +131,8 @@ export default class DistrictFilter extends Component {
 
           <div className='col-sm-2 filter-control'>
             <b>Sort:</b>
-            <Select name='district-sort'
+            <Select className='sort'
+              name='district-sort'
               value={this.state.sort_value}
               onChange={this.handleSortDropdownChange}
               options={[{value: 'state_asc', label: 'State (ASC)'},
