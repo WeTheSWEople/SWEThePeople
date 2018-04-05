@@ -198,6 +198,14 @@ class AcceptanceTest(unittest.TestCase):
         driver.find_element_by_link_text("About").click()
         driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[6]/div[2]/a[6]/div/div").click()
 
+    def test_pagination(self):
+        driver = self.driver
+        driver.get("http://swethepeople.me/representatives")
+        driver.find_element_by_link_text("2").click()
+        driver.find_element_by_link_text("3").click()
+        driver.find_element_by_link_text("18").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div[3]/a/div/div/h4[2]").click()
+
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
