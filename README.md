@@ -134,7 +134,7 @@ frontend/tests.js
 ```
 
 ### Frontend acceptance tests (Selenium)
-1. Have firefox installed, along with geckodriver
+1. Have firefox installed, along with geckodriver (ensure in usr/local/bin)
 2. cd into frontend folder
 3. create virtual environment in frontend folder:
 ```
@@ -144,7 +144,13 @@ virtualenv venv
 ```
 source venv/bin/activate
 ```
-3. run the test script
+
+4. Install requirements in the virtual environment
+```
+pip install -r requirements.txt
+```
+
+5. Run the test script
 ```
 python guitests.py
 ```
