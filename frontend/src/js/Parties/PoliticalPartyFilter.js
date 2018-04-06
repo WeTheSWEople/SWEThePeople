@@ -102,9 +102,9 @@ export default class PoliticalPartyFilter extends Component {
               value={this.state.social_value}
               onChange={this.handleSocialDropdownChange}
               options={[
-                {value: 'YT', label: 'Both'},
-                {value: 'T', label: 'Only Twitter'},
-                {value: 'Y', label: 'Only YouTube'},
+                {value: 'YT', label: 'Has Both'},
+                {value: 'T', label: 'Has Twitter'},
+                {value: 'Y', label: 'Has YouTube'},
                 {value: 'Neither', label: 'No Social Media'}]} />
           </div>
 
