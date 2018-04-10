@@ -1,9 +1,10 @@
 import requests
 import json
 import os
-#import apikeys
-from app.app import create_app, db
-from app.models import District, State
+import sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from app import create_app, db
+from models import District, State
 
 CENSUS_API_KEY = 'e6d938b2ce182a3d35b4ab995f9a28f07a9c6350'
 PROPUBLICA_API_KEY = 'icU6XnQ63Mu9qDhEg1QCz0Emb7wt5n9GoLEAEnmI'

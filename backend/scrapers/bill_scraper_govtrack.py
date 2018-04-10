@@ -1,8 +1,10 @@
 import requests
 import json
 import os
-from app.app import create_app, db
-from app.models import Representative, Bill
+import sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from app import create_app, db
+from models import Representative, Bill
 
 CURRENT_CONGRESS = 115
 

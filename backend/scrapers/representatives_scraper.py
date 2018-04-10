@@ -1,6 +1,8 @@
 import requests
 import json
 import os
+import sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from app import create_app, db
 from models import Representative, Bill
 
