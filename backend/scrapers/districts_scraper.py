@@ -35,7 +35,12 @@ app = create_app()
 app.app_context().push()
 
 for num in range(1, 57):
-	# only using US states
+	# skip over non US States
+	# 3 = American Samoa
+	# 7 = Canal Zone
+	# 14 = Guam
+	# 43 = Puerto Rico
+	# 52 = US Virgin Islands
 	if num == 3 or num == 7 or num == 11 or num == 14 or num == 43 or num == 52:
 		continue
 	districts = {}
