@@ -2,12 +2,13 @@ import requests
 import json
 import os
 import sys
+from apikeys import API
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from app import create_app, db
 from models import Representative, Bill
 
 CURRENT_CONGRESS = 115
-API_KEY = 'icU6XnQ63Mu9qDhEg1QCz0Emb7wt5n9GoLEAEnmI'
+API_KEY = API['PROPUBLICA_API_KEY']
 
 RepURL = 'https://api.propublica.org/congress/v1/' + str(CURRENT_CONGRESS) + '/house/members.json'
 BillURL = 'https://api.propublica.org/congress/v1/members/{member-id}/bills/{type}.json'
@@ -58,10 +59,11 @@ for mem in members['results'][0]['members']:
 		if oldrep == None:
 			db.session.add(rep)
 			db.session.commit()
+			pass
 		else:
 			oldrep.firstname = rep.firstname
 			oldrep.lastname = rep.lastname
-			oldrep.party = rep.party
+			oldrep.party_id = rep.party_id
 			oldrep.state = rep.state
 			oldrep.district = rep.district
 			oldrep.twitter = rep.twitter
