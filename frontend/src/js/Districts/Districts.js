@@ -2,40 +2,43 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {RingLoader} from 'react-spinners'
+import DistrictGrid from './DistrictGrid'
+import DistrictFilter from './DistrictFilter'
 /* eslint-enable no-unused-vars */
 
 import axios from 'axios'
-import DistrictGrid from './DistrictGrid'
-import DistrictFilter from './DistrictFilter'
 import url from '../../assets/resource.json'
 
+/* Full districts page, including grid and filter UI */
 export default class Districts extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       all_states: null,
-      state_value: 'None',
-      population_value: 'None',
-      median_age_value: 'None',
-      sort_value: 'last_asc'
+      stateValue: 'None',
+      populationValue: 'None',
+      medianAgeValue: 'None',
+      sortValue: 'last_asc'
     }
 
     axios.get(url.api_url + 'state/?state_usps=True').then((response) => {
       this.setState({all_states: response.data})
     }).catch((error) => {
-      this.setState({all_states: null})
+      if (error) {
+        this.setState({all_states: null})
+      }
     })
 
     this.handleFilterClicked = this.handleFilterClicked.bind(this)
   }
 
-  handleFilterClicked(state_value, population_value, median_age_value,
-    sort_value) {
+  handleFilterClicked (stateValue, populationValue, medianAgeValue,
+    sortValue) {
     this.setState({
-      state_value: state_value,
-      population_value: population_value,
-      median_age_value: median_age_value,
-      sort_value: sort_value
+      stateValue: stateValue,
+      populationValue: populationValue,
+      medianAgeValue: medianAgeValue,
+      sortValue: sortValue
     })
   }
 
@@ -65,10 +68,10 @@ export default class Districts extends Component {
           states={this.state.all_states}
           buttonHandler={this.handleFilterClicked} />
         <DistrictGrid
-          state_value={this.state.state_value}
-          population_value={this.state.population_value}
-          median_age_value={this.state.median_age_value}
-          sort_value={this.state.sort_value} />
+          stateValue={this.state.stateValue}
+          populationValue={this.state.populationValue}
+          medianAgeValue={this.state.medianAgeValue}
+          sortValue={this.state.sortValue} />
       </div>
     )
   }

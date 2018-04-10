@@ -123,6 +123,7 @@ export default class About extends Component {
           break
         }
 
+        /* eslint-disable no-loop-func */
         request(options, function (error, response, body) {
           if (error) {
             eof = true
