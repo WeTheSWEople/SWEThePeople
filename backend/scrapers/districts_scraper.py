@@ -34,9 +34,11 @@ usps_state_abbreviations = json.load(
 app = create_app()
 app.app_context().push()
 
+# only using US states
+non_states = set([3, 7, 11, 14, 43, 52])
+
 for num in range(1, 57):
-	# only using US states
-	if num == 3 or num == 7 or num == 11 or num == 14 or num == 43 or num == 52:
+	if num in non_states:
 		continue
 	districts = {}
 	for endpoint in endpoints.keys():
@@ -64,6 +66,17 @@ for num in range(1, 57):
 		district_name = district_key if district_key != 0 else 'At-Large'
 		MemberURL = 'https://api.propublica.org/congress/v1/members/house/' + \
 			abbrev + '/' + str(propublica_district) + '/current.json'
+
+		# via https://tinyurl.com/ordinal-codegolf-python
+		ordinal = lambda n: "%d%s" % \
+			(n,"tsnrhtdd"[(n/10%10!=1)*(n%10<4)*n%10::4])
+		if (district_name != 'At-Large'):
+			wikipedia_link = "https://en.wikipedia.org/wiki/" + state_name + \
+				"%27s_" + ordinal(district_key) + "_congressional_district"
+		else:
+			wikipedia_link = "https://en.wikipedia.org/wiki/" + state_name + \
+				"%27s_at-large_congressional_district"
+
 		response = requests.request('GET', MemberURL, headers=headers)
 		rep = response.json()['results']
 		rep_id = rep[0]['id'] if len(rep) > 0 else None
@@ -74,13 +87,15 @@ for num in range(1, 57):
 			state = abbrev,
 			id = district_name,
 			representative_id = rep_id,
+			wikipedia_link = wikipedia_link,
+
 			population = district['population'],
+			population_male = district['population_male'],
 
 			median_age = float(district['median_age']),
 			median_age_male = float(district['median_age_male']),
 			median_age_female = float(district['median_age_female']),
 
-			population_male = district['population_male'],
 			population_white = district['population_white'],
 			population_black_or_african_american = \
 				district['population_black_or_african_american'],
@@ -228,6 +243,7 @@ for num in range(1, 57):
 			dist_result.id = dist.id
 			dist_result.representative_id = dist.representative_id
 			dist_result.population = dist.population
+			dist_result.wikipedia_link = dist.wikipedia_link
 
 			dist_result.median_age = dist.median_age
 			dist_result.median_age_male = dist.median_age_male

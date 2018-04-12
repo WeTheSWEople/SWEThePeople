@@ -114,6 +114,7 @@ class District(db.Model):
 	id = db.Column(db.String(8))
 	representative_id = \
 		db.Column(db.String(255), db.ForeignKey('representative.bioguide'))
+    wikipedia_link = db.Column(db.String(255))
 
 	population = db.Column(db.Integer)
 	population_male = db.Column(db.Integer)
@@ -198,6 +199,8 @@ class District(db.Model):
 	        "state": self.state,
 			"id": self.id,
 			"representative_id": self.representative_id,
+            "wikipedia_link": self.wikipedia_link,
+            
 	        "population": self.population,
 			"population_male": self.population_male,
 
