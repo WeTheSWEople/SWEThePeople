@@ -332,7 +332,7 @@ def single_state(abbrev):
     Returns the dictionary of the requested state
     """
 
-    return get_single_item(State, State.usps_abbreviation, abbrev)
+    return get_single_item(State, State.usps_abbreviation, abbrev.upper())
 
 @district_route.route("/")
 def all_districts():
