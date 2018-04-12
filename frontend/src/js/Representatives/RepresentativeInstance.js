@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom'
 import {GridTile} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 import axios from 'axios'
+import {ProgressBar} from 'react-bootstrap'
+
 
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
@@ -40,6 +42,15 @@ export default class RepresentativeInstance extends Component {
               <h4 className='district'><i>
                 {this.props.rep.state + '-' + this.props.rep.district}
               </i></h4>
+              <p>
+                <b>Votes with Party (%): </b>
+                <div style={styles.progress} style={{paddingLeft: '10%', paddingRight: '10%'}}>
+                  <ProgressBar bsStyle='success'
+                    now={this.props.rep.votes_with_party_pct}
+                    label={`${this.props.rep.votes_with_party_pct}%`}
+                  />
+                </div>
+              </p>
             </div>
           </GridTile>
         </Link>
