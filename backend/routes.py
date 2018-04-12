@@ -44,7 +44,8 @@ def representative(bioguide):
     Returns a dictionary of request representative
     """
 
-    return get_single_item(Representative, Representative.bioguide, bioguide)
+    return get_single_item(Representative, Representative.bioguide,
+        bioguide.upper())
 
 @rep_route.route('/page/<num>')
 def representatives_by_page(num):
@@ -188,7 +189,7 @@ def party_by_path(path):
     Returns the dictionary of the requested political party
     """
 
-    return get_single_item(PoliticalParty, PoliticalParty.path, path)
+    return get_single_item(PoliticalParty, PoliticalParty.path, path.lower())
 
 @party_route.route("/id/<party_id>")
 def party_by_id(party_id):
@@ -372,7 +373,7 @@ def districts_by_id(abbrev, district_id):
     """
 
     data = District.query.filter(
-        District.state == abbrev, District.id == district_id).first()
+        District.state == abbrev.upper(), District.id == district_id).first()
     if not data:
         return error("Item not found for id " + abbrev + " and " + district_id)
     return jsonify(get_response(data))
