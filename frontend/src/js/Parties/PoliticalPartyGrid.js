@@ -69,16 +69,6 @@ export default class PoliticalPartyGrid extends Component {
 	})
   }
 
-  componentDidMount () {
-	this.getPartyData({
-	  social: 'None',
-	  color: 'None',
-	  date: 'None',
-	  name: 'A-Z',
-	  order_by: 'None'
-	})
-  }
-
   componentWillReceiveProps (nextProps) {
 	if (this.props !== nextProps) {
 	  this.getPartyData({
