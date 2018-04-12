@@ -39,6 +39,7 @@ for mem in members['results'][0]['members']:
 			image_uri = 'https://theunitedstates.io/images/congress/225x275/' + mem['id'] +'.jpg'
 			)
 		BillURL = 'https://api.propublica.org/congress/v1/members/' + rep.bioguide +'/bills/introduced.json'
+		print(BillURL)
 		response2 = requests.request('GET', BillURL, headers=headers)
 		bills = response2.json()
 		for i in range(0, 3):
@@ -59,7 +60,6 @@ for mem in members['results'][0]['members']:
 		if oldrep == None:
 			db.session.add(rep)
 			db.session.commit()
-			pass
 		else:
 			oldrep.firstname = rep.firstname
 			oldrep.lastname = rep.lastname

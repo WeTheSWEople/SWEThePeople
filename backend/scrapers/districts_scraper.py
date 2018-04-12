@@ -28,10 +28,10 @@ class CensusURL:
 			'&for=congressional%20district:*&in=state:' + str(self.state) + \
 			'&key=' + CENSUS_API_KEY
 
-endpoints = json.load(open('./src/dictionaries/acs2016_endpoints.json'))
-fips_state_codes = json.load(open('./src/dictionaries/fips_state_codes.json'))
+endpoints = json.load(open('backend/scrapers/src/dictionaries/acs2016_endpoints.json'))
+fips_state_codes = json.load(open('backend/scrapers/src/dictionaries/fips_state_codes.json'))
 usps_state_abbreviations = json.load(
-	open('./dictionaries/usps_state_abbreviations.json'))
+	open('backend/scrapers/src/dictionaries/usps_state_abbreviations.json'))
 
 app = create_app()
 app.app_context().push()
