@@ -1,19 +1,17 @@
 import requests
 import json
 import os
-#import apikeys
-from app.app import create_app, db
-from app.models import Representative, Bill
+import sys
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from app import create_app, db
+from models import Representative, Bill
 
 CURRENT_CONGRESS = 115
 
 RepURL = 'https://www.govtrack.us/api/v2/role?current=true&limit=600'
 
-
 app = create_app()
 app.app_context().push()
-#rep = Representative(bioguide='C001111', firstname='Charlie', lastname='Crist', party='Republican', state='FL', district=13, twitter='', youtube='', office='', votes_with_party_pct = 89.45, url = "", image_uri = '')
-
 response = requests.request('GET', RepURL)
 members = response.json()
 for mem in members['objects']:
@@ -35,23 +33,6 @@ for mem in members['objects']:
 			gender = mem['person']['gender'],
 			image_uri = 'https://theunitedstates.io/images/congress/225x275/' + mem['person']['bioguideid'] +'.jpg'
 			)
-		# BillURL = 'https://api.propublica.org/congress/v1/members/' + rep.bioguide +'/bills/introduced.json'
-		# response2 = requests.request('GET', BillURL, headers=headers)
-		# bills = response2.json()
-		# for i in range(0, 3):
-		# 	if len(bills['results'][0]['bills']) == i:
-		# 		break
-		# 	billList = bills['results'][0]['bills'][i]
-		# 	recentBill = Bill(
-		# 		number = billList['number'],
-		# 		short_title = billList['short_title'],
-		# 		sponsor_id = billList['sponsor_id'],
-		# 		congressdotgov_url = billList['congressdotgov_url'],
-		# 		introduced_date = billList['introduced_date'],
-		# 		latest_major_action = billList['latest_major_action']
-		# 		)
-		# 	rep.bills.append(recentBill)
-
 		rep2 = Representative.query.filter(Representative.bioguide == rep.bioguide).first()
 		if rep2 == None:
 			db.session.add(rep)

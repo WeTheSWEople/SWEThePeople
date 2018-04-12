@@ -1,14 +1,8 @@
 from app import db
-from flask_sqlalchemy import SQLAlchemy, BaseQuery
-from sqlalchemy_searchable import SearchQueryMixin
-from sqlalchemy_utils.types import TSVectorType
-from sqlalchemy.ext.declarative import declarative_base
+from flask_sqlalchemy import SQLAlchemy
 
-class Query(BaseQuery, SearchQueryMixin):
-    pass
 
 class Representative(db.Model):
-    query_class = Query
     __tablename__ = 'representative'
     bioguide = db.Column(db.String(50), index=True, nullable=False,
         primary_key=True)
@@ -25,8 +19,6 @@ class Representative(db.Model):
     url = db.Column(db.String(255))
     image_uri = db.Column(db.String(255))
     bills = db.relationship('Bill', lazy=True)
-
-    search_vector = db.Column(TSVectorType('firstname', 'lastname'))
 
     def format(self):
         return {
@@ -77,14 +69,12 @@ class Bill(db.Model):
         return '<Bills {}: {}>'.format(self.id, self.number)
 
 class State(db.Model):
-    query_class = Query
     __tablename__ = 'state'
     usps_abbreviation = db.Column(db.String(2), primary_key=True,
         nullable=False, index=True)
     number = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(255), unique=True, nullable=False)
     districts = db.relationship('District', lazy=True)
-    search_vector = db.Column(TSVectorType('name'))
 
     def format(self):
         return {
@@ -98,7 +88,6 @@ class State(db.Model):
         return '<States {}: {}>'.format(self.number, self.name)
 
 class District(db.Model):
-    query_class = Query
     __tablename__ = 'district'
     alpha_num = db.Column(db.String(11), index=True, nullable=False,
         primary_key=True)
@@ -119,7 +108,6 @@ class District(db.Model):
         db.Column(db.Integer)
     population_some_other_race = db.Column(db.Integer)
     population_two_or_more_races = db.Column(db.Integer)
-    search_vector = db.Column(TSVectorType('alpha_num', 'id', 'state'))
 
     def format(self):
         return {
@@ -149,7 +137,6 @@ class District(db.Model):
             self.id)
 
 class PoliticalParty(db.Model):
-    query_class = Query
     __tablename__ = 'political_party'
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(255))
@@ -162,7 +149,6 @@ class PoliticalParty(db.Model):
     website = db.Column(db.String(255))
     colors = db.relationship('PartyColor', lazy = True)
     representatives = db.relationship('Representative', lazy = True)
-    search_vector = db.Column(TSVectorType('name', 'chair'))
     def format(self):
         return {
             "id": self.id,
