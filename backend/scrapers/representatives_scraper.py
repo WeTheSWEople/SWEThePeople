@@ -1,12 +1,14 @@
 import requests
 import json
 import os
-#import apikeys
+import sys
+from apikeys import API
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from app import create_app, db
 from models import Representative, Bill
 
 CURRENT_CONGRESS = 115
-API_KEY = 'icU6XnQ63Mu9qDhEg1QCz0Emb7wt5n9GoLEAEnmI'
+API_KEY = API['PROPUBLICA_API_KEY']
 
 RepURL = 'https://api.propublica.org/congress/v1/' + str(CURRENT_CONGRESS) + '/house/members.json'
 BillURL = 'https://api.propublica.org/congress/v1/members/{member-id}/bills/{type}.json'
@@ -17,7 +19,6 @@ headers = {
 
 app = create_app()
 app.app_context().push()
-#rep = Representative(bioguide='C001111', firstname='Charlie', lastname='Crist', party='Republican', state='FL', district=13, twitter='', youtube='', office='', votes_with_party_pct = 89.45, url = "", image_uri = '')
 
 response = requests.request('GET', RepURL, headers=headers)
 members = response.json()
@@ -38,6 +39,7 @@ for mem in members['results'][0]['members']:
 			image_uri = 'https://theunitedstates.io/images/congress/225x275/' + mem['id'] +'.jpg'
 			)
 		BillURL = 'https://api.propublica.org/congress/v1/members/' + rep.bioguide +'/bills/introduced.json'
+		print(BillURL)
 		response2 = requests.request('GET', BillURL, headers=headers)
 		bills = response2.json()
 		for i in range(0, 3):
@@ -54,20 +56,20 @@ for mem in members['results'][0]['members']:
 				)
 			rep.bills.append(recentBill)
 
-		rep2 = Representative.query.filter(Representative.bioguide == rep.bioguide).first()
-		if rep2 == None:
+		oldrep = Representative.query.filter(Representative.bioguide == rep.bioguide).first()
+		if oldrep == None:
 			db.session.add(rep)
 			db.session.commit()
 		else:
-			rep2.firstname = rep.firstname
-			rep2.lastname = rep.lastname
-			rep2.party = rep.party
-			rep2.state = rep.state
-			rep2.district = rep.district
-			rep2.twitter = rep.twitter
-			rep2.youtube = rep.youtube
-			rep2.votes_with_party_pct = rep.votes_with_party_pct
-			rep2.url = rep.url
-			rep2.image_uri = rep.image_uri
-			rep2.bills = rep.bills
+			oldrep.firstname = rep.firstname
+			oldrep.lastname = rep.lastname
+			oldrep.party_id = rep.party_id
+			oldrep.state = rep.state
+			oldrep.district = rep.district
+			oldrep.twitter = rep.twitter
+			oldrep.youtube = rep.youtube
+			oldrep.votes_with_party_pct = rep.votes_with_party_pct
+			oldrep.url = rep.url
+			oldrep.image_uri = rep.image_uri
+			oldrep.bills = rep.bills
 			db.session.commit()

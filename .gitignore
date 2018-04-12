@@ -7,3 +7,5 @@ app/*.pyc
 config*.json
 __pycache__/
 backend/*.pyc
+backend/scrapers/apikeys.py
+backend/scrapers/*.pyc
