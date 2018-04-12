@@ -266,15 +266,17 @@ def party_filter():
         filtered_result = filtered_result.join(PartyColor).filter(
             PartyColor.color == color)
 
+    result = None
     if order_by == 'name_asc':
         filtered_result = filtered_result.order_by(
             PoliticalParty.name.asc())
     elif order_by == 'name_desc':
-        filtered_result = filtered_result.order_by(
-            PoliticalParty.name.desc())
+        result = [get_response(party) for party in filtered_result.all()]
+        result = sorted(result, key=party_chair)
+        result = list(reversed(result))
     elif order_by == 'chair_name_asc':
-        filtered_result = filtered_result.order_by(
-            PoliticalParty.chair.asc())
+        result = [get_response(party) for party in filtered_result.all()]
+        result = sorted(result, key=party_chair)
     elif order_by == 'chair_name_desc':
         filtered_result = filtered_result.order_by(
             PoliticalParty.chair.desc())
@@ -282,8 +284,9 @@ def party_filter():
         filtered_result = filtered_result.order_by(PoliticalParty.id)
 
     # Delete Bills from the result
-    filtered_dict_list = [get_response(party) for party in filtered_result.all()]
-    for party in filtered_dict_list:
+    if result == None:
+        result = [get_response(party) for party in filtered_result.all()]
+    for party in result:
         for rep in party['representatives']:
             del rep['bills']
 
@@ -295,12 +298,24 @@ def party_filter():
         def party_formed_between(party):
             year = int(party['formation_date'].split()[-1])
             return date_begin <= year <= date_end
-        date_filtered_dict = filter(party_formed_between,
-            filtered_dict_list)
+        result = filter(party_formed_between, result)
 
     # Filter the names of the parties
     return jsonify(filter(lambda n: name[0] <= n['name'].lower()[0] <= name[1],
-        date_filtered_dict))
+        result))
+
+def party_chair(party):
+    """
+    Provides the key to sort parties when sorting by chair
+
+    party -- the party to get the chair of
+
+    Returns the party chair or a string of z's if party does not have a chair
+    """
+
+    if party['chair'] == '':
+        return 'zzzzzzzzzzzzzzzzzzzzzzz'
+    return party['chair']
 
 @state_route.route("/")
 def all_states():
