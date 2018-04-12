@@ -424,18 +424,37 @@ def districts_filter():
     if 'order_by' in filter_query:
         order_by = str(filter_query['order_by'])
 
-    if order_by == 'state_asc':
-        filtered_result = filtered_result.order_by(District.alpha_num.asc())
-    elif order_by == 'state_desc':
-        filtered_result = filtered_result.order_by(District.alpha_num.desc())
+    result = None
+    if order_by == 'state_desc':
+        result = [get_response(rep) for rep in filtered_result.all()]
+        result = sorted(result, key=district_id)
+        result = sorted(result, key=lambda district: district['state'])
+        result = list(reversed(result))
     elif order_by == 'population_desc':
         filtered_result = filtered_result.order_by(District.population.desc())
     elif order_by == 'population_asc':
         filtered_result = filtered_result.order_by(District.population.asc())
     else:
-        filtered_result = filtered_result.order_by(District.alpha_num.asc())
+        result = [get_response(rep) for rep in filtered_result.all()]
+        result = sorted(result, key=district_id)
+        result = sorted(result, key=lambda district: district['state'])
 
+    if result != None:
+        return jsonify(result)
     return jsonify([get_response(rep) for rep in filtered_result.all()])
+
+def district_id(district):
+    """
+    Get the district ID for the given district
+
+    district -- the district to get the ID of
+
+    Returns the int of the district ID or 1 if the district is At-Large
+    """
+
+    if district['id'] == 'At-Large':
+        return 1
+    return int(district['id'])
 
 def get_party_json(rep_party_id = None, party_param = None):
     """
