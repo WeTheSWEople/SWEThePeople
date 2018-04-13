@@ -43,13 +43,13 @@ export default class RepresentativeGrid extends Component {
 
 	this.getRepData = this.getRepData.bind(this)
 	this.handlePageClick = this.handlePageClick.bind(this)
-	this.getRepData({
-	  state: this.props.state_value,
-	  party_id: this.props.party_value,
-	  votes_pct: this.props.vote_value,
-	  last_name: this.props.lastname_value,
-	  order_by: this.props.sort_value
-	})
+	// this.getRepData({
+	//   state: this.props.state_value,
+	//   party_id: this.props.party_value,
+	//   votes_pct: this.props.vote_value,
+	//   last_name: this.props.lastname_value,
+	//   order_by: this.props.sort_value
+	// })
   }
 
   handlePageClick(data){
@@ -77,15 +77,15 @@ export default class RepresentativeGrid extends Component {
 	})
   }
 
-  componentDidMount () {
-	this.getRepData({
-	  state: 'None',
-	  party_id: 'None',
-	  last_name: 'A-Z',
-	  votes_pct: 'None',
-	  order_by: 'last_asc'
-	})
-  }
+  // componentDidMount () {
+	// this.getRepData({
+	  // state: 'None',
+	  // party_id: 'None',
+	  // last_name: 'A-Z',
+	  // votes_pct: 'None',
+	  // order_by: 'last_asc'
+	// })
+  // }
 
   componentWillReceiveProps (nextProps) {
 	if (this.props !== nextProps) {
