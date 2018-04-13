@@ -41,6 +41,7 @@ export default class DistrictGrid extends Component {
 	}
 	this.handlePageClick = this.handlePageClick.bind(this)
   }
+
   handlePageClick(data){
 	  console.log(this.state.districts)
 	  this.setState({displayed_districts: this.state.districts.subarray(data.selected*16, (data.selected + 1)* 16)})
@@ -57,15 +58,6 @@ export default class DistrictGrid extends Component {
     }).catch((error) => {
       this.setState({districts: -1})
     })
-  }
-
-  componentDidMount () {
-	this.getDistrictData({
-	  state: 'None',
-	  population: 'None',
-	  median_age: 'None',
-	  order_by: 'state_asc'
-	})
   }
 
   componentWillReceiveProps (nextProps) {
