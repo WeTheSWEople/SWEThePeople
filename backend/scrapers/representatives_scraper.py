@@ -5,16 +5,17 @@ import sys
 from apikeys import API
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from app import create_app, db
-from models import Representative, Bill
+from models import Representative, Bill, Article
 
 CURRENT_CONGRESS = 115
-API_KEY = API['PROPUBLICA_API_KEY']
+PROPUBLICA_API_KEY = API['PROPUBLICA_API_KEY']
+WEBHOSE_API_KEY = API['WEBHOSE_API_KEY']
 
 RepURL = 'https://api.propublica.org/congress/v1/' + str(CURRENT_CONGRESS) + '/house/members.json'
 BillURL = 'https://api.propublica.org/congress/v1/members/{member-id}/bills/{type}.json'
 
 headers = {
-	'x-api-key': API_KEY,
+	'x-api-key': PROPUBLICA_API_KEY,
 }
 
 app = create_app()
@@ -38,6 +39,7 @@ for mem in members['results'][0]['members']:
 			url = mem['url'],
 			image_uri = 'https://theunitedstates.io/images/congress/225x275/' + mem['id'] +'.jpg'
 			)
+
 		BillURL = 'https://api.propublica.org/congress/v1/members/' + rep.bioguide +'/bills/introduced.json'
 		print(BillURL)
 		response2 = requests.request('GET', BillURL, headers=headers)
@@ -56,6 +58,31 @@ for mem in members['results'][0]['members']:
 				)
 			rep.bills.append(recentBill)
 
+		ArticleURL = 'http://webhose.io/filterWebContent?token=' + \
+			WEBHOSE_API_KEY + \
+				'&format=json&sort=crawled&q=%22'+ rep.firstname + '%20' + \
+				rep.lastname + '%22%20language%3Aenglish%20site_type' + \
+				'%3Anews%20thread.country%3AUS'
+		responseArticle = requests.request('GET', ArticleURL, headers=headers)
+		articles = responseArticle.json()['posts']
+		for i in range(0, 3):
+			if len(articles) == i:
+				break
+			curArticle = articles[i]
+			if len(curArticle['text']) > 200:
+				curArticle['text'] = curArticle['text'][:200] + '...'
+
+			recentArticle = Article(
+				title = curArticle['title'],
+				url = curArticle['url'],
+				author = curArticle['author'],
+				text = curArticle['text'],
+				date = curArticle['published'],
+				site = curArticle['thread']['site'],
+				representative_id = rep.bioguide,
+				)
+			rep.articles.append(recentArticle)
+
 		oldrep = Representative.query.filter(Representative.bioguide == rep.bioguide).first()
 		if oldrep == None:
 			db.session.add(rep)
@@ -72,4 +99,5 @@ for mem in members['results'][0]['members']:
 			oldrep.url = rep.url
 			oldrep.image_uri = rep.image_uri
 			oldrep.bills = rep.bills
+			oldrep.articles = rep.articles
 			db.session.commit()

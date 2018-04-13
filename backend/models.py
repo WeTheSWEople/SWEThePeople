@@ -19,6 +19,7 @@ class Representative(db.Model):
     url = db.Column(db.String(255))
     image_uri = db.Column(db.String(255))
     bills = db.relationship('Bill', lazy=True)
+    articles = db.relationship('Article', lazy=True)
 
     def format(self):
         return {
@@ -34,7 +35,8 @@ class Representative(db.Model):
             "votes_with_party_pct" : self.votes_with_party_pct,
             "url" : self.url,
             "image_uri": self.image_uri,
-            "bills" : [x.format() for x in self.bills]
+            "bills" : [x.format() for x in self.bills],
+			"articles" : [x.format() for x in self.articles]
         }
 
     def __repr__(self):
@@ -71,7 +73,8 @@ class Bill(db.Model):
 class Article(db.Model):
 	__tablename__ = 'article'
 	title = db.Column(db.String(255))
-	url = db.Column(db.String(255), index=True, nullable=False, primary_key=True)
+	id = db.Column(db.Integer, primary_key=True)
+	url = db.Column(db.String(500))
 	author = db.Column(db.String(255))
 	text = db.Column(db.String(255))
 	date = db.Column(db.String(255))
