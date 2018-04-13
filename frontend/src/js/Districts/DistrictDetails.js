@@ -275,9 +275,7 @@ export default class DistrictDetails extends Component {
                 <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
                   <Tab eventKey={1} title="Current Representative">
                     <Row style={styles.tabBox}>
-                      <div class='col-md-6 col-md-offset-1'>
-                        {repsGrid}
-                      </div>
+                      {repsGrid}
                       <div class='col-md-4'>
                         <Link to={`/party/${this.state.party_data[this.state.rep_data['party_id']][1]}`} >
                           <img src={
