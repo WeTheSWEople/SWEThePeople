@@ -2,8 +2,8 @@
 An IDB project for CS 373: Software Engineering that brings together data on
 American political parties, representatives, and congressional districts.
 
-- Website: [swethepeople.me](swethepeople.me)
-- API: [api.swethepeople.me](api.swethepeople.me)
+- Website: [swethepeople.me](http://www.swethepeople.me)
+- API: [api.swethepeople.me](http://www.api.swethepeople.me)
 - Technical report: [https://wethesweople.gitbooks.io/report/](https://wethesweople.gitbooks.io/report/)
 
 ## Install Repo Locally
