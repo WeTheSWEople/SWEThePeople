@@ -14,16 +14,12 @@ RepURL = 'https://api.propublica.org/congress/v1/' + str(CURRENT_CONGRESS) + '/h
 BillURL = 'https://api.propublica.org/congress/v1/members/{member-id}/bills/{type}.json'
 
 headers = {
-	'x-api-key': PROPUBLICA_API_KEY,
+	'x-api-key': API_KEY,
 }
 
 app = create_app()
 app.app_context().push()
 
-today = datetime.date.today()
-two_weeks_ago = today - datetime.timedelta(days=14)
-
-RepURL = 'https://api.propublica.org/congress/v1/' + str(CURRENT_CONGRESS) + '/house/members.json'
 response = requests.request('GET', RepURL, headers=headers)
 members = response.json()
 for mem in members['results'][0]['members']:
@@ -37,7 +33,6 @@ for mem in members['results'][0]['members']:
 			district = str(mem['district']),
 			twitter = mem['twitter_account'],
 			youtube = mem['youtube_account'],
-			facebook = mem['facebook_account'],
 			office = mem['office'],
 			votes_with_party_pct = mem['votes_with_party_pct'],
 			url = mem['url'],
