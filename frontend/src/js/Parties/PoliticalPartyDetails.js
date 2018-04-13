@@ -268,7 +268,7 @@ export default class PoliticalPartyDetails extends Component {
             <p>
               <span className='party-info-header'>Website:</span>
               <span className='party-info-info'>
-                <a href={website}>
+                <a href={website} target="_blank" >
                   {this.state.party['website']}
                 </a>
               </span>

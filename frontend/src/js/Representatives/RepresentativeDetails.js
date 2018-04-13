@@ -136,98 +136,53 @@ export default class RepresentativeDetails extends Component {
       }
 
       return (
-        <div className='App container'>
-          <header className='Rep-Details-header'> </header>
-          <Row>
-            <Col sm={12} md={3}>
-              <div style={styles.box} className='shadow rep-height'>
-                <img
-                  src={'https://theunitedstates.io/images/congress/225x275/' +
-                    this.state.rep_data.bioguide + '.jpg'}
-                  alt=''
-                  style={styles.rep_pic}
-                  width={'175px'}
-                />
-                <font size='5'>
-                  <div style={{textAlign: 'center'}}>
-                    <p style={{paddingTop: '10px'}}>
-                      <font size='6'>
-                        <b>
-                          {this.state.rep_data['firstname']}
-                          {` `}
-                          {this.state.rep_data['lastname']}
-                        </b>
-                      </font>
-                    </p>
-                    <p> <b>Party: </b>
-                      <Link to={`/party/` +
-                        `${this.state.party_name[this.state.rep_data['party_id']][1]}` // eslint-disable-line
-                      }>
-                        {this.state.party_name[this.state.rep_data['party_id']][0]} // eslint-disable-line
-                      </Link>
-                    </p>
-                    <p> <b> State: </b> {this.state.rep_data['state']}</p>
-                    <p> <b> District: </b>
-                      <Link to =
-                        {`/districts/${this.state.rep_data['state']}/` +
-                          `${this.state.rep_data['district']}`}>
-                        {this.state.rep_data['district']}
-                      </Link>
-                    </p>
-                    <p>
-                      <b> Site: </b>
-                      <a href={this.state.rep_data['url']}>Website</a>
-                    </p>
-                    <p>
-                      <b>Votes with Party (%): </b>
-                      <div style={styles.progress}>
-                        <ProgressBar bsStyle='success'
-                          now={this.state.rep_data['votes_with_party_pct']}
-                          label={
-                            `${this.state.rep_data['votes_with_party_pct']}%`
-                          }
-                        />
-                      </div>
-                    </p>
-                  </div>
-                </font>
-              </div>
-            </Col>
-            <Col sm={12} md={9}>
-              <div style={styles.box} className='shadow rep-height'>
-                <div style={styles.tabBox}>
-                  <Tabs defaultActiveKey={1} id='uncontrolled-tab-example'>
-                    <Tab eventKey={1} title='Social Media'>
-                      <Row>
-                        <Col md={6}>
-                          {twitter}
-                        </ Col>
-                        <Col md={6}>
-                          <h3><b>YouTube Channel</b></h3>
-                          {youtube}
-                        </Col>
-                      </ Row>
-                    </Tab>
-                    <Tab eventKey={2} title='Recent Bills'>
-                      <h3 class='bills-header'>Recent Bills Sponsored</h3>
-                      <Row style={{paddingLeft: '5px'}}>
-                        <RepBills data = {this.state.rep_data.bills} />
-                      </Row>
-                    </Tab>
-                    <Tab eventKey={3} title='Office Location'>
-                      <h3><b>Office Location</b></h3>
-                      <h4>{this.state.rep_data['office']}</h4>
-                      <iframe
-                        width='600'
-                        height='450'
-                        frameborder='0' style={{border: '0'}}
-                        title = 'Twitter Feed'
-                        src={'https://www.google.com/maps/embed/v1/place?' +
-                          'key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY' +
-                          '&q=' + this.state.rep_data.office} allowfullscreen>
-                      </iframe>
-                    </Tab>
-                  </Tabs>
+      <div className='App container'>
+        <header className='Rep-Details-header'> </header>
+        <Row>
+        {//<Col sm={0} md={1}></ Col>
+        }
+          <Col sm={12} md={3}>
+            <div style={styles.box} className='shadow rep-height'>
+              <img src={'https://theunitedstates.io/images/congress/225x275/' +
+                this.state.rep_data.bioguide + '.jpg'} alt='' style={styles.rep_pic}
+                width={"175px"}
+              />
+              <font size='5'>
+                <div style={{textAlign: 'center'}}>
+                  <p style={{paddingTop: '10px'}}>
+                    <font size='6'>
+                      <b>
+                        {this.state.rep_data['firstname']}
+                        {` `}
+                        {this.state.rep_data['lastname']}
+                      </b>
+                    </font>
+                  </p>
+                  <p> <b>Party: </b>
+                    <Link to={`/party/${this.state.party_name[this.state.rep_data['party_id']][1]}`}>
+                      {this.state.party_name[this.state.rep_data['party_id']][0]} </Link>
+                  </p>
+                  <p> <b> State: </b> {this.state.rep_data['state']}</p>
+                  <p> <b> District: </b>
+                    <Link
+                      to={`/districts/${this.state.rep_data['state']}/` +
+                      `${this.state.rep_data['district']}`}>
+                      {this.state.rep_data['district']}
+                    </Link>
+                  </p>
+                  <p>
+                    <b> Site: </b>
+                    <a href={this.state.rep_data['url']} target="_blank">Website </a>
+                  </p>
+                  <p>
+                    <b>Votes with Party (%): </b>
+                    <div style={styles.progress}>
+                      <ProgressBar bsStyle='success'
+                        now={this.state.rep_data['votes_with_party_pct']}
+                        label={`${this.state.rep_data['votes_with_party_pct']}%`}
+                      />
+                    </div>
+                  </p>
                 </div>
               </div>
             </Col>
