@@ -102,7 +102,7 @@ export default class RepresentativeDetails extends Component {
         </div>
       )
     } else {
-      let twitter = ''
+      let twitter = '' // eslint-disable-line
       if (this.state.rep_data['twitter'] !== null) {
         twitter = <div><Timeline
           dataSource={{
@@ -120,7 +120,7 @@ export default class RepresentativeDetails extends Component {
           <h3>No Twitter Handle</h3></div>
       }
 
-      let youtube = ''
+      let youtube = '' // eslint-disable-line
       if (this.state.rep_data['youtube'] !== null) {
         youtube = <iframe
           width='350'
@@ -136,54 +136,64 @@ export default class RepresentativeDetails extends Component {
       }
 
       return (
-      <div className='App container'>
-        <header className='Rep-Details-header'> </header>
-        <Row>
-        {//<Col sm={0} md={1}></ Col>
-        }
-          <Col sm={12} md={3}>
-            <div style={styles.box} className='shadow rep-height'>
-              <img src={'https://theunitedstates.io/images/congress/225x275/' +
-                this.state.rep_data.bioguide + '.jpg'} alt='' style={styles.rep_pic}
-                width={"175px"}
-              />
-              <font size='5'>
-                <div style={{textAlign: 'center'}}>
-                  <p style={{paddingTop: '10px'}}>
-                    <font size='6'>
-                      <b>
-                        {this.state.rep_data['firstname']}
-                        {` `}
-                        {this.state.rep_data['lastname']}
-                      </b>
-                    </font>
-                  </p>
-                  <p> <b>Party: </b>
-                    <Link to={`/party/${this.state.party_name[this.state.rep_data['party_id']][1]}`}>
-                      {this.state.party_name[this.state.rep_data['party_id']][0]} </Link>
-                  </p>
-                  <p> <b> State: </b> {this.state.rep_data['state']}</p>
-                  <p> <b> District: </b>
-                    <Link
-                      to={`/districts/${this.state.rep_data['state']}/` +
-                      `${this.state.rep_data['district']}`}>
-                      {this.state.rep_data['district']}
-                    </Link>
-                  </p>
-                  <p>
-                    <b> Site: </b>
-                    <a href={this.state.rep_data['url']} target="_blank">Website </a>
-                  </p>
-                  <p>
-                    <b>Votes with Party (%): </b>
-                    <div style={styles.progress}>
-                      <ProgressBar bsStyle='success'
-                        now={this.state.rep_data['votes_with_party_pct']}
-                        label={`${this.state.rep_data['votes_with_party_pct']}%`}
-                      />
-                    </div>
-                  </p>
-                </div>
+        <div className='App container'>
+          <header className='Rep-Details-header'> </header>
+          <Row>
+            <Col sm={12} md={3}>
+              <div style={styles.box} className='shadow rep-height'>
+                <img
+                  src={'https://theunitedstates.io/images/congress/225x275/' +
+                    this.state.rep_data.bioguide + '.jpg'}
+                  alt=''
+                  style={styles.rep_pic}
+                  width={'175px'}
+                />
+                <font size='5'>
+                  <div style={{textAlign: 'center'}}>
+                    <p style={{paddingTop: '10px'}}>
+                      <font size='6'>
+                        <b>
+                          {this.state.rep_data['firstname']}
+                          {` `}
+                          {this.state.rep_data['lastname']}
+                        </b>
+                      </font>
+                    </p>
+                    <p> <b>Party: </b>
+                      <Link to=
+                        {`/party/${this.state.party_name[this.state.rep_data['party_id']][1]}`} // eslint-disable-line
+                      >
+                        {
+                          this.state.party_name[this.state.rep_data['party_id']][0] //eslint-disable-line
+                        }
+                      </Link>
+                    </p>
+                    <p> <b> State: </b> {this.state.rep_data['state']}</p>
+                    <p> <b> District: </b>
+                      <Link to=
+                        {`/districts/${this.state.rep_data['state']}/` +
+                          `${this.state.rep_data['district']}`}>
+                        {this.state.rep_data['district']}
+                      </Link>
+                    </p>
+                    <p>
+                      <b> Site: </b>
+                      <a href={this.state.rep_data['url']}
+                        target='_blank'> Website </a>
+                    </p>
+                    <p>
+                      <b>Votes with Party (%): </b>
+                      <div style={styles.progress}>
+                        <ProgressBar bsStyle='success'
+                          now={this.state.rep_data['votes_with_party_pct']}
+                          label={
+                            `${this.state.rep_data['votes_with_party_pct']}%`
+                          }
+                        />
+                      </div>
+                    </p>
+                  </div>
+                </font>
               </div>
             </Col>
           </Row>
