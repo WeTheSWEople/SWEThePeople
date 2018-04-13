@@ -1,0 +1,17 @@
+.filter-component {
+    width: 100%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-top: 50px;
+    margin-bottom: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: #FFF;
+}
+
+.button-control {
+    margin-top: 20px;
+}
+
+.button-control .reset-button {
+    margin-left: 3px;
+}

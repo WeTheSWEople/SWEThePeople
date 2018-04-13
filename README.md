@@ -123,45 +123,54 @@ python main.py
 ## Testing
 
 ### Frontend unit tests
-1. cd into the idb folder
+1. cd into the frontend folder
 2. run the test script
 ```
 npm test
 ```
 - Test script is at
 ```
-idb/test/tests.js
+frontend/tests.js
 ```
 
 ### Frontend acceptance tests (Selenium)
-1. Have firefox installed, along with geckodriver
-2. cd into idb folder
-3. create virtual environment in idb folder (same as above)
-3. run the test script
+1. Have firefox installed, along with geckodriver (ensure in usr/local/bin)
+2. cd into frontend folder
+3. create virtual environment in frontend folder:
 ```
-python test/guitests.py
+virtualenv venv
+```
+
+```
+source venv/bin/activate
+```
+
+4. Install requirements in the virtual environment
+```
+pip install -r requirements.txt
+```
+
+5. Run the test script
+```
+python guitests.py
 ```
 
 
 ### Backend tests
 ```
-pip install -r app/requirements.txt
+virtualenv venv
 ```
 
 ```
-pip install -r requirements.txt
+source venv/bin/activate
 ```
 
 ```
-python app/main.py &
+pip install -r backend/requirements.txt
 ```
 
 ```
-python router.py &
-```
-
-```
-python app/tests.py
+python backend/tests.py
 ```
 
 ### Postman tests

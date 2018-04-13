@@ -33,81 +33,69 @@ class AcceptanceTest(unittest.TestCase):
         driver.execute_script("window.history.go(-1)")
         driver.find_element_by_link_text("GitHub Repository").click()
         driver.execute_script("window.history.go(-1)")
-        driver.find_element_by_link_text("IDB 1 Technical Report").click()
+        driver.find_element_by_link_text("Technical Report").click()
         driver.execute_script("window.history.go(-1)")
         driver.find_element_by_link_text("API Documentation").click()
 
     def test_representative_model(self):
         driver = self.driver
-        driver.get("http://swethepeople.me/representatives/")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[3]/a/div/div/h4[2]").click()
+        driver.get("http://swethepeople.me/")
+        driver.find_element_by_link_text("Representatives").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div[2]/a/div/div/h4[2]").click()
         driver.execute_script("window.history.go(-1)")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[4]/a/div/div/h4").click()
-        driver.execute_script("window.history.go(-1)")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[27]/a/div/div/h4").click()
-        driver.execute_script("window.history.go(-1)")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[9]/a/div").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div[3]/a/div").click()
         driver.find_element_by_link_text("Website").click()
 
     def test_district_model(self):
         driver = self.driver
-        driver.get("http://swethepeople.me/districts")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div/a/div/div/div[2]").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div[2]/a/div").click()
+        driver.get("http://swethepeople.me/")
+        driver.find_element_by_link_text("Districts").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/a/div").click()
         driver.execute_script("window.history.go(-1)")
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div[2]/a/div").click()
         driver.execute_script("window.history.go(-1)")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[45]/a/div/div").click()
-        driver.find_element_by_xpath("//img[@alt='District Map']").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[3]/div/div/a/div").click()
-        driver.find_element_by_link_text("At-Large").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div[4]/a/div").click()
 
     def test_party_model(self):
         driver = self.driver
-        driver.get("http://swethepeople.me/parties")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/a/div/div/div/div[2]/p[2]").click()
+        driver.get("http://swethepeople.me/")
+        driver.find_element_by_link_text("Parties").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/a/div").click()
         driver.execute_script("window.history.go(-1)")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/a[13]/div/div/div/div/div").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div[2]/a/div").click()
         driver.execute_script("window.history.go(-1)")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/a[15]/div/div/div/div/div").click()
-        driver.execute_script("window.history.go(-1)")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/a[2]/div/div/div/div/div").click()
-        driver.find_element_by_link_text("https://www.gop.com/").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div[3]/a/div").click()
 
     def test_representative_model_to_party_model(self):
         driver = self.driver
-        driver.get("http://swethepeople.me/representatives")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[72]/a/div/div").click()
-        driver.find_element_by_link_text("Democratic Party").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[3]/div/div[2]/a/div/div/h4[2]").click()
+        driver.get("http://swethepeople.me/")
         driver.find_element_by_link_text("Representatives").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[19]/a/div/div/h4").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div[2]/a/div").click()
+        driver.find_element_by_link_text("Democratic Party").click()
+        driver.find_element_by_link_text("Representatives").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div/a/div").click()
         driver.find_element_by_link_text("Republican Party").click()
-        driver.find_element_by_xpath("//img[contains(@src,'https://theunitedstates.io/images/congress/225x275/B001269.jpg')]").click()
 
     def test_representative_model_to_district_model(self):
         driver = self.driver
-        driver.get("http://swethepeople.me/representatives")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[12]/a/div").click()
-        driver.find_element_by_link_text("8").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[3]/div/div/a/div/div").click()
-        driver.find_element_by_link_text("Districts").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[35]/a/div/div").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div[2]/a/div").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[3]/div/div/a/div/div").click()
+        driver.get("http://swethepeople.me/")
+        driver.find_element_by_link_text("Representatives").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div[2]/a/div/div/h4[2]").click()
+        driver.find_element_by_link_text("12").click()
+        driver.find_element_by_link_text("Representatives").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div/a/div").click()
+        driver.find_element_by_link_text("5").click()
 
     def test_history(self):
         driver = self.driver
         driver.get("http://swethepeople.me/")
         driver.find_element_by_link_text("Representatives").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div/a/div/div/h3").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div[2]/a/div/div/h4").click()
         driver.execute_script("window.history.go(-1)")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[3]/a/div/div/h4").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div[3]/a/div").click()
         driver.execute_script("window.history.go(-1)")
         driver.find_element_by_link_text("Parties").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/a/div/div/div/div[2]/p[2]").click()
-        driver.execute_script("window.history.go(-1)")
-        driver.execute_script("window.history.go(1)")
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[3]/div/div[2]/a/div").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div[2]/a/div/div/p[2]/span/span").click()
 
     def test_navigation(self):
         driver = self.driver
@@ -117,25 +105,87 @@ class AcceptanceTest(unittest.TestCase):
         driver.find_element_by_link_text("Districts").click()
         driver.find_element_by_link_text("About").click()
         driver.find_element_by_link_text("Districts").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div/a/div/div").click()
+
+    def test_search_representative(self):
+        driver = self.driver
+        driver.get("http://swethepeople.me/")
+        driver.find_element_by_xpath("//input[@type='text']").click()
+        driver.find_element_by_xpath("//input[@type='text']").clear()
+        driver.find_element_by_xpath("//input[@type='text']").send_keys("Paul Ryan")
+        driver.find_element_by_xpath("//button[@type='submit']").click()
+
+    def test_search_party(self):
+        driver = self.driver
+        driver.get("http://swethepeople.me/")
+        driver.find_element_by_xpath("//input[@type='text']").click()
+        driver.find_element_by_xpath("//input[@type='text']").clear()
+        driver.find_element_by_xpath("//input[@type='text']").send_keys("green")
+        driver.find_element_by_xpath("//button[@type='submit']").click()
+
+    def test_search_district(self):
+        driver = self.driver
+        driver.get("http://swethepeople.me/")
+        driver.find_element_by_xpath("//input[@type='text']").click()
+        driver.find_element_by_xpath("//input[@type='text']").clear()
+        driver.find_element_by_xpath("//input[@type='text']").send_keys("wisconsin 2")
+        driver.find_element_by_xpath("//button[@type='submit']").click()
+
+    def test_filter(self):
+        driver = self.driver
+        driver.get("http://swethepeople.me/representatives")
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[6]/button").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div/a/div/div/h4").click()
         driver.find_element_by_link_text("Parties").click()
-        driver.find_element_by_xpath("//img[@alt='0']").click()
-        driver.find_element_by_link_text("Representatives").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[8]/a/div/div").click()
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[6]/button").click()
+        driver.find_element_by_xpath("//img[@alt='democratic_party']").click()
+        driver.find_element_by_link_text("Districts").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div/div/div/span[2]").click()
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[5]/button").click()
+        driver.find_element_by_xpath("//img[@alt='District Map']").click()
+
+    def test_sort(self):
+        driver = self.driver
+        driver.get("http://swethepeople.me/representatives")
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[6]/button").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div/a/div").click()
+        driver.find_element_by_link_text("Parties").click()
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[6]/button").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/a/div").click()
+        driver.find_element_by_link_text("Districts").click()
+        driver.find_element_by_class_name("Select").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[5]/button").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/a/div").click()
 
     def test_full_acceptance(self):
         driver = self.driver
         driver.get("http://swethepeople.me/")
         driver.find_element_by_xpath("(//button[@type='button'])[3]").click()
-        driver.find_element_by_xpath("(//button[@type='button'])[2]").click()
+        driver.find_element_by_xpath("(//button[@type='button'])[3]").click()
         driver.find_element_by_link_text("Representatives").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/div/div[3]/a/div/div/h4").click()
-        driver.find_element_by_link_text("2").click()
-        driver.find_element_by_link_text("Parties").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div/a/div/div/div/div[2]").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[3]/div/div[6]/a/div/div/h3").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div[2]/a/div").click()
+        driver.find_element_by_link_text("Website").click()
+        driver.execute_script("window.history.go(-1)")
+        driver.find_element_by_link_text("12").click()
         driver.find_element_by_link_text("About").click()
-        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[6]/div[2]/a[6]/div/div").click()
+
+    def test_pagination(self):
+        driver = self.driver
+        driver.get("http://swethepeople.me/representatives")
+        driver.find_element_by_link_text("2").click()
+        driver.find_element_by_link_text("3").click()
+        driver.find_element_by_link_text("18").click()
+        driver.find_element_by_xpath("//div[@id='root']/div/div[2]/div[2]/div/div/div[3]/a/div/div/h4[2]").click()
 
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)

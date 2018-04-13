@@ -1,15 +1,17 @@
 import requests
 import json
 import os
-import datetime
-
-#import apikeys
-from app.app import create_app, db
-from app.models import Representative, Bill
+import sys
+from apikeys import API
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from app import create_app, db
+from models import Representative, Bill
 
 CURRENT_CONGRESS = 115
-PROPUBLICA_API_KEY = 'icU6XnQ63Mu9qDhEg1QCz0Emb7wt5n9GoLEAEnmI'
-WEBHOSE_API_KEY = '8e4f2b2d-f5a9-4bcc-b505-c73941228b74'
+API_KEY = API['PROPUBLICA_API_KEY']
+
+RepURL = 'https://api.propublica.org/congress/v1/' + str(CURRENT_CONGRESS) + '/house/members.json'
+BillURL = 'https://api.propublica.org/congress/v1/members/{member-id}/bills/{type}.json'
 
 headers = {
 	'x-api-key': PROPUBLICA_API_KEY,
@@ -42,6 +44,7 @@ for mem in members['results'][0]['members']:
 			image_uri = 'https://theunitedstates.io/images/congress/225x275/' + mem['id'] +'.jpg'
 			)
 		BillURL = 'https://api.propublica.org/congress/v1/members/' + rep.bioguide +'/bills/introduced.json'
+		print(BillURL)
 		response2 = requests.request('GET', BillURL, headers=headers)
 		bills = response2.json()
 		for i in range(0, 3):
@@ -58,44 +61,20 @@ for mem in members['results'][0]['members']:
 				)
 			rep.bills.append(recentBill)
 
-		ArticleURL = 'http://webhose.io/filterWebContent?token=' +
-			WEBHOSE_API_KEY + '&format=json&ts=1520976327081&sort=relevancy&q='
-			+ '%22' + rep.firstname + '%20' + rep.lastname + '%22%20' +
-			'language%3Aenglish%20site_type%3Anews%20thread.country%3AUS'
-
-		response3 = requests.request('GET', ArticleURL)
-		articles = response3.json()
-		for i in range(0, 3):
-			if len(articles['posts']) == i:
-				break
-			article = articles['posts'][i]
-			recentArticle = Article(
-				title = article['title']
-				url = article['url']
-				author = article['author']
-				text = article['text']
-				date = article['published']
-				site = article['thread']['site']
-				representative_id = rep.bioguide
-			)
-
-			rep.articles.append(recentArticle)
-
-		rep2 = Representative.query.filter(Representative.bioguide == rep.bioguide).first()
-		if rep2 == None:
+		oldrep = Representative.query.filter(Representative.bioguide == rep.bioguide).first()
+		if oldrep == None:
 			db.session.add(rep)
 			db.session.commit()
 		else:
-			rep2.firstname = rep.firstname
-			rep2.lastname = rep.lastname
-			rep2.party = rep.party
-			rep2.state = rep.state
-			rep2.district = rep.district
-			rep2.twitter = rep.twitter
-			rep2.youtube = rep.youtube
-			rep2.votes_with_party_pct = rep.votes_with_party_pct
-			rep2.url = rep.url
-			rep2.image_uri = rep.image_uri
-			rep2.bills = rep.bills
-			rep2.articles = rep.articles
+			oldrep.firstname = rep.firstname
+			oldrep.lastname = rep.lastname
+			oldrep.party_id = rep.party_id
+			oldrep.state = rep.state
+			oldrep.district = rep.district
+			oldrep.twitter = rep.twitter
+			oldrep.youtube = rep.youtube
+			oldrep.votes_with_party_pct = rep.votes_with_party_pct
+			oldrep.url = rep.url
+			oldrep.image_uri = rep.image_uri
+			oldrep.bills = rep.bills
 			db.session.commit()

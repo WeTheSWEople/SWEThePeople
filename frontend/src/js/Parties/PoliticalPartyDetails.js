@@ -4,13 +4,18 @@ import {Link} from 'react-router-dom'
 import {GridList} from 'material-ui/GridList'
 import {Timeline} from 'react-twitter-widgets'
 import RepresentativeInstance from '../Representatives/RepresentativeInstance'
+import DistrictInstance from '../Districts/DistrictInstance.js'
 import {RingLoader} from 'react-spinners'
 import axios from 'axios'
+import Slider from 'react-slick'
 /* eslint-enable no-unused-vars */
+
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import '../../assets/css/App.css'
 import '../../assets/css/PoliticalPartyDetails.css'
 import '../../assets/css/District.css'
-
+import url from '../../assets/resource.json'
 
 export default class PoliticalPartyDetails extends Component {
   constructor (props) {
@@ -32,7 +37,7 @@ export default class PoliticalPartyDetails extends Component {
   componentDidMount () {
     this.setState({ready: false})
 
-    axios.get('http://api.swethepeople.me/district').then((response) => {
+    axios.get(url.api_url + 'district/').then((response) => {
       let disMap = {}
       for (let i = 0; i < response.data.length; i++) {
         const district = response.data[i]
@@ -42,12 +47,16 @@ export default class PoliticalPartyDetails extends Component {
       this.setState({districts: disMap, districtFlag: true})
     })
 
-    axios.get('http://api.swethepeople.me/party/' +
+    axios.get(url.api_url + 'party/' +
       this.props.match.params.path).then((response) => {
       let repsMap = {}
       response.data['representatives'].forEach(function (rep) {
         repsMap[rep['bioguide']] = rep
       })
+
+      if (response.data['chair'] === '') {
+        response.data['chair'] = 'None'
+      }
 
       let p = {
         name: response.data['name'],
@@ -128,22 +137,14 @@ export default class PoliticalPartyDetails extends Component {
       controlText = this.state.num_reps + '/' + this.state.totalReps
 
       let repsGrid = Object.keys(this.state.reps).map((key) =>
-        <div className='col-sm-3 party-rep-card'>
+        <div className='party-rep-card'>
           <RepresentativeInstance key={key} rep={this.state.reps[key]} />
         </div>
       )
 
-      repsInfo = <div className='reps-grid'>
-        <h2>Representatives</h2>
-        <div className='row'>
-          {repsGrid}
-        </div>
-      </div>
-
       let districtsGrid = Object.keys(districts).map((key) =>
-        
         <Link to={`/districts/${districts[key].state}/${districts[key].id}`}>
-          <div className='col-sm-3 party-rep-card'>
+          <div className='party-rep-card party-district'>
             <div className='district-card '>
               <h3><b>{districts[key].alpha_num}</b></h3>
               <h5><b>Population: </b>{districts[key].population}</h5>
@@ -159,17 +160,34 @@ export default class PoliticalPartyDetails extends Component {
         </Link>
       )
 
+      const settings = {
+        dots: false,
+        infinite: true,
+        arrows: true,
+        slidesToShow: 5,
+        slidesToScroll: 5,
+        autoplay: false,
+        centerMode: false
+      }
+
+      repsInfo = <div className='reps-grid'>
+        <h2>Representatives</h2>
+        <Slider {...settings} className='carousel'>
+          {repsGrid}
+        </Slider>
+      </div>
+
       districtsInfo = <div className='districts-grid'>
         <h2>Districts</h2>
-        <div className='row'>
+        <Slider {...settings} className='carousel'>
           {districtsGrid}
-        </div>
+        </Slider>
       </div>
     } else {
       noControl = '0/' + this.state.totalReps
     }
 
-    let twitter = 'No twitter handle'
+    let twitter = <h4><b>No Twitter handle</b></h4>
     if (this.state.party != null && this.state.party['twitter_handle'] !== '') {
       twitter = <div>
         <Timeline dataSource={{sourceType: 'profile',
@@ -179,7 +197,7 @@ export default class PoliticalPartyDetails extends Component {
       </div>
     }
 
-    let youtube = 'No youtube channel'
+    let youtube = <h4><b>No YouTube channel</b></h4>
     if (this.state.party != null && this.state.party['youtube'] !== '') {
       youtube = <div className='youtube-div'>
         <h4><b>YouTube Channel</b></h4>
@@ -195,7 +213,7 @@ export default class PoliticalPartyDetails extends Component {
       </div>
     }
 
-    let office = 'No office location'
+    let office = <h4><b>No office location</b></h4>
     if (this.state.party != null && this.state.party['office'] !== '') {
       office = <div>
         <h4><b>Office Location:</b></h4>
@@ -209,6 +227,11 @@ export default class PoliticalPartyDetails extends Component {
           title={this.props.match.params.name + ' Google Maps Location'}>
         </iframe>
       </div>
+    }
+
+    let website = this.state.party.website
+    if (!website.startsWith('http')) {
+      website = 'http://' + website
     }
 
     return (
@@ -245,7 +268,7 @@ export default class PoliticalPartyDetails extends Component {
             <p>
               <span className='party-info-header'>Website:</span>
               <span className='party-info-info'>
-                <a href={this.state.party['website']}>
+                <a href={website} target="_blank" >
                   {this.state.party['website']}
                 </a>
               </span>

@@ -17,3 +17,21 @@
     margin-right: auto;
     width: 90%;
 }
+
+.party-single-card {
+    width: 95%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+.party-single-card img {
+    width: 50%;
+}
+
+.search-card-link:link,
+.search-card-link:visited,
+.search-card-link:hover,
+.search-card-link:active {
+    color: #000;
+}
