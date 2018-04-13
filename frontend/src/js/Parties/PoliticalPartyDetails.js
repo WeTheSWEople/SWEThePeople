@@ -82,15 +82,15 @@ export default class PoliticalPartyDetails extends Component {
 
   render () {
     if (!(this.state.districtFlag && this.state.partyFlag)) {
-        return(
+      return (
         <div style={{display: 'flex',
-                    flexWrap: 'wrap',
-                    paddingTop: '25%',
-                    paddingLeft: '50px',
-                    paddingRight: '50px',
-                    justifyContent: 'space-around'}}>
-        <RingLoader color={'#123abc'} loading={true} />
-         </div>)
+          flexWrap: 'wrap',
+          paddingTop: '25%',
+          paddingLeft: '50px',
+          paddingRight: '50px',
+          justifyContent: 'space-around'}}>
+          <RingLoader color={'#123abc'} loading={true} />
+        </div>)
     }
 
     const oldDis = this.state.districts
@@ -153,8 +153,8 @@ export default class PoliticalPartyDetails extends Component {
               <img src={
                 require('../../assets/images/districts/' +
                 districts[key].alpha_num + '.png')}
-                alt='District Map'
-                className='img-responsive district-img'/>
+              alt='District Map'
+              className='img-responsive district-img'/>
             </div>
           </div>
         </Link>
