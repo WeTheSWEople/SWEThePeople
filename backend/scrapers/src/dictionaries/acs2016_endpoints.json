@@ -17,7 +17,7 @@
     "B05001_003E": "citizenship_us_citizen_born_in_pr_or_us_island_areas",
     "B05001_004E": "citizenship_us_citizen_born_abroad_of_american_parents",
     "B05001_005E": "citizenship_us_citizen_by_naturalization",
-    "B05001_005E": "citizenship_not_a_us_citizen",
+    "B05001_006E": "citizenship_not_a_us_citizen",
     "B06007_002E": "language_speak_only_english",
     "B06007_003E": "language_speak_spanish",
     "B06007_006E": "language_speak_other_languages",

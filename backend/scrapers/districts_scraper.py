@@ -28,10 +28,10 @@ class CensusURL:
 			'&for=congressional%20district:*&in=state:' + str(self.state) + \
 			'&key=' + CENSUS_API_KEY
 
-endpoints = json.load(open('backend/scrapers/src/dictionaries/acs2016_endpoints.json'))
-fips_state_codes = json.load(open('backend/scrapers/src/dictionaries/fips_state_codes.json'))
+endpoints = json.load(open('./scrapers/src/dictionaries/acs2016_endpoints.json'))
+fips_state_codes = json.load(open('./scrapers/src/dictionaries/fips_state_codes.json'))
 usps_state_abbreviations = json.load(
-	open('backend/scrapers/src/dictionaries/usps_state_abbreviations.json'))
+	open('./scrapers/src/dictionaries/usps_state_abbreviations.json'))
 
 app = create_app()
 app.app_context().push()
@@ -68,6 +68,8 @@ for num in range(1, 57):
 		district_name = district_key if district_key != 0 else 'At-Large'
 		MemberURL = 'https://api.propublica.org/congress/v1/members/house/' + \
 			abbrev + '/' + str(propublica_district) + '/current.json'
+
+		print(state_name + '-' + str(district_name))
 
 		# via https://tinyurl.com/ordinal-codegolf-python
 		ordinal = lambda n: "%d%s" % \
