@@ -15,6 +15,10 @@ const styles = {
   hyperlink: {
     textDecoration: 'none',
     color: 'black'
+  },
+  progress: {
+    paddingLeft: '10%',
+    paddingRight: '10%'
   }
 }
 
@@ -44,7 +48,7 @@ export default class RepresentativeInstance extends Component {
               </i></h4>
               <p>
                 <b>Votes with Party (%): </b>
-                <div style={styles.progress} style={{paddingLeft: '10%', paddingRight: '10%'}}>
+                <div style={styles.progress}>
                   <ProgressBar bsStyle='success'
                     now={this.props.rep.votes_with_party_pct}
                     label={`${this.props.rep.votes_with_party_pct}%`}

@@ -28,6 +28,7 @@ export default class DistrictInstance extends Component {
           <div className='district-grid'>
             <img src={require('../../assets/images/districts/' +
               district.alpha_num + '.png')}
+            alt={district.state + '-' + district.id}
             width='250px' height='150px' marginLeft='25px'
             className='img-response' />
 
