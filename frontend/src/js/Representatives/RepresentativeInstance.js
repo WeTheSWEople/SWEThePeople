@@ -47,7 +47,6 @@ export default class RepresentativeInstance extends Component {
             <p>
               <b>Votes with Party (%): </b>
               <div
-                style={styles.progress}
                 style={{paddingLeft: '10%', paddingRight: '10%'}}>
                 <ProgressBar bsStyle='success'
                   now={this.props.rep.votes_with_party_pct}
