@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
-import {Navbar, Nav, NavItem, Button, FormGroup, FormControl} from 'react-bootstrap'
+import {Navbar, Nav, NavItem, Button, FormGroup, FormControl} from
+  'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import {Link} from 'react-router-dom'
 /* eslint-enable no-unused-vars */
@@ -8,8 +9,9 @@ import {Link} from 'react-router-dom'
 import header from '../../assets/images/header.png'
 import '../../assets/css/App.css'
 
+/* Navigation bar */
 export default class Navigation extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.handleChange = this.handleChange.bind(this)
@@ -20,7 +22,7 @@ export default class Navigation extends Component {
     }
   }
 
-  handleChange(e) {
+  handleChange (e) {
     this.setState({value: e.target.value})
   }
 
@@ -65,16 +67,16 @@ export default class Navigation extends Component {
                   <FormGroup>
                     <FormControl onChange={this.handleChange}
                       type="text" placeholder="Search" />
-                      <Button type="submit">
-                        <span className='glyphicon glyphicon-search'></span>
-                      </Button>
+                    <Button type="submit">
+                      <span className='glyphicon glyphicon-search'></span>
+                    </Button>
                   </FormGroup>{' '}
                 </form>
               </Navbar.Form>
             </Nav>
-            </Navbar.Collapse>
-		    </Navbar>
-	        </div>
-	);
+          </Navbar.Collapse>
+        </Navbar>
+      </div>
+    )
   }
 }

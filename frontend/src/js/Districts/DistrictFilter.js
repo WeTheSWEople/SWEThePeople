@@ -8,6 +8,7 @@ import Select from 'react-select'
 import '../../assets/css/Filter.css'
 import 'react-select/dist/react-select.css'
 
+/* District Filter UI */
 export default class DistrictFilter extends Component {
   constructor (props) {
     super(props)
@@ -74,6 +75,7 @@ export default class DistrictFilter extends Component {
       sort = this.state.sort_value.value
     }
 
+    /* Filters data - see Districts.js */
     this.props.buttonHandler(state, population, medianAge, sort)
   }
 

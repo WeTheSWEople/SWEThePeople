@@ -12,7 +12,6 @@ import '../../assets/css/App.css'
 import '../../assets/css/DistrictDetails.css'
 import url from '../../assets/resource.json'
 
-
 const styles = {
   imgStyle: {
     width: '100%',
@@ -26,7 +25,7 @@ const styles = {
     paddingRight: '50px',
     justifyContent: 'space-around'
   },
-  center:{
+  center: {
     display: 'flex',
     flexWrap: 'wrap',
     paddingTop: '20%',
@@ -58,154 +57,187 @@ export default class DistrictDetails extends Component {
     }
   }
   componentWillMount () {
-    axios.get(url.api_url + `district/${this.props.match.params.districtid}/${this.props.match.params.districtnum}`)
-    .then((response)=>{
-      this.setState({
-        district_data:response.data,
-        district_num : response.data.id,
-        district_state : response.data.state,
-        bioguide: response.representative_id
-      })
-
-      let result = []
-      if (response.data.population_american_indian_and_alaska_native !== null){
-        result.push({'x': 'AIAAN', 'y': response.data.population_american_indian_and_alaska_native})
-      }
-      if (response.data.population_asian !== null){
-        result.push({'x': 'A', 'y': response.data.population_asian})
-      }
-
-      if(response.data.population_black_or_african_american !== null){
-        result.push({'x': 'BOAA', 'y': response.data.population_black_or_african_american})
-      }
-
-      if(response.data.population_native_hawaiian_and_other_pacific_islander !== null){
-        result.push({'x': 'NHAOPI', 'y': response.data.population_native_hawaiian_and_other_pacific_islander})
-      }
-
-      if(response.data.population_some_other_race !== null){
-        result.push({'x': 'SOR', 'y': response.data.population_some_other_race})
-      }
-
-      if(response.data.population_two_or_more_races !== null){
-        result.push({'x': 'TR', 'y': response.data.population_two_or_more_races})
-      }
-
-      if(response.data.population_white !== null){
-        result.push({'x': 'W', 'y': response.data.population_white})
-      }
-
-      let legendTemp = []
-      legendTemp.push({key: 'TR', value: 'Two or More Races'})
-      legendTemp.push({key: 'W', value: 'White'})
-      legendTemp.push({key: 'BOAA', value: 'Black Or African American'})
-      legendTemp.push({key: 'AIAAN', value: 'American Indian And Alaska Native'})
-      legendTemp.push({key: 'A', value: 'Asian'})
-      legendTemp.push({key: 'NHAOPI', value: 'Native Hawaiian And Other Pacific Islander'})
-      legendTemp.push({key: 'SOR', value: 'Some Other Race'})
-
-      this.setState({races_pop: result})
-      this.setState({legend: legendTemp})
-
-
-
-      axios.get(url.api_url + `representative/${response.data.representative_id}`)
-      .then((response)=>{
-          this.setState({
-            rep_data:response.data
-          })
-
-          // set party image
-          let party = response.data.party_id
-          if (party === 1) {
-            this.setState({party_image: 'Democratic'})
-          } else if (party === 2) {
-            this.setState({party_image: 'Republican'})
-          } else {
-            this.setState({party_image: 'Libertarian'})
-          }
-
-          axios.get(url.api_url + `party?party_name=True`)
-          .then((response)=>{
-            this.setState({
-              party_data:response.data
-            })
-             axios.get(url.api_url + 'state/?state_usps=True').then((response) => {
-              this.setState({all_states: response.data})
-             }).catch((error) => {
-              this.setState({all_states: -1})
-             })
-
-          })
-          .catch((error)=>{
-            this.setState({
-                party_data : -1
-            })
-          })
-      })
-      .catch((error)=>{
-          this.setState({
-              rep_data: -1,
-        })
-      })
-    })
-    .catch((error)=>{
+    axios.get(url.api_url + `district/${this.props.match.params.districtid}` +
+      `/${this.props.match.params.districtnum}`)
+      .then((response) => {
         this.setState({
-            district_data: -1
+          district_data: response.data,
+          district_num: response.data.id,
+          district_state: response.data.state,
+          bioguide: response.representative_id
         })
-    })
+
+        /* Create bar graph of demographic data */
+        let result = []
+        if (response.data.population_american_indian_and_alaska_native !==
+          null) {
+          result.push({'x': 'AIAAN',
+            'y': response.data.population_american_indian_and_alaska_native})
+        }
+        if (response.data.population_asian !== null) {
+          result.push({'x': 'A', 'y': response.data.population_asian})
+        }
+
+        if (response.data.population_black_or_african_american !== null) {
+          result.push({'x': 'BOAA',
+            'y': response.data.population_black_or_african_american})
+        }
+
+        if
+        (response.data.population_native_hawaiian_and_other_pacific_islander !==
+           null) {
+          result.push({'x': 'NHAOPI',
+            'y':
+            response.data.population_native_hawaiian_and_other_pacific_islander}
+          )
+        }
+
+        if (response.data.population_some_other_race !== null) {
+          result.push({'x': 'SOR',
+            'y': response.data.population_some_other_race})
+        }
+
+        if (response.data.population_two_or_more_races !== null) {
+          result.push({'x': 'TR',
+            'y': response.data.population_two_or_more_races})
+        }
+
+        if (response.data.population_white !== null) {
+          result.push({'x': 'W',
+            'y': response.data.population_white})
+        }
+
+        let legendTemp = []
+        legendTemp.push({key: 'TR', value: 'Two or More Races'})
+        legendTemp.push({key: 'W', value: 'White'})
+        legendTemp.push({key: 'BOAA', value: 'Black Or African American'})
+        legendTemp.push({key: 'AIAAN',
+          value: 'American Indian And Alaska Native'})
+        legendTemp.push({key: 'A', value: 'Asian'})
+        legendTemp.push({key: 'NHAOPI',
+          value: 'Native Hawaiian And Other Pacific Islander'})
+        legendTemp.push({key: 'SOR', value: 'Some Other Race'})
+
+        this.setState({races_pop: result})
+        this.setState({legend: legendTemp})
+
+        axios.get(url.api_url +
+          `representative/${response.data.representative_id}`)
+          .then((response) => {
+            this.setState({
+              rep_data: response.data
+            })
+
+            /* set party image */
+            let party = response.data.party_id
+            if (party === 1) {
+              this.setState({party_image: 'Democratic'})
+            } else if (party === 2) {
+              this.setState({party_image: 'Republican'})
+            } else {
+              this.setState({party_image: 'Libertarian'})
+            }
+
+            axios.get(url.api_url + `party?party_name=True`)
+              .then((response) => {
+                this.setState({
+                  party_data: response.data
+                })
+                axios.get(url.api_url + 'state/?state_usps=True')
+                  .then((response) => {
+                    this.setState({all_states: response.data})
+                  }).catch((error) => {
+                    if (error) {
+                      this.setState({all_states: -1})
+                    }
+                  })
+              })
+              .catch((error) => {
+                if (error) {
+                  this.setState({
+                    party_data: -1
+                  })
+                }
+              })
+          })
+          .catch((error) => {
+            if (error) {
+              this.setState({
+                rep_data: -1
+              })
+            }
+          })
+      })
+      .catch((error) => {
+        if (error) {
+          this.setState({
+            district_data: -1
+          })
+        }
+      })
   }
 
   render () {
-
-
-    if (this.district_data === null || this.state.rep_data === null || this.state.party_data === null || this.state.all_states === null){
-      return(
-      <div style={styles.center}>
-      <RingLoader color={'#123abc'} loading={true} />
-       </div>)
-    }
-    else if (this.district_data === null || this.state.rep_data === -1 || this.state.party_data === -1 || this.state.all_states === -1){
+    /* If call has not returned yet, show loading icon */
+    if (this.district_data === null || this.state.rep_data === null ||
+      this.state.party_data === null || this.state.all_states === null) {
       return (
-          <div style={styles.root}>
-           <p> Data Not Found </p>
-          </div>)
-    }
-    else{
+        <div style={styles.center}>
+          <RingLoader color={'#123abc'} loading={true} />
+        </div>
+      )
+    } else if (this.district_data === -1 || this.state.rep_data === -1 ||
+        this.state.party_data === -1 || this.state.all_states === -1) {
+      return (
+        <div style={styles.root}>
+          <p> Data Not Found </p>
+        </div>
+      )
+    } else {
       let repsGrid = <div class='col-sm-6'>
-        <RepresentativeInstance rep={this.state.rep_data} party_name = {this.state.party_data[this.state.rep_data.party_id][0]}  />
+        <
+          RepresentativeInstance rep={this.state.rep_data}
+          party_name = {this.state.party_data[this.state.rep_data.party_id][0]}
+        />
       </div>
 
       let legend = null
       legend = Object.keys(this.state.legend).map((item) =>
-        <p style={{textAlign: 'left'}}> <b>{this.state.legend[item]['key']}</b> :
+        <p style={{textAlign: 'left'}}> <b>{this.state.legend[item]['key']}</b>:
         {` `}
         {this.state.legend[item]['value']}</p>
       )
 
+      /* Get gender population breakdown */
       let genderPopData = []
 
       let population = this.state.district_data.population
 
       let male = {}
       male['key'] = 'Male (' +
-        (this.state.district_data.population_male / population * 100).toFixed(2) + '%)'
+        (this.state.district_data.population_male /
+          population * 100).toFixed(2) + '%)'
       male['value'] = this.state.district_data.population_male
       male['color'] = '#abcc84'
 
       let female = {}
-      let female_pop = population - this.state.district_data.population_male
+      let femalePop = population - this.state.district_data.population_male
       female['key'] = 'Female (' +
-        (female_pop / population * 100).toFixed(2) + '%)'
+        (femalePop / population * 100).toFixed(2) + '%)'
       female['value'] = population - this.state.district_data.population_male
       female['color'] = '#aaac84'
       genderPopData.push(male)
       genderPopData.push(female)
-      let img_src = "https://www.govtrack.us/congress/members/embed/mapframe?state=" + this.state.district_state + "&district=" + this.state.district_num
-      console.log(this.state.district_state)
 
-      if (this.state.district_num == "At-Large"){
-        img_src = "https://www.govtrack.us/congress/members/embed/mapframe?state=" + this.state.district_state + "&district=" + 0
+      /* Get district map from GovTrack */
+      let imgSrc =
+        'https://www.govtrack.us/congress/members/embed/mapframe?state=' +
+        this.state.district_state + '&district=' + this.state.district_num
+
+      if (this.state.district_num === 'At-Large') {
+        imgSrc =
+          'https://www.govtrack.us/congress/members/embed/mapframe?state=' +
+          this.state.district_state + '&district=0'
       }
 
       console.log(this.state.district_num)
@@ -215,12 +247,16 @@ export default class DistrictDetails extends Component {
 
           <Row >
             <h1><font size='8'><b>
-            {` `}
-            {this.state.all_states[this.state.district_state]+' - District '+this.state.district_num}</b></font></h1>
+              {` `}
+              {this.state.all_states[this.state.district_state] +
+                ' - District ' + this.state.district_num}</b>
+            </font></h1>
             <br></br><br></br>
             <Col sm={6} md={6}>
-              <iframe width="550" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                src={img_src}></iframe>
+              <iframe width='550'
+                height='350' frameborder='0' scrolling='no' marginheight='0'
+                marginwidth='0' src={imgSrc} title='District map'>
+              </iframe>
             </Col>
             <Col sm={6} md={6}>
               <div style={{textAlign: 'left', padding: '80px'}}>
@@ -287,7 +323,7 @@ export default class DistrictDetails extends Component {
                 }}
               />
 
-              <p><b> Race v.s. Number of People</b></p>
+              <p><b> Race v. Number of People</b></p>
             </Col>
             <Col sm={2} md={2}>
               <div style={{marginTop: '75px', marginRight: '40px'}}>
@@ -303,20 +339,25 @@ export default class DistrictDetails extends Component {
               {repsGrid}
             </div>
             <div class='col-md-3'>
-              <Link to={`/party/${this.state.party_data[this.state.rep_data['party_id']][1]}`} >
+              <Link to={`/party/` +
+                `${this.state.party_data[this.state.rep_data['party_id']][1]}`}
+              >
                 <img src={
                   require('../../assets/images/parties/' +
                     this.state.party_image + '.png')}
                 alt='Party logo'
                 className='img-responsive'
                 style={styles.imgStyle} />
-                <h3><b>{this.state.party_data[this.state.rep_data['party_id']][0]}</b></h3>
+                <h3>
+                  <b>
+                    {this.state.party_data[this.state.rep_data['party_id']][0]}
+                  </b>
+                </h3>
               </Link>
             </div>
           </div>
           <br></br>
         </div>
-
       )
     }
   }

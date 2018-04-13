@@ -24,44 +24,71 @@ export default class About extends Component {
   }
 
   componentWillMount () {
-
     this.setState({ready: false})
 
-    let options = {method: 'GET',
-      url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/stats/contributors'}
+    let options = {
+      method: 'GET',
+      url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/stats/contributors'
+    }
+
     request(options, function (error, response, body) {
       if (error) {
         this.setState({error: true, ready: true})
       }
+
+      /*
+      Group member personal information:
+      Name,
+      Commits, Issues, Tests,
+      Bio,
+      Picture,
+      Role,
+      Nickname
+      */
       let sweMembers = {}
-      sweMembers['MTirtowidjojo'] = ['Michael Tirtowidjojo', 0, 0, 0,
+      sweMembers['MTirtowidjojo'] = ['Michael Tirtowidjojo',
+        0, 0, 0,
         'Michael is a third-year CS student who trains in Taekwondo and ' +
-        'enjoys reading World War II stories.', 'Michael.png',
-        'Parties front-end and chief of chief naming', 'Mojo Jojo']
-      sweMembers['copperstick6'] = ['William Han', 0, 0, 68,
+        'enjoys reading World War II stories.',
+        'Michael.png',
+        'Parties front-end and chief of chief naming',
+        'Mojo Jojo']
+      sweMembers['copperstick6'] = ['William Han',
+        0, 0, 68,
         'William is a sophomore CS student who enjoys the subtle art of ' +
-        'memes and hackathons.', 'William.jpg',
-        'Districts front-end and backend-unit tests ' +
-        'deployment', 'Bill']
-      sweMembers['raulcodes'] = ['Raul Camacho', 0, 0, 19,
+        'memes and hackathons.',
+        'William.jpg',
+        'Districts front-end and backend-unit tests deployment',
+        'Bill']
+      sweMembers['raulcodes'] = ['Raul Camacho',
+        0, 0, 19,
         'Raul is a senior CS major who will be graduating this semester. ' +
-        'Also he\'s tall. Probably too tall.', 'Raul.png',
+        'Also he\'s tall. Probably too tall.',
+        'Raul.png',
         'Front-end, css, front-end unittests and acceptance tests',
         'Camacho Style Sheets']
-      sweMembers['minwoo0jo'] = ['Minwoo Jo', 0, 0, 0,
+      sweMembers['minwoo0jo'] = ['Minwoo Jo',
+        0, 0, 0,
         'Minwoo is a fourth year student currently pursuing a BSA in CS. He ' +
         'enjoys studying foreign languages and competing in video game ' +
-        'tournaments in his free time.', 'Minwoo.jpg',
-        'District front-end and back-end, API designer', 'MJ']
-      sweMembers['bzsinger'] = ['Benjamin Singer', 0, 0, 0,
+        'tournaments in his free time.',
+        'Minwoo.jpg',
+        'District front-end and back-end, API designer',
+        'MJ']
+      sweMembers['bzsinger'] = ['Benjamin Singer',
+        0, 0, 0,
         'Benny is a third-year CS student who enjoys iOS development, ' +
-        'reading, and following current events.', 'Benny.jpg',
-        'Representatives front-end, District back-end, Documentation', 'Benny']
-      sweMembers['palakhirpara'] = ['Palak Hirpara', 0, 0, 34,
-
+        'reading, and following current events.',
+        'Benny.jpg',
+        'Representatives front-end, District back-end, Documentation',
+        'Benny']
+      sweMembers['palakhirpara'] = ['Palak Hirpara',
+        0, 0, 34,
         'Palak is a senior who will be graduating this semester with BSCS ' +
-        'and likes watching cricket.', 'Palak.png',
-        'Representatives front-end and back-end, Districts back-end, back-end unittests',
+        'and likes watching cricket.',
+        'Palak.png',
+        'Representatives front-end and back-end, Districts back-end, ' +
+        'back-end unittests',
         'The Decider']
 
       let commitJSON = JSON.parse(body)
@@ -78,37 +105,42 @@ export default class About extends Component {
       })
 
       this.setState({totalCommits: totalCommits, totalTests: totalTests})
-      var eof = false;
-      var page = 1;
-      var JSON_total_length = 0;
-      while(!eof) {
-        var options = { method: 'GET',
-        url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all&per_page=100&page=' + String(page),
-        qs: { state: 'all' },
-        };
-        page++;
-        //hardcoded value because I don't know how to force this loop to be asynchronous
-        if (page == 5) {
-          break;
+      let eof = false
+      let page = 1
+      let jsonTotalLength = 0
+      while (!eof) {
+        let options = {
+          method: 'GET',
+          url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all&per_page=100&page=' + String(page),
+          qs: {
+            state: 'all'
+          }
+        }
+        page++
+        /* TODO: fix hard-coded limit to Github API calls --
+        gets up to 500 issues */
+        if (page === 5) {
+          break
         }
 
+        /* eslint-disable no-loop-func */
         request(options, function (error, response, body) {
           if (error) {
-            eof = true;
+            eof = true
             this.setState({error: true, ready: true})
           }
           let issueJSON = JSON.parse(body)
           for (let i = 0; i < issueJSON.length; i++) {
-            if(String(issueJSON[i]['user']['login']) in sweMembers){
+            if (String(issueJSON[i]['user']['login']) in sweMembers) {
               sweMembers[String(issueJSON[i]['user']['login'])][2] += 1
             }
-            if (issueJSON[i]['number'] == 1) {
-              eof = true;
+            if (issueJSON[i]['number'] === 1) {
+              eof = true
             }
           }
-         JSON_total_length += issueJSON.length;
+          jsonTotalLength += issueJSON.length
           this.setState({swe_member_data: sweMembers,
-            total_issues: JSON_total_length})
+            total_issues: jsonTotalLength})
         }.bind(this))
       }
 
@@ -182,17 +214,17 @@ export default class About extends Component {
             </div>
           </div>
           <p>
-            <a href = 'https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" >
+            <a href = 'https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" rel="noopener noreferrer" >
               GitHub Repository
             </a>
           </p>
           <p>
-            <a href = 'https://wethesweople.gitbooks.io/report/' target="_blank">
+            <a href = 'https://wethesweople.gitbooks.io/report/' target="_blank" rel="noopener noreferrer">
               Technical Report
             </a>
           </p>
           <p>
-            <a href = 'https://wethesweople.gitbooks.io/api/' target="_blank">
+            <a href = 'https://wethesweople.gitbooks.io/api/' target="_blank" rel="noopener noreferrer">
               API Documentation
             </a>
           </p>
@@ -202,7 +234,7 @@ export default class About extends Component {
             </a>
           </p>
           <p>
-            <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds' target="_blank">
+            <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds' target="_blank" rel="noopener noreferrer">
               Travis CI
             </a>
           </p>
@@ -218,7 +250,7 @@ export default class About extends Component {
             <h2>Tools</h2>
           </div>
           <div className='row'>
-            <a href='https://github.com/WeTheSWEople/SWEThePeople/' target="_blank">
+            <a href='https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/github.png')}
@@ -231,7 +263,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.gitbook.com/@wethesweople' target="_blank">
+            <a href='https://www.gitbook.com/@wethesweople' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/gitbook.png')}
@@ -241,7 +273,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://reactjs.org/' target="_blank">
+            <a href='https://reactjs.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/reactjs.png')}
@@ -251,7 +283,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://aws.amazon.com/ec2/' target="_blank">
+            <a href='https://aws.amazon.com/ec2/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/ec2.jpg')}
@@ -261,7 +293,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://getbootstrap.com/' target="_blank">
+            <a href='https://getbootstrap.com/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/bootstrap.png')}
@@ -271,7 +303,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='http://flask.pocoo.org/' target="_blank">
+            <a href='http://flask.pocoo.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/flask.png')}
@@ -281,7 +313,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.nginx.com/' target="_blank">
+            <a href='https://www.nginx.com/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/nginx.png')}
@@ -291,7 +323,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.slack.com/' target="_blank">
+            <a href='https://www.slack.com/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/slack.png')}
@@ -304,7 +336,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://aws.amazon.com/rds/' target="_blank">
+            <a href='https://aws.amazon.com/rds/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require(
@@ -317,7 +349,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.postgresql.org/' target="_blank">
+            <a href='https://www.postgresql.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/post.png')}
@@ -329,7 +361,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.sqlalchemy.org/' target="_blank">
+            <a href='https://www.sqlalchemy.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/sqla.png')}
@@ -341,7 +373,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://mochajs.org/' target="_blank">
+            <a href='https://mochajs.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/mochajs.png')}
@@ -353,7 +385,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.seleniumhq.org/' target="_blank">
+            <a href='https://www.seleniumhq.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/selenium.png')}
@@ -365,7 +397,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.travis-ci.com/' target="_blank">
+            <a href='https://www.travis-ci.com/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/travisci.png')}
@@ -385,44 +417,48 @@ export default class About extends Component {
             <h2>Data Sources</h2>
           </div>
           <div className='row'>
-            <a href='https://projects.propublica.org/api-docs/congress-api/' target="_blank">
+            <a href='https://projects.propublica.org/api-docs/congress-api/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/propubica.jpg')}
                     className='img-responsive' alt='ProPublica logo'/>
                   <h3>ProPublica</h3>
                   <p>
-                    Used to get information about all of the recent bills sponsored by each
-                    representatives and their current status.
+                    Used to get information about all of the recent bills
+                    sponsored by each representative and their current status.
                   </p>
                   <p>
-                     <b> How it was scraped:</b> <br/> We got the API Key from the propublica website.
-                     And we used the key to scrape the data about recent Bills. We
-                     received the data in a json format and converted that into our Bills model
-                    and uploaded it to the PostgresSQL database. All of this is done by a scraper script.
+                    <b> How it was scraped:</b> <br/>
+                    We got an API Key from the ProPublica website and used it
+                    to scrape the data about recent bills. We received the data
+                    in a JSON format, converted it into our Bills model,
+                    and uploaded it to our PostgresSQL database using a scraper
+                    script.
                   </p>
                 </div>
               </div>
             </a>
-            <a href='https://www.govtrack.us/developers/api' target="_blank">
+            <a href='https://www.govtrack.us/developers/api' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/govtrack.png')}
                     className='img-responsive' alt='GovTrack logo'/>
                   <h3>GovTrack</h3>
                   <p>
-                    Used to get information about all of the U.S. representatives,
-                    their party, and corresponding districts.
+                    Used to get information about all of the members of the
+                    House, their parties, and corresponding districts.
                   </p>
-                  <b> How it was scraped:</b> <br/> We used GovTrack to scrape the data about House Representatives.
-                      We did not have to get an API key for this. We received all the data in a json format
-                      and extracted the information about the representatives. The information then was converted
-                      into our Representatives model and uploaded to the PostgresSQL database. All of this is done by a
-                      scraper script.
+                  <b> How it was scraped:</b> <br/>
+                      We used GovTrack to scrape the data about House members.
+                      We did not need API key to access GovTrack data.
+                      We received a response as JSON and extracted information
+                      about each representatives. We then converted the
+                      information into our Representatives model and uploaded to
+                      our PostgresSQL database using a scraper script.
                 </div>
               </div>
             </a>
-            <a href='https://www.census.gov/data/developers/data-sets/decennial-census.html' target="_blank">
+            <a href='https://www.census.gov/data/developers/data-sets/decennial-census.html' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/census.png')}
@@ -432,18 +468,20 @@ export default class About extends Component {
                     Used to get socioeconomics information based on either
                     states or districts from the census.
                   </p>
-                  <b> How it was scraped:</b> <br/> The district data scraper pulls information from the
-                      United State Census Bureau’s 2016 American Community Survey by targeting a
-                      specific list of thirteen data endpoints. For each district in each state,
-                      we pulled data for each of the endpoints and  stored those data points for
-                      the districts. After collecting and storing the data for a district locally,
-                      the scraper converts the data into a District and State model and commits the
+                  <b> How it was scraped:</b> <br/>
+                      The district data scraper pulls information from the
+                      United State Census Bureau’s 2016 American Community
+                      Survey by targeting a specific list of data endpoints.
+                      For each district in each state, we pull and store data
+                      for each of the endpoints. After collecting and storing
+                      the data for a district locally, the scraper converts the
+                      data into a District and State model and commits the
                       models to the database.
                 </div>
               </div>
             </a>
 
-            <a href='https://theunitedstates.io/images/congress/' target="_blank">
+            <a href='https://theunitedstates.io/images/congress/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={
@@ -454,8 +492,9 @@ export default class About extends Component {
                     Used to get images of representatives based on their
                     bioguide id.
                   </p>
-                  <b> How it was scraped:</b> <br/> We used the links to the images of representatives using their
-                  bioguide id.
+                  <b> How it was scraped:</b> <br/>
+                  We used the links to the images of representatives using their
+                  Bioguide id.
                 </div>
               </div>
             </a>

@@ -1,14 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
+import Highlighter from 'react-highlight-words'
 import {Link} from 'react-router-dom'
 /* eslint-enable no-unused-vars */
-
-import Highlighter from "react-highlight-words";
 
 import '../../assets/css/RepresentativeInstance.css'
 
 export default class RepresentativeSingleInstance extends Component {
-  render() {
+  render () {
     const styles = {
       highlight: {
         fontWeight: 'bold',
@@ -17,8 +16,8 @@ export default class RepresentativeSingleInstance extends Component {
     }
 
     let query = []
-    if(this.props.search !== null && this.props.search !== undefined) {
-      query = this.props.search.split(" ")
+    if (this.props.search !== null && this.props.search !== undefined) {
+      query = this.props.search.split(' ')
       query.push(this.props.search)
     }
 
@@ -27,9 +26,12 @@ export default class RepresentativeSingleInstance extends Component {
         <div className='search-card'>
           <img src={'https://theunitedstates.io/images/congress/225x275/' +
             this.props.rep.bioguide + '.jpg'}
+          alt={this.props.rep.firstname + ' ' +
+            this.props.rep.lastname}
           className='rep_img'
-          onError={(e) => {e.target.src=require(
-            '../../assets/images/reps/default.png')}} />
+          onError={(e) => {
+            e.target.src = require('../../assets/images/reps/default.png')
+          } } />
 
           <div className='rep_info'>
             <h3 className='title'>

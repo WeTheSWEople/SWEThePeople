@@ -5,6 +5,7 @@ import {Grid, Row, Col} from 'react-bootstrap'
 
 import '../../assets/css/Members.css'
 
+/* Component for team group member box on About page */
 export default class Members extends Component {
   render () {
     let mapping = Object.keys(this.props.swe_data).map((item) =>
