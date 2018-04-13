@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import Highlighter from 'react-highlight-words';
+import Highlighter from 'react-highlight-words'
 
 /* eslint-enable no-unused-vars */
 
@@ -30,27 +30,21 @@ export default class PoliticalPartySingleInstance extends Component {
     }
 
     if (this.props.search === undefined) {
-      searched =  <p>
-                      Representatives: {numReps}
-                  </p>
+      searched = <p> Representatives: {numReps} </p>
     }
 
     let chair = ''
     if (this.props.party.chair === '') {
-      chair = <p>
-                Party chair:<br /> None
-              </p>
+      chair = <p> Party chair:<br /> None </p>
     } else {
-      chair = <p>
-                Party chair:<br />
-                <Highlighter
-                    searchWords={query}
-                    autoEscape={true}
-                    highlightStyle={styles.highlight}
-                    textToHighlight={this.props.party.chair} />
-              </p>
+      chair = <p> Party chair:<br />
+        <Highlighter
+          searchWords={query}
+          autoEscape={true}
+          highlightStyle={styles.highlight}
+          textToHighlight={this.props.party.chair} />
+      </p>
     }
-
 
     return (
       <Link to={`/party/${this.props.party.path}`} className='search-card-link'>

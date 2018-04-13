@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
-import {Navbar, Nav, NavItem, Button, FormGroup, FormControl} from 'react-bootstrap'
+import {Navbar, Nav, NavItem, Button, FormGroup, FormControl} from
+  'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import {Link} from 'react-router-dom'
 /* eslint-enable no-unused-vars */
