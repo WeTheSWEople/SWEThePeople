@@ -131,11 +131,11 @@ export default class About extends Component {
           }
           let issueJSON = JSON.parse(body)
           for (let i = 0; i < issueJSON.length; i++) {
-            if(String(issueJSON[i]['user']['login']) in sweMembers){
+            if (String(issueJSON[i]['user']['login']) in sweMembers) {
               sweMembers[String(issueJSON[i]['user']['login'])][2] += 1
             }
-            if (issueJSON[i]['number'] == 1) {
-              eof = true;
+            if (issueJSON[i]['number'] === 1) {
+              eof = true
             }
           }
           jsonTotalLength += issueJSON.length
