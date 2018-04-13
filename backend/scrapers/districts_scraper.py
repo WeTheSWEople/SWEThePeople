@@ -1,12 +1,14 @@
 import requests
 import json
 import os
-#import apikeys
-from app.app import create_app, db
-from app.models import District, State
+import sys
+from apikeys import API
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+from app import create_app, db
+from models import District, State
 
-CENSUS_API_KEY = 'e6d938b2ce182a3d35b4ab995f9a28f07a9c6350'
-PROPUBLICA_API_KEY = 'icU6XnQ63Mu9qDhEg1QCz0Emb7wt5n9GoLEAEnmI'
+CENSUS_API_KEY = API['CENSUS_API_KEY']
+PROPUBLICA_API_KEY = API['PROPUBLICA_API_KEY']
 
 headers = {
 	'x-api-key': PROPUBLICA_API_KEY,
@@ -26,16 +28,21 @@ class CensusURL:
 			'&for=congressional%20district:*&in=state:' + str(self.state) + \
 			'&key=' + CENSUS_API_KEY
 
-endpoints = json.load(open('./src/dictionaries/acs2016_endpoints.json'))
-fips_state_codes = json.load(open('./src/dictionaries/fips_state_codes.json'))
+endpoints = json.load(open('backend/scrapers/src/dictionaries/acs2016_endpoints.json'))
+fips_state_codes = json.load(open('backend/scrapers/src/dictionaries/fips_state_codes.json'))
 usps_state_abbreviations = json.load(
-	open('./dictionaries/usps_state_abbreviations.json'))
+	open('backend/scrapers/src/dictionaries/usps_state_abbreviations.json'))
 
 app = create_app()
 app.app_context().push()
 
 for num in range(1, 57):
-	# only using US states
+	# skip over non US States
+	# 3 = American Samoa
+	# 7 = Canal Zone
+	# 14 = Guam
+	# 43 = Puerto Rico
+	# 52 = US Virgin Islands
 	if num == 3 or num == 7 or num == 11 or num == 14 or num == 43 or num == 52:
 		continue
 	districts = {}

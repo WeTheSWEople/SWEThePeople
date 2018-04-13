@@ -24,7 +24,7 @@ export default class About extends Component {
   }
 
   componentWillMount () {
-    
+
     this.setState({ready: false})
 
     let options = {method: 'GET',
@@ -99,7 +99,9 @@ export default class About extends Component {
           }
           let issueJSON = JSON.parse(body)
           for (let i = 0; i < issueJSON.length; i++) {
-            sweMembers[String(issueJSON[i]['user']['login'])][2] += 1
+            if(String(issueJSON[i]['user']['login']) in sweMembers){
+              sweMembers[String(issueJSON[i]['user']['login'])][2] += 1
+            }
             if (issueJSON[i]['number'] == 1) {
               eof = true;
             }
@@ -180,17 +182,17 @@ export default class About extends Component {
             </div>
           </div>
           <p>
-            <a href = 'https://github.com/WeTheSWEople/SWEThePeople/'>
+            <a href = 'https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" >
               GitHub Repository
             </a>
           </p>
           <p>
-            <a href = 'https://wethesweople.gitbooks.io/report/'>
+            <a href = 'https://wethesweople.gitbooks.io/report/' target="_blank">
               Technical Report
             </a>
           </p>
           <p>
-            <a href = 'https://wethesweople.gitbooks.io/api/'>
+            <a href = 'https://wethesweople.gitbooks.io/api/' target="_blank">
               API Documentation
             </a>
           </p>
@@ -200,7 +202,7 @@ export default class About extends Component {
             </a>
           </p>
           <p>
-            <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds'>
+            <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds' target="_blank">
               Travis CI
             </a>
           </p>
@@ -216,7 +218,7 @@ export default class About extends Component {
             <h2>Tools</h2>
           </div>
           <div className='row'>
-            <a href='https://github.com/WeTheSWEople/SWEThePeople/'>
+            <a href='https://github.com/WeTheSWEople/SWEThePeople/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/github.png')}
@@ -229,7 +231,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.gitbook.com/@wethesweople'>
+            <a href='https://www.gitbook.com/@wethesweople' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/gitbook.png')}
@@ -239,7 +241,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://reactjs.org/'>
+            <a href='https://reactjs.org/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/reactjs.png')}
@@ -249,7 +251,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://aws.amazon.com/ec2/'>
+            <a href='https://aws.amazon.com/ec2/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/ec2.jpg')}
@@ -259,7 +261,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://getbootstrap.com/'>
+            <a href='https://getbootstrap.com/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/bootstrap.png')}
@@ -269,7 +271,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='http://flask.pocoo.org/'>
+            <a href='http://flask.pocoo.org/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/flask.png')}
@@ -279,7 +281,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.nginx.com/'>
+            <a href='https://www.nginx.com/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/nginx.png')}
@@ -289,7 +291,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.slack.com/'>
+            <a href='https://www.slack.com/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/slack.png')}
@@ -302,7 +304,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://aws.amazon.com/rds/'>
+            <a href='https://aws.amazon.com/rds/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require(
@@ -315,7 +317,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.postgresql.org/'>
+            <a href='https://www.postgresql.org/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/post.png')}
@@ -327,7 +329,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.sqlalchemy.org/'>
+            <a href='https://www.sqlalchemy.org/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/sqla.png')}
@@ -339,7 +341,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://mochajs.org/'>
+            <a href='https://mochajs.org/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/mochajs.png')}
@@ -351,7 +353,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.seleniumhq.org/'>
+            <a href='https://www.seleniumhq.org/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/selenium.png')}
@@ -363,7 +365,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.travis-ci.com/'>
+            <a href='https://www.travis-ci.com/' target="_blank">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/travisci.png')}
@@ -383,7 +385,7 @@ export default class About extends Component {
             <h2>Data Sources</h2>
           </div>
           <div className='row'>
-            <a href='https://projects.propublica.org/api-docs/congress-api/'>
+            <a href='https://projects.propublica.org/api-docs/congress-api/' target="_blank">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/propubica.jpg')}
@@ -394,7 +396,7 @@ export default class About extends Component {
                     representatives and their current status.
                   </p>
                   <p>
-                     <b> How it was scraped:</b> <br/> We got the API Key from the propublica website. 
+                     <b> How it was scraped:</b> <br/> We got the API Key from the propublica website.
                      And we used the key to scrape the data about recent Bills. We
                      received the data in a json format and converted that into our Bills model
                     and uploaded it to the PostgresSQL database. All of this is done by a scraper script.
@@ -402,7 +404,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.govtrack.us/developers/api'>
+            <a href='https://www.govtrack.us/developers/api' target="_blank">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/govtrack.png')}
@@ -412,15 +414,15 @@ export default class About extends Component {
                     Used to get information about all of the U.S. representatives,
                     their party, and corresponding districts.
                   </p>
-                  <b> How it was scraped:</b> <br/> We used GovTrack to scrape the data about House Representatives. 
+                  <b> How it was scraped:</b> <br/> We used GovTrack to scrape the data about House Representatives.
                       We did not have to get an API key for this. We received all the data in a json format
-                      and extracted the information about the representatives. The information then was converted 
-                      into our Representatives model and uploaded to the PostgresSQL database. All of this is done by a 
+                      and extracted the information about the representatives. The information then was converted
+                      into our Representatives model and uploaded to the PostgresSQL database. All of this is done by a
                       scraper script.
                 </div>
               </div>
             </a>
-            <a href='https://www.census.gov/data/developers/data-sets/decennial-census.html'>
+            <a href='https://www.census.gov/data/developers/data-sets/decennial-census.html' target="_blank">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/census.png')}
@@ -430,18 +432,18 @@ export default class About extends Component {
                     Used to get socioeconomics information based on either
                     states or districts from the census.
                   </p>
-                  <b> How it was scraped:</b> <br/> The district data scraper pulls information from the 
-                      United State Census Bureau’s 2016 American Community Survey by targeting a 
-                      specific list of thirteen data endpoints. For each district in each state, 
-                      we pulled data for each of the endpoints and  stored those data points for 
-                      the districts. After collecting and storing the data for a district locally, 
-                      the scraper converts the data into a District and State model and commits the 
+                  <b> How it was scraped:</b> <br/> The district data scraper pulls information from the
+                      United State Census Bureau’s 2016 American Community Survey by targeting a
+                      specific list of thirteen data endpoints. For each district in each state,
+                      we pulled data for each of the endpoints and  stored those data points for
+                      the districts. After collecting and storing the data for a district locally,
+                      the scraper converts the data into a District and State model and commits the
                       models to the database.
                 </div>
               </div>
             </a>
 
-            <a href='https://theunitedstates.io/images/congress/'>
+            <a href='https://theunitedstates.io/images/congress/' target="_blank">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={
@@ -450,7 +452,7 @@ export default class About extends Component {
                   <h3>TheUnitedStates.io</h3>
                   <p>
                     Used to get images of representatives based on their
-                    bioguide id.      
+                    bioguide id.
                   </p>
                   <b> How it was scraped:</b> <br/> We used the links to the images of representatives using their
                   bioguide id.
