@@ -1,189 +1,145 @@
-# WE THE SWEEPLE
-Iteration 1.0 of our flask/react stack.
+# swethepeople.me ![Build Status](https://travis-ci.org/WeTheSWEople/SWEThePeople.svg?branch=master)
 
-## Local Setup
-Clone the repo
-Go to the idb folder `cd idb`
+An IDB project for CS 373: Software Engineering that brings together data on
+American political parties, representatives, and congressional districts.
 
-### Frontend Setup
-Setup the frontend
+- Website: [swethepeople.me](http://www.swethepeople.me)
+- API: [api.swethepeople.me](http://www.api.swethepeople.me)
+- Technical report: [https://wethesweople.gitbooks.io/report/](https://wethesweople.gitbooks.io/report/)
 
-Go to the frontend folder
-`cd idb`
-
-Run `npm install` to install dependencies
-
-Run `npm run build` to bundle and build the static assets for the flask server
-
-Proceed to server setup below
-
-### Server Setup
-To run a virtual environment:
-Create virtual environment
+## Install Repo Locally
+1. Clone the repository
 ```
-virtualenv venv
+$ https://github.com/WeTheSWEople/SWEThePeople.git
 ```
 
-Activate the virtual environment
+2. Install frontend dependencies
 ```
-source venv/bin/activate
-```
-
-Install requirements in the virtual environment
-```
-pip install -r requirements.txt
+$ cd frontend
+$ npm install
 ```
 
-Setup PYTHONPATH
+3. Install backend dependencies
 ```
-export PYTHONPATH=.:$PYTHONPATH
-```
-
-Run the server
-```
-python router.py
+$ cd backend
+$ pip2.7 install -r requirements.txt
 ```
 
-Visit 127.0.0.1:5000 for the starter site
-
-
-## EC2 Setup:
-Make sure you are in your ec2 instance. You can access it via ssh.
-
-1. Clone the repo
-2. Make sure the build folder is up to date with the most recent builds
-3. Run `pip install -r requirements.txt`
-4. You have a choice here. You can either run this app using Gunicorn via `gunicorn router:app -b localhost:8000 & -D` or with flask itself `python router.py &`
-5. Go to your public DNS and add a :5000 and watch your website go live!
-
-
-
-
-## Collecting Data:
-How to run the scraper files:
-1. cd into the app folder
-
+## Running the Site Locally
+### Server
+Run the server locally using:
 ```
-cd app/
-
+$ cd frontend
+$ npm start
 ```
 
-2. Create virtual environment and install modules
+Then, access the local site by visiting `localhost:3000`
 
+### API
+Run the API locally using:
 ```
-virtualenv venv
-```
-
-```
-source venv/bin/activate
-```
-
-```
-pip install -r requirements.txt
+$ cd backend
+$ python2.7 main.py
 ```
 
+Then, access the local API by visiting `0.0.0.0:4040`
+
+## Running Tests
+### Frontend Unit Tests
+In the frontend folder, run the test script (located at `frontend/tests.js`)
 ```
-export PYTHONPATH=.:$PYTHONPATH
+$ cd frontend
+$ npm test
 ```
 
-3. Go to the main directory and run the scraper file:
-
+### Frontend Acceptance Tests
+Frontend acceptance tests run using the Selenium web driver.
+1. Install [Firefox](https://www.mozilla.org/en-US/firefox/new/)
+2. Install [geckodriver](https://github.com/mozilla/geckodriver)
+(should install to `/user/local/bin/`)
+3. Run the test script
 ```
-python districts_scraper.py
+$ python2.7 guitests.py
 ```
-
-## Running the API Locally:
-1. cd into the app folder
-2. Create virtual environment (same step as above)
-3. Run the main python file
-
-```
-python main.py
-```
-4. Visit the api at http://0.0.0.0:4040/representative/A000374
-
-## Setting up PgAdmin for Postgress:
-
-**Download PgAdmin 4 from here:** https://www.pgadmin.org/download/
-
-**Create a new server**
-- Right click on servers -> create server
-- Fill in the name as "swethepeople"
-- Fill in the "host name/address" under the connection tab (look for host address in slack)
-- Save
-
-**Connect to the server**
-- Right click and connect to the server
-- Fill in the username and password
-
-**Accesing Tables**
-- Expand the server tab
-- Go to Databases -> Swethepeople -> Schemas -> Tables
-
-## Testing
-
-### Frontend unit tests
-1. cd into the frontend folder
-2. run the test script
-```
-npm test
-```
-- Test script is at
-```
-frontend/tests.js
-```
-
-### Frontend acceptance tests (Selenium)
-1. Have firefox installed, along with geckodriver (ensure in usr/local/bin)
-2. cd into frontend folder
-3. create virtual environment in frontend folder:
-```
-virtualenv venv
-```
-
-```
-source venv/bin/activate
-```
-
-4. Install requirements in the virtual environment
-```
-pip install -r requirements.txt
-```
-
-5. Run the test script
-```
-python guitests.py
-```
-
 
 ### Backend tests
+In the backend folder, run the test script
 ```
-virtualenv venv
-```
-
-```
-source venv/bin/activate
-```
-
-```
-pip install -r backend/requirements.txt
-```
-
-```
-python backend/tests.py
+$ cd backend
+$ python2.7 tests.py
 ```
 
 ### Postman tests
-
+Ensure newman is installed, then run the tests in the repo's base directory
 ```
-npm install -g newman
-```
-
-```
-newman run Postman.json
+$ npm install -g newman
+$ newman run Postman.json
 ```
 
+## Running the Scrapers
+The scrapers will store information in the database defined in `config.json`. The scrapers **must** be run in the order below to ensure that the data is stored properly.
 
+From the backend folder:
+```
+$ cd backend
+```
 
+1. Run the political parties seeder
+```
+$ python2.7 party_seed.py
+```
 
+2. Run the representative scraper
+```
+$ python2.7 representatives_scraper.py
+```
 
+3. Run the congressional districts scraper
+```
+$ python2.7 districts_scraper.py
+```
+
+## Setting up PgAdmin for Postgres
+[Download PgAdmin 4](https://www.pgadmin.org/download/)
+
+### Creating a new server
+1. Right click on servers -> create server
+2. Fill in the name as `swethepeople`
+3. Fill in the `host name/address` under the connection tab.
+4. Save
+
+### Connect to the server
+1. Right click and connect to the server
+2. Fill in the username and password
+
+### Accessing tables
+1. Expand the server tab
+2. Go to Databases -> swethepeople -> Schemas -> Tables
+
+## EC2 Setup
+1. SSH into the EC2 instance
+2. Clone the repository
+```
+$ https://github.com/WeTheSWEople/SWEThePeople.git`
+```
+3. Change into frontend
+```
+$ cd frontend
+```
+4. Install dependencies
+```
+$ pip2.7 install -r requirements.txt
+$ npm install
+```
+5. Build the project
+```
+$ npm run build
+```
+6. You have a choice here. You can either run using Gunicorn via
+```
+$ gunicorn router:app -b localhost:8000
+```
+or with flask itself via
+```
+$ python router.py &
+```

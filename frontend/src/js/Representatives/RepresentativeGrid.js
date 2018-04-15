@@ -43,19 +43,11 @@ export default class RepresentativeGrid extends Component {
 
 	this.getRepData = this.getRepData.bind(this)
 	this.handlePageClick = this.handlePageClick.bind(this)
-	this.getRepData({
-	  state: this.props.state_value,
-	  party_id: this.props.party_value,
-	  votes_pct: this.props.vote_value,
-	  last_name: this.props.lastname_value,
-	  order_by: this.props.sort_value
-	})
   }
 
   handlePageClick(data){
-		this.setState({displayed_reps: this.state.all_reps.subarray(data.selected*25, (data.selected+1)*25)})
-	}
-
+    this.setState({displayed_reps: this.state.all_reps.subarray(data.selected*24, (data.selected+1)*24)})
+  }
 
   getRepData (filterParams) {
 	this.setState({all_reps: null})
@@ -63,7 +55,7 @@ export default class RepresentativeGrid extends Component {
 	  if (response.data.length === 0) {
 		this.setState({all_reps: -2, displayed_reps: -2})
 	  } else {
-		this.setState({all_reps: response.data, displayed_reps: response.data.slice(0,25), cur_page: response.data.length/25,})
+		this.setState({all_reps: response.data, displayed_reps: response.data.slice(0,24), cur_page: response.data.length/24,})
 	  }
 	  // get the party names
 	  return axios.get(url.api_url + `party?party_name=True`)
@@ -74,16 +66,6 @@ export default class RepresentativeGrid extends Component {
 		all_reps: -1,
 		party_name: -1
 	  })
-	})
-  }
-
-  componentDidMount () {
-	this.getRepData({
-	  state: 'None',
-	  party_id: 'None',
-	  last_name: 'A-Z',
-	  votes_pct: 'None',
-	  order_by: 'last_asc'
 	})
   }
 
@@ -120,34 +102,31 @@ export default class RepresentativeGrid extends Component {
 	  )
 	} else {
 	  return (
-		<div className='App'>
-		  <div className='grid-container filter-grid-root'>
-			<GridList
-			  cellHeight={400}
-			  cols={5}
-			  className='gridlist-container filter-grid-list'
-			>
-			  {this.state.displayed_reps.map((item) => (
-				<RepresentativeInstance
-				  key={item.bioguide}
-				  rep={item}
-				  party_name={this.state.party_name[item.party_id][0]} />
-			  ))}
-			</GridList>
-			<ReactPaginate previousLabel={"previous"}
-				nextLabel={"next"}
-				breakLabel={<a>...</a>}
-				breakClassName={"break-me"}
-				pageCount={Math.ceil(this.state.cur_page)}
-				marginPagesDisplayed={2}
-				pageRangeDisplayed={5}
-				onPageChange={this.handlePageClick}
-				containerClassName={"pagination"}
-				subContainerClassName={"pages pagination"}
-				activeClassName={"active"} />
-		  </div>
-		</div>
-	  )
-	}
+        <div className='App'>
+          <div className='grid-container filter-grid-root'>
+            <div className='row'>
+              {this.state.displayed_reps.map((item) => (
+                <RepresentativeInstance
+                  key={item.bioguide}
+                  rep={item}
+                  party_name={this.state.party_name[item.party_id][0]} />
+              ))}
+            </div>
+            <ReactPaginate previousLabel={"previous"}
+              nextLabel={"next"}
+              breakLabel={<a>...</a>}
+              breakClassName={"break-me"}
+              pageCount={Math.ceil(this.state.cur_page)}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={this.handlePageClick}
+              containerClassName={"pagination"}
+              subContainerClassName={"pages pagination"}
+              activeClassName={"active"}
+            />
+          </div>
+        </div>
+      )
+    }
   }
-}
+  }

@@ -3,12 +3,13 @@ import React, {Component} from 'react'
 import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 import Select from 'react-select'
+import {withCookies, Cookies} from 'react-cookie'
 /* eslint-disable no-unused-vars */
 
 import '../../assets/css/Filter.css'
 import 'react-select/dist/react-select.css'
 
-export default class DistrictFilter extends Component {
+class DistrictFilter extends Component {
   constructor (props) {
     super(props)
 
@@ -28,7 +29,7 @@ export default class DistrictFilter extends Component {
     }
 
     this.handleStateDropdownChange = this.handleStateDropdownChange.bind(this)
-    this.handlePopluationDropdownChange = this.handlePopluationDropdownChange
+    this.handlePopulationDropdownChange = this.handlePopulationDropdownChange
       .bind(this)
     this.handleMedianAgeDropdownChange = this.handleMedianAgeDropdownChange
       .bind(this)
@@ -37,19 +38,56 @@ export default class DistrictFilter extends Component {
     this.handleResetClicked = this.handleResetClicked.bind(this)
   }
 
+  componentDidMount () {
+    let state = 'None'
+    let population = 'None'
+    let medianAge = 'None'
+    let sort = 'state_asc'
+
+    const {cookies} = this.props
+    if (cookies.get('district_state_filter')) {
+      this.handleStateDropdownChange(cookies.get('district_state_filter'))
+      state = cookies.get('district_state_filter').value
+    }
+    if (cookies.get('district_population_filter')) {
+      this.handlePopulationDropdownChange(
+        cookies.get('district_population_filter'))
+      population = cookies.get('district_population_filter').value
+    }
+    if (cookies.get('district_median_age_filter')) {
+      this.handleMedianAgeDropdownChange(
+        cookies.get('district_median_age_filter'))
+      medianAge = cookies.get('district_median_age_filter').value
+    }
+    if (cookies.get('district_sort_filter')) {
+      this.handleSortDropdownChange(cookies.get('district_sort_filter'))
+      sort = cookies.get('district_sort_filter').value
+    }
+
+    this.props.buttonHandler(state, population, medianAge, sort)
+  }
+
   handleStateDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('district_state_filter', selectedOption)
     this.setState({state_value: selectedOption})
   }
 
-  handlePopluationDropdownChange (selectedOption) {
+  handlePopulationDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('district_population_filter', selectedOption)
     this.setState({population_value: selectedOption})
   }
 
   handleMedianAgeDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('district_median_age_filter', selectedOption)
     this.setState({median_age_value: selectedOption})
   }
 
   handleSortDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('district_sort_filter', selectedOption)
     this.setState({sort_value: selectedOption})
   }
 
@@ -78,12 +116,10 @@ export default class DistrictFilter extends Component {
   }
 
   handleResetClicked (e) {
-    this.setState({
-      state_value: null,
-      population_value: null,
-      median_age_value: null,
-      sort_value: 'state_asc'
-    })
+    this.handleStateDropdownChange(null)
+    this.handlePopulationDropdownChange(null)
+    this.handleMedianAgeDropdownChange(null)
+    this.handleSortDropdownChange(null)
     this.props.buttonHandler('None', 'None', 'None', 'state_asc')
   }
 
@@ -106,7 +142,7 @@ export default class DistrictFilter extends Component {
             <Select className='pop-filter'
               name='district-population'
               value={this.state.population_value}
-              onChange={this.handlePopluationDropdownChange}
+              onChange={this.handlePopulationDropdownChange}
               options={[{value: '0-250000', label: '< 250,000'},
                 {value: '250000-500000', label: '250,000 - 499,999'},
                 {value: '500000-750000', label: '500,000 - 749,999'},
@@ -158,3 +194,5 @@ export default class DistrictFilter extends Component {
     )
   }
 }
+
+export default withCookies(DistrictFilter)

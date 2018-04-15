@@ -57,6 +57,12 @@ class TestStringMethods(unittest.TestCase):
 	def test6(self):
 		response = requests.request("GET", live_api_url + "representative/")
 		result = response.json()
+		with open('result.txt', 'a') as resultFile:
+			resultFile.write(result)
+			resultFile.close()
+		with open('response.txt', 'a') as getResponseFile:
+			getResponseFile.write([getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
+			getResponseFile.close()
 		with app.app_context():
 			self.assertEqual(result, [getResponse(rep) for rep in Representative.query.order_by(Representative.bioguide).limit(500).all()])
 		print("\nTEST 6: Live API is up: Representative data consistent with DB data. Response OK")

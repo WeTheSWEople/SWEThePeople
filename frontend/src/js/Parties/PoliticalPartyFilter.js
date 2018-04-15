@@ -3,12 +3,13 @@ import React, {Component} from 'react'
 import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 import Select from 'react-select'
+import {withCookies, Cookies} from 'react-cookie'
 /* eslint-disable no-unused-vars */
 
 import '../../assets/css/Filter.css'
 import 'react-select/dist/react-select.css'
 
-export default class PoliticalPartyFilter extends Component {
+class PoliticalPartyFilter extends Component {
   constructor (props) {
     super(props)
 
@@ -30,23 +31,67 @@ export default class PoliticalPartyFilter extends Component {
     this.handleResetClicked = this.handleResetClicked.bind(this)
   }
 
+  componentDidMount () {
+    let social = 'None'
+    let color = 'None'
+    let formationDate = 'None'
+    let name = 'A-Z'
+    let sort = 'None'
+
+    const {cookies} = this.props
+    if (cookies.get('party_social_media_filter')) {
+      this.handleSocialDropdownChange(cookies.get('party_social_media_filter'))
+      social = cookies.get('party_social_media_filter').value
+    }
+    if (cookies.get('party_color_filter')) {
+      this.handleColorDropdownChange(cookies.get('party_color_filter'))
+      color = cookies.get('party_color_filter').value
+    }
+    if (cookies.get('party_formation_date_filter')) {
+      this.handleFormationDateDropdownChange(
+        cookies.get('party_formation_date_filter'))
+      formationDate = cookies.get('party_formation_date_filter').value
+    }
+    if (cookies.get('party_name_filter')) {
+      this.handleNameDropdownChange(cookies.get('party_name_filter'))
+      name = cookies.get('party_name_filter').value
+    }
+    if (cookies.get('party_sort_filter')) {
+      this.handleSortDropdownChange(cookies.get('party_sort_filter'))
+      sort = cookies.get('party_sort_filter').value
+    }
+
+    this.props.buttonHandler(social, color, formationDate, name, sort)
+  }
+
   handleSocialDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('party_social_media_filter', selectedOption)
     this.setState({social_value: selectedOption})
   }
 
   handleColorDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('party_color_filter', selectedOption)
     this.setState({color_value: selectedOption})
+    console.log(this.state)
   }
 
   handleFormationDateDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('party_formation_date_filter', selectedOption)
     this.setState({formation_date_value: selectedOption})
   }
 
   handleNameDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('party_name_filter', selectedOption)
     this.setState({name_value: selectedOption})
   }
 
   handleSortDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('party_sort_filter', selectedOption)
     this.setState({sort_value: selectedOption})
   }
 
@@ -80,13 +125,11 @@ export default class PoliticalPartyFilter extends Component {
   }
 
   handleResetClicked (e) {
-    this.setState({
-      social_value: null,
-      color_value: null,
-      formation_date_value: null,
-      name_value: null,
-      sort_value: null
-    })
+    this.handleSocialDropdownChange(null)
+    this.handleColorDropdownChange(null)
+    this.handleFormationDateDropdownChange(null)
+    this.handleNameDropdownChange(null)
+    this.handleSortDropdownChange(null)
 
     this.props.buttonHandler('None', 'None', 'None', 'A-Z', 'None')
   }
@@ -187,3 +230,5 @@ export default class PoliticalPartyFilter extends Component {
     )
   }
 }
+
+export default withCookies(PoliticalPartyFilter)

@@ -184,11 +184,16 @@ export default class RepresentativeDetails extends Component {
                     </Link>
                   </p>
                   <p>
+<<<<<<< HEAD
                     <b>
                       <a href={this.state.rep_data['url']} target="_blank">
                         Website
                       </a>
                     </b>
+=======
+                    <b> Site: </b>
+                    <a href={this.state.rep_data['url']} target="_blank" rel="noopener noreferrer">Website </a>
+>>>>>>> 0457ed6c1be7c3c54efb3786a41a8ec15e110a5c
                   </p>
                   <p>
                     <b>Votes with Party (%): </b>

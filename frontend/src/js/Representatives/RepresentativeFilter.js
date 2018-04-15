@@ -3,12 +3,13 @@ import React, {Component} from 'react'
 import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 import Select from 'react-select'
+import {withCookies, Cookies} from 'react-cookie'
 /* eslint-disable no-unused-vars */
 
 import '../../assets/css/Filter.css'
 import 'react-select/dist/react-select.css'
 
-export default class RepresentativeFilter extends Component {
+class RepresentativeFilter extends Component {
   constructor (props) {
     super(props)
 
@@ -44,23 +45,65 @@ export default class RepresentativeFilter extends Component {
     this.handleResetClicked = this.handleResetClicked.bind(this)
   }
 
+  componentDidMount () {
+    let state = 'None'
+    let party = 'None'
+    let votes = 'None'
+    let lastname = 'A-Z'
+    let sort = 'last_asc'
+
+    const {cookies} = this.props
+    if (cookies.get('rep_state_filter')) {
+      this.handleStateDropdownChange(cookies.get('rep_state_filter'))
+      state = cookies.get('rep_state_filter').value
+    }
+    if (cookies.get('rep_party_filter')) {
+      this.handlePartyDropdownChange(cookies.get('rep_party_filter'))
+      party = cookies.get('rep_party_filter').value
+    }
+    if (cookies.get('rep_votes_filter')) {
+      this.handleVoteDropdownChange(cookies.get('rep_votes_filter'))
+      votes = cookies.get('rep_votes_filter').value
+    }
+    if (cookies.get('rep_lastname_filter')) {
+      this.handleLastnameDropdownChange(cookies.get('rep_lastname_filter'))
+      lastname = cookies.get('rep_lastname_filter').value
+    }
+    if (cookies.get('rep_sort_filter')) {
+      this.handleSortDropdownChange(cookies.get('rep_sort_filter'))
+      sort = cookies.get('rep_sort_filter').value
+    }
+
+    this.props.buttonHandler(state, party, votes, lastname, sort)
+  }
+
   handleStateDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('rep_state_filter', selectedOption)
     this.setState({state_value: selectedOption})
   }
 
   handlePartyDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('rep_party_filter', selectedOption)
     this.setState({party_value: selectedOption})
   }
 
   handleVoteDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('rep_votes_filter', selectedOption)
     this.setState({vote_value: selectedOption})
   }
 
   handleLastnameDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('rep_lastname_filter', selectedOption)
     this.setState({lastname_value: selectedOption})
   }
 
   handleSortDropdownChange (selectedOption) {
+    const {cookies} = this.props
+    cookies.set('rep_sort_filter', selectedOption)
     this.setState({sort_value: selectedOption})
   }
 
@@ -94,13 +137,11 @@ export default class RepresentativeFilter extends Component {
   }
 
   handleResetClicked (e) {
-    this.setState({
-      state_value: null,
-      party_value: null,
-      vote_value: null,
-      lastname_value: null,
-      sort_value: null
-    })
+    this.handleStateDropdownChange(null)
+    this.handlePartyDropdownChange(null)
+    this.handleVoteDropdownChange(null)
+    this.handleLastnameDropdownChange(null)
+    this.handleSortDropdownChange(null)
     this.props.buttonHandler('None', 'None', 'None', 'A-Z', 'last_asc')
   }
 
@@ -182,3 +223,5 @@ export default class RepresentativeFilter extends Component {
     )
   }
 }
+
+export default withCookies(RepresentativeFilter)

@@ -75,7 +75,7 @@ export default class RepBills extends Component {
               <b> Lastest Major Action: </b>
               {this.state.bills_data[item]['latest_major_action']}
             </h3>
-            <a href={this.state.bills_data[item]['congressdotgov_url']} target="_blank">
+            <a href={this.state.bills_data[item]['congressdotgov_url']} target="_blank" rel="noopener noreferrer">
               Congress.gov
             </a>
           </div>
