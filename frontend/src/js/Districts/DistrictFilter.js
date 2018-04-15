@@ -39,7 +39,6 @@ class DistrictFilter extends Component {
   }
 
   componentDidMount () {
-    let shouldUpdate = false
     let state = 'None'
     let population = 'None'
     let medianAge = 'None'
@@ -48,30 +47,24 @@ class DistrictFilter extends Component {
     const {cookies} = this.props
     if (cookies.get('district_state_filter')) {
       this.handleStateDropdownChange(cookies.get('district_state_filter'))
-      shouldUpdate = true
       state = cookies.get('district_state_filter').value
     }
     if (cookies.get('district_population_filter')) {
       this.handlePopulationDropdownChange(
         cookies.get('district_population_filter'))
-      shouldUpdate = true
       population = cookies.get('district_population_filter').value
     }
     if (cookies.get('district_median_age_filter')) {
       this.handleMedianAgeDropdownChange(
         cookies.get('district_median_age_filter'))
-      shouldUpdate = true
       medianAge = cookies.get('district_median_age_filter').value
     }
     if (cookies.get('district_sort_filter')) {
       this.handleSortDropdownChange(cookies.get('district_sort_filter'))
-      shouldUpdate = true
       sort = cookies.get('district_sort_filter').value
     }
 
-    if (shouldUpdate) {
-      this.props.buttonHandler(state, population, medianAge, sort)
-    }
+    this.props.buttonHandler(state, population, medianAge, sort)
   }
 
   handleStateDropdownChange (selectedOption) {
