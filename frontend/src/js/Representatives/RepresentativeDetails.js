@@ -129,9 +129,6 @@ export default class RepresentativeDetails extends Component {
               frameborder='10' allowfullscreen >
         </iframe>
       }
-      else{
-          youtube = <div> <h4>No Youtube Channel</h4></div>
-      }
 
       let facebook = ''
       if(this.state.rep_data['facebook'] !== null) {
@@ -149,9 +146,6 @@ export default class RepresentativeDetails extends Component {
           allowTransparency="true"
           allow="encrypted-media">
         </iframe>
-      }
-      else {
-          facebook = <div> <h4>No Facebook Page</h4></div>
       }
 
       return (
