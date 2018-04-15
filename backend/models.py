@@ -89,7 +89,7 @@ class Article(db.Model):
 	        "title": self.title,
 	        "url": self.url,
 	        "author": self.author,
-			"text": self.author,
+			"text": self.text,
 			"date": self.date,
 			"site": self.site,
 	        "representative_id" : self.representative_id
