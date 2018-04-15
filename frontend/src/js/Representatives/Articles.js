@@ -39,6 +39,9 @@ export default class RepArticles extends Component {
   }
 
   render () {
+    if (this.state.articles === undefined) {
+      this.state.articles = []
+    }
     this.state.articles = this.state.articles.slice(0, 3)
     for (let i = 0; i < this.state.articles.length; i++) {
       this.state.articles[i]['date'] =

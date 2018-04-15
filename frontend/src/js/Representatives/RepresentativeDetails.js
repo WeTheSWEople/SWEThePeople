@@ -219,11 +219,9 @@ export default class RepresentativeDetails extends Component {
                         {twitter}
                       </ Col>
                       <Col md={6}>
-                        <h3><b>YouTube Channel</b></h3>
                         {youtube}
                       </Col>
                       <Col md={6}>
-                        <h3><b>Facebook Page</b></h3>
                         {facebook}
                       </Col>
                     </ Row>

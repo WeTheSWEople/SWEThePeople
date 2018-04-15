@@ -3,6 +3,9 @@ import React, {Component} from 'react'
 import {Grid, Row, Col} from 'react-bootstrap'
 /* eslint-enable no-unused-vars */
 
+import axios from 'axios'
+import url from '../../assets/resource.json'
+
 import '../../assets/css/App.css'
 import '../../assets/css/Bills.css'
 
@@ -38,6 +41,11 @@ export default class RepBills extends Component {
         bill['latest_major_action'] =
           bill['latest_major_action'].substring(0, 115) + '...'
       }
+      axios.get(url.api_url + 'representative/' + this.state.bills_data[i]['sponsor_id'])
+      .then((response)=>{
+        this.state.bills_data[i]['sponsor'] = response.data['firstname'] + ' ' + response.data['lastname']
+      })
+
       this.state.bill_colors.push(this.getRandomColor())
     }
 
@@ -56,8 +64,8 @@ export default class RepBills extends Component {
           <div class='back'>
             <h4><b>Details</b></h4>
             <h3>
-              <b> Introduced by: </b>
-              {this.state.bills_data[item]['sponsor_name']}
+              <b> Introduced by: </b> <br/>
+              {`Rep. ${this.state.bills_data[item]['sponsor']}`}
             </h3>
             <h3>
               <b> Date: </b>
