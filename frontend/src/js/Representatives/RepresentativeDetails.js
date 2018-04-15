@@ -15,8 +15,6 @@ import '../../assets/css/RepresentativeInstance.css'
 import axios from 'axios'
 import url from '../../assets/resource.json'
 
-let articles = require('../../assets/temp/articles.json')
-
 const styles = {
   hyperlink: {
     textDecoration: 'none',
@@ -56,7 +54,6 @@ export default class RepresentativeDetails extends Component {
     this.state = {
         rep_data : null,
         party_name : null,
-        articles: articles['response']['docs']
     }
   }
 
@@ -88,7 +85,6 @@ export default class RepresentativeDetails extends Component {
   }
 
   render () {
-    console.log(this.state.articles)
     if (this.state.rep_data === null || this.state.party_name === null){
       return(
       <div style={styles.center}>
@@ -137,20 +133,21 @@ export default class RepresentativeDetails extends Component {
           youtube = <div> <h4>No Youtube Channel</h4></div>
       }
 
-      let facebook = '{this.state.firstname} {this.state.lastname} YouTube Channel'
+      let facebook = ''
       if(this.state.rep_data['facebook'] !== null) {
         facebook = <iframe
-          title='Facebook Page'
-          src={"https://www.facebook.com/plugins/page.php?" +
-            "href=https%3A%2F%2Fwww.facebook.com%2F" +
-            this.state.rep_data['facebook'] + "&tabs=timeline&width=340" +
-            "&height=500&small_header=false&adapt_container_width=true" +
-            "&hide_cover=false&show_facepile=true&appId"}
+          src={'https://www.facebook.com/plugins/page.php' +
+            '?href=https%3A%2F%2Fwww.facebook.com%2F' +
+            this.state.rep_data['facebook'] + '&tabs=timeline&width=340&height=500' +
+            '&small_header=false&adapt_container_width=true' +
+            '&hide_cover=false&show_facepile=true&appId'}
           width="340"
           height="500"
+          style={{border:'none', overflow:'hidden'}}
           scrolling="no"
           frameborder="0"
-          allowTransparency="true">
+          allowTransparency="true"
+          allow="encrypted-media">
         </iframe>
       }
       else {
@@ -223,9 +220,17 @@ export default class RepresentativeDetails extends Component {
                         <h3><b>YouTube Channel</b></h3>
                         {youtube}
                       </Col>
+                      <Col md={6}>
+                        <h3><b>Facebook Page</b></h3>
+                        {facebook}
+                      </Col>
                     </ Row>
                   </Tab>
-                  <Tab eventKey={2} title="Recent Bills">
+                  <Tab eventKey={2} title="News">
+                    <h3 class='bills-header'>Recent Articles</h3>
+                    <Row style={{paddingLeft: '5px'}}>
+                      <RepArticles data = {this.state.rep_data.articles} />
+                    </Row>
                     <h3 class='bills-header'>Recent Bills Sponsored</h3>
                     <Row style={{paddingLeft: '5px'}}>
                       <RepBills data = {this.state.rep_data.bills} />
@@ -238,7 +243,7 @@ export default class RepresentativeDetails extends Component {
                       width='600'
                       height='450'
                       frameborder='0' style={{border: '0'}}
-                      title = '{this.state.firstname} {this.state.lastname} Twitter Feed'
+                      title = 'Office Location'
                       src={'https://www.google.com/maps/embed/v1/place?' +
                       'key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY' +
                       '&q=' + this.state.rep_data.office} allowfullscreen>

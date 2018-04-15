@@ -10,7 +10,7 @@ export default class RepArticles extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      articles: null,
+      articles: null
     }
   }
   componentWillMount () {
