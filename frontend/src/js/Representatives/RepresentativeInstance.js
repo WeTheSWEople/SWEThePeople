@@ -55,6 +55,8 @@ export default class RepresentativeInstance extends Component {
                     label={`${this.props.rep.votes_with_party_pct}%`}
                   />
                 </div>
+	     </p>
+		</div>
             </div>
           </div>
         </Link>
