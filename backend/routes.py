@@ -298,7 +298,7 @@ def party_filter():
         for rep in party['representatives']:
             del rep['bills']
 
-    if formation_date[0] != 'None':
+    if formation_date != 'None' and formation_date[0] != 'None':
         # Filter to parties formed between the given years
 
         date_begin = int(formation_date[0])
