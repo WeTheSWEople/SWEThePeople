@@ -116,12 +116,10 @@ class DistrictFilter extends Component {
   }
 
   handleResetClicked (e) {
-    this.setState({
-      state_value: null,
-      population_value: null,
-      median_age_value: null,
-      sort_value: 'state_asc'
-    })
+    this.handleStateDropdownChange(null)
+    this.handlePopulationDropdownChange(null)
+    this.handleMedianAgeDropdownChange(null)
+    this.handleSortDropdownChange(null)
     this.props.buttonHandler('None', 'None', 'None', 'state_asc')
   }
 

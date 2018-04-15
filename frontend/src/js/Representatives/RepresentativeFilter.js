@@ -137,13 +137,11 @@ class RepresentativeFilter extends Component {
   }
 
   handleResetClicked (e) {
-    this.setState({
-      state_value: null,
-      party_value: null,
-      vote_value: null,
-      lastname_value: null,
-      sort_value: null
-    })
+    this.handleStateDropdownChange(null)
+    this.handlePartyDropdownChange(null)
+    this.handleVoteDropdownChange(null)
+    this.handleLastnameDropdownChange(null)
+    this.handleSortDropdownChange(null)
     this.props.buttonHandler('None', 'None', 'None', 'A-Z', 'last_asc')
   }
 
