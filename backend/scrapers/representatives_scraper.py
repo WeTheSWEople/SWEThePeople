@@ -34,6 +34,7 @@ for mem in members['results'][0]['members']:
 			district = str(mem['district']),
 			twitter = mem['twitter_account'],
 			youtube = mem['youtube_account'],
+			facebook = mem['facebook_account'],
 			office = mem['office'],
 			votes_with_party_pct = mem['votes_with_party_pct'],
 			url = mem['url'],
@@ -95,6 +96,7 @@ for mem in members['results'][0]['members']:
 			oldrep.district = rep.district
 			oldrep.twitter = rep.twitter
 			oldrep.youtube = rep.youtube
+			oldrep.facebook = rep.facebook
 			oldrep.votes_with_party_pct = rep.votes_with_party_pct
 			oldrep.url = rep.url
 			oldrep.image_uri = rep.image_uri

@@ -14,6 +14,7 @@ class Representative(db.Model):
     district = db.Column(db.String(50))
     twitter = db.Column(db.String(75))
     youtube = db.Column(db.String(255))
+    facebook = db.Column(db.String(255))
     office = db.Column(db.String(255))
     votes_with_party_pct = db.Column(db.Float)
     url = db.Column(db.String(255))
@@ -31,6 +32,7 @@ class Representative(db.Model):
             "district": self.district,
             "twitter" : self.twitter,
             "youtube" : self.youtube,
+            "facebook": self.facebook,
             "office" : self.office,
             "votes_with_party_pct" : self.votes_with_party_pct,
             "url" : self.url,
