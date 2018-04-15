@@ -9,7 +9,7 @@ app.app_context().push()
 from models import *
 from flask import jsonify
 live_url = "http://swethepeople.me/"
-live_api_url = "http://api.swethepeople.me/"
+live_api_url = "http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/"
 
 
 def getResponse(data):
