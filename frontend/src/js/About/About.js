@@ -100,15 +100,10 @@ export default class About extends Component {
           }
           let issueJSON = JSON.parse(body)
           for (let i = 0; i < issueJSON.length; i++) {
-<<<<<<< HEAD
-            sweMembers[String(issueJSON[i]['user']['login'])][2] += 1
-            if (issueJSON[i]['number'] === 1) {
-=======
             if(String(issueJSON[i]['user']['login']) in sweMembers){
               sweMembers[String(issueJSON[i]['user']['login'])][2] += 1
             }
             if (issueJSON[i]['number'] == 1) {
->>>>>>> 371b91d9c55f05bfadd845eeddad675458f0c253
               eof = true;
             }
           }
