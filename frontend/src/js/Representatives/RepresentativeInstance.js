@@ -24,35 +24,37 @@ export default class RepresentativeInstance extends Component {
         <Link
           to={`/representatives/${this.props.rep.bioguide}`}
           style={styles.hyperlink}>
-          <GridTile
-            key={this.props.rep.bioguide}
-            class='tile' >
-            <img
-              src={'https://theunitedstates.io/images/congress/225x275/' +
-              this.props.rep.bioguide + '.jpg'}
-              alt={this.props.rep.firstName} className='rep_img' onError={(e)=>{e.target.src=require('../../assets/images/reps/default.png')}}
-            />
-            <div class='rep_info'>
-              <h3 className='title'>
-                {this.props.rep.firstname + ' ' + this.props.rep.lastname}
-              </h3>
-              <h4 className='party'>
-                {this.props.party_name}
-              </h4>
-              <h4 className='district'><i>
-                {this.props.rep.state + '-' + this.props.rep.district}
-              </i></h4>
-              <p>
-                <b>Votes with Party (%): </b>
-                <div style={styles.progress} style={{paddingLeft: '10%', paddingRight: '10%'}}>
-                  <ProgressBar bsStyle='success'
-                    now={this.props.rep.votes_with_party_pct}
-                    label={`${this.props.rep.votes_with_party_pct}%`}
-                  />
+          <div className='col-md-3 col-sm-4 col-xs-6'>
+            <div className='tile'>
+              <img
+                src={'https://theunitedstates.io/images/congress/225x275/' +
+                this.props.rep.bioguide + '.jpg'}
+                alt={this.props.rep.firstName}
+                className='rep_img'
+                onError={(e)=>{e.target.src=require('../../assets/images/reps/default.png')}}
+              />
+              <div className='rep_info'>
+                <h3 className='title'>
+                  {this.props.rep.firstname + ' ' + this.props.rep.lastname}
+                </h3>
+                <h4 className='party'>
+                  {this.props.party_name}
+                </h4>
+                <h4 className='district'><i>
+                  {this.props.rep.state + '-' + this.props.rep.district}
+                </i></h4>
+              </div>
+                <div>
+                  <b>Votes with Party (%): </b>
+                  <div style={{paddingLeft: '10%', paddingRight: '10%'}}>
+                    <ProgressBar bsStyle='success'
+                      now={this.props.rep.votes_with_party_pct}
+                      label={`${this.props.rep.votes_with_party_pct}%`}
+                    />
+                  </div>
                 </div>
-              </p>
             </div>
-          </GridTile>
+          </div>
         </Link>
       )
   }
