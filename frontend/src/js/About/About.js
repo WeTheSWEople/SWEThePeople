@@ -182,17 +182,17 @@ export default class About extends Component {
             </div>
           </div>
           <p>
-            <a href = 'https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" >
+            <a href = 'https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" rel="noopener noreferrer" >
               GitHub Repository
             </a>
           </p>
           <p>
-            <a href = 'https://wethesweople.gitbooks.io/report/' target="_blank">
+            <a href = 'https://wethesweople.gitbooks.io/report/' target="_blank" rel="noopener noreferrer">
               Technical Report
             </a>
           </p>
           <p>
-            <a href = 'https://wethesweople.gitbooks.io/api/' target="_blank">
+            <a href = 'https://wethesweople.gitbooks.io/api/' target="_blank" rel="noopener noreferrer">
               API Documentation
             </a>
           </p>
@@ -202,7 +202,7 @@ export default class About extends Component {
             </a>
           </p>
           <p>
-            <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds' target="_blank">
+            <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds' target="_blank" rel="noopener noreferrer">
               Travis CI
             </a>
           </p>
@@ -218,7 +218,7 @@ export default class About extends Component {
             <h2>Tools</h2>
           </div>
           <div className='row'>
-            <a href='https://github.com/WeTheSWEople/SWEThePeople/' target="_blank">
+            <a href='https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/github.png')}
@@ -231,7 +231,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.gitbook.com/@wethesweople' target="_blank">
+            <a href='https://www.gitbook.com/@wethesweople' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/gitbook.png')}
@@ -241,7 +241,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://reactjs.org/' target="_blank">
+            <a href='https://reactjs.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/reactjs.png')}
@@ -251,7 +251,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://aws.amazon.com/ec2/' target="_blank">
+            <a href='https://aws.amazon.com/ec2/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/ec2.jpg')}
@@ -261,7 +261,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://getbootstrap.com/' target="_blank">
+            <a href='https://getbootstrap.com/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/bootstrap.png')}
@@ -271,7 +271,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='http://flask.pocoo.org/' target="_blank">
+            <a href='http://flask.pocoo.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/flask.png')}
@@ -281,7 +281,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.nginx.com/' target="_blank">
+            <a href='https://www.nginx.com/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/nginx.png')}
@@ -291,7 +291,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.slack.com/' target="_blank">
+            <a href='https://www.slack.com/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/slack.png')}
@@ -304,7 +304,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://aws.amazon.com/rds/' target="_blank">
+            <a href='https://aws.amazon.com/rds/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require(
@@ -317,7 +317,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.postgresql.org/' target="_blank">
+            <a href='https://www.postgresql.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/post.png')}
@@ -329,7 +329,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.sqlalchemy.org/' target="_blank">
+            <a href='https://www.sqlalchemy.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/sqla.png')}
@@ -341,7 +341,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://mochajs.org/' target="_blank">
+            <a href='https://mochajs.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/mochajs.png')}
@@ -353,7 +353,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.seleniumhq.org/' target="_blank">
+            <a href='https://www.seleniumhq.org/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/selenium.png')}
@@ -365,7 +365,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.travis-ci.com/' target="_blank">
+            <a href='https://www.travis-ci.com/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/travisci.png')}
@@ -385,7 +385,7 @@ export default class About extends Component {
             <h2>Data Sources</h2>
           </div>
           <div className='row'>
-            <a href='https://projects.propublica.org/api-docs/congress-api/' target="_blank">
+            <a href='https://projects.propublica.org/api-docs/congress-api/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/propubica.jpg')}
@@ -404,7 +404,8 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.govtrack.us/developers' target="_blank">
+
+            <a href='https://www.govtrack.us/developers' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/govtrack.png')}
@@ -422,7 +423,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.census.gov/data/developers/data-sets/decennial-census.html' target="_blank">
+            <a href='https://www.census.gov/data/developers/data-sets/decennial-census.html' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/census.png')}
@@ -442,8 +443,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-
-            <a href='https://theunitedstates.io/images/' target="_blank">
+            <a href='https://theunitedstates.io/images/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={

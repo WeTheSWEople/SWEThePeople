@@ -27,6 +27,7 @@ export default class RepresentativeSingleInstance extends Component {
         <div className='search-card'>
           <img src={'https://theunitedstates.io/images/congress/225x275/' +
             this.props.rep.bioguide + '.jpg'}
+          alt={this.props.rep.firstname + ' ' + this.props.rep.lastname}
           className='rep_img'
           onError={(e) => {e.target.src=require(
             '../../assets/images/reps/default.png')}} />
