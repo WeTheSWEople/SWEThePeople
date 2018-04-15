@@ -1,5 +1,6 @@
 .about-content {
     padding-top: 70px;
+    font-family: 'EB Garamond', serif;
 }
 
 .about-content a:link,
@@ -12,28 +13,60 @@
     border-bottom: 1px solid #AAA;
 }
 
+.about-title {
+    font-size: 65px;
+}
+
+.about-info {
+    padding-top: 20px;
+}
+
+.link-box {
+    min-height: 150px;
+    width: 90%;
+    background: white;
+    margin: 10px;
+    padding: 15px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.link-row {
+    padding-top: 20px;
+}
+
 .github-info {
     margin-top: 25px;
     margin-bottom: 25px;
 }
 
-.github-info .pad-right {
-    margin-right: 5px;
-}
-
 .github-info .github-counts {
-    text-align: left !important;
-    min-width: 100%;
-    padding-left: 10%;
-}
-
-.github-info .github-counts h4 {
+    text-align: center;
     min-width: 100%;
 }
 
-.github-info .github-counts .right-info {
-    float: right;
-    padding-right: 20%;
+.faq-box {
+    width: 90%;
+    background: white;
+    padding: 10px;
+    margin: auto;
+    min-height: 275px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.faq-title {
+    padding-bottom: 10px;
+}
+
+.info-box {
+    width: 90%;
+    background: white;
+    padding: 10px;
+    margin: auto;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.right-info {
+    font-size: 35px;
 }
 
 .tools-div {
@@ -89,9 +122,4 @@
 
 .tools-div .data-card h3 {
     overflow-wrap: break-word;
-}
-
-.interesting-result {
-    margin-top: 25px;
-    margin-bottom: 25px;
 }

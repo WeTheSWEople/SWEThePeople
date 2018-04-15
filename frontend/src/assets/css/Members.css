@@ -1,14 +1,14 @@
 .member-card {
     background-color: #FFF;
-    min-height: 750px;
+    min-height: 700px;
     padding: 25px;
     margin-bottom: 25px;
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 5%;
 }
 
 .member-card img {
     margin-bottom: 10px;
+    margin: auto;
 }
 
 .member-card p {

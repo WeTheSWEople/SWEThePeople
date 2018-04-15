@@ -127,32 +127,41 @@ export default class About extends Component {
         <h1 className="about-title">swethepeople.me</h1>
         <h3>Brought to you by WeTheSWEople</h3>
         <div className='row about-info'>
-          <div className='col-sm-4 col-sm-offset-2'>
-            <h4>
-              SWEThePeople provides information and resources for
-              anyone interested in the members of United States House
-              of Representatives. This site provides information about
-              representatives, their districts, and parties.
-            </h4>
+          <div className='col-md-4'>
+            <div className='faq-box'>
+              <h2 className='faq-title'>Our Site</h2>
+              <h4>
+                SWEThePeople provides information and resources for
+                anyone interested in the members of United States House
+                of Representatives. This site provides information about
+                representatives, their districts, and parties.
+              </h4>
+            </div>
           </div>
 
-          <div className='col-sm-4'>
-            <h4>
-              The site combines information about legislators with
-              U.S. Census data, providing visitors with a better
-              understanding of the intersection between party, state,
-              and demographics.
-            </h4>
+          <div className='col-md-4'>
+            <div className='faq-box'>
+              <h2 className='faq-title'>Our Data</h2>
+              <h4>
+                The site combines information about legislators with
+                U.S. Census data, providing visitors with a better
+                understanding of the intersection between party, state,
+                and demographics.
+              </h4>
+            </div>
           </div>
-        </div>
 
-        <div className='interesting-result'>
-          <h4>
-            Our website, by combining district party control and demographic
-            and age information, displays an interesting corrolation between the
-            two. Thus, SWEThePeople is a valuable resource for anyone interested
-            in studying party and demographics in modern American politics.
-          </h4>
+          <div className='col-md-4'>
+            <div className='faq-box'>
+              <h2 className='faq-title'>Our Result</h2>
+              <h4>
+                Our website, by combining district party control and demographic
+                and age information, displays an interesting corrolation between the
+                two. Thus, SWEThePeople is a valuable resource for anyone interested
+                in studying party and demographics in modern American politics.
+              </h4>
+            </div>
+          </div>
         </div>
 
         <center>
@@ -160,52 +169,77 @@ export default class About extends Component {
         </center>
         <div className='github-info'>
           <div className='row'>
-            <div className='col-sm-4 col-sm-offset-4'>
-              <div className='github-counts'>
-                <h4>
-                  Total Commits:
-                  <span className='right-info'>
-                    {this.state.totalCommits}
-                  </span>
-                </h4>
-                <h4>
-                  Total Issues:
-                  <span className='right-info'>
-                    {this.state.total_issues}
-                  </span>
-                </h4>
-                <h4>
-                  Total Unit Tests:
-                  <span className='right-info'>{this.state.totalTests}</span>
-                </h4>
+            <div className='col-sm-6 col-sm-offset-3'>
+              <div className='github-counts row'>
+                <div className='col-md-4'>
+                  <div className='info-box'>
+                    <h4>Total Commits:</h4>
+                    <span className='right-info'>{this.state.totalCommits}</span>
+                  </div>
+                </div>
+                <div className='col-md-4'>
+                  <div className='info-box'>
+                    <h4>Total Issues:</h4>
+                    <span className='right-info'>{this.state.total_issues}</span>
+                  </div>
+                </div>
+                <div className='col-md-4'>
+                  <div className='info-box'>
+                    <h4>Total Unit Tests:</h4>
+                    <span className='right-info'>{this.state.totalTests}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <p>
-            <a href = 'https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" rel="noopener noreferrer" >
-              GitHub Repository
-            </a>
-          </p>
-          <p>
-            <a href = 'https://wethesweople.gitbooks.io/report/' target="_blank" rel="noopener noreferrer">
-              Technical Report
-            </a>
-          </p>
-          <p>
-            <a href = 'https://wethesweople.gitbooks.io/api/' target="_blank" rel="noopener noreferrer">
-              API Documentation
-            </a>
-          </p>
-          <p>
-            <a href = {url.api_url}>
-              API
-            </a>
-          </p>
-          <p>
-            <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds' target="_blank" rel="noopener noreferrer">
-              Travis CI
-            </a>
-          </p>
+          <div className='row link-row'>
+            <div className='col-md-2 col-md-offset-1'>
+              <p>
+                <a href='https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" rel="noopener noreferrer">
+                  <div className='link-box'>
+                    <img src={require('../../assets/images/about/github.png')} className='img-responsive' alt='GitHub logo'/>
+                    <p>GitHub Repository</p>
+                  </div>
+                </a>
+              </p>
+            </div>
+            <div className='col-md-2'>
+              <p>
+                <a href='https://wethesweople.gitbooks.io/report/' target="_blank" rel="noopener noreferrer">
+                  <div className='link-box'>
+                    <img src={require('../../assets/images/about/gitbook-logo.jpg')} className='img-responsive' alt='Gitbook logo'/>
+                    <p>Technical Report</p>
+                  </div>
+                </a>
+              </p>
+            </div>
+            <div className='col-md-2'>
+              <a href='https://wethesweople.gitbooks.io/api/' target="_blank" rel="noopener noreferrer">
+                <div className='link-box'>
+                  <img src={require('../../assets/images/about/gitbook-logo.jpg')} className='img-responsive' alt='Gitbook logo'/>
+                  <p>API Documentation</p>
+                </div>
+              </a>
+            </div>
+            <div className='col-md-2'>
+              <p>
+                <a href={url.api_url}>
+                  <div className='link-box'>
+                    <img src={require('../../assets/images/about/api-image.png')} className='img-responsive' alt='API logo'/>
+                    <p>API</p>
+                  </div>
+                </a>
+              </p>
+            </div>
+            <div className='col-md-2'>
+              <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds' target="_blank" rel="noopener noreferrer">
+                <div className='link-box'>
+                  <img src={require('../../assets/images/about/travisci.png')} className='img-responsive' alt='TravisCI logo'/>
+                  <p>Travis CI</p>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
 
         <div className='about-header'>
