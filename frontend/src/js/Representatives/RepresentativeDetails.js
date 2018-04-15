@@ -154,7 +154,6 @@ export default class RepresentativeDetails extends Component {
           facebook = <div> <h4>No Facebook Page</h4></div>
       }
 
-
       return (
       <div className='App container'>
         <header className='Rep-Details-header'> </header>
@@ -191,8 +190,11 @@ export default class RepresentativeDetails extends Component {
                     </Link>
                   </p>
                   <p>
-                    <b> Site: </b>
-                    <a href={this.state.rep_data['url']} target="_blank">Website </a>
+                    <b>
+                      <a href={this.state.rep_data['url']} target="_blank">
+                        Website
+                      </a>
+                    </b>
                   </p>
                   <p>
                     <b>Votes with Party (%): </b>
@@ -227,13 +229,13 @@ export default class RepresentativeDetails extends Component {
                     </ Row>
                   </Tab>
                   <Tab eventKey={2} title="News">
-                    <h3 class='bills-header'>Recent Articles</h3>
-                    <Row style={{paddingLeft: '5px'}}>
-                      <RepArticles data = {this.state.rep_data.articles} />
-                    </Row>
                     <h3 class='bills-header'>Recent Bills Sponsored</h3>
                     <Row style={{paddingLeft: '5px'}}>
                       <RepBills data = {this.state.rep_data.bills} />
+                    </Row>
+                    <h3 class='bills-header'>Recent Articles</h3>
+                    <Row style={{paddingLeft: '5px'}}>
+                      <RepArticles data = {this.state.rep_data.articles} />
                     </Row>
                   </Tab>
                   <Tab eventKey={3} title="Office Location">
