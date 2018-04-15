@@ -1,5 +1,4 @@
-# WE THE SWEEPLE  
-[![Build Status](https://travis-ci.org/WeTheSWEople/SWEThePeople.svg?branch=master)](https://travis-ci.org/WeTheSWEople/SWEThePeople)
+# WE THE SWEEPLE [![Build Status](https://travis-ci.org/WeTheSWEople/SWEThePeople.svg?branch=master)](https://travis-ci.org/WeTheSWEople/SWEThePeople)  
 Iteration 1.0 of our flask/react stack.
 
 ## Local Setup
