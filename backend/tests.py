@@ -157,8 +157,7 @@ class TestStringMethods(unittest.TestCase):
 			state = 'TX',
 			district = "1",
 			twitter = "RepSteven",
-			youtube = "StevenChannel",
-			facebook = "StevenFB",
+			youtube = "StevenChannel"
 			office = "111 Congress",
 			votes_with_party_pct = 50.0,
 			url = "https://test.house.gov",
@@ -377,44 +376,44 @@ class TestStringMethods(unittest.TestCase):
 		expected = {
 		    "bills": [
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4940", 
-		        "id": 1197, 
-		        "introduced_date": "2018-02-06", 
-		        "latest_major_action": "Referred to the Subcommittee on Biotechnology, Horticulture, and Research.", 
-		        "number": "H.R.4940", 
-		        "short_title": "Border and Port Security Act", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4940",
+		        "id": 1197,
+		        "introduced_date": "2018-02-06",
+		        "latest_major_action": "Referred to the Subcommittee on Biotechnology, Horticulture, and Research.",
+		        "number": "H.R.4940",
+		        "short_title": "Border and Port Security Act",
 		        "sponsor_id": "V000132"
-		      }, 
+		      },
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4578", 
-		        "id": 1198, 
-		        "introduced_date": "2017-12-06", 
-		        "latest_major_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.", 
-		        "number": "H.R.4578", 
-		        "short_title": "Counter Terrorist Network Act", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4578",
+		        "id": 1198,
+		        "introduced_date": "2017-12-06",
+		        "latest_major_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
+		        "number": "H.R.4578",
+		        "short_title": "Counter Terrorist Network Act",
 		        "sponsor_id": "V000132"
-		      }, 
+		      },
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/3375", 
-		        "id": 1199, 
-		        "introduced_date": "2017-07-24", 
-		        "latest_major_action": "Referred to the Subcommittee on Economic Development, Public Buildings and Emergency Management.", 
-		        "number": "H.R.3375", 
-		        "short_title": "Javier Vega, Jr. Memorial Act of 2017", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/3375",
+		        "id": 1199,
+		        "introduced_date": "2017-07-24",
+		        "latest_major_action": "Referred to the Subcommittee on Economic Development, Public Buildings and Emergency Management.",
+		        "number": "H.R.3375",
+		        "short_title": "Javier Vega, Jr. Memorial Act of 2017",
 		        "sponsor_id": "V000132"
 		      }
-		    ], 
-		    "bioguide": "V000132", 
-		    "district": "34", 
-		    "firstname": "Filemon", 
-		    "image_uri": "https://theunitedstates.io/images/congress/225x275/V000132.jpg", 
-		    "lastname": "Vela", 
-		    "office": "437 Cannon House Office Building", 
-		    "party_id": 1, 
-		    "state": "TX", 
-		    "twitter": "RepFilemonVela", 
-		    "url": "https://vela.house.gov", 
-		    "votes_with_party_pct": 89.38, 
+		    ],
+		    "bioguide": "V000132",
+		    "district": "34",
+		    "firstname": "Filemon",
+		    "image_uri": "https://theunitedstates.io/images/congress/225x275/V000132.jpg",
+		    "lastname": "Vela",
+		    "office": "437 Cannon House Office Building",
+		    "party_id": 1,
+		    "state": "TX",
+		    "twitter": "RepFilemonVela",
+		    "url": "https://vela.house.gov",
+		    "votes_with_party_pct": 89.38,
 		    "youtube": None
 	  	}
 
@@ -430,44 +429,44 @@ class TestStringMethods(unittest.TestCase):
 		expected = {
 		    "bills": [
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4178", 
-		        "id": 22, 
-		        "introduced_date": "2017-10-31", 
-		        "latest_major_action": "Sponsor introductory remarks on measure. (CR H8304)", 
-		        "number": "H.R.4178", 
-		        "short_title": "HEART Act", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4178",
+		        "id": 22,
+		        "introduced_date": "2017-10-31",
+		        "latest_major_action": "Sponsor introductory remarks on measure. (CR H8304)",
+		        "number": "H.R.4178",
+		        "short_title": "HEART Act",
 		        "sponsor_id": "A000375"
-		      }, 
+		      },
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/3561", 
-		        "id": 23, 
-		        "introduced_date": "2017-07-28", 
-		        "latest_major_action": "Ordered to be Reported in the Nature of a Substitute by Voice Vote.", 
-		        "number": "H.R.3561", 
-		        "short_title": "To amend title 38, United States Code, to permit appraisers approved by the Secretary of Veterans Affairs to make appraisals for purposes of chapter 37 of such title based on inspections performed by third parties.", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/3561",
+		        "id": 23,
+		        "introduced_date": "2017-07-28",
+		        "latest_major_action": "Ordered to be Reported in the Nature of a Substitute by Voice Vote.",
+		        "number": "H.R.3561",
+		        "short_title": "To amend title 38, United States Code, to permit appraisers approved by the Secretary of Veterans Affairs to make appraisals for purposes of chapter 37 of such title based on inspections performed by third parties.",
 		        "sponsor_id": "A000375"
-		      }, 
+		      },
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/3562", 
-		        "id": 24, 
-		        "introduced_date": "2017-07-28", 
-		        "latest_major_action": "Received in the Senate and Read twice and referred to the Committee on Veterans&#39; Affairs.", 
-		        "number": "H.R.3562", 
-		        "short_title": "To amend title 38, United States Code, to authorize the Secretary of Veterans Affairs to furnish assistance for adaptations of residences of veterans in rehabilitation programs under chapter 31 of such title, and for other purposes.", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/3562",
+		        "id": 24,
+		        "introduced_date": "2017-07-28",
+		        "latest_major_action": "Received in the Senate and Read twice and referred to the Committee on Veterans&#39; Affairs.",
+		        "number": "H.R.3562",
+		        "short_title": "To amend title 38, United States Code, to authorize the Secretary of Veterans Affairs to furnish assistance for adaptations of residences of veterans in rehabilitation programs under chapter 31 of such title, and for other purposes.",
 		        "sponsor_id": "A000375"
 		      }
-		    ], 
-		    "bioguide": "A000375", 
-		    "district": "19", 
-		    "firstname": "Jodey", 
-		    "image_uri": "https://theunitedstates.io/images/congress/225x275/A000375.jpg", 
-		    "lastname": "Arrington", 
-		    "office": "1029 Longworth House Office Building", 
-		    "party_id": 2, 
-		    "state": "TX", 
-		    "twitter": "RepArrington", 
-		    "url": "https://arrington.house.gov", 
-		    "votes_with_party_pct": 98.44, 
+		    ],
+		    "bioguide": "A000375",
+		    "district": "19",
+		    "firstname": "Jodey",
+		    "image_uri": "https://theunitedstates.io/images/congress/225x275/A000375.jpg",
+		    "lastname": "Arrington",
+		    "office": "1029 Longworth House Office Building",
+		    "party_id": 2,
+		    "state": "TX",
+		    "twitter": "RepArrington",
+		    "url": "https://arrington.house.gov",
+		    "votes_with_party_pct": 98.44,
 		    "youtube": None
 	  	}
 		response = requests.request("GET", live_api_url + 'representative/filter?filter={"state":"TX"}')
@@ -482,44 +481,44 @@ class TestStringMethods(unittest.TestCase):
 		expected = {
 		    "bills": [
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/5309", 
-		        "id": 4, 
-		        "introduced_date": "2018-03-15", 
-		        "latest_major_action": "Referred to the House Committee on Agriculture.", 
-		        "number": "H.R.5309", 
-		        "short_title": "To amend the Second Morrill Act to authorize the transmission to Congress of annual reports prepared by colleges endowed under such Act.", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/5309",
+		        "id": 4,
+		        "introduced_date": "2018-03-15",
+		        "latest_major_action": "Referred to the House Committee on Agriculture.",
+		        "number": "H.R.5309",
+		        "short_title": "To amend the Second Morrill Act to authorize the transmission to Congress of annual reports prepared by colleges endowed under such Act.",
 		        "sponsor_id": "A000370"
-		      }, 
+		      },
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-resolution/746", 
-		        "id": 5, 
-		        "introduced_date": "2018-02-23", 
-		        "latest_major_action": "Referred to the Committee on Science, Space, and Technology, and in addition to the Committee on Education and the Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.", 
-		        "number": "H.RES.746", 
-		        "short_title": "Supporting the goal and ideal of increasing the number of African American women and girls in the engineering profession.", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-resolution/746",
+		        "id": 5,
+		        "introduced_date": "2018-02-23",
+		        "latest_major_action": "Referred to the Committee on Science, Space, and Technology, and in addition to the Committee on Education and the Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+		        "number": "H.RES.746",
+		        "short_title": "Supporting the goal and ideal of increasing the number of African American women and girls in the engineering profession.",
 		        "sponsor_id": "A000370"
-		      }, 
+		      },
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4984", 
-		        "id": 6, 
-		        "introduced_date": "2018-02-08", 
-		        "latest_major_action": "Referred to the Subcommittee on Biotechnology, Horticulture, and Research.", 
-		        "number": "H.R.4984", 
-		        "short_title": "Carryover Equity Act", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4984",
+		        "id": 6,
+		        "introduced_date": "2018-02-08",
+		        "latest_major_action": "Referred to the Subcommittee on Biotechnology, Horticulture, and Research.",
+		        "number": "H.R.4984",
+		        "short_title": "Carryover Equity Act",
 		        "sponsor_id": "A000370"
 		      }
-		    ], 
-		    "bioguide": "A000370", 
-		    "district": "12", 
-		    "firstname": "Alma", 
-		    "image_uri": "https://theunitedstates.io/images/congress/225x275/A000370.jpg", 
-		    "lastname": "Adams", 
-		    "office": "222 Cannon House Office Building", 
-		    "party_id": 1, 
-		    "state": "NC", 
-		    "twitter": "RepAdams", 
-		    "url": "https://adams.house.gov", 
-		    "votes_with_party_pct": 95.74, 
+		    ],
+		    "bioguide": "A000370",
+		    "district": "12",
+		    "firstname": "Alma",
+		    "image_uri": "https://theunitedstates.io/images/congress/225x275/A000370.jpg",
+		    "lastname": "Adams",
+		    "office": "222 Cannon House Office Building",
+		    "party_id": 1,
+		    "state": "NC",
+		    "twitter": "RepAdams",
+		    "url": "https://adams.house.gov",
+		    "votes_with_party_pct": 95.74,
 		    "youtube": None
 		}
 		response = requests.request("GET", live_api_url + 'representative/filter?filter={"party_id":"1"}')
@@ -534,45 +533,45 @@ class TestStringMethods(unittest.TestCase):
 		expected = {
 			"bills": [
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/5037", 
-		        "id": 744, 
-		        "introduced_date": "2018-02-15", 
-		        "latest_major_action": "Referred to the House Committee on Financial Services.", 
-		        "number": "H.R.5037", 
-		        "short_title": "Securities Fraud Act of 2018", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/5037",
+		        "id": 744,
+		        "introduced_date": "2018-02-15",
+		        "latest_major_action": "Referred to the House Committee on Financial Services.",
+		        "number": "H.R.5037",
+		        "short_title": "Securities Fraud Act of 2018",
 		        "sponsor_id": "M001193"
-		      }, 
+		      },
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4780", 
-		        "id": 745, 
-		        "introduced_date": "2018-01-11", 
-		        "latest_major_action": "Referred to the House Committee on Ways and Means.", 
-		        "number": "H.R.4780", 
-		        "short_title": "Transparency for Taxpayers Act", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4780",
+		        "id": 745,
+		        "introduced_date": "2018-01-11",
+		        "latest_major_action": "Referred to the House Committee on Ways and Means.",
+		        "number": "H.R.4780",
+		        "short_title": "Transparency for Taxpayers Act",
 		        "sponsor_id": "M001193"
-		      }, 
+		      },
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4597", 
-		        "id": 746, 
-		        "introduced_date": "2017-12-07", 
-		        "latest_major_action": "Referred to the House Committee on Education and the Workforce.", 
-		        "number": "H.R.4597", 
-		        "short_title": "College Loan Deferment for Recovery Act", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4597",
+		        "id": 746,
+		        "introduced_date": "2017-12-07",
+		        "latest_major_action": "Referred to the House Committee on Education and the Workforce.",
+		        "number": "H.R.4597",
+		        "short_title": "College Loan Deferment for Recovery Act",
 		        "sponsor_id": "M001193"
 		      }
-		    ], 
-		    "bioguide": "M001193", 
-		    "district": "3", 
-		    "firstname": "Tom", 
-		    "image_uri": "https://theunitedstates.io/images/congress/225x275/M001193.jpg", 
-		    "lastname": "MacArthur", 
-		    "office": "506 Cannon House Office Building", 
-		    "party_id": 2, 
-		    "state": "NJ", 
-		    "twitter": "RepTomMacArthur", 
-		    "url": "https://macarthur.house.gov", 
-		    "votes_with_party_pct": 89.16, 
-		    "youtube": None    
+		    ],
+		    "bioguide": "M001193",
+		    "district": "3",
+		    "firstname": "Tom",
+		    "image_uri": "https://theunitedstates.io/images/congress/225x275/M001193.jpg",
+		    "lastname": "MacArthur",
+		    "office": "506 Cannon House Office Building",
+		    "party_id": 2,
+		    "state": "NJ",
+		    "twitter": "RepTomMacArthur",
+		    "url": "https://macarthur.house.gov",
+		    "votes_with_party_pct": 89.16,
+		    "youtube": None
 		}
 		response = requests.request("GET", live_api_url + 'representative/filter?filter={"last_name":"M-Z"}')
 		result = response.json()
@@ -587,44 +586,44 @@ class TestStringMethods(unittest.TestCase):
 		expected = {
 		    "bills": [
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/5065", 
-		        "id": 1284, 
-		        "introduced_date": "2018-02-15", 
-		        "latest_major_action": "Referred to the Subcommittee on Immigration and Border Security.", 
-		        "number": "H.R.5065", 
-		        "short_title": "Protecting Our Communities from Gang Violence Act of 2018", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/5065",
+		        "id": 1284,
+		        "introduced_date": "2018-02-15",
+		        "latest_major_action": "Referred to the Subcommittee on Immigration and Border Security.",
+		        "number": "H.R.5065",
+		        "short_title": "Protecting Our Communities from Gang Violence Act of 2018",
 		        "sponsor_id": "Z000017"
-		      }, 
+		      },
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4996", 
-		        "id": 1285, 
-		        "introduced_date": "2018-02-08", 
-		        "latest_major_action": "Referred to the House Committee on the Judiciary.", 
-		        "number": "H.R.4996", 
-		        "short_title": "Protecting Our Communities from Gang Violence Act of 2018", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-bill/4996",
+		        "id": 1285,
+		        "introduced_date": "2018-02-08",
+		        "latest_major_action": "Referred to the House Committee on the Judiciary.",
+		        "number": "H.R.4996",
+		        "short_title": "Protecting Our Communities from Gang Violence Act of 2018",
 		        "sponsor_id": "Z000017"
-		      }, 
+		      },
 		      {
-		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-resolution/718", 
-		        "id": 1286, 
-		        "introduced_date": "2018-01-29", 
-		        "latest_major_action": "Referred to the House Committee on Foreign Affairs.", 
-		        "number": "H.RES.718", 
-		        "short_title": "Condemning the actions taken by the Government of the Republic of Cameroon against Patrice Nganang and others, and for other purposes.", 
+		        "congressdotgov_url": "https://www.congress.gov/bill/115th-congress/house-resolution/718",
+		        "id": 1286,
+		        "introduced_date": "2018-01-29",
+		        "latest_major_action": "Referred to the House Committee on Foreign Affairs.",
+		        "number": "H.RES.718",
+		        "short_title": "Condemning the actions taken by the Government of the Republic of Cameroon against Patrice Nganang and others, and for other purposes.",
 		        "sponsor_id": "Z000017"
 		      }
-		    ], 
-		    "bioguide": "Z000017", 
-		    "district": "1", 
-		    "firstname": "Lee", 
-		    "image_uri": "https://theunitedstates.io/images/congress/225x275/Z000017.jpg", 
-		    "lastname": "Zeldin", 
-		    "office": "1517 Longworth House Office Building", 
-		    "party_id": 2, 
-		    "state": "NY", 
-		    "twitter": "RepLeeZeldin", 
-		    "url": "https://zeldin.house.gov", 
-		    "votes_with_party_pct": 93.65, 
+		    ],
+		    "bioguide": "Z000017",
+		    "district": "1",
+		    "firstname": "Lee",
+		    "image_uri": "https://theunitedstates.io/images/congress/225x275/Z000017.jpg",
+		    "lastname": "Zeldin",
+		    "office": "1517 Longworth House Office Building",
+		    "party_id": 2,
+		    "state": "NY",
+		    "twitter": "RepLeeZeldin",
+		    "url": "https://zeldin.house.gov",
+		    "votes_with_party_pct": 93.65,
 		    "youtube": None
 	  	}
 		response = requests.request("GET", live_api_url + 'representative/filter?filter={"order_by":"last_desc"}')
@@ -639,7 +638,7 @@ class TestStringMethods(unittest.TestCase):
 		expected = {
   			"Error": "Filter Query Invalid"
 		}
-	  	
+
 		response = requests.request("GET", live_api_url + 'representative/filter?filter')
 		result = response.json()
 		with app.app_context():
@@ -651,124 +650,124 @@ class TestStringMethods(unittest.TestCase):
 		# insert the district
 		expected = [
 			{
-			    "chair": "Frank Fluckiger", 
+			    "chair": "Frank Fluckiger",
 			    "colors": [
 			      {
-			        "color": "Red", 
-			        "id": 6, 
+			        "color": "Red",
+			        "id": 6,
 			        "party_id": 14
-			      }, 
+			      },
 			      {
-			        "color": "White", 
-			        "id": 7, 
+			        "color": "White",
+			        "id": 7,
 			        "party_id": 14
-			      }, 
+			      },
 			      {
-			        "color": "Blue", 
-			        "id": 8, 
+			        "color": "Blue",
+			        "id": 8,
 			        "party_id": 14
-			      }, 
+			      },
 			      {
-			        "color": "Purple", 
-			        "id": 9, 
+			        "color": "Purple",
+			        "id": 9,
 			        "party_id": 14
 			      }
-			    ], 
-			    "formation_date": "1991", 
-			    "id": 14, 
-			    "name": "Constitution Party", 
-			    "office": "Lancaster, Pennsylvania 17608", 
-			    "path": "constitution_party", 
-			    "representatives": [], 
-			    "twitter_handle": "cnstitutionprty", 
-			    "website": "constitutionparty.com", 
+			    ],
+			    "formation_date": "1991",
+			    "id": 14,
+			    "name": "Constitution Party",
+			    "office": "Lancaster, Pennsylvania 17608",
+			    "path": "constitution_party",
+			    "representatives": [],
+			    "twitter_handle": "cnstitutionprty",
+			    "website": "constitutionparty.com",
 			    "youtube": "ConstitutionParty"
-			  }, 
+			  },
 			  {
-			    "chair": "", 
+			    "chair": "",
 			    "colors": [
 			      {
-			        "color": "Red", 
-			        "id": 19, 
+			        "color": "Red",
+			        "id": 19,
 			        "party_id": 17
-			      }, 
+			      },
 			      {
-			        "color": "White", 
-			        "id": 20, 
+			        "color": "White",
+			        "id": 20,
 			        "party_id": 17
-			      }, 
+			      },
 			      {
-			        "color": "Blue", 
-			        "id": 21, 
+			        "color": "Blue",
+			        "id": 21,
 			        "party_id": 17
 			      }
-			    ], 
-			    "formation_date": "2009", 
-			    "id": 17, 
-			    "name": "Humane Party", 
-			    "office": "PO Box 83, Gilbertsville, Pennsylvania 19525-8500", 
-			    "path": "humane_party", 
-			    "representatives": [], 
-			    "twitter_handle": "humaneparty", 
-			    "website": "humaneparty.org", 
+			    ],
+			    "formation_date": "2009",
+			    "id": 17,
+			    "name": "Humane Party",
+			    "office": "PO Box 83, Gilbertsville, Pennsylvania 19525-8500",
+			    "path": "humane_party",
+			    "representatives": [],
+			    "twitter_handle": "humaneparty",
+			    "website": "humaneparty.org",
 			    "youtube": "Humane Party"
-			  }, 
+			  },
 			  {
-			    "chair": "Bill C. Merrell", 
+			    "chair": "Bill C. Merrell",
 			    "colors": [
 			      {
-			        "color": "Red", 
-			        "id": 61, 
+			        "color": "Red",
+			        "id": 61,
 			        "party_id": 28
-			      }, 
+			      },
 			      {
-			        "color": "White", 
-			        "id": 62, 
+			        "color": "White",
+			        "id": 62,
 			        "party_id": 28
-			      }, 
+			      },
 			      {
-			        "color": "Blue", 
-			        "id": 63, 
+			        "color": "Blue",
+			        "id": 63,
 			        "party_id": 28
 			      }
-			    ], 
-			    "formation_date": "1995", 
-			    "id": 28, 
-			    "name": "Reform Party", 
-			    "office": "PO Box 660675 #3995 Dallas, Texas 75266-0675", 
-			    "path": "reform_party", 
-			    "representatives": [], 
-			    "twitter_handle": "ReformParty", 
-			    "website": "reformparty.org", 
+			    ],
+			    "formation_date": "1995",
+			    "id": 28,
+			    "name": "Reform Party",
+			    "office": "PO Box 660675 #3995 Dallas, Texas 75266-0675",
+			    "path": "reform_party",
+			    "representatives": [],
+			    "twitter_handle": "ReformParty",
+			    "website": "reformparty.org",
 			    "youtube": "ReformPartyUSA"
-			  }, 
+			  },
 			  {
-			    "chair": "Jeff Mackler", 
+			    "chair": "Jeff Mackler",
 			    "colors": [
 			      {
-			        "color": "Red", 
-			        "id": 36, 
+			        "color": "Red",
+			        "id": 36,
 			        "party_id": 29
-			      }, 
+			      },
 			      {
-			        "color": "White", 
-			        "id": 37, 
+			        "color": "White",
+			        "id": 37,
 			        "party_id": 29
-			      }, 
+			      },
 			      {
-			        "color": "Black", 
-			        "id": 38, 
+			        "color": "Black",
+			        "id": 38,
 			        "party_id": 29
 			      }
-			    ], 
-			    "formation_date": "1983", 
-			    "id": 29, 
-			    "name": "Socialist Action Party", 
-			    "office": "", 
-			    "path": "socialist_action_party", 
-			    "representatives": [], 
-			    "twitter_handle": "SocialistActUS", 
-			    "website": "socialistaction.org", 
+			    ],
+			    "formation_date": "1983",
+			    "id": 29,
+			    "name": "Socialist Action Party",
+			    "office": "",
+			    "path": "socialist_action_party",
+			    "representatives": [],
+			    "twitter_handle": "SocialistActUS",
+			    "website": "socialistaction.org",
 			    "youtube": "SocialistActionCT"
   			}
 		]
@@ -782,16 +781,16 @@ class TestStringMethods(unittest.TestCase):
 		self.maxDiff = None
 		# insert the district
 		expected = {
-		    "chair": "William Daniel Johnson", 
-		    "colors": [], 
-		    "formation_date": "January 5, 2010", 
-		    "id": 4, 
-		    "name": "American Freedom Party", 
-		    "office": "2753 Broadway Ste 245, New York City, New York 10025", 
-		    "path": "american_freedom_party", 
-		    "representatives": [], 
-		    "twitter_handle": "AmFreedoms", 
-		    "website": "theamericanfreedomparty.us", 
+		    "chair": "William Daniel Johnson",
+		    "colors": [],
+		    "formation_date": "January 5, 2010",
+		    "id": 4,
+		    "name": "American Freedom Party",
+		    "office": "2753 Broadway Ste 245, New York City, New York 10025",
+		    "path": "american_freedom_party",
+		    "representatives": [],
+		    "twitter_handle": "AmFreedoms",
+		    "website": "theamericanfreedomparty.us",
 		    "youtube": "American3P"
   		}
 		response = requests.request("GET", live_api_url + 'party/filter?filter={"order_by":"chair_name_desc"}')
@@ -816,21 +815,21 @@ class TestStringMethods(unittest.TestCase):
 		self.maxDiff = None
 		# insert the district
 		expected = {
-		    "alpha_num": "TX-1", 
-		    "id": "1", 
-		    "median_age": 36.8, 
-		    "median_age_female": 38.8, 
-		    "median_age_male": 35.6, 
-		    "population": 717735, 
-		    "population_american_indian_and_alaska_native": None, 
-		    "population_asian": None, 
-		    "population_black_or_african_american": 129794, 
-		    "population_male": 350089, 
-		    "population_native_hawaiian_and_other_pacific_islander": None, 
-		    "population_some_other_race": 16021, 
-		    "population_two_or_more_races": 11047, 
-		    "population_white": 548138, 
-		    "representative_id": "G000552", 
+		    "alpha_num": "TX-1",
+		    "id": "1",
+		    "median_age": 36.8,
+		    "median_age_female": 38.8,
+		    "median_age_male": 35.6,
+		    "population": 717735,
+		    "population_american_indian_and_alaska_native": None,
+		    "population_asian": None,
+		    "population_black_or_african_american": 129794,
+		    "population_male": 350089,
+		    "population_native_hawaiian_and_other_pacific_islander": None,
+		    "population_some_other_race": 16021,
+		    "population_two_or_more_races": 11047,
+		    "population_white": 548138,
+		    "representative_id": "G000552",
 		    "state": "TX"
 		}
 		response = requests.request("GET", live_api_url + 'district/filter?filter={"state":"TX","population":"1-750000","median_age":"1-100"}')
@@ -843,21 +842,21 @@ class TestStringMethods(unittest.TestCase):
 		self.maxDiff = None
 		# insert the district
 		expected = {
-			"alpha_num": "MT-At-Large", 
-		    "id": "At-Large", 
-		    "median_age": 40.1, 
-		    "median_age_female": 41.3, 
-		    "median_age_male": 38.9, 
-		    "population": 1042520, 
-		    "population_american_indian_and_alaska_native": 66231, 
-		    "population_asian": 8432, 
-		    "population_black_or_african_american": None, 
-		    "population_male": 526023, 
-		    "population_native_hawaiian_and_other_pacific_islander": None, 
-		    "population_some_other_race": None, 
-		    "population_two_or_more_races": 32218, 
-		    "population_white": 927374, 
-		    "representative_id": "G000584", 
+			"alpha_num": "MT-At-Large",
+		    "id": "At-Large",
+		    "median_age": 40.1,
+		    "median_age_female": 41.3,
+		    "median_age_male": 38.9,
+		    "population": 1042520,
+		    "population_american_indian_and_alaska_native": 66231,
+		    "population_asian": 8432,
+		    "population_black_or_african_american": None,
+		    "population_male": 526023,
+		    "population_native_hawaiian_and_other_pacific_islander": None,
+		    "population_some_other_race": None,
+		    "population_two_or_more_races": 32218,
+		    "population_white": 927374,
+		    "representative_id": "G000584",
 		    "state": "MT"
 		}
 		response = requests.request("GET", live_api_url + 'district/filter?filter={"order_by":"population_desc"}')
@@ -894,21 +893,21 @@ class TestStringMethods(unittest.TestCase):
 		self.maxDiff = None
 		# insert the district
 		expected = {
-			"bioguide": "C001094", 
-		    "district": "8", 
-		    "firstname": "Paul", 
-		    "image_uri": "https://theunitedstates.io/images/congress/225x275/C001094.jpg", 
-		    "lastname": "Cook", 
-		    "office": "1222 Longworth House Office Building", 
-		    "party_id": 2, 
-		    "rank": 1, 
-		    "state": "CA", 
-		    "twitter": "RepPaulCook", 
-		    "url": "https://cook.house.gov", 
-		    "votes_with_party_pct": 95.35, 
+			"bioguide": "C001094",
+		    "district": "8",
+		    "firstname": "Paul",
+		    "image_uri": "https://theunitedstates.io/images/congress/225x275/C001094.jpg",
+		    "lastname": "Cook",
+		    "office": "1222 Longworth House Office Building",
+		    "party_id": 2,
+		    "rank": 1,
+		    "state": "CA",
+		    "twitter": "RepPaulCook",
+		    "url": "https://cook.house.gov",
+		    "votes_with_party_pct": 95.35,
 		    "youtube": "RepPaulCook"
 		}
-		
+
 		response = requests.request("GET", live_api_url + 'search/?query=paul ryan')
 		result = response.json()
 		with app.app_context():
@@ -920,15 +919,15 @@ class TestStringMethods(unittest.TestCase):
 		self.maxDiff = None
 		# insert the district
 		expected = {
-		    "chair": "Ronna Romney McDaniel", 
-		    "formation_date": "March 20, 1854", 
-		    "id": 2, 
-		    "name": "Republican Party", 
-		    "office": "430 South Capitol Street Southeast Washington, DC 20003", 
-		    "path": "republican_party", 
+		    "chair": "Ronna Romney McDaniel",
+		    "formation_date": "March 20, 1854",
+		    "id": 2,
+		    "name": "Republican Party",
+		    "office": "430 South Capitol Street Southeast Washington, DC 20003",
+		    "path": "republican_party",
 		    "rank": 1
     	}
-		
+
 		response = requests.request("GET", live_api_url + 'search/?query=republican')
 		result = response.json()
 		with app.app_context():
@@ -951,13 +950,13 @@ class TestStringMethods(unittest.TestCase):
 		self.maxDiff = None
 		# insert the district
 		expected = {
-			"alpha_num": "TX-36", 
-		    "id": "36", 
-		    "median_age": 36.5, 
-		    "population": 732975, 
-		    "rank": 1, 
-		    "representative_id": "B001291", 
-		    "state": "TX", 
+			"alpha_num": "TX-36",
+		    "id": "36",
+		    "median_age": 36.5,
+		    "population": 732975,
+		    "rank": 1,
+		    "representative_id": "B001291",
+		    "state": "TX",
 		    "state_full": "Texas"
 		}
 		response = requests.request("GET", live_api_url + 'search/?query=TX-36')
@@ -970,19 +969,19 @@ class TestStringMethods(unittest.TestCase):
 		self.maxDiff = None
 		# insert the district
 		expected = {
-			"chair": "Will Christensen", 
-		    "formation_date": "May 16, 1998", 
-		    "id": 18, 
-		    "name": "American Independent Party", 
-		    "office": "", 
-		    "path": "american_independent_party", 
+			"chair": "Will Christensen",
+		    "formation_date": "May 16, 1998",
+		    "id": 18,
+		    "name": "American Independent Party",
+		    "office": "",
+		    "path": "american_independent_party",
 		    "rank": 1
 		}
 		response = requests.request("GET", live_api_url + 'search/?query=party')
 		result = response.json()
 		with app.app_context():
 			self.assertEqual(len(result), 900) # shows all data
-			self.assertEqual(result[0], expected) 
+			self.assertEqual(result[0], expected)
 		print("\nTEST 40: Searching API: searching 'party' keyword  - search results consistent")
 
 
