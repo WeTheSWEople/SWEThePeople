@@ -32,7 +32,6 @@ class PoliticalPartyFilter extends Component {
   }
 
   componentDidMount () {
-    let shouldUpdate = false
     let social = 'None'
     let color = 'None'
     let formationDate = 'None'
@@ -42,34 +41,27 @@ class PoliticalPartyFilter extends Component {
     const {cookies} = this.props
     if (cookies.get('party_social_media_filter')) {
       this.handleSocialDropdownChange(cookies.get('party_social_media_filter'))
-      shouldUpdate = true
       social = cookies.get('party_social_media_filter').value
     }
     if (cookies.get('party_color_filter')) {
       this.handleColorDropdownChange(cookies.get('party_color_filter'))
-      shouldUpdate = true
       color = cookies.get('party_color_filter').value
     }
     if (cookies.get('party_formation_date_filter')) {
       this.handleFormationDateDropdownChange(
         cookies.get('party_formation_date_filter'))
-      shouldUpdate = true
       formationDate = cookies.get('party_formation_date_filter').value
     }
     if (cookies.get('party_name_filter')) {
       this.handleNameDropdownChange(cookies.get('party_name_filter'))
-      shouldUpdate = true
       name = cookies.get('party_name_filter').value
     }
     if (cookies.get('party_sort_filter')) {
       this.handleSortDropdownChange(cookies.get('party_sort_filter'))
-      shouldUpdate = true
       sort = cookies.get('party_sort_filter').value
     }
 
-    if (shouldUpdate) {
-      this.props.buttonHandler(social, color, formationDate, name, sort)
-    }
+    this.props.buttonHandler(social, color, formationDate, name, sort)
   }
 
   handleSocialDropdownChange (selectedOption) {

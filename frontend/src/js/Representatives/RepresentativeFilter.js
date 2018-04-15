@@ -46,7 +46,6 @@ class RepresentativeFilter extends Component {
   }
 
   componentDidMount () {
-    let shouldUpdate = false
     let state = 'None'
     let party = 'None'
     let votes = 'None'
@@ -56,33 +55,26 @@ class RepresentativeFilter extends Component {
     const {cookies} = this.props
     if (cookies.get('rep_state_filter')) {
       this.handleStateDropdownChange(cookies.get('rep_state_filter'))
-      shouldUpdate = true
       state = cookies.get('rep_state_filter').value
     }
     if (cookies.get('rep_party_filter')) {
       this.handlePartyDropdownChange(cookies.get('rep_party_filter'))
-      shouldUpdate = true
       party = cookies.get('rep_party_filter').value
     }
     if (cookies.get('rep_votes_filter')) {
       this.handleVoteDropdownChange(cookies.get('rep_votes_filter'))
-      shouldUpdate = true
       votes = cookies.get('rep_votes_filter').value
     }
     if (cookies.get('rep_lastname_filter')) {
       this.handleLastnameDropdownChange(cookies.get('rep_lastname_filter'))
-      shouldUpdate = true
       lastname = cookies.get('rep_lastname_filter').value
     }
     if (cookies.get('rep_sort_filter')) {
       this.handleSortDropdownChange(cookies.get('rep_sort_filter'))
-      shouldUpdate = true
       sort = cookies.get('rep_sort_filter').value
     }
 
-    if (shouldUpdate) {
-      this.props.buttonHandler(state, party, votes, lastname, sort)
-    }
+    this.props.buttonHandler(state, party, votes, lastname, sort)
   }
 
   handleStateDropdownChange (selectedOption) {
@@ -145,13 +137,11 @@ class RepresentativeFilter extends Component {
   }
 
   handleResetClicked (e) {
-    this.setState({
-      state_value: null,
-      party_value: null,
-      vote_value: null,
-      lastname_value: null,
-      sort_value: null
-    })
+    this.handleStateDropdownChange(null)
+    this.handlePartyDropdownChange(null)
+    this.handleVoteDropdownChange(null)
+    this.handleLastnameDropdownChange(null)
+    this.handleSortDropdownChange(null)
     this.props.buttonHandler('None', 'None', 'None', 'A-Z', 'last_asc')
   }
 
