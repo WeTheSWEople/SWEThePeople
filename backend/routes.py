@@ -171,12 +171,20 @@ def all_parties():
     """
 
     party_name = request.args.get('party_name')
+    party_color = request.args.get('party_color')
     if party_name == 'True':
         query = PoliticalParty.query.with_entities(
             PoliticalParty.id, PoliticalParty.name, PoliticalParty.path)
         query = query.order_by(PoliticalParty.id)
         return jsonify(
             {party.id: [party.name, party.path] for party in query.all()})
+    elif party_color == 'True':
+        query = PartyColor.query.distinct(PartyColor.party_id)
+        query = query.order_by(PartyColor.party_id)
+
+        return jsonify(
+            {c.party_id: c.color for c in query.all()}
+        )
     return get_all_items(PoliticalParty, PoliticalParty.id, 'PoliticalParty')
 
 @party_route.route("/<path>")
