@@ -446,7 +446,7 @@ def districts_filter():
         filtered_result = filtered_result.filter(
             float(median_age[0]) <= District.median_age)
         filtered_result = filtered_result.filter(
-            District.population < float(median_age[1]))
+            District.median_age < float(median_age[1]))
 
     if 'order_by' in filter_query:
         order_by = str(filter_query['order_by'])
