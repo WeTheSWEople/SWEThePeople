@@ -437,12 +437,16 @@ def districts_filter():
     if 'population' in filter_query and filter_query['population'] != 'None':
         population = str(filter_query['population']).split('-')
         filtered_result = filtered_result.filter(
-            int(population[0]) <= District.population < int(population[1]))
+            int(population[0]) <= District.population)
+        filtered_result = filtered_result.filter(
+            District.population < int(population[1]))
 
     if 'median_age' in filter_query and filter_query['median_age'] != 'None':
         median_age = str(filter_query['median_age']).split('-')
         filtered_result = filtered_result.filter(
-            float(median_age[0]) <= District.median_age < float(median_age[1]))
+            float(median_age[0]) <= District.median_age)
+        filtered_result = filtered_result.filter(
+            District.population < float(median_age[1]))
 
     if 'order_by' in filter_query:
         order_by = str(filter_query['order_by'])
