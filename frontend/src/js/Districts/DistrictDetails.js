@@ -2,7 +2,7 @@
 import RepresentativeInstance from '../Representatives/RepresentativeInstance'
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import {Grid, Row, Col, ProgressBar, Tabs, Tab} from 'react-bootstrap'
+import {Grid, Row, Col, ProgressBar, Tabs, Tab, ResponsiveEmbed} from 'react-bootstrap'
 import {PieChart, Pie, BarChart, Bar, Tooltip, Cell, Legend, YAxis, XAxis} from 'recharts'
 import axios from 'axios'
 import {RingLoader} from 'react-spinners'
@@ -87,8 +87,6 @@ export default class DistrictDetails extends Component {
         district_state : response.data.state,
         bioguide: response.representative_id
       })
-
-      console.log(this.state.district_data)
 
       let result = []
       if(response.data.population_american_indian_and_alaska_native !== null){
@@ -222,6 +220,10 @@ export default class DistrictDetails extends Component {
       female['value'] = population - this.state.district_data.population_male
       genderPopData.push(male)
       genderPopData.push(female)
+      let img_src = "https://www.govtrack.us/congress/members/embed/mapframe?state=" + this.state.district_state + "&district=" + this.state.district_num
+      if (this.state.district_num == "At-Large"){
+        img_src = "https://www.govtrack.us/congress/members/embed/mapframe?state=" + this.state.district_state + "&district=" + 0
+      }
 
       return (
         <div className='App'>
@@ -237,6 +239,8 @@ export default class DistrictDetails extends Component {
                   this.state.district_state + '-' + this.state.district_num + '.png')}
                 style={styles.image}
                 alt='District Map'/>
+
+             
 
                 <h1><font size='5'><b>
                   {this.state.all_states[this.state.district_state]+' - District '+this.state.district_num}
@@ -267,12 +271,16 @@ export default class DistrictDetails extends Component {
                     {` `}
                     years
                   </font></p>
+                  <p><font size='4'>
+                  <b>Wikipedia: </b>
+                    <a href = {this.state.district_data.wikipedia_link} target="_blank" > {this.state.district_state +'- District '+this.state.district_num} </a>
+                  </font></p>
                 </div>
               </div>
             </Col>
             <Col sm={12} md={7}>
               <div style={styles.box}>
-                <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
+                <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
                   <Tab eventKey={1} title="Current Representative">
                     <Row style={styles.tabBox}>
                       {repsGrid}
@@ -289,7 +297,18 @@ export default class DistrictDetails extends Component {
                       </div>
                     </Row>
                   </Tab>
-                  <Tab eventKey={2} title="Population Breakdown">
+                  <Tab eventKey={2} title="District Interactive Map">
+                  <Row style={styles.tabBox}>
+                      <Col md={12} style={styles.genderPie}>
+                        <div style={{ width: 'auto', height: '80%'}}>
+                          <ResponsiveEmbed a16by9>
+                            <embed type="image/svg+xml" src={img_src} />
+                          </ResponsiveEmbed>
+                        </div>
+                      </Col>
+                   </Row>
+                  </Tab>
+                  <Tab eventKey={3} title="Population Breakdown">
                     <Row style={styles.tabBox}>
                       <Col md={1}></Col>
                       <Col md={5} styles={styles.genderPie}>
@@ -324,7 +343,7 @@ export default class DistrictDetails extends Component {
                       </Col>
                     </Row>
                   </Tab>
-                  <Tab eventKey={3} title="Technology Literacy">
+                  <Tab eventKey={4} title="Technology Literacy">
                           <h1>{this.state.techLiteracy[0].name}</h1>
                   </Tab>
                 </Tabs>
