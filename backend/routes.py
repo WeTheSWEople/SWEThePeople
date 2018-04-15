@@ -239,7 +239,7 @@ def party_filter():
     social = 'None'
     color = 'None'
     formation_date = 'None'
-    name = 'A-Z'
+    name = ['a', 'z']
     order_by = 'None'
 
     if 'social' in filter_query:
@@ -264,7 +264,7 @@ def party_filter():
     elif social == 'Y':
         filtered_result = filtered_result.filter(
             PoliticalParty.youtube != '')
-    elif social != 'Neither':
+    elif social != 'None':
         filtered_result = filtered_result.filter(
             PoliticalParty.youtube == '',
             PoliticalParty.twitter_handle == '')
@@ -309,8 +309,7 @@ def party_filter():
         result = filter(party_formed_between, result)
 
     # Filter the names of the parties
-    name = name.lower()
-    return jsonify(filter(lambda n: name[0] <= n['name'].lower()[0] <= name[2],
+    return jsonify(filter(lambda n: name[0] <= n['name'].lower()[0] <= name[1],
         result))
 
 def party_chair(party):
