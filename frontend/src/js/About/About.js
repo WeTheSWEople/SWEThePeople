@@ -438,7 +438,8 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-            <a href='https://www.govtrack.us/developers/api' target="_blank" rel="noopener noreferrer">
+
+            <a href='https://www.govtrack.us/developers' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/govtrack.png')}
@@ -476,8 +477,7 @@ export default class About extends Component {
                 </div>
               </div>
             </a>
-
-            <a href='https://theunitedstates.io/images/congress/' target="_blank" rel="noopener noreferrer">
+            <a href='https://theunitedstates.io/images/' target="_blank" rel="noopener noreferrer">
               <div className='col-sm-3'>
                 <div className='data-card'>
                   <img src={
