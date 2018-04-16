@@ -27,6 +27,16 @@
   font-family: 'EB Garamond', serif;
 }
 
+.party-details-rep-instance {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.party-details-rep-instance .tile .rep_img {
+    margin-top: 55px !important;
+}
+
 .shadow {
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
 }

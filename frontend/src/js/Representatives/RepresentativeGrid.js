@@ -38,11 +38,18 @@ export default class RepresentativeGrid extends Component {
 	  all_reps: null,
 	  party_name: null,
 	  displayed_reps: null,
+      party_colors: null,
 	  cur_page: 0
 	}
 
 	this.getRepData = this.getRepData.bind(this)
 	this.handlePageClick = this.handlePageClick.bind(this)
+  }
+
+  componentWillMount () {
+    axios.get(url.api_url + 'party/?party_color=True').then((response) => {
+      this.setState({party_colors: response.data})
+    })
   }
 
   handlePageClick(data){
@@ -82,7 +89,8 @@ export default class RepresentativeGrid extends Component {
   }
 
   render () {
-	if (this.state.all_reps === null || this.state.party_name === null) {
+	if (this.state.all_reps === null || this.state.party_name === null ||
+      this.state.party_colors === null) {
 	  return (
 		<div className='loading filter-grid-center'>
 		  <RingLoader color={'#123abc'} loading={true} />
@@ -109,7 +117,8 @@ export default class RepresentativeGrid extends Component {
                 <RepresentativeInstance
                   key={item.bioguide}
                   rep={item}
-                  party_name={this.state.party_name[item.party_id][0]} />
+                  party_name={this.state.party_name[item.party_id][0]}
+                  party_color={this.state.party_colors[item.party_id]} />
               ))}
             </div>
             <ReactPaginate previousLabel={"previous"}
