@@ -4,6 +4,7 @@ import {Grid, Row, Col, ProgressBar, Tabs, Tab} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {Timeline} from 'react-twitter-widgets'
 import RepBills from './Bills.js'
+import RepArticles from './Articles.js'
 import {RingLoader} from 'react-spinners'
 
 /* eslint-enable no-unused-vars */
@@ -52,7 +53,7 @@ export default class RepresentativeDetails extends Component {
     super(props)
     this.state = {
         rep_data : null,
-        party_name : null
+        party_name : null,
     }
   }
 
@@ -121,17 +122,31 @@ export default class RepresentativeDetails extends Component {
         youtube = <iframe
               width='350'
               height='200'
-              title = '{this.state.firstname} {this.state.lastname} YouTube Channel'
+              title ='YouTube Channel'
               src={'http://www.youtube.com/embed?max-results=1&controls=0' +
                 '&showinfo=0&rel=0&listType=user_uploads&list=' +
                 this.state.rep_data['youtube']}
               frameborder='10' allowfullscreen >
         </iframe>
       }
-      else{
-          youtube = <div> <h4>No Youtube Channel</h4></div>
-      }
 
+      let facebook = ''
+      if(this.state.rep_data['facebook'] !== null) {
+        facebook = <iframe
+          src={'https://www.facebook.com/plugins/page.php' +
+            '?href=https%3A%2F%2Fwww.facebook.com%2F' +
+            this.state.rep_data['facebook'] + '&tabs=timeline&width=340&height=500' +
+            '&small_header=false&adapt_container_width=true' +
+            '&hide_cover=false&show_facepile=true&appId'}
+          width="340"
+          height="500"
+          style={{border:'none', overflow:'hidden'}}
+          scrolling="no"
+          frameborder="0"
+          allowTransparency="true"
+          allow="encrypted-media">
+        </iframe>
+      }
 
       return (
       <div className='App container'>
@@ -169,8 +184,13 @@ export default class RepresentativeDetails extends Component {
                     </Link>
                   </p>
                   <p>
-                    <b> Site: </b>
-                    <a href={this.state.rep_data['url']} target="_blank" rel="noopener noreferrer">Website </a>
+                    <b>
+                      <a href={this.state.rep_data['url']}
+                        target="_blank"
+                        rel="noopener noreferrer">
+                          Website
+                      </a>
+                    </b>
                   </p>
                   <p>
                     <b>Votes with Party (%): </b>
@@ -195,15 +215,21 @@ export default class RepresentativeDetails extends Component {
                         {twitter}
                       </ Col>
                       <Col md={6}>
-                        <h3><b>YouTube Channel</b></h3>
                         {youtube}
+                      </Col>
+                      <Col md={6}>
+                        {facebook}
                       </Col>
                     </ Row>
                   </Tab>
-                  <Tab eventKey={2} title="Recent Bills">
+                  <Tab eventKey={2} title="News">
                     <h3 class='bills-header'>Recent Bills Sponsored</h3>
                     <Row style={{paddingLeft: '5px'}}>
                       <RepBills data = {this.state.rep_data.bills} />
+                    </Row>
+                    <h3 class='bills-header'>Recent Articles</h3>
+                    <Row style={{paddingLeft: '5px'}}>
+                      <RepArticles data = {this.state.rep_data.articles} />
                     </Row>
                   </Tab>
                   <Tab eventKey={3} title="Office Location">
@@ -213,7 +239,7 @@ export default class RepresentativeDetails extends Component {
                       width='600'
                       height='450'
                       frameborder='0' style={{border: '0'}}
-                      title = '{this.state.firstname} {this.state.lastname} Twitter Feed'
+                      title = 'Office Location'
                       src={'https://www.google.com/maps/embed/v1/place?' +
                       'key=AIzaSyDOCxZVfWFVpzzAC8tEIi3ulzNzXbOdsyY' +
                       '&q=' + this.state.rep_data.office} allowfullscreen>

@@ -88,10 +88,11 @@ export default class About extends Component {
         };
         page++;
         //hardcoded value because I don't know how to force this loop to be asynchronous
-        if (page == 5) {
+        if (page === 5) {
           break;
         }
 
+        // eslint-disable-next-line
         request(options, function (error, response, body) {
           if (error) {
             eof = true;
