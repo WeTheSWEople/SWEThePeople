@@ -20,8 +20,8 @@ mocha:
 	cd frontend && npm test
 
 backend:
-	- cd backend && pip2.7 install -r requirements.txt
-	cd backend && python2.7 tests.py
+	- cd backend && virtualenv venv && source venv/bin/activate && pip2.7 install -r requirements.txt
+	cd backend && python tests.py
 
 postman:
 	- npm install -g newman
