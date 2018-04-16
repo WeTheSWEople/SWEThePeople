@@ -34,29 +34,30 @@ class PoliticalPartyFilter extends Component {
   componentDidMount () {
     let social = 'None'
     let color = 'None'
-    let formationDate = 'None'
+    let formationDate = '1776-3000'
     let name = 'A-Z'
     let sort = 'None'
 
     const {cookies} = this.props
-    if (cookies.get('party_social_media_filter')) {
+    if (cookies.get('party_social_media_filter') !== 'null') {
       this.handleSocialDropdownChange(cookies.get('party_social_media_filter'))
       social = cookies.get('party_social_media_filter').value
     }
-    if (cookies.get('party_color_filter')) {
+    if (cookies.get('party_color_filter') !== 'null') {
       this.handleColorDropdownChange(cookies.get('party_color_filter'))
       color = cookies.get('party_color_filter').value
     }
-    if (cookies.get('party_formation_date_filter')) {
+    if (cookies.get('party_formation_date_filter') !== 'null') {
       this.handleFormationDateDropdownChange(
         cookies.get('party_formation_date_filter'))
       formationDate = cookies.get('party_formation_date_filter').value
+      console.log(cookies.get('party_formation_date_filter'))
     }
-    if (cookies.get('party_name_filter')) {
+    if (cookies.get('party_name_filter') !== 'null') {
       this.handleNameDropdownChange(cookies.get('party_name_filter'))
       name = cookies.get('party_name_filter').value
     }
-    if (cookies.get('party_sort_filter')) {
+    if (cookies.get('party_sort_filter') !== 'null') {
       this.handleSortDropdownChange(cookies.get('party_sort_filter'))
       sort = cookies.get('party_sort_filter').value
     }
@@ -74,7 +75,6 @@ class PoliticalPartyFilter extends Component {
     const {cookies} = this.props
     cookies.set('party_color_filter', selectedOption)
     this.setState({color_value: selectedOption})
-    console.log(this.state)
   }
 
   handleFormationDateDropdownChange (selectedOption) {
@@ -106,7 +106,7 @@ class PoliticalPartyFilter extends Component {
       color = this.state.color_value.value
     }
 
-    let formationDate = 'None'
+    let formationDate = '1776-3000'
     if (this.state.formation_date_value !== null) {
       formationDate = this.state.formation_date_value.value
     }
@@ -131,7 +131,7 @@ class PoliticalPartyFilter extends Component {
     this.handleNameDropdownChange(null)
     this.handleSortDropdownChange(null)
 
-    this.props.buttonHandler('None', 'None', 'None', 'A-Z', 'None')
+    this.props.buttonHandler('None', 'None', '1776-3000', 'A-Z', 'None')
   }
 
   render () {

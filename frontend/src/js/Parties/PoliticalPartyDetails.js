@@ -138,7 +138,8 @@ export default class PoliticalPartyDetails extends Component {
 
       let repsGrid = Object.keys(this.state.reps).map((key) =>
         <div className='party-rep-card'>
-          <RepresentativeInstance key={key} rep={this.state.reps[key]} />
+          <RepresentativeInstance key={key} rep={this.state.reps[key]}
+            columns={"false"} />
         </div>
       )
 
