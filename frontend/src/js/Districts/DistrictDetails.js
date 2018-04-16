@@ -77,6 +77,24 @@ export default class DistrictDetails extends Component {
       all_states: null
 
     }
+    this.getAllStates= this.getAllStates.bind(this)
+  }
+
+  getAllStates(){
+
+     axios.get(url.api_url + 'state/?state_usps=True').then((response) => {
+      this.setState({all_states: response.data})
+
+      axios.get(url.api_url + `party?party_name=True`).then((response)=>{
+            this.setState({
+              party_data:response.data
+            })
+      })
+
+
+     }).catch((error) => {
+      this.setState({all_states: -1})
+     })
   }
   componentWillMount () {
     axios.get(url.api_url + `district/${this.props.match.params.districtid}/${this.props.match.params.districtnum}`)
@@ -87,7 +105,6 @@ export default class DistrictDetails extends Component {
         district_state : response.data.state,
         bioguide: response.representative_id
       })
-
       let result = []
       if(response.data.population_american_indian_and_alaska_native !== null){
         result.push({'name': 'AIAAN', 'amt': response.data.population_american_indian_and_alaska_native})
@@ -165,12 +182,12 @@ export default class DistrictDetails extends Component {
           })
       })
       .catch((error)=>{
-          this.setState({
-              rep_data: -1,
-        })
+        this.setState({ rep_data: -1 })
+        this.getAllStates()
       })
     })
-    .catch((error)=>{
+    .catch((error)=>{ 
+
         this.setState({
             district_data: -1
         })
@@ -178,24 +195,41 @@ export default class DistrictDetails extends Component {
   }
 
   render () {
+    
 
-
-    if (this.district_data === null || this.state.rep_data === null || this.state.party_data === null || this.state.all_states === null){
+    if (this.state.district_data === -1 && this.state.rep_data === -1 && this.state.party_data === -1 && this.state.all_states === -1){
+      return (
+        <div style={styles.root}>
+          <p> Data Not Found </p>
+        </div>)
+    }
+    else if (this.state.district_data === null || this.state.rep_data === null || this.state.party_data === null || this.state.all_states === null){
       return(
       <div style={styles.center}>
       <RingLoader color={'#123abc'} loading={true} />
        </div>)
-    }
-    else if (this.district_data === null || this.state.rep_data === -1 || this.state.party_data === -1 || this.state.all_states === -1){
-      return (
-          <div style={styles.root}>
-           <p> Data Not Found </p>
-          </div>)
+
     }
     else{
-      let repsGrid = <div class='col-sm-8'>
-        <RepresentativeInstance rep={this.state.rep_data} party_name = {this.state.party_data[this.state.rep_data.party_id][0]}  />
-      </div>
+      let repsGrid = <div> There is No Representative For this District. </div>
+      if(this.state.rep_data !== -1){
+        repsGrid =  <div><div class='col-md-8'>
+                      <RepresentativeInstance rep={this.state.rep_data} party_name = {this.state.party_data[this.state.rep_data.party_id][0]}  />
+                    </div>
+                    <div class='col-md-4'>
+                      <Link to={`/party/${this.state.party_data[this.state.rep_data['party_id']][1]}`} >
+                          <img src={
+                            require('../../assets/images/parties/' +
+                              this.state.party_image + '.png')}
+                          alt='Party logo'
+                          className='img-responsive'
+                          style={styles.imgStyle} />
+                          <h3><b>{this.state.party_data[this.state.rep_data['party_id']][0]}</b></h3>
+                        </Link>
+                      </div></div>
+      }
+
+     
 
       let legend = null
       legend = Object.keys(this.state.legend).map((item) =>
@@ -284,17 +318,6 @@ export default class DistrictDetails extends Component {
                   <Tab eventKey={1} title="Current Representative">
                     <Row style={styles.tabBox}>
                       {repsGrid}
-                      <div class='col-md-4'>
-                        <Link to={`/party/${this.state.party_data[this.state.rep_data['party_id']][1]}`} >
-                          <img src={
-                            require('../../assets/images/parties/' +
-                              this.state.party_image + '.png')}
-                          alt='Party logo'
-                          className='img-responsive'
-                          style={styles.imgStyle} />
-                          <h3><b>{this.state.party_data[this.state.rep_data['party_id']][0]}</b></h3>
-                        </Link>
-                      </div>
                     </Row>
                   </Tab>
                   <Tab eventKey={2} title="District Interactive Map">
