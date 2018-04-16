@@ -121,6 +121,9 @@ export default class RepresentativeGrid extends Component {
                   party_color={this.state.party_colors[item.party_id]} />
               ))}
             </div>
+          </div>
+
+          <div className='row'>
             <ReactPaginate previousLabel={"previous"}
               nextLabel={"next"}
               breakLabel={<a>...</a>}
