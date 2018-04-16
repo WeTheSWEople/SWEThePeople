@@ -19,10 +19,6 @@ const styles = {
 }
 
 export default class StateInstance extends Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     return (
       <Link to={`/districts/${this.props.state}`}

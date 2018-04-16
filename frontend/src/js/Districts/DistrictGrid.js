@@ -43,7 +43,6 @@ export default class DistrictGrid extends Component {
   }
 
   handlePageClick(data){
-	  console.log(this.state.districts)
 	  this.setState({displayed_districts: this.state.districts.subarray(data.selected*16, (data.selected + 1)* 16)})
   }
 
