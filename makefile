@@ -16,7 +16,8 @@ selenium:
 	cd frontend && python2.7 guitests.py
 
 mocha:
-	cd frontend && npm install && npm test
+	- cd frontend && npm install
+	cd frontend && npm test
 
 backend:
 	- cd backend && pip2.7 install -r requirements.txt
