@@ -3,6 +3,7 @@ PoliticalParty -  Representative
 PoliticalParty -  District
 Representative -  District
 Bill           -> Representative
+Article        -> Representative
 PartyColor     -> PoliticalParty
 District       -> State
 
@@ -29,11 +30,13 @@ class Representative {
 	text district
 	text twitter
 	text youtube
+	text facebook
 	text office
 	text votes_with_party_pct
 	text url
 	text image_uri
     list bills
+    list articles
 }
 
 class Bill {
@@ -46,15 +49,25 @@ class Bill {
 	text latest_major_action
 }
 
+class Article {
+	int id
+	text title
+	text url
+	text date
+	text site
+	text representative_id
+}
+
 class District {
 	text id
 	text alpha_num
 	text state
 	text representative_id
-	text population
+	text wikipedia_link
 	float median_age
 	float median_age_male
 	float median_age_female
+	int population
 	int population_male
 	int population_white
 	int population_black_or_african_american
@@ -63,6 +76,56 @@ class District {
 	int population_native_hawaiian_and_other_pacific_islander
 	int population_some_other_race
 	int population_two_or_more_races
+	int ethnicity_not_hispanic_or_latino
+	int ethnicity_hispanic_or_latino
+	int citizenship_us_citizen_born_in_us
+	int citizenship_us_citizen_born_in_pr_or_us_island_areas
+	int citizenship_us_citizen_born_abroad_american_parents
+	int citizenship_us_citizen_by_naturalization
+	int citizenship_not_a_us_citizen
+	int language_speak_only_english
+	int language_speak_spanish
+	int language_speak_other_languages
+	int marriage_never_married
+	int marriage_now_married
+	int marriage_divorced
+	int marriage_separated
+	int marriage_widowed
+	int education_less_than_hs
+	int education_hs_grad
+	int education_some_college
+	int education_bachelors
+	int education_grad_prof
+	int income_none
+	int income_9999_less
+	int income_10000_14999
+	int income_15000_19999
+	int income_20000_24999
+	int income_25000_29999
+	int income_30000_34999
+	int income_35000_39999
+	int income_40000_44999
+	int income_45000_49999
+	int income_50000_59999
+	int income_60000_74999
+	int income_75000_99999
+	int income_100000_124999
+	int income_125000_149999
+	int income_150000_199999
+	int income_200000_more
+	int veteran
+	int computers_has_one_or_more
+	int computers_has_desktop_laptop
+	int computers_has_smartphone
+	int computers_has_tablet
+	int computers_has_other
+	int computers_none
+	int internet_has
+	int internet_has_dialup
+	int internet_has_broadband
+	int internet_has_cellular_data
+	int internet_has_satellite
+	int internet_none
 }
 
 class State {
