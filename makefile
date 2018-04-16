@@ -12,11 +12,11 @@ stories:
 	@echo "https://github.com/WeTheSWEople/SWEThePeople/labels?utf8=%E2%9C%93&q=story"
 
 selenium:
-	- cd frontend && pip2.7 install -r requirements.txt
+	- cd frontend && virtualenv venv && source venv/bin/activate &&  pip2.7 install -r requirements.txt
 	cd frontend && python2.7 guitests.py
 
 mocha:
-	- cd frontend && npm install
+	cd frontend && npm install
 	cd frontend && npm test
 
 backend:
