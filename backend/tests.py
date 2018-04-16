@@ -1059,202 +1059,332 @@ class TestStringMethods(unittest.TestCase):
 		with app.app_context():
 			self.assertEqual(result, expected)
 		print("\nTEST 31: Filtering API: Party - Bad Filter Query  - Response OK")
-#
-# 	def test_32(self):
-# 		self.maxDiff = None
-# 		# insert the district
-# 		expected = {
-# 		    "alpha_num": "TX-1",
-# 		    "id": "1",
-# 		    "median_age": 36.8,
-# 		    "median_age_female": 38.8,
-# 		    "median_age_male": 35.6,
-# 		    "population": 717735,
-# 		    "population_american_indian_and_alaska_native": None,
-# 		    "population_asian": None,
-# 		    "population_black_or_african_american": 129794,
-# 		    "population_male": 350089,
-# 		    "population_native_hawaiian_and_other_pacific_islander": None,
-# 		    "population_some_other_race": 16021,
-# 		    "population_two_or_more_races": 11047,
-# 		    "population_white": 548138,
-# 		    "representative_id": "G000552",
-# 		    "state": "TX"
-# 		}
-# 		response = requests.request("GET", live_api_url + 'district/filter?filter={"state":"TX","population":"1-750000","median_age":"1-100"}')
-# 		result = response.json()
-# 		with app.app_context():
-# 			self.assertEqual(result[0], expected)
-# 		print("\nTEST 32: Filtering API: District - filter by state, population, and median age - data consistent")
-#
-# 	def test_33(self):
-# 		self.maxDiff = None
-# 		# insert the district
-# 		expected = {
-# 			"alpha_num": "MT-At-Large",
-# 		    "id": "At-Large",
-# 		    "median_age": 40.1,
-# 		    "median_age_female": 41.3,
-# 		    "median_age_male": 38.9,
-# 		    "population": 1042520,
-# 		    "population_american_indian_and_alaska_native": 66231,
-# 		    "population_asian": 8432,
-# 		    "population_black_or_african_american": None,
-# 		    "population_male": 526023,
-# 		    "population_native_hawaiian_and_other_pacific_islander": None,
-# 		    "population_some_other_race": None,
-# 		    "population_two_or_more_races": 32218,
-# 		    "population_white": 927374,
-# 		    "representative_id": "G000584",
-# 		    "state": "MT"
-# 		}
-# 		response = requests.request("GET", live_api_url + 'district/filter?filter={"order_by":"population_desc"}')
-# 		result = response.json()
-# 		with app.app_context():
-# 			self.assertEqual(result[0], expected)
-# 		print("\nTEST 33: Filtering API: District - sort by population - data consistent")
-#
-# 	def test_34(self):
-# 		self.maxDiff = None
-# 		# insert the district
-# 		expected = {
-#   			"Error": "Filter Query Invalid"
-# 		}
-# 		response = requests.request("GET", live_api_url + 'district/filter?filter')
-# 		result = response.json()
-# 		with app.app_context():
-# 			self.assertEqual(result, expected)
-# 		print("\nTEST 34: Filtering API: District - Bad Filter Query  - Response OK")
-#
-#
-#
-# #)))))))((((()))))
-# 	def test_35(self):
-# 		self.maxDiff = None
-# 		# insert the district
-# 		response = requests.request("GET", live_api_url + 'search/?query=random')
-# 		result = response.json()
-# 		with app.app_context():
-# 			self.assertEqual(result, [])
-# 		print("\nTEST 35: Searching API: searching 'random' keyword  - search results consistent")
-#
-# 	def test_36(self):
-# 		self.maxDiff = None
-# 		# insert the district
-# 		expected = {
-# 			"bioguide": "C001094",
-# 		    "district": "8",
-# 		    "firstname": "Paul",
-# 		    "image_uri": "https://theunitedstates.io/images/congress/225x275/C001094.jpg",
-# 		    "lastname": "Cook",
-# 		    "office": "1222 Longworth House Office Building",
-# 		    "party_id": 2,
-# 		    "rank": 1,
-# 		    "state": "CA",
-# 		    "twitter": "RepPaulCook",
-# 		    "url": "https://cook.house.gov",
-# 		    "votes_with_party_pct": 95.35,
-# 		    "youtube": "RepPaulCook"
-# 		}
-#
-# 		response = requests.request("GET", live_api_url + 'search/?query=paul ryan')
-# 		result = response.json()
-# 		with app.app_context():
-# 			self.assertEqual(result[0], expected)
-# 			self.assertTrue('Paul' in result[0].values())
-# 		print("\nTEST 36: Searching API: searching 'paul ryan' keyword  - search results consistent")
-#
-# 	def test_37(self):
-# 		self.maxDiff = None
-# 		# insert the district
-# 		expected = {
-# 		    "chair": "Ronna Romney McDaniel",
-# 		    "formation_date": "March 20, 1854",
-# 		    "id": 2,
-# 		    "name": "Republican Party",
-# 		    "office": "430 South Capitol Street Southeast Washington, DC 20003",
-# 		    "path": "republican_party",
-# 		    "rank": 1
-#     	}
-#
-# 		response = requests.request("GET", live_api_url + 'search/?query=republican')
-# 		result = response.json()
-# 		with app.app_context():
-# 			self.assertEqual(result[0], expected)
-# 			self.assertEqual(len(result), 477)
-# 		print("\nTEST 37: Searching API: searching 'republican' keyword  - search results consistent")
-#
-#
-# 	def test_38(self):
-# 		self.maxDiff = None
-# 		# insert the district
-# 		response = requests.request("GET", live_api_url + 'search/?query=texas')
-# 		result = response.json()
-# 		with app.app_context():
-# 			self.assertEqual(len(result), 74)
-# 		print("\nTEST 38: Searching API: searching 'texas' keyword  - search results consistent")
-#
-#
-# 	def test_39(self):
-# 		self.maxDiff = None
-# 		# insert the district
-# 		expected = {
-# 			"alpha_num": "TX-36",
-# 		    "id": "36",
-# 		    "median_age": 36.5,
-# 		    "population": 732975,
-# 		    "rank": 1,
-# 		    "representative_id": "B001291",
-# 		    "state": "TX",
-# 		    "state_full": "Texas"
-# 		}
-# 		response = requests.request("GET", live_api_url + 'search/?query=TX-36')
-# 		result = response.json()
-# 		with app.app_context():
-# 			self.assertEqual(result[0], expected)
-# 		print("\nTEST 39: Searching API: searching 'TX-36' keyword  - search results consistent")
-#
-# 	def test_40(self):
-# 		self.maxDiff = None
-# 		# insert the district
-# 		expected = {
-# 			"chair": "Will Christensen",
-# 		    "formation_date": "May 16, 1998",
-# 		    "id": 18,
-# 		    "name": "American Independent Party",
-# 		    "office": "",
-# 		    "path": "american_independent_party",
-# 		    "rank": 1
-# 		}
-# 		response = requests.request("GET", live_api_url + 'search/?query=party')
-# 		result = response.json()
-# 		with app.app_context():
-# 			self.assertEqual(len(result), 900) # shows all data
-# 			self.assertEqual(result[0], expected)
-# 		print("\nTEST 40: Searching API: searching 'party' keyword  - search results consistent")
-#
-#
-# 	def test_41(self):
-# 		self.maxDiff = None
-# 		# insert the district
-# 		response = requests.request("GET", live_api_url + 'search/?query=')
-# 		result = response.json()
-# 		with app.app_context():
-# 			self.assertEqual(result, [])
-# 		print("\nTEST 41: Searching API: searching empty query  - search results consistent")
-#
-#
-# 	def test_42(self):
-# 		self.maxDiff = None
-# 		# insert the district
-# 		expected = {
-# 		  "Error": "Search Query Invalid"
-# 		}
-# 		response = requests.request("GET", live_api_url + 'search/?')
-# 		result = response.json()
-# 		with app.app_context():
-# 			self.assertEqual(result, expected)
-# 		print("\nTEST 42: Searching API: bad search query  - search results consistent")
+
+	def test_32(self):
+		self.maxDiff = None
+		expected = {
+		    "alpha_num": "TX-1",
+		    "citizenship_not_a_us_citizen": 40048,
+		    "citizenship_us_citizen_born_abroad_of_american_parents": 2589,
+		    "citizenship_us_citizen_born_in_pr_or_us_island_areas": 268,
+		    "citizenship_us_citizen_born_in_us": 657366,
+		    "citizenship_us_citizen_by_naturalization": 17464,
+		    "computers_has_desktop_laptop": 164782,
+		    "computers_has_one_or_more": 212811,
+		    "computers_has_other": 4759,
+		    "computers_has_smartphone": 184954,
+		    "computers_has_tablet": 129210,
+		    "computers_none": 37736,
+		    "education_bachelors": 66676,
+		    "education_grad_prof": 30537,
+		    "education_hs_grad": 131291,
+		    "education_less_than_hs": 83757,
+		    "education_some_college": 153587,
+		    "ethnicity_hispanic_or_latino": None,
+		    "ethnicity_not_hispanic_or_latino": None,
+		    "id": "1",
+		    "income_100000_124999": 15875,
+		    "income_10000_14999": 14204,
+		    "income_125000_149999": 8498,
+		    "income_150000_199999": 7070,
+		    "income_15000_19999": 15839,
+		    "income_200000_more": 8398,
+		    "income_20000_24999": 20284,
+		    "income_25000_29999": 14245,
+		    "income_30000_34999": 14427,
+		    "income_35000_39999": 11637,
+		    "income_40000_44999": 12885,
+		    "income_45000_49999": 13461,
+		    "income_50000_59999": 18992,
+		    "income_60000_74999": 24045,
+		    "income_75000_99999": 29816,
+		    "income_9999_less": 20871,
+		    "income_none": 88598,
+		    "internet_has": 188576,
+		    "internet_has_broadband": 187848,
+		    "internet_has_cellular_data": 158573,
+		    "internet_has_dialup": 728,
+		    "internet_has_satellite": 25848,
+		    "internet_none": 54331,
+		    "language_speak_only_english": 573218,
+		    "language_speak_other_languages": 8717,
+		    "language_speak_spanish": 88099,
+		    "marriage_divorced": 67295,
+		    "marriage_never_married": 170674,
+		    "marriage_now_married": 279377,
+		    "marriage_separated": 12066,
+		    "marriage_widowed": 41680,
+		    "median_age": 36.8,
+		    "median_age_female": 38.8,
+		    "median_age_male": 35.6,
+		    "population": 717735,
+		    "population_american_indian_and_alaska_native": None,
+		    "population_asian": None,
+		    "population_black_or_african_american": 129794,
+		    "population_male": 350089,
+		    "population_native_hawaiian_and_other_pacific_islander": None,
+		    "population_some_other_race": 16021,
+		    "population_two_or_more_races": 11047,
+		    "population_white": 548138,
+		    "representative_id": "G000552",
+		    "state": "TX",
+		    "veteran": 42665,
+		    "wikipedia_link": "https://en.wikipedia.org/wiki/Texas%27s_1st_congressional_district"
+		}
+		response = requests.request("GET", live_api_url + 'district/filter?filter={"state":"TX","population":"1-750000","median_age":"1-100"}')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result[0], expected)
+		print("\nTEST 32: Filtering API: District - filter by state, population, and median age - data consistent")
+
+	def test_33(self):
+		self.maxDiff = None
+		expected = {
+			"alpha_num": "MT-At-Large",
+		    "citizenship_not_a_us_citizen": 10308,
+		    "citizenship_us_citizen_born_abroad_of_american_parents": 7923,
+		    "citizenship_us_citizen_born_in_pr_or_us_island_areas": 886,
+		    "citizenship_us_citizen_born_in_us": 1011818,
+		    "citizenship_us_citizen_by_naturalization": 11585,
+		    "computers_has_desktop_laptop": 325736,
+		    "computers_has_one_or_more": 365158,
+		    "computers_has_other": 8342,
+		    "computers_has_smartphone": 282247,
+		    "computers_has_tablet": 220613,
+		    "computers_none": 50967,
+		    "education_bachelors": 148944,
+		    "education_grad_prof": 71662,
+		    "education_hs_grad": 206415,
+		    "education_less_than_hs": 51238,
+		    "education_some_college": 234357,
+		    "ethnicity_hispanic_or_latino": None,
+		    "ethnicity_not_hispanic_or_latino": None,
+		    "id": "At-Large",
+		    "income_100000_124999": 29940,
+		    "income_10000_14999": 24786,
+		    "income_125000_149999": 18585,
+		    "income_150000_199999": 15669,
+		    "income_15000_19999": 22330,
+		    "income_200000_more": 15598,
+		    "income_20000_24999": 22193,
+		    "income_25000_29999": 22568,
+		    "income_30000_34999": 24449,
+		    "income_35000_39999": 22135,
+		    "income_40000_44999": 22241,
+		    "income_45000_49999": 20513,
+		    "income_50000_59999": 33707,
+		    "income_60000_74999": 43775,
+		    "income_75000_99999": 50902,
+		    "income_9999_less": 26734,
+		    "income_none": 73606,
+		    "internet_has": 331897,
+		    "internet_has_broadband": 328132,
+		    "internet_has_cellular_data": 246617,
+		    "internet_has_dialup": 3765,
+		    "internet_has_satellite": 34446,
+		    "internet_none": 68144,
+		    "language_speak_only_english": 944993,
+		    "language_speak_other_languages": 24693,
+		    "language_speak_spanish": 11691,
+		    "marriage_divorced": 105525,
+		    "marriage_never_married": 248980,
+		    "marriage_now_married": 440100,
+		    "marriage_separated": 9524,
+		    "marriage_widowed": 48164,
+		    "median_age": 40.1,
+		    "median_age_female": 41.3,
+		    "median_age_male": 38.9,
+		    "population": 1042520,
+		    "population_american_indian_and_alaska_native": 66231,
+		    "population_asian": 8432,
+		    "population_black_or_african_american": None,
+		    "population_male": 526023,
+		    "population_native_hawaiian_and_other_pacific_islander": None,
+		    "population_some_other_race": None,
+		    "population_two_or_more_races": 32218,
+		    "population_white": 927374,
+		    "representative_id": "G000584",
+		    "state": "MT",
+		    "veteran": 85461,
+		    "wikipedia_link": "https://en.wikipedia.org/wiki/Montana%27s_at-large_congressional_district"
+		}
+		response = requests.request("GET", live_api_url + 'district/filter?filter={"order_by":"population_desc"}')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result[0], expected)
+		print("\nTEST 33: Filtering API: District - sort by population - data consistent")
+
+	def test_34(self):
+		self.maxDiff = None
+		# insert the district
+		expected = {
+  			"Error": "Filter Query Invalid"
+		}
+		response = requests.request("GET", live_api_url + 'district/filter?filter')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, expected)
+		print("\nTEST 34: Filtering API: District - Bad Filter Query  - Response OK")
+
+	def test_35(self):
+		self.maxDiff = None
+		# insert the district
+		response = requests.request("GET", live_api_url + 'search/?query=random')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, [])
+		print("\nTEST 35: Searching API: searching 'random' keyword  - search results consistent")
+
+	def test_36(self):
+		self.maxDiff = None
+		# insert the district
+		expected = {
+		    "articles": [
+		      {
+		        "author": "",
+		        "date": "2018-04-12T15:07:00.000+03:00",
+		        "id": 196,
+		        "representative_id": "C001094",
+		        "site": "christiantoday.com",
+		        "text": "Home Society Current: Millions to be without electricity by 2030, report warns Millions to be without electricity by 2030, report warns Christian Today staff writer Thu 12 Apr 2018 12:03 BST \nDouble t...",
+		        "title": "Millions to be without electricity by 2030, report warns",
+		        "url": "http://omgili.com/ri/.wHSUbtEfZQZPG8em1VYYR_Py8fO5VkV_hLmh.tvOmYyxYnK8R1sVlmrId9x1iE6qGv3gDqzA1n8liB_UZ6faaW2V1g87g7HDPNf7txj3gNvsXU2khghAYACyQUV1vqjPi7JNrYvPXpSBgbCtBuDeg--"
+		      },
+		      {
+		        "author": "Jessica Gonzalez For the Daily Press",
+		        "date": "2018-04-12T16:42:00.000+03:00",
+		        "id": 197,
+		        "representative_id": "C001094",
+		        "site": "vvdailypress.com",
+		        "text": "A gym to call their own: Hook Junior High celebrates dedication of Marla J. Shackelford Gymnasium Thursday Apr 12, 2018 at 8:42 AM Apr 12, 2018 at 8:42 AM By Jessica GonzalezFor the Daily Press \nVICTO...",
+		        "title": "A gym to call their own: Hook Junior High celebrates dedication of Marla J. Shackelford Gymnasium",
+		        "url": "http://omgili.com/ri/jHIAmI4hxg9v2EmYdt42c.02vcKARnpfTKCWJxiclYVMXrzjT9chDXQdstKzhj0XnizJFEcd4jmCDXMHJWvMzTIK7bzACu0QD7FEvyKEuudGV_Pp_jL5ZK5RoB2jMzPOtLFFXv6gYNTRcgMkSVz3KVQgz2wqjQ62Qa.W1LeHJKbnuVu7n7FgUA--"
+		      },
+		      {
+		        "author": "",
+		        "date": "2018-04-12T08:18:00.000+03:00",
+		        "id": 198,
+		        "representative_id": "C001094",
+		        "site": "grandnews24.com",
+		        "text": "The Clash Paul Simonon arrested while working as undercover Greenpeace activist The Clash Paul Simonon arrested while working as undercover Greenpeace activist April 12, 2018 Culture Musician reve...",
+		        "title": "The Clash's Paul Simonon arrested while working as undercover Greenpeace activist | Grand News 24",
+		        "url": "http://omgili.com/ri/_DuQb1SwTFpGysR6_HueQcz2ETCNAd6MlAZQaGB_hVW620fZrmhp6cHd3hzgUI8Zs14gynM4Qa6MHjKargaW27WUGZ0fJ6xXX9Fi8vsqqDQIrdIkpfTHKp.fnJ6nSNkigDLkXqlOGSPL3gxTpG_DjQ--"
+		      }
+		    ],
+		    "bioguide": "C001094",
+		    "district": "8",
+		    "facebook": "RepPaulCook",
+		    "firstname": "Paul",
+		    "image_uri": "https://theunitedstates.io/images/congress/225x275/C001094.jpg",
+		    "lastname": "Cook",
+		    "office": "1222 Longworth House Office Building",
+		    "party_id": 2,
+		    "rank": 1,
+		    "state": "CA",
+		    "twitter": "RepPaulCook",
+		    "url": "https://cook.house.gov",
+		    "votes_with_party_pct": 95.41,
+		    "youtube": "RepPaulCook"
+		}
+
+		response = requests.request("GET", live_api_url + 'search/?query=paul ryan')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(removeunicode(json.dumps(result[0], sort_keys=True)), removeunicode(json.dumps(expected, sort_keys=True)))
+			self.assertTrue('Paul' in result[0].values())
+		print("\nTEST 36: Searching API: searching 'paul ryan' keyword  - search results consistent")
+
+	def test_37(self):
+		self.maxDiff = None
+		# insert the district
+		expected = {
+		    "chair": "Ronna Romney McDaniel",
+		    "formation_date": "March 20, 1854",
+		    "id": 2,
+		    "name": "Republican Party",
+		    "office": "430 South Capitol Street Southeast Washington, DC 20003",
+		    "path": "republican_party",
+		    "rank": 1
+    	}
+
+		response = requests.request("GET", live_api_url + 'search/?query=republican')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result[0], expected)
+			self.assertEqual(len(result), 475)
+		print("\nTEST 37: Searching API: searching 'republican' keyword  - search results consistent")
+
+
+	def test_38(self):
+		self.maxDiff = None
+		# insert the district
+		response = requests.request("GET", live_api_url + 'search/?query=texas')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(len(result), 73)
+		print("\nTEST 38: Searching API: searching 'texas' keyword  - search results consistent")
+
+
+	def test_39(self):
+		self.maxDiff = None
+		# insert the district
+		expected = {
+			"alpha_num": "TX-36",
+		    "id": "36",
+		    "median_age": 36.5,
+		    "population": 732975,
+		    "rank": 1,
+		    "representative_id": "B001291",
+		    "state": "TX",
+		    "state_full": "Texas"
+		}
+		response = requests.request("GET", live_api_url + 'search/?query=TX-36')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result[0], expected)
+		print("\nTEST 39: Searching API: searching 'TX-36' keyword  - search results consistent")
+
+	def test_40(self):
+		self.maxDiff = None
+		# insert the district
+		expected = {
+			"chair": "Will Christensen",
+		    "formation_date": "May 16, 1998",
+		    "id": 18,
+		    "name": "American Independent Party",
+		    "office": "",
+		    "path": "american_independent_party",
+		    "rank": 1
+		}
+		response = requests.request("GET", live_api_url + 'search/?query=party')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(len(result), 900) # shows all data
+			self.assertEqual(result[0], expected)
+		print("\nTEST 40: Searching API: searching 'party' keyword  - search results consistent")
+
+
+	def test_41(self):
+		self.maxDiff = None
+		# insert the district
+		response = requests.request("GET", live_api_url + 'search/?query=')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, [])
+		print("\nTEST 41: Searching API: searching empty query  - search results consistent")
+
+
+	def test_42(self):
+		self.maxDiff = None
+		# insert the district
+		expected = {
+		  "Error": "Search Query Invalid"
+		}
+		response = requests.request("GET", live_api_url + 'search/?')
+		result = response.json()
+		with app.app_context():
+			self.assertEqual(result, expected)
+		print("\nTEST 42: Searching API: bad search query  - search results consistent")
 
 if __name__ == '__main__':
 	print("\n\n\n##########\tBEGINNING BACKEND UNIT TESTS\t##########\n")
