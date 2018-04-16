@@ -143,9 +143,8 @@ class District(db.Model):
 	population_two_or_more_races = db.Column(db.Integer)
 
 	ethnicity_not_hispanic_or_latino = db.Column(db.Integer)
-	ethnicity_not_hispanic_or_latino = db.Column(db.Integer)
-
 	ethnicity_hispanic_or_latino = db.Column(db.Integer)
+    
 	citizenship_us_citizen_born_in_us = db.Column(db.Integer)
 	citizenship_us_citizen_born_in_pr_or_us_island_areas = db.Column(db.Integer)
 	citizenship_us_citizen_born_abroad_of_american_parents = \
