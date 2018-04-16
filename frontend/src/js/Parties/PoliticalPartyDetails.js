@@ -32,6 +32,8 @@ export default class PoliticalPartyDetails extends Component {
       partyFlag: false,
       districtFlag: false
     }
+
+    this.compareReps = this.compareReps.bind(this)
   }
 
   componentDidMount () {
@@ -78,6 +80,11 @@ export default class PoliticalPartyDetails extends Component {
         partyFlag: true,
         ready: true})
     })
+  }
+
+  compareReps (lhs, rhs) {
+    return this.state.reps[lhs].lastname.localeCompare(
+      this.state.reps[rhs].lastname)
   }
 
   render () {
@@ -136,7 +143,8 @@ export default class PoliticalPartyDetails extends Component {
     if (this.state.num_reps > 0) {
       controlText = this.state.num_reps + '/' + this.state.totalReps
 
-      let repsGrid = Object.keys(this.state.reps).map((key) =>
+      let repsGrid = Object.keys(this.state.reps).sort(this.compareReps)
+        .map((key) =>
         <div className='party-rep-card'>
           <RepresentativeInstance key={key} rep={this.state.reps[key]}
             columns={"false"} />
