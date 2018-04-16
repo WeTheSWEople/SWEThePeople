@@ -78,7 +78,8 @@ export default class DistrictDetails extends Component {
       cpuLegend: null,
       internetLit: null,
       iLegend: null,
-      incomeData: null
+      incomeData: null,
+      educationData: null,
     }
   }
   componentWillMount () {
@@ -94,7 +95,7 @@ export default class DistrictDetails extends Component {
       let result = []
       let legendTemp = []
       if(response.data.population_american_indian_and_alaska_native !== null){
-        result.push({'name': 'AIAAN', 'amt': response.data.population_american_indian_and_alaska_native})
+        result.push({'name': 'AIAN', 'amt': response.data.population_american_indian_and_alaska_native})
         legendTemp.push({name: 'AIAAN', value: 'American Indian And Alaska Native (' + response.data.population_american_indian_and_alaska_native  + ')'})
       }
       if(response.data.population_asian !== null){
@@ -102,16 +103,16 @@ export default class DistrictDetails extends Component {
         legendTemp.push({name: 'A', value: 'Asian (' + response.data.population_asian + ')'})
       }
       if(response.data.population_black_or_african_american !== null){
-        result.push({'name': 'BOAA', 'amt': response.data.population_black_or_african_american})
-        legendTemp.push({name: 'BOAA', value: 'Black Or African American (' + response.data.population_black_or_african_american + ')'})
+        result.push({'name': 'BAA', 'amt': response.data.population_black_or_african_american})
+        legendTemp.push({name: 'BAA', value: 'Black Or African American (' + response.data.population_black_or_african_american + ')'})
       }
       if(response.data.population_native_hawaiian_and_other_pacific_islander !== null){
-        result.push({'name': 'NHAOPI', 'amt': response.data.population_native_hawaiian_and_other_pacific_islander})
-        legendTemp.push({name: 'NHAOPI', value: 'Native Hawaiian And Other Pacific Islander (' + response.data.population_native_hawaiian_and_other_pacific_islander + ')'})
+        result.push({'name': 'NHPI', 'amt': response.data.population_native_hawaiian_and_other_pacific_islander})
+        legendTemp.push({name: 'NHPI', value: 'Native Hawaiian And Other Pacific Islander (' + response.data.population_native_hawaiian_and_other_pacific_islander + ')'})
       }
       if(response.data.population_some_other_race !== null){
-        result.push({'name': 'SOR', 'amt': response.data.population_some_other_race})
-        legendTemp.push({name: 'SOR', value: 'Some Other Race (' + response.data.population_some_other_race + ')'})
+        result.push({'name': 'SR', 'amt': response.data.population_some_other_race})
+        legendTemp.push({name: 'SR', value: 'Some Other Race (' + response.data.population_some_other_race + ')'})
       }
       if(response.data.population_two_or_more_races !== null){
         result.push({'name': 'TR', 'amt': response.data.population_two_or_more_races})
@@ -120,6 +121,10 @@ export default class DistrictDetails extends Component {
       if(response.data.population_white !== null){
         result.push({'name': 'W', 'amt': response.data.population_white})
         legendTemp.push({name: 'W', value: 'White (' + response.data.population_white + ')'})
+      }
+      if(response.data.ethnicity_hispanic_or_latino !== null){
+        result.push({'name': 'HL', 'amt': response.data.ethnicity_hispanic_or_latino})
+        legendTemp.push({name: 'HL', value: 'Hispanic or Latino (' + response.data.ethnicity_hispanic_or_latino + ')'})
       }
 
       this.setState({races_pop: result})
@@ -235,6 +240,25 @@ export default class DistrictDetails extends Component {
       }
 
       this.setState({incomeData: income})
+
+      let education = []
+      if(response.data.education_less_than_hs !== null){
+        education.push({'name': 'Less than high school', 'amt': response.data.education_less_than_hs})
+      }
+      if(response.data.education_hs_grad !== null){
+        education.push({'name': 'High school', 'amt': response.data.education_hs_grad})
+      }
+      if(response.data.education_some_college !== null){
+        education.push({'name': 'Some college', 'amt': response.data.education_some_college})
+      }
+      if(response.data.education_bachelors !== null){
+        education.push({'name': 'Bachelors degree', 'amt': response.data.education_bachelors})
+      }
+      if(response.data.education_grad_prof !== null){
+        education.push({'name': 'Graduate school', 'amt': response.data.education_grad_prof})
+      }
+
+      this.setState({educationData: education})
 
       axios.get(url.api_url + `representative/${response.data.representative_id}`)
       .then((response)=>{
@@ -364,6 +388,20 @@ export default class DistrictDetails extends Component {
         {this.state.iLegend[item]['value']}</p>
       )
 
+      let incomeLegend = null
+      incomeLegend = Object.keys(this.state.incomeData).map((item) =>
+        <Col md={2} style={{textAlign: 'left', fontSize: '12px', marginLeft: '60px'}}> <b>{this.state.incomeData[item]['name']}</b> :
+        {` `}
+        {this.state.incomeData[item]['amt']}</Col>
+      )
+
+      let educationLegend = null
+      educationLegend = Object.keys(this.state.educationData).map((item) =>
+        <Col md={3} style={{textAlign: 'left', fontSize: '12px', marginLeft: '60px'}}> <b>{this.state.educationData[item]['name']}</b> :
+        {` `}
+        {this.state.educationData[item]['amt']}</Col>
+      )
+
       return (
         <div className='App'>
           <header className='Rep-Details-header'> </header>
@@ -473,7 +511,7 @@ export default class DistrictDetails extends Component {
                         </PieChart>
                       </Col>
                       <Col md={5} style={styles.genderPie}>
-                        <h3><b>Race v. Population</b></h3>
+                        <h3><b>Race/Ethnicity v. Population</b></h3>
                         <BarChart
                           width={300}
                           height={250}
@@ -561,7 +599,7 @@ export default class DistrictDetails extends Component {
                     <Row>
                       <Col md={1}></Col>
                       <Col md={10}>
-                      <h3><b>Internet Breakdown</b></h3>
+                      <h3><b>Income Breakdown</b></h3>
                         <BarChart
                           width={700}
                           height={250}
@@ -574,6 +612,34 @@ export default class DistrictDetails extends Component {
                         <Tooltip/>
                       </Col>
                     </Row>
+                    <h3>Legend</h3>
+                    <p><b>Income: Population</b></p>
+                    <p>(Income values in 10,000's)</p>
+                    <Row>
+                      {incomeLegend}
+                    </Row>
+                    <Row>
+                      <Col md={1}></Col>
+                      <Col md={10}>
+                      <h3><b>Education Breakdown</b></h3>
+                        <BarChart
+                          width={700}
+                          height={250}
+                          data={this.state.educationData}
+                          style={styles.chart}>
+                        <Bar dataKey='amt' fill='#ea1f28'/>
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        </BarChart>
+                        <Tooltip/>
+                      </Col>
+                    </Row>
+                    <h3>Legend</h3>
+                    <p><b>Education: Population</b></p>
+                    <Row>
+                      {educationLegend}
+                    </Row>
+                    <br></br><br></br>
                   </Tab>
                 </Tabs>
               </div>
