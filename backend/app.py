@@ -1,13 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from sqlalchemy_searchable import make_searchable
-from sqlalchemy.ext.declarative import declarative_base
 import os
 db = SQLAlchemy()
 
-#Base = declarative_base()
-make_searchable(db.metadata)
+
 
 
 config_file = 'config_dev.json'

@@ -22,6 +22,8 @@ $ npm install
 3. Install backend dependencies
 ```
 $ cd backend
+$ virtualenv venv
+$ source venv/bin/activate
 $ pip2.7 install -r requirements.txt
 ```
 
@@ -39,6 +41,10 @@ Then, access the local site by visiting `localhost:3000`
 Run the API locally using:
 ```
 $ cd backend
+$ virtualenv venv
+$ source venv/bin/activate
+$ pip2.7 install -r requirements.txt
+$ export PYTHONPATH=.:$PYTHONPATH
 $ python2.7 main.py
 ```
 
@@ -57,7 +63,17 @@ Frontend acceptance tests run using the Selenium web driver.
 1. Install [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 2. Install [geckodriver](https://github.com/mozilla/geckodriver)
 (should install to `/user/local/bin/`)
-3. Run the test script
+3. cd into frontend folder
+```
+$ cd frontend
+```
+4. Create Virtual Environment and Install Requirements:
+```
+$ virtualenv venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+```
+5. Run the test script
 ```
 $ python2.7 guitests.py
 ```
@@ -66,6 +82,10 @@ $ python2.7 guitests.py
 In the backend folder, run the test script
 ```
 $ cd backend
+$ virtualenv venv
+$ source venv/bin/activate
+$ pip2.7 install -r requirements.txt
+$ export PYTHONPATH=.:$PYTHONPATH
 $ python2.7 tests.py
 ```
 
@@ -86,16 +106,28 @@ $ cd backend
 
 1. Run the political parties seeder
 ```
+$ virtualenv venv
+$ source venv/bin/activate
+$ pip2.7 install -r requirements.txt
+$ export PYTHONPATH=.:$PYTHONPATH
 $ python2.7 party_seed.py
 ```
 
 2. Run the representative scraper
 ```
+$ virtualenv venv
+$ source venv/bin/activate
+$ pip2.7 install -r requirements.txt
+$ export PYTHONPATH=.:$PYTHONPATH
 $ python2.7 representatives_scraper.py
 ```
 
 3. Run the congressional districts scraper
 ```
+$ virtualenv venv
+$ source venv/bin/activate
+$ pip2.7 install -r requirements.txt
+$ export PYTHONPATH=.:$PYTHONPATH
 $ python2.7 districts_scraper.py
 ```
 
@@ -122,24 +154,26 @@ $ python2.7 districts_scraper.py
 ```
 $ https://github.com/WeTheSWEople/SWEThePeople.git`
 ```
-3. Change into frontend
+3. Install dependencies
 ```
-$ cd frontend
-```
-4. Install dependencies
-```
+$ virtualenv venv
+$ source venv/bin/activate
 $ pip2.7 install -r requirements.txt
+$ export PYTHONPATH=.:$PYTHONPATH
 $ npm install
 ```
-5. Build the project
+4. Build the project
 ```
+$ cd frontend
 $ npm run build
 ```
-6. You have a choice here. You can either run using Gunicorn via
+5. You have a choice here. You can either run using Gunicorn via
 ```
+$ cd ..
 $ gunicorn router:app -b localhost:8000
 ```
 or with flask itself via
 ```
+$ cd ..
 $ python router.py &
 ```
