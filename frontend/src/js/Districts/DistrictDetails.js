@@ -457,7 +457,7 @@ export default class DistrictDetails extends Component {
             </Col>
             <Col sm={12} md={7}>
               <div style={styles.box}>
-                <Tabs defaultActiveKey={5} id="uncontrolled-tab-example">
+                <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
                   <Tab eventKey={1} title="Current Representative">
                     <Row style={styles.tabBox}>
                       <Col md={1} sm={0}></Col>
