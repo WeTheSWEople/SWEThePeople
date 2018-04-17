@@ -239,7 +239,7 @@ def party_filter():
     social = 'None'
     color = 'None'
     formation_date = 'None'
-    name = 'A-Z'
+    name = ['a', 'z']
     order_by = 'None'
 
     if 'social' in filter_query:
@@ -298,7 +298,7 @@ def party_filter():
         for rep in party['representatives']:
             del rep['bills']
 
-    if formation_date[0] != 'None':
+    if formation_date != 'None' and formation_date[0] != 'None':
         # Filter to parties formed between the given years
 
         date_begin = int(formation_date[0])
@@ -446,7 +446,7 @@ def districts_filter():
         filtered_result = filtered_result.filter(
             float(median_age[0]) <= District.median_age)
         filtered_result = filtered_result.filter(
-            District.population < float(median_age[1]))
+            District.median_age < float(median_age[1]))
 
     if 'order_by' in filter_query:
         order_by = str(filter_query['order_by'])

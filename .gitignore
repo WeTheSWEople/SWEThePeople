@@ -9,3 +9,4 @@ __pycache__/
 backend/*.pyc
 backend/scrapers/apikeys.py
 backend/scrapers/*.pyc
+frontend/build

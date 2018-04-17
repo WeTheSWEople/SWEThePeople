@@ -22,9 +22,16 @@ export default class RepresentativeSingleInstance extends Component {
       query.push(this.props.search)
     }
 
+    let borderStyle = {}
+    if (this.props.party_color !== '') {
+      borderStyle = {
+        border: "3px solid " + this.props.party_color
+      }
+    }
+
     return (
       <Link to={`/representatives/${this.props.rep.bioguide}`}>
-        <div className='search-card'>
+        <div className='search-card' style={borderStyle}>
           <img src={'https://theunitedstates.io/images/congress/225x275/' +
             this.props.rep.bioguide + '.jpg'}
           alt={this.props.rep.firstname + ' ' + this.props.rep.lastname}

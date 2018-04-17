@@ -30,12 +30,19 @@ export default class Search extends Component {
       states: null,
       party_names: null,
       party_counts: null,
+      party_colors: null,
       rank: 1,
       cur_page: 0,
       all_results: null
     }
 
     this.buildCard = this.buildCard.bind(this)
+  }
+
+  componentWillMount () {
+    axios.get(url.api_url + 'party/?party_color=True').then((response) => {
+      this.setState({party_colors: response.data})
+    })
   }
 
   queryAPI(query) {
@@ -120,6 +127,7 @@ export default class Search extends Component {
         <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
           <RepresentativeSingleInstance key={result.bioguide} rep={result}
             party_name={this.state.party_names[result.party_id][0]}
+            party_color={this.state.party_colors[result.party_id]}
             search={this.props.match.params.term}
             className='search-component' />
         </div>
@@ -146,7 +154,8 @@ export default class Search extends Component {
   }
 
   render() {
-    if (this.state.results === null || this.state.party_names === null) {
+    if (this.state.results === null || this.state.party_names === null ||
+      this.state.party_colors === null) {
       return (
         <div className="search-container">
           <center>

@@ -88,10 +88,11 @@ export default class About extends Component {
         };
         page++;
         //hardcoded value because I don't know how to force this loop to be asynchronous
-        if (page == 5) {
+        if (page === 5) {
           break;
         }
 
+        // eslint-disable-next-line
         request(options, function (error, response, body) {
           if (error) {
             eof = true;
@@ -238,6 +239,16 @@ export default class About extends Component {
                   <p>Travis CI</p>
                 </div>
               </a>
+            </div>
+            <div className='col-md-2 col-md-offset-5'>
+              <p>
+                <a href='https://raw.githubusercontent.com/WeTheSWEople/SWEThePeople/master/UML/models.png' target="_blank" rel="noopener noreferrer">
+                  <div className='link-box'>
+                    <img src={require('../../assets/images/about/uml.png')} className='img-responsive' alt='UML logo'/>
+                    <p>UML Diagram</p>
+                  </div>
+                </a>
+              </p>
             </div>
           </div>
         </div>

@@ -53,6 +53,7 @@ export default class PoliticalPartyGrid extends Component {
 
   getPartyData (filterParams) {
     this.setState({parties: null})
+    console.log(url.api_url + 'party/filter?filter=' + JSON.stringify(filterParams))
     axios.get(url.api_url + 'party/filter?filter=' + JSON.stringify(filterParams)).then((response) => {
       if (response.data.length === 0) {
         this.setState({parties: -2})
