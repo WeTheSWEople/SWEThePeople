@@ -1,7 +1,7 @@
 import React from 'react';
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import Enzyme from 'enzyme';
-import { mount, shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -120,8 +120,8 @@ describe('RepresentativeInstance Component', () => {
 
   it('displays correct picture of representative', () => {
     const { alt, src } = instance.find('img').props()
-    assert.equal(instance.find('img.rep_img').length, 1)
-    assert.equal(src, "https://theunitedstates.io/images/congress/225x275/A000055.jpg")
+    expect(instance.find('img.rep_img')).to.have.length(1)
+    expect(src).to.eql("https://theunitedstates.io/images/congress/225x275/A000055.jpg")
   })
 
   it('displays representative name and info', () => {
@@ -144,8 +144,8 @@ describe('StateInstance Component', () => {
 
   it('displays correct picture of state', () => {
     const { alt, src } = stateInstance.find('img').props()
-    assert.equal(stateInstance.find('img').length, 1)
-    assert.equal(alt, "State")
+    expect(stateInstance.find('img')).to.have.length(1)
+    expect(alt).to.eql("State")
   })
 
   it('displays correct state info', () => {
@@ -203,7 +203,7 @@ describe('Search Component', () => {
 })
 
 describe('RepresentativeFilter Component', () => {
-  const representativefilterInstance = shallow(<RepresentativeFilter
+  const representativefilterInstance = render(<RepresentativeFilter
     states={{ all_states: [{name: "Texas"}] }}
     parties={{all_parties: [{name: "Democratic"}] }}
     buttonHandler={() => {return {state: {name: "Texas"}}}} />)
@@ -230,7 +230,7 @@ describe('RepresentativeFilter Component', () => {
 })
 
 describe('PoliticalPartyFilter Component', () => {
-  const polpartyInstance = shallow(<PoliticalPartyFilter
+  const polpartyInstance = render(<PoliticalPartyFilter
     buttonHandler={() => {return {state: {name: "Texas"}}}} />)
 
   it('find social filter', () => {
@@ -251,7 +251,7 @@ describe('PoliticalPartyFilter Component', () => {
 })
 
 describe('DistrictFilter Component', () => {
-  const polpartyInstance = shallow(<DistrictFilter
+  const polpartyInstance = render(<DistrictFilter
     states={{name: "Texas"}}
     buttonHandler={() => {return {state: {name: "Texas"}}}} />)
 
