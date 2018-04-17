@@ -12,7 +12,6 @@ import Navigation from './src/js/Navigation/Navigation';
 import { NavItem } from 'react-bootstrap';
 import RepresentativeDetails from './src/js/Representatives/RepresentativeDetails.js';
 import RepresentativeInstance from './src/js/Representatives/RepresentativeInstance.js';
-import allReps from './src/assets/test/bioguide-endpoint.json';
 import Representatives from './src/js/Representatives/Representatives.js';
 import StateInstance from './src/js/Districts/StateInstance.js';
 import PoliticalParty from './src/js/Parties/PoliticalParty.js';
