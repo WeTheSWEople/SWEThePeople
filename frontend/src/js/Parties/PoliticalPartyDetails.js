@@ -33,6 +33,10 @@ export default class PoliticalPartyDetails extends Component {
       partyFlag: false,
       districtFlag: false
     }
+
+    this.compareReps = this.compareReps.bind(this)
+    this.compareDistrictID = this.compareDistrictID.bind(this)
+    this.compareDistrictState = this.compareDistrictState.bind(this)
   }
 
   componentDidMount () {
@@ -79,6 +83,25 @@ export default class PoliticalPartyDetails extends Component {
         partyFlag: true,
         ready: true})
     })
+  }
+
+  compareReps (lhs, rhs) {
+    return this.state.reps[lhs].lastname.localeCompare(
+      this.state.reps[rhs].lastname)
+  }
+
+  compareDistrictID (lhs, rhs) {
+    return this.state.districts[lhs].id - this.state.districts[rhs].id
+  }
+
+  compareDistrictState(lhs, rhs) {
+    const result = this.state.districts[lhs].state.localeCompare(
+      this.state.districts[rhs].state)
+    if (result === 0) {
+      return this.state.districts[lhs].pos - this.state.districts[rhs].pos;
+    }
+
+    return result
   }
 
   render () {
@@ -137,14 +160,22 @@ export default class PoliticalPartyDetails extends Component {
     if (this.state.num_reps > 0) {
       controlText = this.state.num_reps + '/' + this.state.totalReps
 
-      let repsGrid = Object.keys(this.state.reps).map((key) =>
+      let repsGrid = Object.keys(this.state.reps).sort(this.compareReps)
+        .map((key) =>
         <div className='party-rep-card'>
           <RepresentativeInstance key={key} rep={this.state.reps[key]}
             columns={"false"} />
         </div>
       )
 
-      let districtsGrid = Object.keys(districts).map((key) =>
+      let sortedKeys = Object.keys(districts).sort(this.compareDistrictID)
+      let pos = 0
+      for (const key of sortedKeys) {
+        districts[key].pos = pos++
+      }
+
+      let districtsGrid = sortedKeys.sort(this.compareDistrictState)
+        .map((key) =>
         <Link to={`/districts/${districts[key].state}/${districts[key].id}`}>
           <div className='party-rep-card party-district'>
             <div className='district-card '>

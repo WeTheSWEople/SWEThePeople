@@ -176,8 +176,7 @@ class RepresentativeFilter extends Component {
               name='rep-votes'
               value={this.state.vote_value}
               onChange={this.handleVoteDropdownChange}
-              options={[{value: '50-59', label: '50 - 59.99%'},
-                {value: '60-69', label: '60 - 69.99%'},
+              options={[{value: '0-69', label: '< 70%'},
                 {value: '70-79', label: '70 - 79.99%'},
                 {value: '80-89', label: '80 - 89.99%'},
                 {value: '90-100', label: '90 - 100%'}]}

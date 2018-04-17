@@ -112,7 +112,7 @@ export default class RepresentativeGrid extends Component {
 	} else {
 	  return (
         <div className='App'>
-          <div className='grid-container filter-grid-root'>
+          <div className='rep-grid-container container'>
             <Row>
               {this.state.displayed_reps.map((item) => (
                 <RepresentativeInstance
@@ -122,6 +122,9 @@ export default class RepresentativeGrid extends Component {
                   party_color={this.state.party_colors[item.party_id]} />
               ))}
             </Row>
+          </div>
+
+          <Row>
             <ReactPaginate previousLabel={"previous"}
               nextLabel={"next"}
               breakLabel={<a>...</a>}
@@ -134,7 +137,7 @@ export default class RepresentativeGrid extends Component {
               subContainerClassName={"pages pagination"}
               activeClassName={"active"}
             />
-          </div>
+          </Row>
         </div>
       )
     }

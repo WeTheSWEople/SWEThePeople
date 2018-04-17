@@ -8,6 +8,9 @@ issues:
 github:
 	@echo "https://github.com/WeTheSWEople/SWEThePeople"
 
+uml:
+	@echo "https://raw.githubusercontent.com/WeTheSWEople/SWEThePeople/master/UML/models.png"
+	
 stories:
 	@echo "https://github.com/WeTheSWEople/SWEThePeople/labels?utf8=%E2%9C%93&q=story"
 
@@ -35,3 +38,9 @@ report:
 
 apidoc:
 	@echo "https://wethesweople.gitbooks.io/api/"
+
+self:
+	@echo "https://wethesweople.gitbooks.io/report/self-critique.html"
+
+other:
+	@echo "https://wethesweople.gitbooks.io/report/other-critique.html"
