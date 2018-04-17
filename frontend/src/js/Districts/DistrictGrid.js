@@ -94,14 +94,14 @@ export default class DistrictGrid extends Component {
 		<div className='col-sm-3 district-grid' key={district.alpha_num}>
 		  <Link to={`/districts/${district.state}/${district.id}`}>
 			<div className='district-card'>
+				<img src={require('../../assets/images/districts/' +
+					district.alpha_num + '.png')}
+					width='250px' height='150px' marginLeft='25px' alt='District Map'
+					className='img-responsive district-img'
+					/>
 			  <h3><b>{district.alpha_num}</b></h3>
 			  <h5><b>Population: </b>{district.population}</h5>
 			  <h5><b>Median Age: </b>{district.median_age}</h5>
-			  <img src={require('../../assets/images/districts/' +
-				district.alpha_num + '.png')}
-			  width='250px' height='150px' marginLeft='25px' alt='District Map'
-			  className='img-responsive district-img'
-			  />
 			  <br></br>
 			</div>
 		  </Link>
