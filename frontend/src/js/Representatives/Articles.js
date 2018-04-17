@@ -8,6 +8,12 @@ import moment from 'moment'
 import '../../assets/css/App.css'
 import '../../assets/css/Bills.css'
 
+const styles = {
+  card: {
+    boxShadow: '0 8px 12px 0 rgba(0, 0, 0, 0.2)'
+  }
+}
+
 export default class RepArticles extends Component {
   constructor (props) {
     super(props)
@@ -51,8 +57,8 @@ export default class RepArticles extends Component {
 
     let mapping = Object.keys(this.state.articles).map((item) =>
       <Col sm={12} md={4}>
-        <div class='tile1 job-bucket' >
-          <div class='front'>
+        <div class='tile1 job-bucket'>
+          <div class='front' style={styles.card}>
             <div class='contents'>
               <div class='backcolor'
                 style={{backgroundColor: `${this.state.bill_colors[item]}`}}>
