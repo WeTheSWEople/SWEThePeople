@@ -4,6 +4,7 @@ import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 import Select from 'react-select'
 import {withCookies, Cookies} from 'react-cookie'
+import {Row, Col} from 'react-bootstrap'
 /* eslint-disable no-unused-vars */
 
 import '../../assets/css/Filter.css'
@@ -148,8 +149,8 @@ class RepresentativeFilter extends Component {
   render () {
     return (
       <div style={{marginLeft: '6%', marginRight: '5%', width: '90%'}}>
-        <div className='filter-component row'>
-          <div className='col-sm-2 filter-control'>
+        <Row className='filter-component'>
+          <Col sm={2} className='filter-control'>
             <b>Filter State:</b>
             <Select className='state-filter'
               name='rep-state'
@@ -157,9 +158,9 @@ class RepresentativeFilter extends Component {
               onChange={this.handleStateDropdownChange}
               options={this.state.all_states}
             />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 filter-control'>
+          <Col sm={2} className='filter-control'>
             <b>Filter Party:</b>
             <Select className='party-filter'
               name='rep-party'
@@ -167,9 +168,9 @@ class RepresentativeFilter extends Component {
               onChange={this.handlePartyDropdownChange}
               options={this.state.all_parties}
             />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 filter-control'>
+          <Col sm={2} className='filter-control'>
             <b>Filter Votes:</b>
             <Select className='vote-filter'
               name='rep-votes'
@@ -181,9 +182,9 @@ class RepresentativeFilter extends Component {
                 {value: '80-89', label: '80 - 89.99%'},
                 {value: '90-100', label: '90 - 100%'}]}
             />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 filter-control'>
+          <Col sm={2} className='filter-control'>
             <b>Filter last names:</b>
             <Select className='lastname-filter'
               name='rep-lastname'
@@ -192,9 +193,9 @@ class RepresentativeFilter extends Component {
               options={[{value: 'A-L', label: 'A-L'},
                 {value: 'M-Z', label: 'M-Z'}]}
             />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 sort-control'>
+          <Col sm={2} className='sort-control'>
             <b>Sort:</b>
             <Select className='sort'
               name='rep-lastname'
@@ -205,9 +206,9 @@ class RepresentativeFilter extends Component {
                 {value: 'votes_pct_asc', label: 'Votes with party (ASC)'},
                 {value: 'votes_pct_desc', label: 'Votes with party (DESC)'}]}
             />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 button-control'>
+          <Col sm={2} className='button-control'>
             <button className="btn btn-primary"
               onClick={this.handleFilterClicked}>
               Filter
@@ -217,8 +218,8 @@ class RepresentativeFilter extends Component {
               onClick={this.handleResetClicked}>
               Reset
             </button>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     )
   }

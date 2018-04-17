@@ -8,6 +8,7 @@ import DistrictInstance from '../Districts/DistrictInstance.js'
 import {RingLoader} from 'react-spinners'
 import axios from 'axios'
 import Slider from 'react-slick'
+import {Row, Col, ProgressBar} from 'react-bootstrap'
 /* eslint-enable no-unused-vars */
 
 import 'slick-carousel/slick/slick.css'
@@ -237,16 +238,16 @@ export default class PoliticalPartyDetails extends Component {
 
     return (
       <div className='App party-content container'>
-        <div className='row party-card top-info'>
-          <div className='party-header col-sm-6'>
+        <Row className='party-card top-info'>
+          <Col sm={6} className='party-header'>
             <img src={require('../../assets/images/parties/full/' +
               this.state.party['path'] + '.png')}
             className='img-responsive'
             alt={this.state.party['path']} />
             <h1>{this.state.party['name']}</h1>
-          </div>
+          </Col>
 
-          <div className='col-sm-6 quick-facts'>
+          <Col sm={6} className='quick-facts'>
             <h3>Quick Facts</h3>
             <p>
               <span className='party-info-header'>Party chair:</span>
@@ -284,23 +285,23 @@ export default class PoliticalPartyDetails extends Component {
                 {controlText}
               </div>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
 
-        <div className='media party-card row'>
+        <Row className='media party-card'>
           <h2>Media</h2>
-          <div className='row'>
-            <div className='col-md-6'>
+          <Row>
+            <Col md={6}>
               {youtube}
               <br />
               {office}
-            </div>
+            </Col>
 
-            <div className='col-md-6'>
+            <Col md={6}>
               {twitter}
-            </div>
-          </div>
-        </div>
+            </Col>
+          </Row>
+        </Row>
 
         {repsInfo}
         {districtsInfo}

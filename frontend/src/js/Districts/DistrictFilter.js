@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 import Select from 'react-select'
+import {Row, Col} from 'react-bootstrap'
 import {withCookies, Cookies} from 'react-cookie'
 /* eslint-disable no-unused-vars */
 
@@ -126,8 +127,8 @@ class DistrictFilter extends Component {
   render () {
     return (
       <div style={{marginLeft: '6%', marginRight: '5%', width: '90%'}}>
-        <div className='filter-component row'>
-          <div className='col-sm-2 filter-control'>
+        <Row className='filter-component'>
+          <Col sm={2} className='filter-control'>
             <b>Filter State:</b>
             <Select className='state-filter'
               name='district-state'
@@ -135,9 +136,9 @@ class DistrictFilter extends Component {
               onChange={this.handleStateDropdownChange}
               options={this.state.all_states}
             />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 filter-control'>
+          <Col sm={2} className='filter-control'>
             <b>Filter Population:</b>
             <Select className='pop-filter'
               name='district-population'
@@ -149,9 +150,9 @@ class DistrictFilter extends Component {
                 {value: '750000-1000000', label: '750,000 - 999,999'},
                 {value: '1000000-10000000', label: '>= 1,000,000'}]}
             />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 filter-control'>
+          <Col sm={2} className='filter-control'>
             <b>Filter Median Age:</b>
             <Select className='age-filter'
               name='district-median-age'
@@ -163,9 +164,9 @@ class DistrictFilter extends Component {
                 {value: '50-60', label: '50 - 59'},
                 {value: '60-100', label: '>= 60'}]}
             />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 filter-control'>
+          <Col sm={2} className='filter-control'>
             <b>Sort:</b>
             <Select className='sort'
               name='district-sort'
@@ -176,9 +177,9 @@ class DistrictFilter extends Component {
                 {value: 'population_asc', label: 'Population (ASC)'},
                 {value: 'population_desc', label: 'Population (DESC)'}]}
             />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 col-sm-offset-2 button-control'>
+          <Col sm={2} smOffset={2} className='button-control'>
             <button className="btn btn-primary"
               onClick={this.handleFilterClicked}>
               Filter
@@ -188,8 +189,8 @@ class DistrictFilter extends Component {
               onClick={this.handleResetClicked}>
               Reset
             </button>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     )
   }

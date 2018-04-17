@@ -2,6 +2,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {RingLoader} from 'react-spinners'
+import {Row, Col} from 'react-bootstrap'
 import PoliticalPartySingleInstance from './PoliticalPartySingleInstance.js'
 /* eslint-enable no-unused-vars */
 import ReactPaginate from 'react-paginate'
@@ -102,11 +103,11 @@ export default class PoliticalPartyGrid extends Component {
 		</div>
 	  )
 	} else {
-	  let partiesGrid = this.state.displayed_parties.map((party) =>
-		<div className='col-xs-6 col-sm-4 col-md-3'>
+		let partiesGrid = this.state.displayed_parties.map((party) =>
+		<Col xs={6} sm={4} md={3}>
 		  <PoliticalPartySingleInstance party={party}
 			num_reps={this.state.party_counts[party.id]} />
-		</div>
+		</Col>
 	  )
 
 	  return (
@@ -114,19 +115,19 @@ export default class PoliticalPartyGrid extends Component {
 		  {partiesGrid}
 
 		  <center>
-			<div className="col-md-12">
-		  <ReactPaginate previousLabel={"previous"}
-			  nextLabel={"next"}
-			  breakLabel={<a>...</a>}
-			  breakClassName={"break-me"}
-			  pageCount={Math.ceil(this.state.cur_page)}
-			  marginPagesDisplayed={2}
-			  pageRangeDisplayed={5}
-			  onPageChange={this.handlePageClick}
-			  containerClassName={"pagination"}
-			  subContainerClassName={"pages pagination"}
-			  activeClassName={"active"} />
-			</div>
+				<Col md={12}>
+					<ReactPaginate previousLabel={"previous"}
+						nextLabel={"next"}
+						breakLabel={<a>...</a>}
+						breakClassName={"break-me"}
+						pageCount={Math.ceil(this.state.cur_page)}
+						marginPagesDisplayed={2}
+						pageRangeDisplayed={5}
+						onPageChange={this.handlePageClick}
+						containerClassName={"pagination"}
+						subContainerClassName={"pages pagination"}
+						activeClassName={"active"} />
+				</Col>
 			</center>
 		</div>
 	  )

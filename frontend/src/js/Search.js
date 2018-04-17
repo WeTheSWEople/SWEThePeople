@@ -3,8 +3,9 @@ import React, {Component} from 'react'
 import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
-
+import {Row, Col} from 'react-bootstrap'
 import ReactPaginate from 'react-paginate'
+
 import RepresentativeSingleInstance from './Representatives/RepresentativeSingleInstance'
 import PoliticalPartySingleInstance from './Parties/PoliticalPartySingleInstance'
 import DistrictInstance from './Districts/DistrictInstance'
@@ -124,31 +125,31 @@ export default class Search extends Component {
     if ('bioguide' in result) {
       // result is a Representative
       return (
-        <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
+        <Col xs={6} sm={4} md={3} className='search-card-wrapper'>
           <RepresentativeSingleInstance key={result.bioguide} rep={result}
             party_name={this.state.party_names[result.party_id][0]}
             party_color={this.state.party_colors[result.party_id]}
             search={this.props.match.params.term}
             className='search-component' />
-        </div>
+        </Col>
       )
     } else if ('alpha_num' in result) {
       // result is a District
       return (
-        <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
+        <Col xs={6} sm={4} md={3} className='search-card-wrapper'>
           <DistrictInstance district={result} className='search-component'
             search={this.props.match.params.term} />
-        </div>
+        </Col>
       )
     } else if ('chair' in result) {
       // result is a Political Party
       return (
-        <div className='col-xs-6 col-sm-4 col-md-3 search-card-wrapper'>
+        <Col xs={6} sm={4} md={3} className='search-card-wrapper'>
           <PoliticalPartySingleInstance party={result}
             num_reps={this.state.party_counts[result.id]}
             search={this.props.match.params.term}
             className='search-component' />
-        </div>
+        </Col>
       )
     }
   }
@@ -200,11 +201,11 @@ export default class Search extends Component {
           </h3>
         </div>
 
-        <div className='row'>
+        <Row>
           {grid}
-        </div>
+        </Row>
         {pagination_bar}
-      </div> 
+      </div>
     )
   }
 }
