@@ -111,7 +111,7 @@ export default class RepresentativeGrid extends Component {
 	} else {
 	  return (
         <div className='App'>
-          <div className='grid-container filter-grid-root'>
+          <div className='rep-grid-container container'>
             <div className='row'>
               {this.state.displayed_reps.map((item) => (
                 <RepresentativeInstance
@@ -121,6 +121,9 @@ export default class RepresentativeGrid extends Component {
                   party_color={this.state.party_colors[item.party_id]} />
               ))}
             </div>
+          </div>
+
+          <div className='row'>
             <ReactPaginate previousLabel={"previous"}
               nextLabel={"next"}
               breakLabel={<a>...</a>}
