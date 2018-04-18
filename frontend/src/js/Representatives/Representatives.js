@@ -1,15 +1,17 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
-import React, {Component} from 'react'
+import axios from 'axios'
 import {GridList} from 'material-ui/GridList'
+import React, {Component} from 'react'
 import {RingLoader} from 'react-spinners'
 /* eslint-disable no-unused-vars */
 
-import axios from 'axios'
 import RepresentativeFilter from './RepresentativeFilter'
 import RepresentativeGrid from './RepresentativeGrid'
-import '../../assets/css/App.css'
-import url from '../../assets/resource.json'
 
+import '../../assets/css/App.css'
+
+import url from '../../assets/resource.json'
 
 // const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/'
 
@@ -25,23 +27,27 @@ export default class Representatives extends Component {
       lastname_value: 'A-Z',
       sort_value: 'last_asc'
     }
-    
+
     axios.get(url.api_url + 'party?party_name=True').then((response) => {
       this.setState({all_parties: response.data})
 
       axios.get(url.api_url + 'state/?state_usps=True').then((response) => {
         this.setState({all_states: response.data})
       }).catch((error) => {
-        this.setState({all_parties: null, all_states: null})
+        if (error) {
+          this.setState({all_parties: null, all_states: null})
+        }
       })
     }).catch((error) => {
-      this.setState({all_parties: null, all_states: null})
+      if (error) {
+        this.setState({all_parties: null, all_states: null})
+      }
     })
 
     this.handleFilterClicked = this.handleFilterClicked.bind(this)
   }
 
-  handleFilterClicked(state_value, party_value, vote_value, lastname_value,
+  handleFilterClicked (state_value, party_value, vote_value, lastname_value,
     sort_value) {
     this.setState({
       state_value: state_value,
@@ -52,7 +58,7 @@ export default class Representatives extends Component {
     })
   }
 
-  render() {
+  render () {
     const styles = {
       center: {
         display: 'flex',

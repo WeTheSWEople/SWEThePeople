@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, {Component} from 'react'
 import {GridList} from 'material-ui/GridList'
-import {RingLoader} from 'react-spinners'
-import Select from 'react-select'
+import React, {Component} from 'react'
 import {withCookies, Cookies} from 'react-cookie'
+import Select from 'react-select'
+import {RingLoader} from 'react-spinners'
 /* eslint-disable no-unused-vars */
 
 import '../../assets/css/Filter.css'

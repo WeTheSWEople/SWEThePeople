@@ -9,6 +9,7 @@ import url from '../../assets/resource.json'
 import '../../assets/css/App.css'
 import '../../assets/css/Bills.css'
 
+// Component for Bills in RepresentativeDetails page
 export default class RepBills extends Component {
   constructor (props) {
     super(props)
@@ -18,13 +19,12 @@ export default class RepBills extends Component {
     }
     this.getRandomColor = this.getRandomColor.bind(this)
   }
+
   componentWillMount () {
-    // get the data - in the future call the api
-    //this.setState({bioguideid: this.props.bioguideid})
     this.setState({bills_data: this.props.data})
-    // shorten the latest major action
   }
 
+  // Gets random color for Bill component
   getRandomColor () {
     let letters = '0123456789ABCDEF'
     let color = '#'
@@ -41,14 +41,18 @@ export default class RepBills extends Component {
         bill['latest_major_action'] =
           bill['latest_major_action'].substring(0, 115) + '...'
       }
-      axios.get(url.api_url + 'representative/' + this.state.bills_data[i]['sponsor_id'])
-      .then((response)=>{
-        this.state.bills_data[i]['sponsor'] = response.data['firstname'] + ' ' + response.data['lastname']
-      })
-
+      axios.get(url.api_url + 'representative/' +
+        this.state.bills_data[i]['sponsor_id'])
+        .then((response) => {
+          // sets bill sponsor to representative's name instead of id
+          // eslint-disable-next-line
+          this.state.bills_data[i]['sponsor'] =
+            response.data['firstname'] + ' ' + response.data['lastname']
+        })
       this.state.bill_colors.push(this.getRandomColor())
     }
 
+    // Creates mapping between bill information and Bill frontend component
     let mapping = Object.keys(this.state.bills_data).map((item) =>
       <Col sm={12} md={4}>
         <div class='tile1 job-bucket'>
@@ -75,14 +79,15 @@ export default class RepBills extends Component {
               <b> Lastest Major Action: </b>
               {this.state.bills_data[item]['latest_major_action']}
             </h3>
-            <a href={this.state.bills_data[item]['congressdotgov_url']} target="_blank" rel="noopener noreferrer">
+            <a href={this.state.bills_data[item]['congressdotgov_url']}
+              target="_blank"
+              rel="noopener noreferrer">
               Congress.gov
             </a>
           </div>
         </div>
       </Col>
     )
-
     return (
       <Row>
         {mapping}
