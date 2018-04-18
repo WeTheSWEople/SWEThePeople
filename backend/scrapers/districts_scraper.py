@@ -258,6 +258,10 @@ def get_url(endpoint, state):
 
 
 def main():
+    """
+    Scrapes data for districts.
+    """
+
     endpoints = json.load(
         open('./scrapers/src/dictionaries/acs2016_endpoints.json'))
     fips_state_codes = json.load(
@@ -347,3 +351,7 @@ def main():
                     else:
                         set_district(dist_result, dist)
                         db.session.commit()
+
+
+if __name__ == "main":
+    main()
