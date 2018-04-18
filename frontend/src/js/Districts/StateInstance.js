@@ -2,6 +2,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {GridTile} from 'material-ui/GridList'
+import {Row, Col} from 'react-bootstrap'
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
 import '../../assets/css/RepresentativeInstance.css'
@@ -26,8 +27,8 @@ export default class StateInstance extends Component {
         <GridTile
           key={this.props.state}
           class='tile' >
-          <div class='row'>
-            <div class='col-md-4'>
+          <Row>
+            <Col md={4}>
               <img
                 src={require('../../assets/images/states/' +
                 this.props.state + '.png')}
@@ -35,14 +36,14 @@ export default class StateInstance extends Component {
                 style={styles.imgStyle}
                 alt='State'
               />
-            </div>
-            <div class='col-md-4 text-md-left'>
+            </Col>
+            <Col md={4} className='text-md-left'>
               <div className='rep_info'>
                 <h3 className='title'>{this.props.full_state}</h3>
                 <h4 className='party'>Districts: {this.props.num_reps}</h4>
               </div>
-            </div>
-          </div>
+            </Col>
+          </Row>
         </GridTile>
       </Link>
     )

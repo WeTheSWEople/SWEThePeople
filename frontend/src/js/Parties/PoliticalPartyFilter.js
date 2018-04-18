@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 import Select from 'react-select'
+import {Row, Col} from 'react-bootstrap'
 import {withCookies, Cookies} from 'react-cookie'
 /* eslint-disable no-unused-vars */
 
@@ -137,8 +138,8 @@ class PoliticalPartyFilter extends Component {
   render () {
     return (
       <div style={{marginLeft: '6%', marginRight: '5%', width: '90%'}}>
-        <div className='filter-component row'>
-          <div className='col-sm-2 filter-control'>
+        <Row className='filter-component'>
+          <Col sm={2} className='filter-control'>
             <b>Filter social media:</b>
             <Select className='social-filter'
               name='party-social'
@@ -149,9 +150,9 @@ class PoliticalPartyFilter extends Component {
                 {value: 'T', label: 'Has Twitter'},
                 {value: 'Y', label: 'Has YouTube'},
                 {value: 'Neither', label: 'No Social Media'}]} />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 filter-control'>
+          <Col sm={2} className='filter-control'>
             <b>Filter party color:</b>
             <Select className='color-filter'
               name='party-color'
@@ -171,9 +172,9 @@ class PoliticalPartyFilter extends Component {
                 {value: 'Teal', label: 'Teal'},
                 {value: 'White', label: 'White'},
                 {value: 'Yellow', label: 'Yellow'}]} />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 filter-control'>
+          <Col sm={2} className='filter-control'>
             <b>Filter formation date:</b>
             <Select className='formation-filter'
               name='party-formation-date'
@@ -188,9 +189,9 @@ class PoliticalPartyFilter extends Component {
                 // TODO: if aliens have not destroyed the earth by 3000 this
                 // will have to be fixed
                 {value: '2000-3000', label: '2000 - Present'}]} />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 filter-control'>
+          <Col sm={2} className='filter-control'>
             <b>Filter party name:</b>
             <Select className='name-filter'
               name='party-name'
@@ -199,9 +200,9 @@ class PoliticalPartyFilter extends Component {
               options={[
                 {value: 'A-L', label: 'A-L'},
                 {value: 'M-Z', label: 'M-Z'}]} />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 filter-control'>
+          <Col sm={2} className='filter-control'>
             <b>Sort:</b>
             <Select className='sort'
               name='party-sort'
@@ -212,9 +213,9 @@ class PoliticalPartyFilter extends Component {
                 {value: 'name_desc', label: 'Party name (DESC)'},
                 {value: 'chair_name_asc', label: 'Chair name (ASC)'},
                 {value: 'chair_name_desc', label: 'Chair name (DESC)'}]} />
-          </div>
+          </Col>
 
-          <div className='col-sm-2 button-control'>
+          <Col sm={2} className='button-control'>
             <button className="btn btn-primary"
               onClick={this.handleFilterClicked}>
               Filter
@@ -224,8 +225,8 @@ class PoliticalPartyFilter extends Component {
               onClick={this.handleResetClicked}>
               Reset
             </button>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     )
   }
