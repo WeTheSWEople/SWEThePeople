@@ -126,6 +126,7 @@ export default class About extends Component {
     return (
       <div className='App container about-content'>
         <h1 className="about-title">swethepeople.me</h1>
+        <a href="/visualization.html">vis</a>
         <h3>Brought to you by WeTheSWEople</h3>
         <div className='row about-info'>
           <div className='col-md-4'>
