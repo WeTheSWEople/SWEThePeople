@@ -241,6 +241,16 @@ export default class About extends Component {
                 </div>
               </a>
             </div>
+            <div className='col-md-2 col-md-offset-5'>
+              <p>
+                <a href='https://raw.githubusercontent.com/WeTheSWEople/SWEThePeople/master/UML/models.png' target="_blank" rel="noopener noreferrer">
+                  <div className='link-box'>
+                    <img src={require('../../assets/images/about/uml.png')} className='img-responsive' alt='UML logo'/>
+                    <p>UML Diagram</p>
+                  </div>
+                </a>
+              </p>
+            </div>
           </div>
         </div>
 

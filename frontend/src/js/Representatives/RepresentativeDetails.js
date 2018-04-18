@@ -222,17 +222,19 @@ export default class RepresentativeDetails extends Component {
                       </Col>
                     </ Row>
                   </Tab>
-                  <Tab eventKey={2} title="News">
+                  <Tab eventKey={2} title="Bills">
                     <h3 class='bills-header'>Recent Bills Sponsored</h3>
                     <Row style={{paddingLeft: '5px'}}>
                       <RepBills data = {this.state.rep_data.bills} />
                     </Row>
+                  </Tab>
+                  <Tab eventKey={3} title="News">
                     <h3 class='bills-header'>Recent Articles</h3>
                     <Row style={{paddingLeft: '5px'}}>
                       <RepArticles data = {this.state.rep_data.articles} />
                     </Row>
                   </Tab>
-                  <Tab eventKey={3} title="Office Location">
+                  <Tab eventKey={4} title="Office Location">
                     <h3><b>Office Location</b></h3>
                     <h4>{this.state.rep_data['office']}</h4>
                     <iframe
