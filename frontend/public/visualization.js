@@ -172,3 +172,174 @@ d3.tsv("resort-to-fivestartrail.tsv",
             .on('mouseout', tip3.hide)
   }
 );
+
+/*******************************************************************************
+ * Build the graph of trail difficulties to number of trails
+ ******************************************************************************/
+let tip4 = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function(d) {
+        return "<strong>" + d.difficulty + ":</strong> " +
+               "<span style='color:red'>" + d.numtrails + "</span>";
+    })
+
+let svg4 = d3.select("#difficulties")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+svg4.call(tip4);
+
+d3.tsv("difficulty.tsv",
+  function (d) {
+    d.numtrails = +d.numtrails;
+    return d;
+  },
+  function (error, data) {
+    x.domain(data.map(function (d) {return d.difficulty;}));
+    y.domain([0, d3.max(data, function (d) {return d.numtrails;}) + 5]);
+
+    svg4.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svg4.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+    .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Number of Trails");
+
+    svg4.selectAll(".bar4")
+        .data(data)
+        .enter().append("rect")
+            .attr("class", "bar4 bar-hover2")
+            .attr("x", function(d) {return x(d.difficulty);})
+            .attr("width", x.rangeBand())
+            .attr("y", function(d) {return y(d.numtrails);})
+            .attr("height", function(d) {return height - y(d.numtrails);})
+            .on('mouseover', tip4.show)
+            .on('mouseout', tip4.hide)
+  }
+);
+
+/*******************************************************************************
+ * Build the graph of trail difficulties to ascent
+ ******************************************************************************/
+let tip5 = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function(d) {
+        return "<strong>" + d.difficulty + ":</strong> " +
+               "<span style='color:red'>" + d.ascent + " ft</span>";
+    })
+
+let svg5 = d3.select("#difficulties-ascent")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+svg5.call(tip5);
+
+d3.tsv("difficulty_ascent.tsv",
+  function (d) {
+    d.ascent = +d.ascent;
+    return d;
+  },
+  function (error, data) {
+    x.domain(data.map(function (d) {return d.difficulty;}));
+    y.domain([0, d3.max(data, function (d) {return d.ascent;}) + 5]);
+
+    svg5.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svg5.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+    .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Elevation Gain (ft)");
+
+    svg5.selectAll(".bar5")
+        .data(data)
+        .enter().append("rect")
+            .attr("class", "bar5 bar-hover")
+            .attr("x", function(d) {return x(d.difficulty);})
+            .attr("width", x.rangeBand())
+            .attr("y", function(d) {return y(d.ascent);})
+            .attr("height", function(d) {return height - y(d.ascent);})
+            .on('mouseover', tip5.show)
+            .on('mouseout', tip5.hide)
+  }
+);
+
+/*******************************************************************************
+ * Build the graph of trail difficulties to descent
+ ******************************************************************************/
+let tip6 = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function(d) {
+        return "<strong>" + d.difficulty + ":</strong> " +
+               "<span style='color:red'>" + d.descent + " ft</span>";
+    })
+
+let svg6 = d3.select("#difficulties-descent")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+svg6.call(tip6);
+
+d3.tsv("difficulty_descent.tsv",
+  function (d) {
+    d.descent = +d.descent;
+    return d;
+  },
+  function (error, data) {
+    x.domain(data.map(function (d) {return d.difficulty;}));
+    y.domain([0, d3.max(data, function (d) {return d.descent;}) + 5]);
+
+    svg6.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    svg6.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+    .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Elevation Loss (ft)");
+
+    svg6.selectAll(".bar6")
+        .data(data)
+        .enter().append("rect")
+            .attr("class", "bar6 bar-hover2")
+            .attr("x", function(d) {return x(d.difficulty);})
+            .attr("width", x.rangeBand())
+            .attr("y", function(d) {return y(d.descent);})
+            .attr("height", function(d) {return height - y(d.descent);})
+            .on('mouseover', tip6.show)
+            .on('mouseout', tip6.hide)
+  }
+);

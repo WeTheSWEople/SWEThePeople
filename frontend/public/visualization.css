@@ -27,6 +27,15 @@ body {
     margin-top: 50px;
 }
 
+.arc text {
+    font: 10px sans-serif;
+    text-anchor: middle;
+}
+
+.arc path {
+    stroke: #fff;
+}
+
 .axis path,
 .axis line {
     fill: none;
@@ -46,8 +55,24 @@ body {
     fill: #8C42F4;
 }
 
+.bar4 {
+    fill: #F46B42;
+}
+
+.bar5 {
+    fill: #07C180;
+}
+
+.bar6 {
+    fill: #AE07C1;
+}
+
 .bar-hover:hover {
-    fill: orangered ;
+    fill: orangered;
+}
+
+.bar-hover2:hover {
+    fill: #5188FF;
 }
 
 .x.axis path {
