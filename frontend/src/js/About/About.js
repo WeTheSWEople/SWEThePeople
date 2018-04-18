@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {RingLoader} from 'react-spinners'
 import {a} from 'react-router-dom'
 import Members from './Members'
+import {Row, Col} from 'react-bootstrap'
 /* eslint-enable no-unused-vars */
 import url from '../../assets/resource.json'
 import '../../assets/css/App.css'
@@ -127,8 +128,8 @@ export default class About extends Component {
       <div className='App container about-content'>
         <h1 className="about-title">swethepeople.me</h1>
         <h3>Brought to you by WeTheSWEople</h3>
-        <div className='row about-info'>
-          <div className='col-md-4'>
+        <Row className='about-info'>
+          <Col md={4}>
             <div className='faq-box'>
               <h2 className='faq-title'>Our Site</h2>
               <h4>
@@ -138,9 +139,9 @@ export default class About extends Component {
                 representatives, their districts, and parties.
               </h4>
             </div>
-          </div>
+          </Col>
 
-          <div className='col-md-4'>
+          <Col md={4}>
             <div className='faq-box'>
               <h2 className='faq-title'>Our Data</h2>
               <h4>
@@ -150,9 +151,9 @@ export default class About extends Component {
                 and demographics.
               </h4>
             </div>
-          </div>
+          </Col>
 
-          <div className='col-md-4'>
+          <Col md={4}>
             <div className='faq-box'>
               <h2 className='faq-title'>Our Result</h2>
               <h4>
@@ -162,39 +163,39 @@ export default class About extends Component {
                 in studying party and demographics in modern American politics.
               </h4>
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
 
         <center>
           <RingLoader color={'#123abc'} loading={!this.state.ready} />
         </center>
         <div className='github-info'>
-          <div className='row'>
-            <div className='col-sm-6 col-sm-offset-3'>
-              <div className='github-counts row'>
-                <div className='col-md-4'>
+          <Row>
+            <Col sm={6} smOffset={3}>
+              <Row className='github-counts'>
+                <Col md={4}>
                   <div className='info-box'>
                     <h4>Total Commits:</h4>
                     <span className='right-info'>{this.state.totalCommits}</span>
                   </div>
-                </div>
-                <div className='col-md-4'>
+                </Col>
+                <Col md={4}>
                   <div className='info-box'>
                     <h4>Total Issues:</h4>
                     <span className='right-info'>{this.state.total_issues}</span>
                   </div>
-                </div>
-                <div className='col-md-4'>
+                </Col>
+                <Col md={4}>
                   <div className='info-box'>
                     <h4>Total Unit Tests:</h4>
                     <span className='right-info'>{this.state.totalTests}</span>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='row link-row'>
-            <div className='col-md-2 col-md-offset-1'>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row className='link-row'>
+            <Col md={2} mdOffset={1}>
               <p>
                 <a href='https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" rel="noopener noreferrer">
                   <div className='link-box'>
@@ -203,8 +204,8 @@ export default class About extends Component {
                   </div>
                 </a>
               </p>
-            </div>
-            <div className='col-md-2'>
+            </Col>
+            <Col md={2}>
               <p>
                 <a href='https://wethesweople.gitbooks.io/report/' target="_blank" rel="noopener noreferrer">
                   <div className='link-box'>
@@ -213,16 +214,16 @@ export default class About extends Component {
                   </div>
                 </a>
               </p>
-            </div>
-            <div className='col-md-2'>
+            </Col>
+            <Col md={2}>
               <a href='https://wethesweople.gitbooks.io/api/' target="_blank" rel="noopener noreferrer">
                 <div className='link-box'>
                   <img src={require('../../assets/images/about/gitbook-logo.jpg')} className='img-responsive' alt='Gitbook logo'/>
                   <p>API Documentation</p>
                 </div>
               </a>
-            </div>
-            <div className='col-md-2'>
+            </Col>
+            <Col md={2}>
               <p>
                 <a href={url.api_url}>
                   <div className='link-box'>
@@ -231,16 +232,16 @@ export default class About extends Component {
                   </div>
                 </a>
               </p>
-            </div>
-            <div className='col-md-2'>
+            </Col>
+            <Col md={2}>
               <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds' target="_blank" rel="noopener noreferrer">
                 <div className='link-box'>
                   <img src={require('../../assets/images/about/travisci.png')} className='img-responsive' alt='TravisCI logo'/>
                   <p>Travis CI</p>
                 </div>
               </a>
-            </div>
-            <div className='col-md-2 col-md-offset-5'>
+            </Col>
+            <Col md={2} mdOffset={5}>
               <p>
                 <a href='https://raw.githubusercontent.com/WeTheSWEople/SWEThePeople/master/UML/models.png' target="_blank" rel="noopener noreferrer">
                   <div className='link-box'>
@@ -249,8 +250,8 @@ export default class About extends Component {
                   </div>
                 </a>
               </p>
-            </div>
-          </div>
+            </Col>
+          </Row>
         </div>
 
         <div className='about-header'>
@@ -262,9 +263,9 @@ export default class About extends Component {
           <div className='tools-header'>
             <h2>Tools</h2>
           </div>
-          <div className='row'>
+          <Row>
             <a href='https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/github.png')}
                     className='img-responsive' alt='GitHub logo'/>
@@ -274,70 +275,70 @@ export default class About extends Component {
                     project.
                   </p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://www.gitbook.com/@wethesweople' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/gitbook.png')}
                     className='img-responsive' alt='Gitbook logo' />
                   <h5>Gitbook</h5>
                   <p>Used to document the project and its API.</p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://reactjs.org/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/reactjs.png')}
                     className='img-responsive' alt='ReactJS logo'/>
                   <h5>ReactJS</h5>
                   <p>The JavaScript library the site is built on.</p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://aws.amazon.com/ec2/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/ec2.jpg')}
                     className='img-responsive' alt='EC2 logo'/>
                   <h5>Amazon EC2</h5>
                   <p>Container being used to host the production site.</p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://getbootstrap.com/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/bootstrap.png')}
                     className='img-responsive' alt='Bootstrap logo'/>
                   <h5>Bootstrap</h5>
                   <p>CSS and JavaScript toolkit used to beautify pages.</p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='http://flask.pocoo.org/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/flask.png')}
                     className='img-responsive' alt='Flask logo'/>
                   <h5>Python Flask</h5>
                   <p>Web framework used for the production site.</p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://www.nginx.com/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/nginx.png')}
                     className='img-responsive' alt='NGINX logo'/>
                   <h5>NGINX</h5>
                   <p>Webserver to serve the production site.</p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://www.slack.com/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/slack.png')}
                     className='img-responsive' alt='Slack logo'/>
@@ -347,10 +348,10 @@ export default class About extends Component {
                     work.
                   </p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://aws.amazon.com/rds/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require(
                     '../../assets/images/about/Amazon-RDS1.png')}
@@ -360,10 +361,10 @@ export default class About extends Component {
                     Used to host our backend database.
                   </p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://www.postgresql.org/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/post.png')}
                     className='img-responsive' alt='Slack logo'/>
@@ -372,10 +373,10 @@ export default class About extends Component {
                     Database management system used for our backend database
                   </p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://www.sqlalchemy.org/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/sqla.png')}
                     className='img-responsive' alt='Slack logo'/>
@@ -384,10 +385,10 @@ export default class About extends Component {
                     Python SQL toolkit used to access our database
                   </p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://mochajs.org/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/mochajs.png')}
                     className='img-responsive' alt='Slack logo'/>
@@ -396,10 +397,10 @@ export default class About extends Component {
                     JavaScript test framework.
                   </p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://www.seleniumhq.org/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/selenium.png')}
                     className='img-responsive' alt='Slack logo'/>
@@ -408,10 +409,10 @@ export default class About extends Component {
                     Used to test our front-end routes.
                   </p>
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://www.travis-ci.com/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='tools-card'>
                   <img src={require('../../assets/images/about/travisci.png')}
                     className='img-responsive' alt='Slack logo'/>
@@ -420,18 +421,18 @@ export default class About extends Component {
                     Used for continuous integration of our project.
                   </p>
                 </div>
-              </div>
+              </Col>
             </a>
-          </div>
+          </Row>
         </div>
 
         <div className='tools-div container'>
           <div className='tools-header'>
             <h2>Data Sources</h2>
           </div>
-          <div className='row'>
+          <Row>
             <a href='https://projects.propublica.org/api-docs/congress-api/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/propubica.jpg')}
                     className='img-responsive' alt='ProPublica logo'/>
@@ -447,11 +448,11 @@ export default class About extends Component {
                     and uploaded it to the PostgresSQL database. All of this is done by a scraper script.
                   </p>
                 </div>
-              </div>
+              </Col>
             </a>
 
             <a href='https://www.govtrack.us/developers' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/govtrack.png')}
                     className='img-responsive' alt='GovTrack logo'/>
@@ -466,10 +467,10 @@ export default class About extends Component {
                       into our Representatives model and uploaded to the PostgresSQL database. All of this is done by a
                       scraper script.
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://www.census.gov/data/developers/data-sets/decennial-census.html' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='data-card'>
                   <img src={require('../../assets/images/about/census.png')}
                     className='img-responsive' alt='US Census logo'/>
@@ -486,10 +487,10 @@ export default class About extends Component {
                       the scraper converts the data into a District and State model and commits the
                       models to the database.
                 </div>
-              </div>
+              </Col>
             </a>
             <a href='https://theunitedstates.io/images/' target="_blank" rel="noopener noreferrer">
-              <div className='col-sm-3'>
+              <Col sm={3}>
                 <div className='data-card'>
                   <img src={
                     require('../../assets/images/about/unitedstatesio.png')}
@@ -502,9 +503,9 @@ export default class About extends Component {
                   <b> How it was scraped:</b> <br/> We used the links to the images of representatives using their
                   bioguide id.
                 </div>
-              </div>
+              </Col>
             </a>
-          </div>
+          </Row>
         </div>
       </div>
     )

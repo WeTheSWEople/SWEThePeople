@@ -2,6 +2,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 /* eslint-enable no-unused-vars */
+import {Row, Col} from 'react-bootstrap'
 
 import '../../assets/css/PoliticalPartyInstance.css'
 
@@ -18,10 +19,10 @@ export default class Parties extends Component {
 
     let mapping = Object.keys(this.props.party_data).map((key) =>
       <Link to={`/party/${this.props.party_data[key]['path']}`} key={key}>
-        <div className='row party-index-card'>
-          <div className='col-md-8 col-md-offset-2'>
-            <div className='row'>
-              <div className='col-md-6'>
+        <Row className='party-index-card'>
+          <Col md={8} mdOffset={2}>
+            <Row>
+              <Col md={6}>
                 <div className='center-div'>
                   <img src={require('../../assets/images/parties/index/' +
                     this.props.party_data[key]['path'] + '.png')}
@@ -29,9 +30,9 @@ export default class Parties extends Component {
                   style={styles.imgStyle}
                   alt={key} />
                 </div>
-              </div>
+              </Col>
 
-              <div className='col-md-6 party-index-name'>
+              <Col md={6} className='party-index-name'>
                 <h3>{this.props.party_data[key]['name']}</h3>
                 <p>
                   <span style={styles.itemHeader}>
@@ -43,10 +44,10 @@ export default class Parties extends Component {
                   <span style={styles.itemHeader}>Party chair:</span>
                   {this.props.party_data[key]['chair']}
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </Link>
     )
 

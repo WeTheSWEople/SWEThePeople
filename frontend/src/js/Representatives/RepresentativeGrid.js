@@ -4,6 +4,7 @@ import {GridList} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 /* eslint-disable no-unused-vars */
 import ReactPaginate from 'react-paginate'
+import {Row, Col} from 'react-bootstrap'
 
 import RepresentativeInstance from './RepresentativeInstance'
 import '../../assets/css/App.css'
@@ -127,7 +128,7 @@ export default class RepresentativeGrid extends Component {
       return (
         <div className='App'>
           <div className='rep-grid-container container'>
-            <div className='row'>
+            <Row>
               {this.state.displayed_reps.map((item) => (
                 <RepresentativeInstance
                   key={item.bioguide}
@@ -135,12 +136,11 @@ export default class RepresentativeGrid extends Component {
                   party_name={this.state.party_name[item.party_id][0]}
                   party_color={this.state.party_colors[item.party_id]} />
               ))}
-            </div>
+            </Row>
           </div>
-
-          <div className='row'>
-            <ReactPaginate previousLabel={'previous'}
-              nextLabel={'next'}
+          <Row>
+            <ReactPaginate previousLabel={"previous"}
+              nextLabel={"next"}
               breakLabel={<a>...</a>}
               breakClassName={'break-me'}
               pageCount={Math.ceil(this.state.cur_page)}
@@ -151,7 +151,7 @@ export default class RepresentativeGrid extends Component {
               subContainerClassName={'pages pagination'}
               activeClassName={'active'}
             />
-          </div>
+          </Row>
         </div>
       )
     }
