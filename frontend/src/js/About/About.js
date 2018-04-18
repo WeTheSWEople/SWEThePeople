@@ -126,7 +126,6 @@ export default class About extends Component {
     return (
       <div className='App container about-content'>
         <h1 className="about-title">swethepeople.me</h1>
-        <a href="/visualization.html">vis</a>
         <h3>Brought to you by WeTheSWEople</h3>
         <div className='row about-info'>
           <div className='col-md-4'>
@@ -241,12 +240,22 @@ export default class About extends Component {
                 </div>
               </a>
             </div>
-            <div className='col-md-2 col-md-offset-5'>
+            <div className='col-md-2 col-md-offset-1'>
               <p>
                 <a href='https://raw.githubusercontent.com/WeTheSWEople/SWEThePeople/master/UML/models.png' target="_blank" rel="noopener noreferrer">
                   <div className='link-box'>
                     <img src={require('../../assets/images/about/uml.png')} className='img-responsive' alt='UML logo'/>
                     <p>UML Diagram</p>
+                  </div>
+                </a>
+              </p>
+            </div>
+            <div className='col-md-2'>
+              <p>
+                <a href='/visualization.html' target="_blank" rel="noopener noreferrer">
+                  <div className='link-box'>
+                    <img src={require('../../assets/images/about/d3.png')} className='img-responsive' alt='UML logo'/>
+                    <p>Visualization</p>
                   </div>
                 </a>
               </p>
