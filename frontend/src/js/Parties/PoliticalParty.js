@@ -66,7 +66,12 @@ handlePageClick(data){
 		new_map["0"] = partiesMap[0]
 		new_map["1"] = partiesMap[1]
 		new_map["2"] = partiesMap[2]
-		this.setState({parties: partiesMap, ready: true, cur_page: JSON.parse(body).length/3, displayed_parties: new_map})
+		this.setState({
+			parties: partiesMap,
+			ready: true,
+			cur_page: JSON.parse(body).length/3,
+			displayed_parties: new_map
+		})
 	  }
 	}.bind(this))
   }
@@ -77,7 +82,8 @@ handlePageClick(data){
 	  let divStyle = {
 		paddingTop: '70px'
 	  }
-	  parties = <PoliticalPartyInstance party_data = {this.state.displayed_parties} />
+	  parties =
+	  	<PoliticalPartyInstance party_data = {this.state.displayed_parties} />
 
 	  return (
 		<div style={divStyle} className="parties-container">

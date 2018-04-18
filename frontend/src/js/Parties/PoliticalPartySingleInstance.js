@@ -56,7 +56,8 @@ export default class PoliticalPartySingleInstance extends Component {
 
 
     return (
-      <Link to={`/party/${this.props.party.path}`} className='search-card-link'>
+      <Link to={`/party/${this.props.party.path}`} 
+        className='search-card-link'>
         <div className='search-card party-search-card'>
           <img src={require('../../assets/images/parties/index/' +
             this.props.party.path + '.png')}

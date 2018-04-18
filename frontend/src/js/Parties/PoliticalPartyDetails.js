@@ -221,7 +221,8 @@ export default class PoliticalPartyDetails extends Component {
     }
 
     let twitter = <h4><b>No Twitter handle</b></h4>
-    if (this.state.party !== null && this.state.party['twitter_handle'] !== '') {
+    if (this.state.party !== null && 
+      this.state.party['twitter_handle'] !== '') {
       twitter = <div>
         <Timeline dataSource={{sourceType: 'profile',
           screenName: this.state.party['twitter_handle']}}

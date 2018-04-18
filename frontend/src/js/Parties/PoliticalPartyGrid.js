@@ -49,13 +49,18 @@ export default class PoliticalPartyGrid extends Component {
 	this.handlePageClick = this.handlePageClick.bind(this)
   }
   handlePageClick(data){
-	  this.setState({displayed_parties: this.state.parties.subarray(data.selected * 12, (data.selected + 1) * 12)})
+	  this.setState({
+	  	displayed_parties: this.state.parties.subarray(data.selected * 12, 
+	  		(data.selected + 1) * 12)
+	  })
   }
 
   getPartyData (filterParams) {
     this.setState({parties: null})
-    console.log(url.api_url + 'party/filter?filter=' + JSON.stringify(filterParams))
-    axios.get(url.api_url + 'party/filter?filter=' + JSON.stringify(filterParams)).then((response) => {
+    console.log(url.api_url + 'party/filter?filter=' +
+    	JSON.stringify(filterParams))
+    axios.get(url.api_url + 'party/filter?filter=' +
+    	JSON.stringify(filterParams)).then((response) => {
       if (response.data.length === 0) {
         this.setState({parties: -2})
       } else {
@@ -64,7 +69,12 @@ export default class PoliticalPartyGrid extends Component {
           counts[party.id] = party.representatives.length
         }
 
-		this.setState({parties: response.data, party_counts: counts, displayed_parties: response.data.subarray(0, 12), cur_page: response.data.length/12})
+		this.setState({
+			parties: response.data,
+			party_counts: counts,
+			displayed_parties: response.data.subarray(0, 12),
+			cur_page: response.data.length/12
+		})
 	  }
 	}).catch((error) => {
 	  this.setState({parties: -1, displayed_parties: -1})
