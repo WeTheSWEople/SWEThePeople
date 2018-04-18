@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import Highlighter from "react-highlight-words";
+import Highlighter from 'react-highlight-words'
 
 /* eslint-enable no-unused-vars */
 
 import '../../assets/css/PoliticalPartyInstance.css'
 
 export default class PoliticalPartySingleInstance extends Component {
-  render() {
+  render () {
     const styles = {
       highlight: {
         fontWeight: 'bold',
@@ -23,40 +23,38 @@ export default class PoliticalPartySingleInstance extends Component {
 
     let searched = ''
     let query = []
-    if(this.props.search !== null && this.props.search !== undefined) {
-      query = this.props.search.split(" ")
+    if (this.props.search !== null && this.props.search !== undefined) {
+      query = this.props.search.split(' ')
       query.push(this.props.search)
-      searched =  <p>
+      searched = <p>
                       Representatives in search: {num_reps}
-                  </p>
-
+      </p>
     }
 
     if (this.props.search === undefined) {
-      searched =  <p>
+      searched = <p>
                       Representatives: {num_reps}
-                  </p>
+      </p>
     }
 
     let chair = ''
     if (this.props.party.chair === '') {
       chair = <p>
                 Party chair:<br /> None
-              </p>
+      </p>
     } else {
       chair = <p>
                 Party chair:<br />
-                <Highlighter
-                    searchWords={query}
-                    autoEscape={true}
-                    highlightStyle={styles.highlight}
-                    textToHighlight={this.props.party.chair} />
-              </p>
+        <Highlighter
+          searchWords={query}
+          autoEscape={true}
+          highlightStyle={styles.highlight}
+          textToHighlight={this.props.party.chair} />
+      </p>
     }
 
-
     return (
-      <Link to={`/party/${this.props.party.path}`} 
+      <Link to={`/party/${this.props.party.path}`}
         className='search-card-link'>
         <div className='search-card party-search-card'>
           <img src={require('../../assets/images/parties/index/' +

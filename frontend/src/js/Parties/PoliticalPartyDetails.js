@@ -94,11 +94,11 @@ export default class PoliticalPartyDetails extends Component {
     return this.state.districts[lhs].id - this.state.districts[rhs].id
   }
 
-  compareDistrictState(lhs, rhs) {
+  compareDistrictState (lhs, rhs) {
     const result = this.state.districts[lhs].state.localeCompare(
       this.state.districts[rhs].state)
     if (result === 0) {
-      return this.state.districts[lhs].pos - this.state.districts[rhs].pos;
+      return this.state.districts[lhs].pos - this.state.districts[rhs].pos
     }
 
     return result
@@ -106,15 +106,15 @@ export default class PoliticalPartyDetails extends Component {
 
   render () {
     if (!(this.state.districtFlag && this.state.partyFlag)) {
-        return(
+      return (
         <div style={{display: 'flex',
-                    flexWrap: 'wrap',
-                    paddingTop: '25%',
-                    paddingLeft: '50px',
-                    paddingRight: '50px',
-                    justifyContent: 'space-around'}}>
-        <RingLoader color={'#123abc'} loading={true} />
-         </div>)
+          flexWrap: 'wrap',
+          paddingTop: '25%',
+          paddingLeft: '50px',
+          paddingRight: '50px',
+          justifyContent: 'space-around'}}>
+          <RingLoader color={'#123abc'} loading={true} />
+        </div>)
     }
 
     const oldDis = this.state.districts
@@ -162,11 +162,11 @@ export default class PoliticalPartyDetails extends Component {
 
       let repsGrid = Object.keys(this.state.reps).sort(this.compareReps)
         .map((key) =>
-        <div className='party-rep-card'>
-          <RepresentativeInstance key={key} rep={this.state.reps[key]}
-            columns={"false"} />
-        </div>
-      )
+          <div className='party-rep-card'>
+            <RepresentativeInstance key={key} rep={this.state.reps[key]}
+              columns={'false'} />
+          </div>
+        )
 
       let sortedKeys = Object.keys(districts).sort(this.compareDistrictID)
       let pos = 0
@@ -176,22 +176,22 @@ export default class PoliticalPartyDetails extends Component {
 
       let districtsGrid = sortedKeys.sort(this.compareDistrictState)
         .map((key) =>
-        <Link to={`/districts/${districts[key].state}/${districts[key].id}`}>
-          <div className='party-rep-card party-district'>
-            <div className='district-card '>
-              <h3><b>{districts[key].alpha_num}</b></h3>
-              <h5><b>Population: </b>{districts[key].population}</h5>
-              <h5><b>Median Age: </b>{districts[key].median_age}</h5>
-              <br />
-              <img src={
-                require('../../assets/images/districts/' +
+          <Link to={`/districts/${districts[key].state}/${districts[key].id}`}>
+            <div className='party-rep-card party-district'>
+              <div className='district-card '>
+                <h3><b>{districts[key].alpha_num}</b></h3>
+                <h5><b>Population: </b>{districts[key].population}</h5>
+                <h5><b>Median Age: </b>{districts[key].median_age}</h5>
+                <br />
+                <img src={
+                  require('../../assets/images/districts/' +
                 districts[key].alpha_num + '.png')}
                 alt='District Map'
                 className='img-responsive district-img'/>
+              </div>
             </div>
-          </div>
-        </Link>
-      )
+          </Link>
+        )
 
       const settings = {
         dots: false,
@@ -221,7 +221,7 @@ export default class PoliticalPartyDetails extends Component {
     }
 
     let twitter = <h4><b>No Twitter handle</b></h4>
-    if (this.state.party !== null && 
+    if (this.state.party !== null &&
       this.state.party['twitter_handle'] !== '') {
       twitter = <div>
         <Timeline dataSource={{sourceType: 'profile',
