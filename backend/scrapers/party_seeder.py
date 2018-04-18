@@ -91,3 +91,7 @@ def main():
         color_id = build_colors(party, p["color"], color_id)
 
         print("Seeded " + p["name"])
+
+
+if __name__ == "main":
+    main()

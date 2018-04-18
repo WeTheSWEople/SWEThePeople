@@ -2,6 +2,8 @@ import requests
 import os
 import sys
 
+from utils import build_representative
+
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from app import create_app, db
 from models import Representative
@@ -35,24 +37,7 @@ def main():
             if mem['party'] == 'Republican':
                 party_id = 2
 
-            rep = Representative(
-                bioguide=mem['person']['bioguideid'],
-                firstname=mem['person']['firstname'],
-                lastname=mem['person']['lastname'],
-                party_id=party_id,
-                state=mem['state'],
-                district=district,
-                twitter=mem['person']['twitterid'],
-                youtube=mem['person']['youtubeid'],
-                office=mem['extra']['office'],
-                url=mem['website'],
-                cspanid=mem['person']['cspanid'],
-                osid=mem['person']['osid'],
-                birthday=mem['person']['birthday'],
-                gender=mem['person']['gender'],
-                image_uri=IMG_URL + mem['person']['bioguideid'] + '.jpg'
-            )
-
+            rep = build_representative(mem, district, party_id)
             rep2 = Representative.query.filter(
                 Representative.bioguide == rep.bioguide).first()
             if rep2 is not None:
