@@ -2,7 +2,7 @@ import json
 from flask import Blueprint, jsonify, request, send_from_directory # noqa
 from models import District, PartyColor, PoliticalParty, Representative, State # noqa
 from sqlalchemy import or_ # noqa
-from util import * # noqa
+from util import get_all_items, get_single_item, get_response, error
 
 
 root_route = Blueprint('root', __name__)
@@ -97,7 +97,7 @@ def representatives_filter():
         filter_query = request.args.get('filter')
         filter_query = str(filter_query)
         filter_query = json.loads(filter_query)
-    except:
+    except Exception:
         return error("Filter Query Invalid")
 
     state = 'None'
@@ -240,7 +240,7 @@ def party_filter():
         filter_query = request.args.get('filter')
         filter_query = str(filter_query)
         filter_query = json.loads(filter_query)
-    except:
+    except Exception:
         return error("Filter Query Invalid")
 
     social = 'None'
@@ -438,7 +438,7 @@ def districts_filter():
         filter_query = request.args.get('filter')
         filter_query = str(filter_query)
         filter_query = json.loads(filter_query)
-    except:
+    except Exception:
         return error("Filter Query Invalid")
 
     order_by = 'state_asc'
@@ -523,7 +523,6 @@ def get_party_json(rep_party_id=None, party_param=None):
         return {
             "id": party.id,
             "name": party.name,
-            "path": party.path,
             "chair": party.chair,
             "formation_date": party.formation_date,
             "office": party.office,
@@ -782,7 +781,7 @@ def search():
 
     try:
         query = request.args.get('query').split()
-    except:
+    except Exception:
         return error("Search Query Invalid")
     result = []
     ranks = []
