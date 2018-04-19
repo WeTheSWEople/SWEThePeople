@@ -8,7 +8,9 @@ import {Row, Col} from 'react-bootstrap'
 import url from '../../assets/resource.json'
 import '../../assets/css/App.css'
 import '../../assets/css/About.css'
-
+import {getMembers} from './memberData'
+import GithubTools from './GithubTools.jsx'
+import AboutInfo from './AboutInfo.jsx'
 let request = require('request')
 
 export default class About extends Component {
@@ -20,50 +22,19 @@ export default class About extends Component {
       error: false,
       total_issues: 0,
       swe_member_data: {},
-      totalTests: 0
+      totalTests: 0,
+      ended: false
     }
   }
 
   componentWillMount () {
-
     this.setState({ready: false})
-
-    let options = {method: 'GET',
-      url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/stats/contributors'}
+    let options = {method: 'GET', url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/stats/contributors'}
     request(options, function (error, response, body) {
       if (error) {
         this.setState({error: true, ready: true})
       }
-      let sweMembers = {}
-      sweMembers['MTirtowidjojo'] = ['Michael Tirtowidjojo', 0, 0, 0,
-        'Michael is a third-year CS student who trains in Taekwondo and ' +
-        'enjoys reading World War II stories.', 'Michael.png',
-        'Parties front-end and chief of chief naming', 'Mojo Jojo', 'TX', '14']
-      sweMembers['copperstick6'] = ['William Han', 0, 0, 68,
-        'William is a sophomore CS student who enjoys the subtle art of ' +
-        'memes and hackathons.', 'William.jpg',
-        'Districts front-end and backend-unit tests ' +
-        'deployment', 'Bill', 'TX', '12']
-      sweMembers['raulcodes'] = ['Raul Camacho', 0, 0, 19,
-        'Raul is a senior CS major who will be graduating this semester. ' +
-        'Also he\'s tall. Probably too tall.', 'Raul.png',
-        'Front-end, css, front-end unittests and acceptance tests',
-        'Camacho Style Sheets', 'TX', '12']
-      sweMembers['minwoo0jo'] = ['Minwoo Jo', 0, 0, 0,
-        'Minwoo is a fourth year student currently pursuing a BSA in CS. He ' +
-        'enjoys studying foreign languages and competing in video game ' +
-        'tournaments in his free time.', 'Minwoo.jpg',
-        'District front-end and back-end, API designer', 'MJ', 'TX', '24']
-      sweMembers['bzsinger'] = ['Benjamin Singer', 0, 0, 0,
-        'Benny is a third-year CS student who enjoys iOS development, ' +
-        'reading, and following current events.', 'Benny.jpg',
-        'Representatives front-end, District back-end, Documentation', 'Benny', 'TX', '32']
-      sweMembers['palakhirpara'] = ['Palak Hirpara', 0, 0, 34,
-
-        'Palak is a senior who will be graduating this semester with BSCS ' +
-        'and likes watching cricket.', 'Palak.png',
-        'Representatives front-end and back-end, Districts back-end, back-end unittests',
-        'The Decider', 'TX', '32']
+      let sweMembers = getMembers();
 
       let commitJSON = JSON.parse(body)
       let totalCommits = 0
@@ -81,18 +52,15 @@ export default class About extends Component {
       this.setState({totalCommits: totalCommits, totalTests: totalTests})
       var eof = false;
       var page = 1;
-      var JSON_total_length = 0;
       while(!eof) {
         var options = { method: 'GET',
-        url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all&per_page=100&page=' + String(page),
-        qs: { state: 'all' },
+            url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all&per_page=100&page=' + String(page),
+            qs: { state: 'all' },
         };
         page++;
-        //hardcoded value because I don't know how to force this loop to be asynchronous
-        if (page === 5) {
+        if (page === 10) {
           break;
         }
-
         // eslint-disable-next-line
         request(options, function (error, response, body) {
           if (error) {
@@ -108,12 +76,10 @@ export default class About extends Component {
               eof = true;
             }
           }
-         JSON_total_length += issueJSON.length;
           this.setState({swe_member_data: sweMembers,
-            total_issues: JSON_total_length})
+            total_issues: this.state.total_issues + issueJSON.length})
         }.bind(this))
       }
-
       this.setState({ready: true})
     }.bind(this))
   }
@@ -128,141 +94,14 @@ export default class About extends Component {
       <div className='App container about-content'>
         <h1 className="about-title">swethepeople.me</h1>
         <h3>Brought to you by WeTheSWEople</h3>
-        <Row className='about-info'>
-          <Col md={4}>
-            <div className='faq-box'>
-              <h2 className='faq-title'>Our Site</h2>
-              <h4>
-                SWEThePeople provides information and resources for
-                anyone interested in the members of United States House
-                of Representatives. This site provides information about
-                representatives, their districts, and parties.
-              </h4>
-            </div>
-          </Col>
-
-          <Col md={4}>
-            <div className='faq-box'>
-              <h2 className='faq-title'>Our Data</h2>
-              <h4>
-                The site combines information about legislators with
-                U.S. Census data, providing visitors with a better
-                understanding of the intersection between party, state,
-                and demographics.
-              </h4>
-            </div>
-          </Col>
-
-          <Col md={4}>
-            <div className='faq-box'>
-              <h2 className='faq-title'>Our Result</h2>
-              <h4>
-                Our website, by combining district party control and demographic
-                and age information, displays an interesting corrolation between the
-                two. Thus, SWEThePeople is a valuable resource for anyone interested
-                in studying party and demographics in modern American politics.
-              </h4>
-            </div>
-          </Col>
-        </Row>
+        <AboutInfo />
 
         <center>
           <RingLoader color={'#123abc'} loading={!this.state.ready} />
         </center>
-        <div className='github-info'>
-          <Row>
-            <Col sm={6} smOffset={3}>
-              <Row className='github-counts'>
-                <Col md={4}>
-                  <div className='info-box'>
-                    <h4>Total Commits:</h4>
-                    <span className='right-info'>{this.state.totalCommits}</span>
-                  </div>
-                </Col>
-                <Col md={4}>
-                  <div className='info-box'>
-                    <h4>Total Issues:</h4>
-                    <span className='right-info'>{this.state.total_issues}</span>
-                  </div>
-                </Col>
-                <Col md={4}>
-                  <div className='info-box'>
-                    <h4>Total Unit Tests:</h4>
-                    <span className='right-info'>{this.state.totalTests}</span>
-                  </div>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          <Row className='link-row'>
-            <Col md={2} mdOffset={1}>
-              <p>
-                <a href='https://github.com/WeTheSWEople/SWEThePeople/' target="_blank" rel="noopener noreferrer">
-                  <div className='link-box'>
-                    <img src={require('../../assets/images/about/github.png')} className='img-responsive' alt='GitHub logo'/>
-                    <p>GitHub Repository</p>
-                  </div>
-                </a>
-              </p>
-            </Col>
-            <Col md={2}>
-              <p>
-                <a href='https://wethesweople.gitbooks.io/report/' target="_blank" rel="noopener noreferrer">
-                  <div className='link-box'>
-                    <img src={require('../../assets/images/about/gitbook-logo.jpg')} className='img-responsive' alt='Gitbook logo'/>
-                    <p>Technical Report</p>
-                  </div>
-                </a>
-              </p>
-            </Col>
-            <Col md={2}>
-              <a href='https://wethesweople.gitbooks.io/api/' target="_blank" rel="noopener noreferrer">
-                <div className='link-box'>
-                  <img src={require('../../assets/images/about/gitbook-logo.jpg')} className='img-responsive' alt='Gitbook logo'/>
-                  <p>API Documentation</p>
-                </div>
-              </a>
-            </Col>
-            <Col md={2}>
-              <p>
-                <a href={url.api_url}>
-                  <div className='link-box'>
-                    <img src={require('../../assets/images/about/api-image.png')} className='img-responsive' alt='API logo'/>
-                    <p>API</p>
-                  </div>
-                </a>
-              </p>
-            </Col>
-            <Col md={2}>
-              <a href='https://travis-ci.org/WeTheSWEople/SWEThePeople/builds' target="_blank" rel="noopener noreferrer">
-                <div className='link-box'>
-                  <img src={require('../../assets/images/about/travisci.png')} className='img-responsive' alt='TravisCI logo'/>
-                  <p>Travis CI</p>
-                </div>
-              </a>
-            </Col>
-            <Col md={2} mdOffset={1}>
-              <p>
-                <a href='https://raw.githubusercontent.com/WeTheSWEople/SWEThePeople/master/UML/models.png' target="_blank" rel="noopener noreferrer">
-                  <div className='link-box'>
-                    <img src={require('../../assets/images/about/uml.png')} className='img-responsive' alt='UML logo'/>
-                    <p>UML Diagram</p>
-                  </div>
-                </a>
-              </p>
-            </Col>
-            <Col md={2}>
-              <p>
-                <a href='/visualization.html' target="_blank" rel="noopener noreferrer">
-                  <div className='link-box'>
-                    <img src={require('../../assets/images/about/d3.png')} className='img-responsive' alt='UML logo'/>
-                    <p>Visualization</p>
-                  </div>
-                </a>
-              </p>
-            </Col>
-          </Row>
-        </div>
+
+        <GithubTools total_issues={this.state.total_issues} totalTests={this.state.totalTests} totalCommits={this.state.totalCommits} />
+
 
         <div className='about-header'>
           <h1>Your Representatives</h1>
@@ -499,27 +338,19 @@ export default class About extends Component {
                 </div>
               </Col>
             </a>
-            <a href='https://webhose.io/web-content-api' target="_blank" 
-            rel="noopener noreferrer">
+            <a href='https://theunitedstates.io/images/' target="_blank" rel="noopener noreferrer">
               <Col sm={3}>
                 <div className='data-card'>
                   <img src={
-                    require('../../assets/images/about/webhose.png')}
-                  className='img-responsive' alt='webhose.io logo'/>
-                  <h3>WebHose</h3>
+                    require('../../assets/images/about/unitedstatesio.png')}
+                  className='img-responsive' alt='theunitedstates.io logo'/>
+                  <h3>TheUnitedStates.io</h3>
                   <p>
-                    Used to get news articles related to the U.S. 
-                    representatives
+                    Used to get images of representatives based on their
+                    bioguide id.
                   </p>
-                  <b> How it was scraped:</b> 
-                  <br/> We scraped WebHose using their Web Content API 
-                  endpoint. The endpoint returns all sorts of articles, 
-                  opinion pieces, and webpages, but we were solely concerned 
-                  with news articles. We applied several parameters to our 
-                  scraper, including that the site’s language be English, 
-                  the site type be “news” and the country be the United 
-                  States. From those results, we chose the three 
-                  most-recent stories to link to on our site
+                  <b> How it was scraped:</b> <br/> We used the links to the images of representatives using their
+                  bioguide id.
                 </div>
               </Col>
             </a>
