@@ -1,6 +1,7 @@
 from flask import jsonify
 DATA_NOT_FOUND_CODE = 404
 
+
 def get_response(data):
     """
     Gets the formatted response for the given item
@@ -14,6 +15,7 @@ def get_response(data):
         return None
     return data.format()
 
+
 def error(message):
     """
     Builds an error response with the given message
@@ -26,6 +28,7 @@ def error(message):
     resp = jsonify({"Error": message})
     resp.status_code = DATA_NOT_FOUND_CODE
     return resp
+
 
 def get_all_items(model, orderid, modelname):
     """
@@ -43,6 +46,7 @@ def get_all_items(model, orderid, modelname):
     if not data:
         return error("Item not found for " + modelname + "model")
     return jsonify([get_response(rep) for rep in data])
+
 
 def get_single_item(model, model_id, parameter):
     """

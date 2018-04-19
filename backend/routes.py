@@ -1,10 +1,9 @@
-from flask import jsonify, Blueprint, send_from_directory, render_template, \
-    request
-from models import Representative, PoliticalParty, PartyColor, District, State
-from util import *
 import json
-from sqlalchemy.orm import load_only, defer
-from sqlalchemy import or_
+from flask import Blueprint, jsonify, request, send_from_directory # noqa
+from models import District, PartyColor, PoliticalParty, Representative, State # noqa
+from sqlalchemy import or_ # noqa
+from util import * # noqa
+
 
 root_route = Blueprint('root', __name__)
 rep_route = Blueprint('representative', __name__)
@@ -14,6 +13,7 @@ state_route = Blueprint('state', __name__)
 district_route = Blueprint('district', __name__)
 search_route = Blueprint('search', __name__)
 
+
 @root_route.route('/')
 def endpoints():
     """
@@ -21,6 +21,7 @@ def endpoints():
     """
 
     return send_from_directory('static', 'index.html')
+
 
 @rep_route.route('/')
 def all_representatives():
@@ -31,7 +32,7 @@ def all_representatives():
     """
 
     return get_all_items(Representative, Representative.bioguide,
-        'Representative')
+                         'Representative')
 
 
 @rep_route.route('/<bioguide>')
@@ -45,7 +46,8 @@ def representative(bioguide):
     """
 
     return get_single_item(Representative, Representative.bioguide,
-        bioguide.upper())
+                           bioguide.upper())
+
 
 @rep_route.route('/page/<num>')
 def representatives_by_page(num):
@@ -71,6 +73,7 @@ def representatives_by_page(num):
     query = query.offset(offset).limit(25)
     return jsonify([get_response(rep) for rep in query.all()])
 
+
 @rep_route.route("/filter")
 def representatives_filter():
     """
@@ -86,12 +89,12 @@ def representatives_filter():
     - "order_by"    -- how to order the results. Should be last_asc, last_desc,
                        votes_pct_asc, or votes_pct_desc
 
-    Returns a list of representative dictionaries that match the given filter or
+    Returns list of representative dictionaries that match the given filter or
     an error if the query is invalid
     """
 
     try:
-        filter_query = request.args.get('filter')  
+        filter_query = request.args.get('filter')
         filter_query = str(filter_query)
         filter_query = json.loads(filter_query)
     except:
@@ -103,20 +106,20 @@ def representatives_filter():
     votes_pct = 'None'
     order_by = 'None'
     if 'state' in filter_query:
-       state = str(filter_query['state'])
+        state = str(filter_query['state'])
 
     if 'party_id' in filter_query:
         party_id = filter_query['party_id']
 
     if 'last_name' in filter_query:
         last_name = str(filter_query['last_name']).lower().split('-')
-    
+
     if 'votes_pct' in filter_query:
         votes_pct = str(filter_query['votes_pct']).split('-')
 
     if 'order_by' in filter_query:
         order_by = str(filter_query['order_by'])
-   
+
     filtered_result = Representative.query
     if state != 'None':
         filtered_result = filtered_result.filter(Representative.state == state)
@@ -127,7 +130,7 @@ def representatives_filter():
 
     if votes_pct != 'None' and votes_pct[0] != 'None':
         filtered_result = filtered_result.filter(
-            Representative.votes_with_party_pct >= float(votes_pct[0]), 
+            Representative.votes_with_party_pct >= float(votes_pct[0]),
             Representative.votes_with_party_pct < float(votes_pct[1]))
 
     if order_by != 'None':
@@ -152,11 +155,12 @@ def representatives_filter():
 
     if last_name != 'None':
         return jsonify(filter(
-            lambda s: s['lastname'][0].lower() >= last_name[0] and \
-                      s['lastname'][0].lower() <= last_name[1],
+            lambda s: s['lastname'][0].lower() >= last_name[0] and
+            s['lastname'][0].lower() <= last_name[1],
             filtered_dict_list))
     else:
         return jsonify(filtered_dict_list)
+
 
 @party_route.route("/")
 def all_parties():
@@ -164,7 +168,7 @@ def all_parties():
     Endpoint to get all of the political parties
 
     Accepts the parameter 'party_name' with the values 'True' or 'False'. If
-    'True', will get only the the party's ID, name, and path instead of the full
+    'True', will get only the party's ID, name, and path instead of the full
     party dictionary.
 
     Returns a list of the political party dictionaries
@@ -187,6 +191,7 @@ def all_parties():
         )
     return get_all_items(PoliticalParty, PoliticalParty.id, 'PoliticalParty')
 
+
 @party_route.route("/<path>")
 def party_by_path(path):
     """
@@ -199,6 +204,7 @@ def party_by_path(path):
 
     return get_single_item(PoliticalParty, PoliticalParty.path, path.lower())
 
+
 @party_route.route("/id/<party_id>")
 def party_by_id(party_id):
     """
@@ -210,6 +216,7 @@ def party_by_id(party_id):
     """
 
     return get_single_item(PoliticalParty, PoliticalParty.id, party_id)
+
 
 @party_route.route("/filter")
 def party_filter():
@@ -292,7 +299,7 @@ def party_filter():
         filtered_result = filtered_result.order_by(PoliticalParty.id)
 
     # Delete Bills from the result
-    if result == None:
+    if result is None:
         result = [get_response(party) for party in filtered_result.all()]
     for party in result:
         for rep in party['representatives']:
@@ -303,6 +310,7 @@ def party_filter():
 
         date_begin = int(formation_date[0])
         date_end = int(formation_date[1])
+
         def party_formed_between(party):
             year = int(party['formation_date'].split()[-1])
             return date_begin <= year <= date_end
@@ -310,7 +318,8 @@ def party_filter():
 
     # Filter the names of the parties
     return jsonify(filter(lambda n: name[0] <= n['name'].lower()[0] <= name[1],
-        result))
+                   result))
+
 
 def party_chair(party):
     """
@@ -324,6 +333,7 @@ def party_chair(party):
     if party['chair'] == '':
         return 'zzzzzzzzzzzzzzzzzzzzzzz'
     return party['chair']
+
 
 @state_route.route("/")
 def all_states():
@@ -346,6 +356,7 @@ def all_states():
 
     return get_all_items(State, State.number, 'State')
 
+
 @state_route.route("/<abbrev>")
 def single_state(abbrev):
     """
@@ -358,6 +369,7 @@ def single_state(abbrev):
 
     return get_single_item(State, State.usps_abbreviation, abbrev.upper())
 
+
 @district_route.route("/")
 def all_districts():
     """
@@ -367,6 +379,7 @@ def all_districts():
     """
 
     return get_all_items(District, District.alpha_num, 'District')
+
 
 @district_route.route("/<abbrev>")
 def districts_by_state(abbrev):
@@ -382,6 +395,7 @@ def districts_by_state(abbrev):
     if not district_list:
         return error("Item not found for id " + abbrev)
     return jsonify([get_response(district) for district in district_list])
+
 
 @district_route.route("/<abbrev>/<district_id>")
 def districts_by_id(abbrev, district_id):
@@ -401,10 +415,11 @@ def districts_by_id(abbrev, district_id):
         return error("Item not found for id " + abbrev + " and " + district_id)
     return jsonify(get_response(data))
 
+
 @district_route.route("/filter")
 def districts_filter():
     """
-    Endpoint to get the districts based on the filter query given by the 'query'
+    Endpoint to get the districts based on the filter query given the 'query'
     parameter.
 
     The query parameter should be a JSON formatted with the following fields:
@@ -430,7 +445,6 @@ def districts_filter():
 
     filtered_result = District.query
     if 'state' in filter_query and filter_query['state'] != 'None':
-        state = str(filter_query['state'])
         filtered_result = filtered_result.filter(
             District.state == str(filter_query['state']))
 
@@ -466,9 +480,10 @@ def districts_filter():
         result = sorted(result, key=district_id)
         result = sorted(result, key=lambda district: district['state'])
 
-    if result != None:
+    if result != None: # noqa
         return jsonify(result)
     return jsonify([get_response(rep) for rep in filtered_result.all()])
+
 
 def district_id(district):
     """
@@ -483,7 +498,8 @@ def district_id(district):
         return 1
     return int(district['id'])
 
-def get_party_json(rep_party_id = None, party_param = None):
+
+def get_party_json(rep_party_id=None, party_param=None):
     """
     Gets the JSON for a political party given either the party_id or the party
     itself.
@@ -503,7 +519,7 @@ def get_party_json(rep_party_id = None, party_param = None):
             PoliticalParty.path)
         party = party.filter(PoliticalParty.id == rep_party_id).first()
 
-    if party != None: 
+    if party is not None:
         return {
             "id": party.id,
             "name": party.name,
@@ -515,8 +531,9 @@ def get_party_json(rep_party_id = None, party_param = None):
         }
     return None
 
-def get_district_json(rep_bioguide = None, district_param = None,
-    state_param = None):
+
+def get_district_json(rep_bioguide=None, district_param=None,
+                      state_param=None):
     """
     Gets the JSON for a district given its rep's ID, the district itself, or
     the state itself
@@ -542,7 +559,7 @@ def get_district_json(rep_bioguide = None, district_param = None,
         state = State.query.with_entities(State.name, State.usps_abbreviation)
         state = state.filter(State.usps_abbreviation == district.state).first()
 
-    if district == None or state == None:
+    if district is None or state is None:
         return None
 
     return {
@@ -553,19 +570,20 @@ def get_district_json(rep_bioguide = None, district_param = None,
         "median_age": district.median_age,
         "state": district.state,
         "state_full": state.name
-    }     
+    }
+
 
 def handle_rep_search(query, result, ranks):
     """
     Handles searching the representatives
 
     Finds any representative that matches the given query. If finds a new
-    representative, appends it to result, appends a 1 for its rank, and adds the
+    representative, appends it to result, appends a 1 for its rank, adds the
     rep's political party and district to the results with a rank of 0 if they
     are not already present. If finds a rep that is already in result,
     increments its rank in ranks.
 
-    The index of the item in result should match the index of its rank in ranks.
+    The index of the item in result should match the index of its rank in ranks
 
     query   -- the query to search for
     result  -- the list to append results to
@@ -584,22 +602,23 @@ def handle_rep_search(query, result, ranks):
     for rep in reps:
         item = get_response(rep)
         del item['bills']
-        if item != None:
-            if not item in result:
+        if item is not None:
+            if item not in result:
                 result.append(item)
                 ranks.append(1)
 
                 party_json = get_party_json(rep_party_id=rep.party_id)
-                if party_json != None and not party_json in result:
+                if party_json is not None and party_json not in result:
                     result.append(party_json)
                     ranks.append(0)
 
                 district_json = get_district_json(rep_bioguide=rep.bioguide)
-                if district_json != None and not district_json in result:
+                if district_json is not None and district_json not in result:
                     result.append(district_json)
                     ranks.append(0)
             else:
                 ranks[result.index(item)] += 1
+
 
 def handle_district_search(query, result, ranks):
     """
@@ -607,11 +626,11 @@ def handle_district_search(query, result, ranks):
 
     Finds any district that matches the given query. If finds a new district,
     appends it to result, appends a 1 for its rank. If the district has a
-    representative, appends that representative and the rep's political party to
+    representative, appends that representative and the reps political party to
     result if they are not already present. If finds a district that is already
     in result, increments its rank in ranks.
 
-    The index of the item in result should match the index of its rank in ranks.
+    The index of the item in result should match index of its rank in ranks.
 
     query   -- the query to search for
     result  -- the list to append results to
@@ -624,26 +643,27 @@ def handle_district_search(query, result, ranks):
 
     for district in districts:
         district_json = get_district_json(district_param=district)
-        if district_json != None:
-            if not district_json in result:
+        if district_json is not None:
+            if district_json not in result:
                 result.append(district_json)
                 ranks.append(1)
 
                 rep = Representative.query.filter(
-                    district_json['representative_id'] == Representative.bioguide).first()
+                    district_json['representative_id'] ==
+                    Representative.bioguide).first()
                 if rep:
                     rep_json = get_response(rep)
                     del rep_json['bills']
-                    if rep_json != None and not rep_json in result:
+                    if rep_json is not None and rep_json not in result:
                         result.append(rep_json)
                         ranks.append(0)
-                    
                     party_json = get_party_json(rep_party_id=rep.party_id)
-                    if party_json != None and not party_json in result:
+                    if party_json is not None and party_json not in result:
                         result.append(party_json)
                         ranks.append(0)
             else:
                 ranks[result.index(district_json)] += 1
+
 
 def handle_party_search(query, result, ranks):
     """
@@ -651,10 +671,10 @@ def handle_party_search(query, result, ranks):
 
     Finds any political party that matches the given query. If finds a new
     political party, appends it to the result, appends 1 for its rank, and
-    appends all representatives and districts that belong to the party. If finds
+    appends all representatives and districts that belong to party. If finds
     a party that is already in result, increments its rank in ranks
 
-    The index of the item in result should match the index of its rank in ranks.
+    The index of the item in result should match index of its rank in ranks.
 
     query   -- the query to search for
     result  -- the list to append results to
@@ -672,35 +692,37 @@ def handle_party_search(query, result, ranks):
 
     for party in parties:
         party_json = get_party_json(party_param=party)
-        if party_json != None:
-            if not party_json in result:
+        if party_json is not None:
+            if party_json not in result:
                 result.append(party_json)
                 ranks.append(1)
-            
-                for rep in  Representative.query.filter(
-                    party.id == Representative.party_id).all():
+
+                for rep in Representative.query \
+                        .filter(party.id == Representative.party_id).all():
                     rep_json = get_response(rep)
                     del rep_json['bills']
-                    if rep_json != None and not rep_json in result:
+                    if rep_json is not None and rep_json not in result:
                         result.append(rep_json)
                         ranks.append(0)
-
-                    district_json = get_district_json(rep_bioguide=rep.bioguide)
-                    if district_json != None and not district_json in result:
+                    district_json = get_district_json(
+                        rep_bioguide=rep.bioguide)
+                    if district_json is not None and \
+                       district_json not in result:
                         result.append(district_json)
                         ranks.append(0)
             else:
                 ranks[result.index(party_json)] += 1
 
+
 def handle_state_search(query, result, ranks):
     """
     Handles searching the states
 
-    Finds any state that matches the search query. If finds a new state, appends
+    Finds any state that matches the search query. If finds new state, appends
     any district, representative, and political party that falls under that
     state.
 
-    The index of the item in result should match the index of its rank in ranks.
+    The index of the item in result should match index of its rank in ranks.
 
     query   -- the query to search for
     result  -- the list to append results to
@@ -718,29 +740,32 @@ def handle_state_search(query, result, ranks):
         if districts:
             for district in districts:
                 district_json = get_district_json(district_param=district,
-                    state_param=state)
-                if district_json != None:
-                    if not district_json in result:
+                                                  state_param=state)
+                if district_json is not None:
+                    if district_json not in result:
                         result.append(district_json)
                         ranks.append(1)
 
                         rep = Representative.query.filter(
-                            district.representative_id == Representative.bioguide)
+                            district.representative_id ==
+                            Representative.bioguide)
                         rep = rep.first()
                         if rep:
                             rep_json = get_response(rep)
                             del rep_json['bills']
-                            if rep_json != None and not rep_json in result:
+                            if rep_json is not None and rep_json not in result:
                                 result.append(rep_json)
                                 ranks.append(0)
 
                             party_json = get_party_json(
                                 rep_party_id=rep.party_id)
-                            if party_json != None and not party_json in result:
+                            if party_json is not None and\
+                               party_json not in result:
                                 result.append(party_json)
                                 ranks.append(0)
                     else:
                         ranks[result.index(district_json)] += 1
+
 
 @search_route.route("/")
 def search():
@@ -773,6 +798,7 @@ def search():
         result[i]['rank'] = ranks[i]
 
     return jsonify(result)
+
 
 @error_route.app_errorhandler(404)
 def url_not_found(e):
