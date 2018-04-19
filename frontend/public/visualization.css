@@ -12,6 +12,13 @@ body {
     padding-bottom: 100px;
 }
 
+.graph-div p {
+    margin-top: 50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 1.5em;
+}
+
 .graph-div-border {
     border-bottom: 1px solid #222;
 }

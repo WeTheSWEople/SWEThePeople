@@ -5,9 +5,11 @@ import unittest
 from app import create_app, db # noqa
 import requests # noqa
 
+from models import Article, Bill, Representative, PoliticalParty, State, \
+    District, PartyColor
+
 app = create_app()
 app.app_context().push()
-from models import * # noqa
 live_url = "http://swethepeople.me/"
 live_api_url = "http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/"
 
@@ -1646,6 +1648,7 @@ class TestStringMethods(unittest.TestCase):
             self.assertEqual(result, expected)
         print("\nTEST 42: Searching API: bad search query  - search results " +
               "consistent")
+
 
 if __name__ == '__main__':
     print("\n\n\n##########\tBEGINNING BACKEND UNIT TESTS\t##########\n")
