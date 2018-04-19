@@ -4,9 +4,9 @@ import {Route, Switch} from 'react-router-dom'
 /* eslint-enable no-unused-vars */
 
 import About from './About/About'
+import Alma from './Representatives/Alma.js'
 import Districts from './Districts/Districts'
 import DistrictsDetails from './Districts/DistrictDetails'
-import PoliticalParty from './Parties/PoliticalParty'
 import PoliticalPartyDetails from './Parties/PoliticalPartyDetails'
 import Representatives from './Representatives/Representatives'
 import RepresentativeDetails from './Representatives/RepresentativeDetails'
@@ -30,6 +30,7 @@ export default class DefaultRouter extends Component {
         <Route path="/parties" component={PoliticalParties} />
         <Route path="/party/:path" component={PoliticalPartyDetails} />
         <Route path="/search/:term" component={Search} />
+        <Route path="/alma" component={Alma} />
         <Route component = {NotFound} status={404}/>
       </Switch>
     )

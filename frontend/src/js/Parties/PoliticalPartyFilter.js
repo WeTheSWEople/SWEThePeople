@@ -22,7 +22,8 @@ class PoliticalPartyFilter extends Component {
       sort_value: null
     }
 
-    this.handleSocialDropdownChange = this.handleSocialDropdownChange.bind(this)
+    this.handleSocialDropdownChange =
+      this.handleSocialDropdownChange.bind(this)
     this.handleColorDropdownChange = this.handleColorDropdownChange.bind(this)
     this.handleFormationDateDropdownChange =
       this.handleFormationDateDropdownChange.bind(this)

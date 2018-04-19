@@ -1,0 +1,109 @@
+body {
+    font: 10px sans-serif;
+    width: 100%;
+}
+
+.graph-div {
+    width: 85%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 100px;
+}
+
+.graph-div-border {
+    border-bottom: 1px solid #222;
+}
+
+.graph-div h1 {
+    text-align: center;
+}
+
+.graph {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+.arc text {
+    font: 10px sans-serif;
+    text-anchor: middle;
+}
+
+.arc path {
+    stroke: #fff;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.bar {
+    fill: #4286F4;
+}
+
+.bar2 {
+    fill: #119B2A;
+}
+
+.bar3 {
+    fill: #8C42F4;
+}
+
+.bar4 {
+    fill: #F46B42;
+}
+
+.bar5 {
+    fill: #07C180;
+}
+
+.bar6 {
+    fill: #AE07C1;
+}
+
+.bar-hover:hover {
+    fill: orangered;
+}
+
+.bar-hover2:hover {
+    fill: #5188FF;
+}
+
+.x.axis path {
+    display: none;
+}
+
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+}
