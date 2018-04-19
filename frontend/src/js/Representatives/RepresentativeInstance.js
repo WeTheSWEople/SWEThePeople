@@ -5,9 +5,8 @@ import {GridTile} from 'material-ui/GridList'
 import {RingLoader} from 'react-spinners'
 import axios from 'axios'
 import {ProgressBar} from 'react-bootstrap'
-
-
 /* eslint-enable no-unused-vars */
+
 import '../../assets/css/App.css'
 import '../../assets/css/RepresentativeInstance.css'
 
@@ -22,17 +21,18 @@ const styles = {
   }
 }
 
+// representative card
 export default class RepresentativeInstance extends Component {
   render () {
     let classes = 'col-md-3 col-sm-4 col-xs-6'
-    if (this.props.columns === "false") {
+    if (this.props.columns === 'false') {
       classes = 'party-details-rep-instance'
     }
 
     let borderStyle = {}
     if (this.props.party_color !== '') {
       borderStyle = {
-        border: "3px solid " + this.props.party_color
+        border: '3px solid ' + this.props.party_color
       }
     }
 
@@ -42,33 +42,36 @@ export default class RepresentativeInstance extends Component {
         style={styles.hyperlink}>
         <div className={classes}>
           <div className='tile' style={borderStyle}>
-          <img
-            src={'https://theunitedstates.io/images/congress/225x275/' +
-            this.props.rep.bioguide + '.jpg'}
-            alt={this.props.rep.firstName}
-            className='rep_img'
-            onError={(e)=>{e.target.src=require('../../assets/images/reps/default.png')}}
-          />
-          <div className='rep_info'>
-            <h3 className='title'>
-              {this.props.rep.firstname + ' ' + this.props.rep.lastname}
-            </h3>
-            <h4 className='party'>
-              {this.props.party_name}
-            </h4>
-            <h4 className='district'><i>
-              {this.props.rep.state + '-' + this.props.rep.district}
-            </i></h4>
-            <p>
-              <b>Votes with Party (%): </b>
-              <div style={styles.progress}>
-                <ProgressBar bsStyle='success'
-                  now={this.props.rep.votes_with_party_pct}
-                  label={`${this.props.rep.votes_with_party_pct}%`}
-                />
-              </div>
-       </p>
-      </div>
+            <img
+              src={'https://theunitedstates.io/images/congress/225x275/' +
+              this.props.rep.bioguide + '.jpg'}
+              alt={this.props.rep.firstName}
+              className='rep_img'
+              onError={(e) => {
+                e.target.src =
+                  require('../../assets/images/reps/default.png')
+              }}
+            />
+            <div className='rep_info'>
+              <h3 className='title'>
+                {this.props.rep.firstname + ' ' + this.props.rep.lastname}
+              </h3>
+              <h4 className='party'>
+                {this.props.party_name}
+              </h4>
+              <h4 className='district'><i>
+                {this.props.rep.state + '-' + this.props.rep.district}
+              </i></h4>
+              <p>
+                <b>Votes with Party (%): </b>
+                <div style={styles.progress}>
+                  <ProgressBar bsStyle='success'
+                    now={this.props.rep.votes_with_party_pct}
+                    label={`${this.props.rep.votes_with_party_pct}%`}
+                  />
+                </div>
+              </p>
+            </div>
           </div>
         </div>
       </Link>
