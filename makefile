@@ -22,6 +22,7 @@ mocha:
 	cd frontend && npm install
 	cd frontend && npm test
 
+# (You will need to export environment variables (db credentials) to run backend target - provided in the turn in JSON)
 backend:
 	- cd backend && virtualenv venv && source venv/bin/activate && pip2.7 install -r requirements.txt
 	cd backend && python tests.py
