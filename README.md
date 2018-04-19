@@ -6,6 +6,7 @@ American political parties, representatives, and congressional districts.
 - Website: [swethepeople.me](http://www.swethepeople.me)
 - API: [api.swethepeople.me](http://www.api.swethepeople.me)
 - Technical report: [https://wethesweople.gitbooks.io/report/](https://wethesweople.gitbooks.io/report/)
+- Python Version: Python2.7
 
 ## Install Repo Locally
 1. Clone the repository
@@ -79,7 +80,8 @@ $ python2.7 guitests.py
 ```
 
 ### Backend tests
-In the backend folder, run the test script
+In the backend folder, run the test script 
+(You will need to export environment variables (db credentials) to run this test - provided in the turn in JSON)
 ```
 $ cd backend
 $ virtualenv venv
