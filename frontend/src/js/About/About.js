@@ -241,12 +241,22 @@ export default class About extends Component {
                 </div>
               </a>
             </Col>
-            <Col md={2} mdOffset={5}>
+            <Col md={2} mdOffset={1}>
               <p>
                 <a href='https://raw.githubusercontent.com/WeTheSWEople/SWEThePeople/master/UML/models.png' target="_blank" rel="noopener noreferrer">
                   <div className='link-box'>
                     <img src={require('../../assets/images/about/uml.png')} className='img-responsive' alt='UML logo'/>
                     <p>UML Diagram</p>
+                  </div>
+                </a>
+              </p>
+            </Col>
+            <Col md={2}>
+              <p>
+                <a href='/visualization.html' target="_blank" rel="noopener noreferrer">
+                  <div className='link-box'>
+                    <img src={require('../../assets/images/about/d3.png')} className='img-responsive' alt='UML logo'/>
+                    <p>Visualization</p>
                   </div>
                 </a>
               </p>
