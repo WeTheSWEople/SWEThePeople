@@ -1,7 +1,7 @@
-import requests
-import os
-import json
 import time
+
+import requests
+
 
 # developer group api
 api_url = "http://www.hikingadventures.me/api/"
@@ -19,8 +19,8 @@ def get_trail_length():
     count = 1
     length_list = []
     while not last_page:
-        response = requests.request("GET", api_url+'trails?page=' + 
-            str(page_num))
+        response = requests.request("GET", api_url + 'trails?page=' +
+                                    str(page_num))
         if response.ok:
             response = response.json()
             for obj in response['objects']:
@@ -34,19 +34,20 @@ def get_trail_length():
     count = 0
     for num in length_list:
         if num > cur_div:
-            f.write(str(cur_div - 1)+ '-' + str(cur_div) + '\t' + str(count) + 
-                '\ttrail-length\n')
+            f.write(str(cur_div - 1) + '-' + str(cur_div) + '\t' + str(count) +
+                    '\ttrail-length\n')
             cur_div += 1
             count = 1
         else:
             count += 1
-    f.write(str(cur_div - 1)+ '-' + str(cur_div) + '\t' + str(count) + 
-        '\ttrail-length\n')     
+    f.write(str(cur_div - 1) + '-' + str(cur_div) + '\t' + str(count) +
+            '\ttrail-length\n')
     f.close()
+
 
 def get_num_photos():
     """
-    - function to get the data for resorts and num of photos associated with 
+    - function to get the data for resorts and num of photos associated with
     each resort
     - saves the data into a tab-seperated-value (.tsv) file
     """
@@ -56,31 +57,30 @@ def get_num_photos():
     page_num = 1
     count = 1
     while not last_page:
-        response = requests.request("GET", api_url+'resorts?page=' + 
-            str(page_num))
+        response = requests.request("GET", api_url + 'resorts?page=' +
+                                    str(page_num))
         if response.ok:
             response = response.json()
             for obj in response['objects']:
                 resort_name = obj['name']
                 resort_id = obj['id']
                 count += 1
-                photo_response = requests.request("GET", api_url+'resorts/'+ 
-                    str(resort_id) + '/photos')
+                photo_response = requests.request("GET", api_url + 'resorts/' +
+                                                  str(resort_id) + '/photos')
                 if photo_response.ok:
                     photo_response = photo_response.json()
                     if 'num_results' in photo_response:
                         total_photos = photo_response['num_results']
-                        f.write(str(resort_name) + '\t' + str(total_photos) + 
-                            '\tresort-photos\n')
+                        f.write(str(resort_name) + '\t' + str(total_photos) +
+                                '\tresort-photos\n')
             page_num += 1
             last_page = response['page'] >= response['total_pages']
     f.close()
 
 
-
 def get_bestnumtrails():
     """
-    - function to get the data for resorts and number of five star trails each 
+    - function to get the data for resorts and number of five star trails each
     resort has
     - saves the data into a tab-seperated-value (.tsv) file
     """
@@ -89,33 +89,31 @@ def get_bestnumtrails():
     last_page = False
     page_num = 1
     while not last_page:
-        response = requests.request("GET", api_url+'resorts?page=' + 
-            str(page_num))
+        response = requests.request("GET", api_url + 'resorts?page=' +
+                                    str(page_num))
         if response.ok:
             response = response.json()
             for obj in response['objects']:
                 resort_id = obj['id']
                 trail_last_page = False
                 trail_page_num = 1
-                total_stars = 0
-                total_trails = 0
-                avg_stars = 0
                 star_trails = 0
                 while not trail_last_page:
-                    trail_response = requests.request("GET", api_url+ 
-                        'resorts/'+ str(resort_id) + '/trails?page=' + 
-                        str(trail_page_num))
+                    trail_response = requests.request("GET", api_url +
+                                                      'resorts/' +
+                                                      str(resort_id) +
+                                                      '/trails?page=' +
+                                                      str(trail_page_num))
                     if trail_response.ok:
                         trail_response = trail_response.json()
-                        total_trails = trail_response['num_results']
                         for trail_obj in trail_response['objects']:
                             if trail_obj['stars'] > 4:
                                 star_trails += 1
                         trail_last_page = trail_response['page'] >= \
-                        trail_response['total_pages']
+                            trail_response['total_pages']
                         trail_page_num += 1
-                f.write(str(obj['name']) + '\t' + str(star_trails) + 
-                    '\tresort-fivestartrail\n')
+                f.write(str(obj['name']) + '\t' + str(star_trails) +
+                        '\tresort-fivestartrail\n')
             page_num += 1
             last_page = response['page'] >= response['total_pages']
     f.close()
@@ -123,7 +121,7 @@ def get_bestnumtrails():
 
 def get_difficulty_data():
     """
-    - function to get the data for difficulty and number of trails associated 
+    - function to get the data for difficulty and number of trails associated
     with each difficulty
     - saves the data into a tab-seperated-value (.tsv) file
     """
@@ -134,8 +132,8 @@ def get_difficulty_data():
     count = 0
     diff_dict = {}
     while not last_page:
-        response = requests.request("GET", api_url+'trails?page=' + 
-            str(page_num))
+        response = requests.request("GET", api_url + 'trails?page=' +
+                                    str(page_num))
         if response.ok:
             response = response.json()
             for obj in response['objects']:
@@ -148,8 +146,8 @@ def get_difficulty_data():
             page_num += 1
             last_page = response['page'] >= response['total_pages']
     for item in diff_dict:
-        f.write(str(item) + '\t' + str(diff_dict[item]) + 
-            '\tdifficulty-trails\n')
+        f.write(str(item) + '\t' + str(diff_dict[item]) +
+                '\tdifficulty-trails\n')
     f.close()
 
 
