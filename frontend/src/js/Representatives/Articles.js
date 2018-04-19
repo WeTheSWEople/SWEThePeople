@@ -46,10 +46,15 @@ export default class RepArticles extends Component {
 
   render () {
     if (this.state.articles === undefined) {
+      // eslint-disable-next-line
       this.state.articles = []
     }
+
+    // eslint-disable-next-line
     this.state.articles = this.state.articles.slice(0, 3)
+
     for (let i = 0; i < this.state.articles.length; i++) {
+      // eslint-disable-next-line
       this.state.articles[i]['date'] =
         moment(this.state.articles[i]['date']).format('M/D/YYYY')
     }
