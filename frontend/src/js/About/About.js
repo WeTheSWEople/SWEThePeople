@@ -499,19 +499,27 @@ export default class About extends Component {
                 </div>
               </Col>
             </a>
-            <a href='https://theunitedstates.io/images/' target="_blank" rel="noopener noreferrer">
+            <a href='https://webhose.io/web-content-api' target="_blank" 
+            rel="noopener noreferrer">
               <Col sm={3}>
                 <div className='data-card'>
                   <img src={
-                    require('../../assets/images/about/unitedstatesio.png')}
-                  className='img-responsive' alt='theunitedstates.io logo'/>
-                  <h3>TheUnitedStates.io</h3>
+                    require('../../assets/images/about/webhose.png')}
+                  className='img-responsive' alt='webhose.io logo'/>
+                  <h3>WebHose</h3>
                   <p>
-                    Used to get images of representatives based on their
-                    bioguide id.
+                    Used to get news articles related to the U.S. 
+                    representatives
                   </p>
-                  <b> How it was scraped:</b> <br/> We used the links to the images of representatives using their
-                  bioguide id.
+                  <b> How it was scraped:</b> 
+                  <br/> We scraped WebHose using their Web Content API 
+                  endpoint. The endpoint returns all sorts of articles, 
+                  opinion pieces, and webpages, but we were solely concerned 
+                  with news articles. We applied several parameters to our 
+                  scraper, including that the site’s language be English, 
+                  the site type be “news” and the country be the United 
+                  States. From those results, we chose the three 
+                  most-recent stories to link to on our site
                 </div>
               </Col>
             </a>
