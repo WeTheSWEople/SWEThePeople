@@ -6,9 +6,6 @@ import '../../assets/css/About.css'
 import url from '../../assets/resource.json'
 
 export default class GithubTools extends Component{
-	constructor(props){
-		super(props)
-	}
 	render (){
 		return(
 			<div className='github-info'>

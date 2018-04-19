@@ -6,6 +6,9 @@ import '../../assets/css/About.css'
 export default class AboutInfo extends Component{
 	render (){
 		return(
+			<div>
+			<h1 className="about-title">swethepeople.me</h1>
+	        <h3>Brought to you by WeTheSWEople</h3>
 			<Row className='about-info'>
 	          <Col md={4}>
 	            <div className='faq-box'>
@@ -43,6 +46,7 @@ export default class AboutInfo extends Component{
 	            </div>
 	          </Col>
 	        </Row>
+			</div>
 
 		)
 	}
