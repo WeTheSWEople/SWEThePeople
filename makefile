@@ -32,7 +32,7 @@ uml:
 # make selenium - runs selenium tests
 # You will need Firefox installed along with gecko driver in order to run selenium test
 selenium:
-	- cd frontend && virtualenv venv && source venv/bin/activate &&  pip2.7 install -r requirements.txt
+	- cd frontend &&  pip2.7 install -r requirements.txt
 	cd frontend && python2.7 guitests.py
 
 # make frontend - runs frontend tests
@@ -44,7 +44,7 @@ frontend:
 # You will need to export environment variables (db credentials) to run backend target - provided in the turn in JSON
 backend:
 	@echo "Make sure to export environment variables"
-	- cd backend && virtualenv venv && source venv/bin/activate && pip2.7 install -r requirements.txt
+	- cd backend && pip2.7 install -r requirements.txt
 	cd backend && python tests.py
 
 # make postman - runs postman tests
