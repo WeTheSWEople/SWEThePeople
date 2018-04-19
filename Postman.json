@@ -285,7 +285,7 @@
 							"",
 							"",
 							"var jsonData = JSON.parse(responseBody);",
-							"tests[\"Bill Test #1 - ID\"] = jsonData[0][\"bills\"][0][\"id\"] === 1197;",
+							"tests[\"Bill Test #1 - ID\"] = jsonData[0][\"bills\"][0][\"id\"] === 1196;",
 							"tests[\"Bill Test #2 - Congress URL\"] = jsonData[0][\"bills\"][0][\"congressdotgov_url\"] === \"https://www.congress.gov/bill/115th-congress/house-bill/4940\";",
 							"tests[\"Bill Test #3 - Number\"] = jsonData[0][\"bills\"][0][\"number\"] === \"H.R.4940\""
 						]
