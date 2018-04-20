@@ -10,3 +10,4 @@ backend/*.pyc
 backend/scrapers/apikeys.py
 backend/scrapers/*.pyc
 frontend/build
+frontend/geckodriver.log
