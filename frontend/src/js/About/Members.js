@@ -32,25 +32,25 @@ export default class Members extends Component {
             Unit Tests: {this.props.swe_data[item][3]}<br />
           </p>
           <p>My home Congressional District is:
-            <a href={'http://swethepeople.me/districts/' +
-              this.props.swe_data[item][8] + '/' +
-              this.props.swe_data[item][9]}>
-              {this.props.swe_data[item][8] + ' - ' +
-              this.props.swe_data[item][9]}</a></p>
+          <a href={'http://swethepeople.me/districts/' +
+            this.props.swe_data[item][8] + '/' +
+            this.props.swe_data[item][9]}>
+            {this.props.swe_data[item][8] + ' - ' +
+            this.props.swe_data[item][9]}</a></p>
         </div>
       </Col>
     )
 
     return (
-        <div>
+      <div>
         <div className='about-header'>
           <h1>Your Representatives</h1>
         </div>
-      <Grid>
-        <Row>
-          {mapping}
-        </Row>
-      </Grid>
+        <Grid>
+          <Row>
+            {mapping}
+          </Row>
+        </Grid>
       </div>
     )
   }
