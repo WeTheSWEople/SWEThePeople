@@ -6,6 +6,7 @@ import {Grid, Row, Col, ProgressBar, Tabs, Tab, ResponsiveEmbed} from 'react-boo
 import {PieChart, Pie, BarChart, Bar, Tooltip, Cell, Legend, YAxis, XAxis} from 'recharts'
 import axios from 'axios'
 import {RingLoader} from 'react-spinners'
+import {cleanIncomeData, cleanEducationData, cleanEthnicityData, cleanComputersData, cleanInternetData} from './DistrictDataFilter.js'
 
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
@@ -109,173 +110,15 @@ export default class DistrictDetails extends Component {
         district_state : response.data.state,
         bioguide: response.representative_id
       })
-      let result = []
-      let legendTemp = []
-      if(response.data.population_american_indian_and_alaska_native !== null){
-        result.push({'name': 'AIAN', 'amt': response.data.population_american_indian_and_alaska_native})
-        legendTemp.push({name: 'AIAAN', value: 'American Indian And Alaska Native (' + response.data.population_american_indian_and_alaska_native  + ')'})
-      }
-      if(response.data.population_asian !== null){
-        result.push({'name': 'A', 'amt': response.data.population_asian})
-        legendTemp.push({name: 'A', value: 'Asian (' + response.data.population_asian + ')'})
-      }
-      if(response.data.population_black_or_african_american !== null){
-        result.push({'name': 'BAA', 'amt': response.data.population_black_or_african_american})
-        legendTemp.push({name: 'BAA', value: 'Black Or African American (' + response.data.population_black_or_african_american + ')'})
-      }
-      if(response.data.population_native_hawaiian_and_other_pacific_islander !== null){
-        result.push({'name': 'NHPI', 'amt': response.data.population_native_hawaiian_and_other_pacific_islander})
-        legendTemp.push({name: 'NHPI', value: 'Native Hawaiian And Other Pacific Islander (' + response.data.population_native_hawaiian_and_other_pacific_islander + ')'})
-      }
-      if(response.data.population_some_other_race !== null){
-        result.push({'name': 'SR', 'amt': response.data.population_some_other_race})
-        legendTemp.push({name: 'SR', value: 'Some Other Race (' + response.data.population_some_other_race + ')'})
-      }
-      if(response.data.population_two_or_more_races !== null){
-        result.push({'name': 'TR', 'amt': response.data.population_two_or_more_races})
-        legendTemp.push({name: 'TR', value: 'Two or More Races (' + response.data.population_two_or_more_races + ')'})
-      }
-      if(response.data.population_white !== null){
-        result.push({'name': 'W', 'amt': response.data.population_white})
-        legendTemp.push({name: 'W', value: 'White (' + response.data.population_white + ')'})
-      }
-      if(response.data.ethnicity_hispanic_or_latino !== null){
-        result.push({'name': 'HL', 'amt': response.data.ethnicity_hispanic_or_latino})
-        legendTemp.push({name: 'HL', value: 'Hispanic or Latino (' + response.data.ethnicity_hispanic_or_latino + ')'})
-      }
-
-      this.setState({races_pop: result})
-      this.setState({legend: legendTemp})
-
-      let tlit = []
-      let cLegendTemp = []
-      if(response.data.computers_has_one_or_more !== null){
-        tlit.push({'name': 'One or more', 'amt': response.data.computers_has_one_or_more})
-      }
-      if(response.data.computers_none !== null){
-        tlit.push({'name': 'None', 'amt': response.data.computers_none})
-      }
-      if(response.data.computers_has_desktop_laptop !== null){
-        tlit.push({'name': 'Desktop/Laptop', 'amt': response.data.computers_has_desktop_laptop})
-        cLegendTemp.push({name: 'D/L', value: 'Desktops or Laptops (' + response.data.computers_has_desktop_laptop + ')'})
-      }
-      if(response.data.computers_has_smartphone !== null){
-        tlit.push({'name': 'Smartphone', 'amt': response.data.computers_has_smartphone})
-        cLegendTemp.push({name: 'S', value: 'Smartphones (' + response.data.computers_has_smartphone + ')'})
-      }
-      if(response.data.computers_has_tablet !== null){
-        tlit.push({'name': 'Tablet', 'amt': response.data.computers_has_tablet})
-        cLegendTemp.push({name: 'T', value: 'Tablets (' + response.data.computers_has_tablet + ')'})
-      }
-      if(response.data.computers_has_other !== null){
-        tlit.push({'name': 'Other', 'amt': response.data.computers_has_other})
-        cLegendTemp.push({name: 'O', value: 'Other (' + response.data.computers_has_other + ')'})
-      }
-
-      this.setState({cpuLegend: cLegendTemp})
-      this.setState({techLiteracy: tlit})
-
-      let internet = []
-      let iLegendTemp = []
-      if(response.data.internet_has !== null){
-        internet.push({'name': 'Has internet', 'amt': response.data.internet_has})
-      }
-      if(response.data.internet_none !== null){
-        internet.push({'name': 'Does not have internet', 'amt': response.data.internet_none})
-      }
-      if(response.data.internet_has_dialup !== null){
-        internet.push({'name': 'Has dialup', 'amt': response.data.internet_has_dialup})
-        iLegendTemp.push({name: 'D', value: 'Dialup (' + response.data.internet_has_dialup + ')'})
-      }
-      if(response.data.internet_has_broadband !== null){
-        internet.push({'name': 'Has broadband', 'amt': response.data.internet_has_broadband})
-        iLegendTemp.push({name: 'B', value: 'Broadband (' + response.data.internet_has_broadband + ')'})
-      }
-      if(response.data.internet_has_cellular_data !== null){
-        internet.push({'name': 'Has cellular data', 'amt': response.data.internet_has_cellular_data})
-        iLegendTemp.push({name: 'CD', value: 'Cellular Data (' + response.data.internet_has_cellular_data + ')'})
-      }
-      if(response.data.internet_has_satellite !== null){
-        internet.push({'name': 'Has satellite internet', 'amt': response.data.internet_has_satellite})
-        iLegendTemp.push({name: 'S', value: 'Satellite (' + response.data.internet_has_satellite + ')'})
-      }
-
-      this.setState({iLegend: iLegendTemp})
-      this.setState({internetLit: internet})
-
-      let income = []
-      if(response.data.income_none !== null){
-        income.push({'name': '0', 'amt': response.data.income_none})
-      }
-      if(response.data.income_9999_less !== null){
-        income.push({'name': '1-10', 'amt': response.data.income_9999_less})
-      }
-      if(response.data.income_10000_14999 !== null){
-        income.push({'name': '10-15', 'amt': response.data.income_10000_14999})
-      }
-      if(response.data.income_15000_19999 !== null){
-        income.push({'name': '15-20', 'amt': response.data.income_15000_19999})
-      }
-      if(response.data.income_20000_24999 !== null){
-        income.push({'name': '20-25', 'amt': response.data.income_20000_24999})
-      }
-      if(response.data.income_25000_29999 !== null){
-        income.push({'name': '25-30', 'amt': response.data.income_25000_29999})
-      }
-      if(response.data.income_30000_34999 !== null){
-        income.push({'name': '30-35', 'amt': response.data.income_30000_34999})
-      }
-      if(response.data.income_35000_39999 !== null){
-        income.push({'name': '35-40', 'amt': response.data.income_35000_39999})
-      }
-      if(response.data.income_40000_44999 !== null){
-        income.push({'name': '40-45', 'amt': response.data.income_40000_44999})
-      }
-      if(response.data.income_45000_49999 !== null){
-        income.push({'name': '45-50', 'amt': response.data.income_45000_49999})
-      }
-      if(response.data.income_50000_59999 !== null){
-        income.push({'name': '50-60', 'amt': response.data.income_50000_59999})
-      }
-      if(response.data.income_60000_74999 !== null){
-        income.push({'name': '60-75', 'amt': response.data.income_60000_74999})
-      }
-      if(response.data.income_75000_99999 !== null){
-        income.push({'name': '75-100', 'amt': response.data.income_75000_99999})
-      }
-      if(response.data.income_100000_124999 !== null){
-        income.push({'name': '100-125', 'amt': response.data.income_100000_124999})
-      }
-      if(response.data.income_125000_149999 !== null){
-        income.push({'name': '125-150', 'amt': response.data.income_125000_149999})
-      }
-      if(response.data.income_150000_199999 !== null){
-        income.push({'name': '150-200', 'amt': response.data.income_150000_199999})
-      }
-      if(response.data.income_200000_more !== null){
-        income.push({'name': '>200', 'amt': response.data.income_200000_more})
-      }
-
-      this.setState({incomeData: income})
-
-      let education = []
-      if(response.data.education_less_than_hs !== null){
-        education.push({'name': 'Less than high school', 'amt': response.data.education_less_than_hs})
-      }
-      if(response.data.education_hs_grad !== null){
-        education.push({'name': 'High school', 'amt': response.data.education_hs_grad})
-      }
-      if(response.data.education_some_college !== null){
-        education.push({'name': 'Some college', 'amt': response.data.education_some_college})
-      }
-      if(response.data.education_bachelors !== null){
-        education.push({'name': 'Bachelors degree', 'amt': response.data.education_bachelors})
-      }
-      if(response.data.education_grad_prof !== null){
-        education.push({'name': 'Graduate school', 'amt': response.data.education_grad_prof})
-      }
-
-      this.setState({educationData: education})
+      let district_data = response.data
+      this.setState({races_pop: cleanEthnicityData(district_data)[0]})
+      this.setState({legend: cleanEthnicityData(district_data)[1]})
+      this.setState({cpuLegend: cleanComputersData(district_data)[1]})
+      this.setState({techLiteracy: cleanComputersData(district_data)[0]})
+      this.setState({iLegend: cleanInternetData(district_data)[1]})
+      this.setState({internetLit: cleanInternetData(district_data)[0]})
+      this.setState({incomeData: cleanIncomeData(district_data)})
+      this.setState({educationData: cleanEducationData(district_data)})
 
       axios.get(url.api_url + `representative/${response.data.representative_id}`)
       .then((response)=>{
@@ -636,7 +479,7 @@ export default class DistrictDetails extends Component {
                     </Row>
                     <h3>Legend</h3>
                     <p><b>Income: Population</b></p>
-                    <p>(Income values in 10,000's)</p>
+                    <p>(Income values in 10,000&#39;s)</p>
                     <Row>
                       {incomeLegend}
                     </Row>
