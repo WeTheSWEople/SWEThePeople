@@ -3,6 +3,9 @@ import {Row, Col} from 'react-bootstrap'
 import '../../assets/css/App.css'
 import '../../assets/css/About.css'
 
+/*
+ * Component that renders the cards with information about the website.
+ */
 export default class AboutInfo extends Component{
 	render (){
 		return(
@@ -38,10 +41,11 @@ export default class AboutInfo extends Component{
 	            <div className='faq-box'>
 	              <h2 className='faq-title'>Our Result</h2>
 	              <h4>
-	                Our website, by combining district party control and demographic
-	                and age information, displays an interesting corrolation between the
-	                two. Thus, SWEThePeople is a valuable resource for anyone interested
-	                in studying party and demographics in modern American politics.
+	                Our website, by combining district party control and
+	                demographic and age information, displays an interesting
+	                corrolation between the two. Thus, SWEThePeople is a
+	                valuable resource for anyone interested in studying party
+	                and demographics in modern American politics.
 	              </h4>
 	            </div>
 	          </Col>

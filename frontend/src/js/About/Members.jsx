@@ -6,7 +6,9 @@ import {Grid, Row, Col} from 'react-bootstrap'
 import '../../assets/css/Members.css'
 import '../../assets/css/About.css'
 
-
+/*
+ * Component that renders cards for each member and using data from About.
+ */
 export default class Members extends Component {
   render () {
     let mapping = Object.keys(this.props.swe_data).map((item) =>
@@ -29,8 +31,12 @@ export default class Members extends Component {
             Issues: {this.props.swe_data[item][2]}<br />
             Unit Tests: {this.props.swe_data[item][3]}<br />
           </p>
-          <p>My home Congressional District is: <a href={'http://swethepeople.me/districts/' + this.props.swe_data[item][8] + '/' + this.props.swe_data[item][9]}>
-          {this.props.swe_data[item][8] + ' - ' + this.props.swe_data[item][9]}</a></p>
+          <p>My home Congressional District is:
+            <a href={'http://swethepeople.me/districts/' +
+              this.props.swe_data[item][8] + '/' +
+              this.props.swe_data[item][9]}>
+              {this.props.swe_data[item][8] + ' - ' +
+              this.props.swe_data[item][9]}</a></p>
         </div>
       </Col>
     )

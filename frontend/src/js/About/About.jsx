@@ -14,6 +14,12 @@ import Tools from './Tools.jsx'
 import Api from './Api.jsx'
 let request = require('request')
 
+/*
+ * The parent component for the about page.
+ * Calls on the Github API to get commit and issue data for each member.
+ * Renders the page using the child components for tools, data sources,
+ * member data, and site information.
+ */
 export default class About extends Component {
   constructor (props) {
     super(props)
@@ -27,10 +33,16 @@ export default class About extends Component {
       ended: false
     }
   }
-
+  
+  /*
+   * Calls on the Github API and stores the commit and issue data into a
+   * dictionary. Always completes before rendering and writes the data into
+   * the component state.
+   */
   componentWillMount () {
     this.setState({ready: false})
-    let options = {method: 'GET', url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/stats/contributors'}
+    let options = {method: 'GET', url: 'https://api.github.com/repos/' +
+      + 'WeTheSWEople/SWEThePeople/stats/contributors'}
     request(options, function (error, response, body) {
       if (error) {
         this.setState({error: true, ready: true})
@@ -54,7 +66,8 @@ export default class About extends Component {
       var page = 1;
       while(!eof) {
         var options = { method: 'GET',
-            url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/issues?state=all&per_page=100&page=' + String(page),
+            url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/' +
+              + 'issues?state=all&per_page=100&page=' + String(page),
             qs: { state: 'all' },
         };
         // eslint-disable-next-line
@@ -84,7 +97,11 @@ export default class About extends Component {
       this.setState({ready: true})
     }.bind(this))
   }
-
+  
+  /*
+   * Renders the AboutInfo, GithubTools, Tools
+   * and API components for the about page.
+   */
   render () {
     let members = null
     if (this.state.ready) {
@@ -97,7 +114,9 @@ export default class About extends Component {
         <center>
           <RingLoader color={'#123abc'} loading={!this.state.ready} />
         </center>
-        <GithubTools total_issues={this.state.total_issues} totalTests={this.state.totalTests} totalCommits={this.state.totalCommits} />
+        <GithubTools total_issues={this.state.total_issues}
+          totalTests={this.state.totalTests}
+          totalCommits={this.state.totalCommits} />
         {members}
         <Tools />
         <Api />

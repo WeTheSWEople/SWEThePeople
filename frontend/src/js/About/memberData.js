@@ -1,3 +1,6 @@
+/*
+ * Function that returns a dictionary with each member and their bio
+ */
 export function getMembers(){
 	let sweMembers = {}
 	sweMembers['MTirtowidjojo'] = ['Michael Tirtowidjojo', 0, 0, 0,
@@ -22,13 +25,14 @@ export function getMembers(){
 	sweMembers['bzsinger'] = ['Benjamin Singer', 0, 0, 0,
 	  'Benny is a third-year CS student who enjoys iOS development, ' +
 	  'reading, and following current events.', 'Benny.jpg',
-	  'Representatives front-end, District back-end, Documentation', 'Benny', 'TX', '32']
+	  'Representatives front-end, District back-end, Documentation', 'Benny',
+	  'TX', '32']
 	sweMembers['palakhirpara'] = ['Palak Hirpara', 0, 0, 34,
 
 	  'Palak is a senior who will be graduating this semester with BSCS ' +
 	  'and likes watching cricket.', 'Palak.png',
-	  'Representatives front-end and back-end, Districts back-end, back-end unittests',
-	  'The Decider', 'TX', '32']
-	  return sweMembers;
+	  'Representatives front-end and back-end, Districts back-end, back-end' +
+	  +  'unittests', 'The Decider', 'TX', '32']
+	return sweMembers;
 
 }
