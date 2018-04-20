@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {GridList} from 'material-ui/GridList'
@@ -10,7 +11,15 @@ import {withCookies, Cookies} from 'react-cookie'
 import '../../assets/css/Filter.css'
 import 'react-select/dist/react-select.css'
 
+/**
+ * Provides the select boxes for the user to filter the districts on the
+ * district grid.
+ */
 class DistrictFilter extends Component {
+  /**
+   * Sets the default state and binds the handlers for the select boxes
+   * @param props the props
+   */
   constructor (props) {
     super(props)
 
@@ -39,6 +48,9 @@ class DistrictFilter extends Component {
     this.handleResetClicked = this.handleResetClicked.bind(this)
   }
 
+  /**
+   * Checks the cookies for any set filters and applies those filters.
+   */
   componentDidMount () {
     let state = 'None'
     let population = 'None'
@@ -68,30 +80,54 @@ class DistrictFilter extends Component {
     this.props.buttonHandler(state, population, medianAge, sort)
   }
 
+  /**
+   * Handles when the state select changes to set the cookies and state for
+   * the chosen filter.
+   * @param selectedOption the value from the select box
+   */
   handleStateDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('district_state_filter', selectedOption)
     this.setState({state_value: selectedOption})
   }
 
+  /**
+   * Handles when the popluation select changes to set the cookies and state for
+   * the chosen filter.
+   * @param selectedOption the value from the select box
+   */
   handlePopulationDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('district_population_filter', selectedOption)
     this.setState({population_value: selectedOption})
   }
 
+  /**
+   * Handles when the median age select changes to set the cookies and state for
+   * the chosen filter.
+   * @param selectedOption the value from the select box
+   */
   handleMedianAgeDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('district_median_age_filter', selectedOption)
     this.setState({median_age_value: selectedOption})
   }
 
+  /**
+   * Handles when the sort by select changes to set the cookies and state for
+   * the chosen filter.
+   * @param selectedOption the value from the select box
+   */
   handleSortDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('district_sort_filter', selectedOption)
     this.setState({sort_value: selectedOption})
   }
 
+  /**
+   * Applies the chosen filters to the district grid.
+   * @param e   the event
+   */
   handleFilterClicked (e) {
     let state = 'None'
     if (this.state.state_value !== null) {
@@ -116,6 +152,10 @@ class DistrictFilter extends Component {
     this.props.buttonHandler(state, population, medianAge, sort)
   }
 
+  /**
+   * Resets the filters to their default values and clears any set cookies
+   * @param e   the event
+   */
   handleResetClicked (e) {
     this.handleStateDropdownChange(null)
     this.handlePopulationDropdownChange(null)
@@ -124,6 +164,9 @@ class DistrictFilter extends Component {
     this.props.buttonHandler('None', 'None', 'None', 'state_asc')
   }
 
+  /**
+   * Renders the filter card with the select boxes
+   */
   render () {
     return (
       <div style={{marginLeft: '6%', marginRight: '5%', width: '90%'}}>
