@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 /* eslint-disable no-unused-vars */
 import PoliticalPartyInstance from './PoliticalPartyInstance.js'
 import React, {Component} from 'react'
@@ -6,6 +7,11 @@ import PoliticalPartyFilter from './PoliticalPartyFilter'
 import PoliticalPartyGrid from './PoliticalPartyGrid'
 /* eslint-enable no-unused-vars */
 
+/**
+ * The parent component for the filter and grid for political parties.
+ * Renders the filter and grid components and allows the filter component to
+ * communicate changes to the grid.
+ */
 export default class PoliticalParties extends Component {
   constructor (props) {
     super(props)
@@ -21,6 +27,15 @@ export default class PoliticalParties extends Component {
     this.handleFilterClicked = this.handleFilterClicked.bind(this)
   }
 
+  /**
+   * Callback to set the state with the values from the filter so that the grid
+   * updates.
+   * @param socialValue         the social filter value
+   * @param colorValue          the color filter value
+   * @param formationDateValue  the formation date filter value
+   * @param nameValue           the name filter value
+   * @param sortValue           the sort by value
+   */
   handleFilterClicked (socialValue, colorValue, formationDateValue, nameValue,
     sortValue) {
     this.setState({
@@ -32,6 +47,10 @@ export default class PoliticalParties extends Component {
     })
   }
 
+  /**
+   * Renders the PoliticalPartyFilter and the PoliticalPartyGrid components for
+   * the political party grid page.
+   */
   render () {
     return (
       <div style={{paddingTop: '25px'}}>
