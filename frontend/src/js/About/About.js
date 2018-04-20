@@ -4,14 +4,14 @@ import {RingLoader} from 'react-spinners'
 import {a} from 'react-router-dom'
 import Members from './Members'
 import {Row, Col} from 'react-bootstrap'
+import GithubTools from './GithubTools.js'
+import AboutInfo from './AboutInfo.js'
+import Tools from './Tools.js'
+import Api from './Api.js'
 /* eslint-enable no-unused-vars */
 import '../../assets/css/App.css'
 import '../../assets/css/About.css'
 import {getMembers} from './memberData'
-import GithubTools from './GithubTools.jsx'
-import AboutInfo from './AboutInfo.jsx'
-import Tools from './Tools.jsx'
-import Api from './Api.jsx'
 let request = require('request')
 
 export default class About extends Component {
@@ -35,7 +35,7 @@ export default class About extends Component {
       if (error) {
         this.setState({error: true, ready: true})
       }
-      let sweMembers = getMembers();
+      let sweMembers = getMembers()
       let commitJSON = JSON.parse(body)
       let totalCommits = 0
       let totalTests = 0

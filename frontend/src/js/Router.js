@@ -3,10 +3,10 @@ import React, {Component} from 'react'
 import {Route, Switch} from 'react-router-dom'
 /* eslint-enable no-unused-vars */
 
-import About from './About/About.jsx'
+import About from './About/About.js'
 import Alma from './Representatives/Alma.js'
-import Districts from './Districts/Districts.jsx'
-import DistrictsDetails from './Districts/DistrictDetails.jsx'
+import Districts from './Districts/Districts.js'
+import DistrictsDetails from './Districts/DistrictDetails.js'
 import PoliticalPartyDetails from './Parties/PoliticalPartyDetails'
 import Representatives from './Representatives/Representatives'
 import RepresentativeDetails from './Representatives/RepresentativeDetails'

@@ -8,7 +8,7 @@ import ReactPaginate from 'react-paginate'
 
 import RepresentativeSingleInstance from './Representatives/RepresentativeSingleInstance'
 import PoliticalPartySingleInstance from './Parties/PoliticalPartySingleInstance'
-import DistrictInstance from './Districts/DistrictInstance.jsx'
+import DistrictInstance from './Districts/DistrictInstance.js'
 import axios from 'axios'
 import '../assets/css/Search.css'
 import url from '../assets/resource.json'
