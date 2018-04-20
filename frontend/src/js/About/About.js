@@ -33,7 +33,7 @@ export default class About extends Component {
       ended: false
     }
   }
-  
+
   /*
    * Calls on the Github API and stores the commit and issue data into a
    * dictionary. Always completes before rendering and writes the data into
@@ -41,8 +41,10 @@ export default class About extends Component {
    */
   componentWillMount () {
     this.setState({ready: false})
-    let options = {method: 'GET', url: 'https://api.github.com/repos/' +
-      + 'WeTheSWEople/SWEThePeople/stats/contributors'}
+    let options = {
+      method: 'GET',
+      url: 'https://api.github.com/repos/' +
+      'WeTheSWEople/SWEThePeople/stats/contributors'}
     request(options, function (error, response, body) {
       if (error) {
         this.setState({error: true, ready: true})
@@ -61,43 +63,43 @@ export default class About extends Component {
       })
       this.setState({totalCommits: totalCommits, totalTests: totalTests})
 
-
-      var eof = false;
-      var page = 1;
-      while(!eof) {
-        var options = { method: 'GET',
-            url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/' +
-              + 'issues?state=all&per_page=100&page=' + String(page),
-            qs: { state: 'all' },
-        };
+      let eof = false
+      let page = 1
+      while (!eof) {
+        let options = {
+          method: 'GET',
+          url: 'https://api.github.com/repos/WeTheSWEople/SWEThePeople/' +
+               'issues?state=all&per_page=100&page=' + String(page),
+          qs: {state: 'all'}
+        }
         // eslint-disable-next-line
         request(options, function (error, response, body) {
           if (error) {
-            eof = true;
+            eof = true
             this.setState({error: true, ready: true})
           }
           let issueJSON = JSON.parse(body)
           for (let i = 0; i < issueJSON.length; i++) {
-            if(String(issueJSON[i]['user']['login']) in sweMembers){
+            if (String(issueJSON[i]['user']['login']) in sweMembers) {
               sweMembers[String(issueJSON[i]['user']['login'])][2] += 1
             }
             if (issueJSON[i]['number'] === 1) {
-              eof = true;
+              eof = true
             }
           }
           this.setState({swe_member_data: sweMembers,
             total_issues: this.state.total_issues + issueJSON.length})
         }.bind(this))
 
-        page++;
+        page++
         if (page === 10) {
-          break;
+          break
         }
       }
       this.setState({ready: true})
     }.bind(this))
   }
-  
+
   /*
    * Renders the AboutInfo, GithubTools, Tools
    * and API components for the about page.
