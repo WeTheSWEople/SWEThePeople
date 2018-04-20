@@ -40,12 +40,14 @@ export default class Search extends Component {
     this.buildCard = this.buildCard.bind(this)
   }
 
+  // GET party colors from api
   componentWillMount () {
     axios.get(url.api_url + 'party/?party_color=True').then((response) => {
       this.setState({party_colors: response.data})
     })
   }
 
+  // GET search query
   queryAPI(query) {
     this.setState({results: null})
     axios.get(url.api_url + 'search/?query=' + query).then((response) => {
@@ -94,6 +96,7 @@ export default class Search extends Component {
     })
   }
 
+  // Handle pagination on click
   handlePageClick(data){
     let cur_result = this.state.results
     let pagResults = []
