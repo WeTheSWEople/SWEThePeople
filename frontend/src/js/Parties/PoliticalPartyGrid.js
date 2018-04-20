@@ -23,6 +23,7 @@ function clone (obj) {
   return copy
 }
 
+// eslint-disable-next-line
 Array.prototype.subarray = function (start, end) {
   if (!end) {
     end = this.length

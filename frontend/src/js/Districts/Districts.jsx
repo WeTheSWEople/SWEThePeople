@@ -5,8 +5,8 @@ import {RingLoader} from 'react-spinners'
 /* eslint-enable no-unused-vars */
 
 import axios from 'axios'
-import DistrictGrid from './DistrictGrid'
-import DistrictFilter from './DistrictFilter'
+import DistrictGrid from './DistrictGrid.jsx'
+import DistrictFilter from './DistrictFilter.jsx'
 import url from '../../assets/resource.json'
 
 export default class Districts extends Component {

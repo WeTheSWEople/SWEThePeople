@@ -12,9 +12,6 @@ import '../../assets/css/FilterGrid.css'
 import axios from 'axios'
 import url from '../../assets/resource.json'
 
-// const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
-//   'district/filter?filter='
-
 function clone(obj) {
 	if (null == obj || "object" !== typeof obj) return obj;
 	var copy = obj.constructor();
@@ -24,6 +21,7 @@ function clone(obj) {
 	return copy;
 }
 
+// eslint-disable-next-line
 Array.prototype.subarray=function(start, end) {
  if(!end){
 	 end = this.length;

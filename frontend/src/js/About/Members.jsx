@@ -4,6 +4,8 @@ import {Grid, Row, Col} from 'react-bootstrap'
 /* eslint-enable no-unused-vars */
 
 import '../../assets/css/Members.css'
+import '../../assets/css/About.css'
+
 
 export default class Members extends Component {
   render () {
@@ -34,11 +36,16 @@ export default class Members extends Component {
     )
 
     return (
+        <div>
+        <div className='about-header'>
+          <h1>Your Representatives</h1>
+        </div>
       <Grid>
         <Row>
           {mapping}
         </Row>
       </Grid>
+      </div>
     )
   }
 }
