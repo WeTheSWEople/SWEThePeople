@@ -1,7 +1,7 @@
 
 GithubID = WeTheSWEople
 RepoName = SWEThePeople
-SHA = dafe99600f182a7e3be4ad2b094b4cae793a5ea6
+SHA = 09724de6bf51395efa3b3cfe834174912282deaa
 
 githubid:
 	@echo "${GithubID}"
@@ -28,7 +28,7 @@ stories:
 # make uml      - prints link to uml diagram
 uml:
 	@echo "http://www.github.com/${GithubID}/${RepoName}/blob/${SHA}/UML/models.png"
-	
+
 # make selenium - runs selenium tests
 # You will need Firefox installed along with gecko driver in order to run selenium test
 selenium:
@@ -72,7 +72,7 @@ self:
 other:
 	@echo "https://wethesweople.gitbooks.io/report/other-critique.html"
 
-# setup 
+# setup
 setup:
 	cd frontend && make setup
 	cd backend && make setup
