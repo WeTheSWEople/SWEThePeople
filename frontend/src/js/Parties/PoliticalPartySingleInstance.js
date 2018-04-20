@@ -1,13 +1,19 @@
+/* eslint-disable valid-jsdoc */
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Highlighter from 'react-highlight-words'
-
 /* eslint-enable no-unused-vars */
 
 import '../../assets/css/PoliticalPartyInstance.css'
 
+/**
+ * Displays an instance of a political party as a card for the search component.
+ */
 export default class PoliticalPartySingleInstance extends Component {
+  /**
+   * Builds and renders the political party card.
+   */
   render () {
     const styles = {
       highlight: {
@@ -16,9 +22,9 @@ export default class PoliticalPartySingleInstance extends Component {
       }
     }
 
-    let num_reps = 0
+    let numReps = 0
     if (this.props.num_reps) {
-      num_reps = this.props.num_reps
+      numReps = this.props.num_reps
     }
 
     let searched = ''
@@ -27,24 +33,24 @@ export default class PoliticalPartySingleInstance extends Component {
       query = this.props.search.split(' ')
       query.push(this.props.search)
       searched = <p>
-                      Representatives in search: {num_reps}
+        Representatives in search: {numReps}
       </p>
     }
 
     if (this.props.search === undefined) {
       searched = <p>
-                      Representatives: {num_reps}
+        Representatives: {numReps}
       </p>
     }
 
     let chair = ''
     if (this.props.party.chair === '') {
       chair = <p>
-                Party chair:<br /> None
+        Party chair:<br /> None
       </p>
     } else {
       chair = <p>
-                Party chair:<br />
+        Party chair:<br />
         <Highlighter
           searchWords={query}
           autoEscape={true}

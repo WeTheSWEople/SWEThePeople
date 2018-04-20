@@ -1,12 +1,21 @@
+/* eslint-disable valid-jsdoc */
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-/* eslint-enable no-unused-vars */
 import {Row, Col} from 'react-bootstrap'
+/* eslint-enable no-unused-vars */
 
 import '../../assets/css/PoliticalPartyInstance.css'
 
+/**
+ * Displays an instance of a political party as a card for the grid page of
+ * political parties.
+ */
 export default class Parties extends Component {
+  /**
+   * Builds and renders the card containing the party image and basic
+   * information
+   */
   render () {
     const styles = {
       imgStyle: {
