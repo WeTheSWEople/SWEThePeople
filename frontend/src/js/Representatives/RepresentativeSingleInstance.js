@@ -6,7 +6,14 @@ import {Link} from 'react-router-dom'
 
 import '../../assets/css/RepresentativeInstance.css'
 
+/**
+ * React component for representative card.
+ * Used for representative searching
+ */
 export default class RepresentativeSingleInstance extends Component {
+  /**
+  * Renders the single representative instance. Used for the search.
+  */
   render () {
     const styles = {
       highlight: {

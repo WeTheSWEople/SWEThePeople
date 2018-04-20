@@ -21,8 +21,16 @@ const styles = {
   }
 }
 
-// representative card
+/**
+ * React component for representative details page
+ * Renders details such as social media, bills, articles, and photo
+ * of a particular representative along with their information
+ */
 export default class RepresentativeInstance extends Component {
+  /**
+   * Renders the single representative card
+   * Used in the representative grid
+   */
   render () {
     let classes = 'col-md-3 col-sm-4 col-xs-6'
     if (this.props.columns === 'false') {

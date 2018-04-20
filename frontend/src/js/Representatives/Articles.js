@@ -14,7 +14,13 @@ const styles = {
   }
 }
 
+/**
+ * React component for the representative news article cards
+ */
 export default class RepArticles extends Component {
+  /**
+   * Constructor to initialize state variables
+   */
   constructor (props) {
     super(props)
     this.state = {
@@ -22,11 +28,17 @@ export default class RepArticles extends Component {
       bill_colors: []
     }
   }
+
+  /**
+   * Setting articles state to the data recieved from the parent component
+   */
   componentWillMount () {
     this.setState({articles: this.props.data})
-    // shorten the latest major action
   }
 
+  /**
+   * Function to generate a random color for the article cards
+   */
   getRandomColor () {
     let letters = '0123456789ABCDEF'
     let color = '#'
@@ -36,6 +48,11 @@ export default class RepArticles extends Component {
     return color
   }
 
+   /**
+    * Function to convert a string to a title case
+    * @param str   the string that needs to be title cased
+    * @return title cased string
+    */
   titleCase (str) {
     str = str.toLowerCase().split(' ')
     for (let i = 0; i < str.length; i++) {
@@ -44,6 +61,9 @@ export default class RepArticles extends Component {
     return str.join(' ')
   }
 
+  /**
+    * Function to render the representative article cards
+    */
   render () {
     if (this.state.articles === undefined) {
       // eslint-disable-next-line

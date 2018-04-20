@@ -13,9 +13,14 @@ import '../../assets/css/App.css'
 
 import url from '../../assets/resource.json'
 
-// const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/'
 
+/**
+ * Main react component for the representatives
+ */
 export default class Representatives extends Component {
+  /**
+   * Constructor to initialize state variables
+   */
   constructor (props) {
     super(props)
     this.state = {
@@ -28,6 +33,7 @@ export default class Representatives extends Component {
       sort_value: 'last_asc'
     }
 
+    // get the representative and corresponding data form our api
     axios.get(url.api_url + 'party?party_name=True').then((response) => {
       this.setState({all_parties: response.data})
 
@@ -47,6 +53,10 @@ export default class Representatives extends Component {
     this.handleFilterClicked = this.handleFilterClicked.bind(this)
   }
 
+  /**
+   * Helper function to handle change when filter button is clicked
+   * Takes in the new filter state variables and updates it
+   */
   handleFilterClicked (state_value, party_value, vote_value, lastname_value,
     sort_value) {
     this.setState({
@@ -58,6 +68,10 @@ export default class Representatives extends Component {
     })
   }
 
+  /**
+   * Function for the rendering the representative page
+   * Renders representative grid and representative filter
+   */
   render () {
     const styles = {
       center: {
