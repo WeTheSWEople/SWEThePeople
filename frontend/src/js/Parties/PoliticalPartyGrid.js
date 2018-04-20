@@ -13,9 +13,6 @@ import '../../assets/css/FilterGrid.css'
 import axios from 'axios'
 import url from '../../assets/resource.json'
 
-// const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
-//   'party/filter?filter='
-
 function clone (obj) {
   if (obj == null || typeof obj !== 'object') return obj
   let copy = obj.constructor()
@@ -25,6 +22,7 @@ function clone (obj) {
   return copy
 }
 
+// eslint-disable-next-line
 Array.prototype.subarray = function (start, end) {
   if (!end) {
     end = this.length
