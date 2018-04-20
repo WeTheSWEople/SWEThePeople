@@ -19,6 +19,10 @@ const styles = {
   }
 }
 
+/**
+* Component for State
+* includes image of state, state name, number of representatives
+*/
 export default class StateInstance extends Component {
   render () {
     return (

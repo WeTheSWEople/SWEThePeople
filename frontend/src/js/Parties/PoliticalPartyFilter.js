@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {GridList} from 'material-ui/GridList'
@@ -10,7 +11,15 @@ import {withCookies, Cookies} from 'react-cookie'
 import '../../assets/css/Filter.css'
 import 'react-select/dist/react-select.css'
 
+/**
+ * Provides the options for the user to filter political parties and handles
+ * setting cookies and updating the grid when the user chooses options.
+ */
 class PoliticalPartyFilter extends Component {
+  /**
+   * Set the default state and binds the handlers to this
+   * @param props   the props
+   */
   constructor (props) {
     super(props)
 
@@ -33,6 +42,10 @@ class PoliticalPartyFilter extends Component {
     this.handleResetClicked = this.handleResetClicked.bind(this)
   }
 
+  /**
+   * When the filter mounts, check the cookies for any set filter and apply any
+   * filter that are found.
+   */
   componentDidMount () {
     let social = 'None'
     let color = 'None'
@@ -67,36 +80,66 @@ class PoliticalPartyFilter extends Component {
     this.props.buttonHandler(social, color, formationDate, name, sort)
   }
 
+  /**
+   * Handles when the user selects a value from the social media filter
+   * dropdown. Sets the state and a cookie with the value.
+   * @param selectedOption  the selected option from the select box
+   */
   handleSocialDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('party_social_media_filter', selectedOption)
     this.setState({social_value: selectedOption})
   }
 
+  /**
+   * Handles when the user selects a value from the color filter dropdown. Sets
+   * the state and a cookie with the value.
+   * @param selectedOption  the selected option from the select box
+   */
   handleColorDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('party_color_filter', selectedOption)
     this.setState({color_value: selectedOption})
   }
 
+  /**
+   * Handles when the user selects a value from the formation date filter
+   * dropdown. Sets the state and a cookie with the value.
+   * @param selectedOption  the selected option from the select box
+   */
   handleFormationDateDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('party_formation_date_filter', selectedOption)
     this.setState({formation_date_value: selectedOption})
   }
 
+  /**
+   * Handles when the user selects a value from the party name filter dropdown
+   * Sets the state and a cookie with the value.
+   * @param selectedOption  the selected option from the select box
+   */
   handleNameDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('party_name_filter', selectedOption)
     this.setState({name_value: selectedOption})
   }
 
+  /**
+   * Handles when the user selects a value from the sort by dropdown. Sets the
+   * state and a cookie with the value.
+   * @param selectedOption  the selected option from the select box
+   */
   handleSortDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('party_sort_filter', selectedOption)
     this.setState({sort_value: selectedOption})
   }
 
+  /**
+   * Handles when the filter button is clicked to apply the choosen filters and
+   * update the grid component.
+   * @param e   the event
+   */
   handleFilterClicked (e) {
     let social = 'None'
     if (this.state.social_value !== null) {
@@ -126,6 +169,11 @@ class PoliticalPartyFilter extends Component {
     this.props.buttonHandler(social, color, formationDate, name, sort)
   }
 
+  /**
+   * Handles when the reset button is clicked to set all select boxes to their
+   * default value and have the grid render all political parties
+   * @param e   the event
+   */
   handleResetClicked (e) {
     this.handleSocialDropdownChange(null)
     this.handleColorDropdownChange(null)
@@ -136,6 +184,10 @@ class PoliticalPartyFilter extends Component {
     this.props.buttonHandler('None', 'None', '1776-3000', 'A-Z', 'None')
   }
 
+  /**
+   * Renders the filter card with select boxes for the user to choose filters
+   * from.
+   */
   render () {
     return (
       <div style={{marginLeft: '6%', marginRight: '5%', width: '90%'}}>

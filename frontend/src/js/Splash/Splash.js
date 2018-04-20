@@ -29,11 +29,14 @@ export default class Splash extends Component {
   }
 
   render () {
+    // 3 pictures for carousel
     let pics = [pic1, pic2, pic3]
 
     return (
+
       <div className='App'>
         <header className='App-header'></header>
+        {/* Map three pictures to carousel */}
         <div className='carousel-parent'>
           <center>
             <Slider {...this.settings} className='carousel'>

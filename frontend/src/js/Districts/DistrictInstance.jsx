@@ -1,13 +1,20 @@
+/* eslint-disable valid-jsdoc */
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import Highlighter from "react-highlight-words";
-
+import Highlighter from 'react-highlight-words'
 /* eslint-enable no-unused-vars */
+
 import '../../assets/css/District.css'
 
+/**
+* Creates a district instance card with search highlights
+*/
 export default class DistrictInstance extends Component {
-  render() {
+  /**
+  * Sets data for card, including search words and district data
+  */
+  render () {
     const styles = {
       highlight: {
         fontWeight: 'bold',
@@ -16,15 +23,19 @@ export default class DistrictInstance extends Component {
     }
 
     let query = []
-    if(this.props.search !== null && this.props.search !== undefined) {
-      query = this.props.search.split(" ")
+    if (this.props.search !== null && this.props.search !== undefined) {
+      query = this.props.search.split(' ')
       query.push(this.props.search)
     }
 
     const district = this.props.district
+
+    /**
+    * Creates card for districts with proper highlights
+    */
     return (
       <Link to={`/districts/${district.state}/${district.id}`}>
-        <div className="search-card district-search-card">
+        <div className='search-card district-search-card'>
           <div className='district-grid'>
             <img src={require('../../assets/images/districts/' +
               district.alpha_num + '.png')}
