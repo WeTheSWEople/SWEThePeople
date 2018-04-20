@@ -6,8 +6,8 @@ import {Link} from 'react-router-dom'
 import {RingLoader} from 'react-spinners'
 
 import axios from 'axios'
-import DistrictGrid from './DistrictGrid.jsx'
-import DistrictFilter from './DistrictFilter.jsx'
+import DistrictGrid from './DistrictGrid.js'
+import DistrictFilter from './DistrictFilter.js'
 import url from '../../assets/resource.json'
 
 /**
