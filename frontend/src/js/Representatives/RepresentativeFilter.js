@@ -7,10 +7,17 @@ import {RingLoader} from 'react-spinners'
 import {Row, Col} from 'react-bootstrap'
 /* eslint-disable no-unused-vars */
 
+
+/**
+ * React component for the representative filter
+ */
 import '../../assets/css/Filter.css'
 import 'react-select/dist/react-select.css'
 
 class RepresentativeFilter extends Component {
+  /**
+   * Constructor to initialize state filter variables
+   */
   constructor (props) {
     super(props)
 
@@ -36,6 +43,7 @@ class RepresentativeFilter extends Component {
       all_states: stateArr
     }
 
+    // bind the helper functions
     this.handleStateDropdownChange = this.handleStateDropdownChange.bind(this)
     this.handlePartyDropdownChange = this.handlePartyDropdownChange.bind(this)
     this.handleVoteDropdownChange = this.handleVoteDropdownChange.bind(this)
@@ -46,6 +54,9 @@ class RepresentativeFilter extends Component {
     this.handleResetClicked = this.handleResetClicked.bind(this)
   }
 
+  /**
+   * Set the cookie variables initialized in the constructor
+   */
   componentDidMount () {
     let state = 'None'
     let party = 'None'
@@ -78,36 +89,56 @@ class RepresentativeFilter extends Component {
     this.props.buttonHandler(state, party, votes, lastname, sort)
   }
 
+  /**
+   * Function to handle the change when new state in filter is selected
+   */
   handleStateDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('rep_state_filter', selectedOption)
     this.setState({state_value: selectedOption})
   }
 
+  /**
+   * Function to handle the change when new party in filter is selected
+   */
   handlePartyDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('rep_party_filter', selectedOption)
     this.setState({party_value: selectedOption})
   }
 
+  /**
+   * Function to handle the change when new votes percent in filter is selected
+   */
   handleVoteDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('rep_votes_filter', selectedOption)
     this.setState({vote_value: selectedOption})
   }
 
+  /**
+   * Function to handle the change when new lastname in filter is selected
+   */
   handleLastnameDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('rep_lastname_filter', selectedOption)
     this.setState({lastname_value: selectedOption})
   }
 
+  /**
+   * Function to handle the change when new sort option is selected
+   */
   handleSortDropdownChange (selectedOption) {
     const {cookies} = this.props
     cookies.set('rep_sort_filter', selectedOption)
     this.setState({sort_value: selectedOption})
   }
 
+  /**
+   * Function to handle the change when any of the filter options are 
+   * changed. Modifies the appropriate filter state variables on selection 
+   * change
+   */
   handleFilterClicked (e) {
     let state = 'None'
     if (this.state.state_value !== null) {
@@ -137,6 +168,9 @@ class RepresentativeFilter extends Component {
     this.props.buttonHandler(state, party, votes, lastname, sort)
   }
 
+  /**
+   * Function to handle the change when reset button is click 
+   */
   handleResetClicked (e) {
     this.handleStateDropdownChange(null)
     this.handlePartyDropdownChange(null)
@@ -146,6 +180,11 @@ class RepresentativeFilter extends Component {
     this.props.buttonHandler('None', 'None', 'None', 'A-Z', 'last_asc')
   }
 
+  /**
+   * Renders the filter on top of the representative pages
+   * Filter consists of states, party, votes with party percentage, last
+   * name. Also renders sorting selection. 
+   */
   render () {
     return (
       <div style={{marginLeft: '6%', marginRight: '5%', width: '90%'}}>

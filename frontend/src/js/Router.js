@@ -15,7 +15,9 @@ import Splash from './Splash/Splash'
 import Search from './Search'
 import NotFound from './NotFound'
 
-// Handles frontend routing of pages
+/**
+ * Router for client side routing of the frontend application
+ */
 export default class DefaultRouter extends Component {
   render () {
     return (
