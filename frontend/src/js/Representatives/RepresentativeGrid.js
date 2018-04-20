@@ -12,9 +12,10 @@ import '../../assets/css/FilterGrid.css'
 import axios from 'axios'
 import url from '../../assets/resource.json'
 
-// const URL = 'http://ec2-18-188-158-73.us-east-2.compute.amazonaws.com/' +
-//   'representative/filter?filter='
 
+/**
+ * Helper function to clone given obj. Used for pagination 
+ */
 function clone (obj) {
   if (obj == null || typeof obj !== 'object') return obj
   let copy = obj.constructor()
@@ -34,8 +35,14 @@ Array.prototype.subarray = function (start, end) {
 }
 /* eslint-enable no-extend-native */
 
-// Component for grid of representatives
+/**
+ * React component for the representative grid. Renders the representatives
+ * in a grid format along with pagination.
+ */
 export default class RepresentativeGrid extends Component {
+  /**
+   * Constructor to initialize state variables
+   */
   constructor (props) {
     super(props)
     this.state = {
@@ -50,18 +57,30 @@ export default class RepresentativeGrid extends Component {
     this.handlePageClick = this.handlePageClick.bind(this)
   }
 
+  /**
+   * Set the state variables upon mounting of this component
+   */
   componentWillMount () {
     axios.get(url.api_url + 'party/?party_color=True').then((response) => {
       this.setState({party_colors: response.data})
     })
   }
 
+  /**
+   * Function to handle page click. Resets the state variables. 
+   * Used for pagination
+   */
   handlePageClick (data) {
     this.setState({displayed_reps:
       this.state.all_reps.subarray(data.selected * 24, (data.selected + 1) * 24)
     })
   }
 
+  /**
+   * Makes an http request to our api to get information about representative
+   * and party and set the state varibles accordingly
+   * @param - filterparams: filter parameters
+   */
   getRepData (filterParams) {
     this.setState({all_reps: null})
     // get the current representatives
@@ -90,6 +109,10 @@ export default class RepresentativeGrid extends Component {
     })
   }
 
+  /**
+   * Make a function call to get the data from the api when parent props are
+   * received
+   */
   componentWillReceiveProps (nextProps) {
     if (this.props !== nextProps) {
       this.getRepData({
@@ -102,6 +125,10 @@ export default class RepresentativeGrid extends Component {
     }
   }
 
+  /**
+   * Renders the representative grid and along with pagination.
+   * Renders RepresentativeInstance component for each rep in the data
+   */
   render () {
     if (this.state.all_reps === null || this.state.party_name === null ||
       this.state.party_colors === null) {

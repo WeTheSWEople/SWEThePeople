@@ -1,11 +1,12 @@
+/* eslint-disable valid-jsdoc */
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {RingLoader} from 'react-spinners'
 import {Row, Col} from 'react-bootstrap'
 import PoliticalPartySingleInstance from './PoliticalPartySingleInstance.js'
-/* eslint-enable no-unused-vars */
 import ReactPaginate from 'react-paginate'
+/* eslint-enable no-unused-vars */
 
 import '../../assets/css/App.css'
 import '../../assets/css/District.css'
@@ -31,7 +32,14 @@ Array.prototype.subarray = function (start, end) {
   return newArray.slice(start, end)
 }
 
+/**
+ * The grid that displays all political party instances as they have been
+ * filtered and sorted by the user.
+ */
 export default class PoliticalPartyGrid extends Component {
+  /**
+   * Sets the default state and binds functions to this
+   */
   constructor (props) {
     super(props)
 
@@ -45,6 +53,12 @@ export default class PoliticalPartyGrid extends Component {
     this.getPartyData = this.getPartyData.bind(this)
     this.handlePageClick = this.handlePageClick.bind(this)
   }
+
+  /**
+   * Handles when a page is selected from the pagination to update the displayed
+   * parties to be the ones for the selected page.
+   * @param data  contains the selected page number
+   */
   handlePageClick (data) {
     this.setState({
       displayed_parties: this.state.parties.subarray(data.selected * 12,
@@ -52,10 +66,15 @@ export default class PoliticalPartyGrid extends Component {
     })
   }
 
+  /**
+   * Handles getting the party data from the API using the filters received from
+   * the parent component. Sets the state with the updated parties and
+   * pagination values or sets to -1 if encounters an error while requesting
+   * data from the API.
+   * @param filterParams  the dictionary of filters to send to the API
+   */
   getPartyData (filterParams) {
     this.setState({parties: null})
-    console.log(url.api_url + 'party/filter?filter=' +
-        JSON.stringify(filterParams))
     axios.get(url.api_url + 'party/filter?filter=' +
         JSON.stringify(filterParams)).then((response) => {
       if (response.data.length === 0) {
@@ -78,6 +97,12 @@ export default class PoliticalPartyGrid extends Component {
     })
   }
 
+  /**
+   * Calls getPartyData() to update the political parties being displayed if
+   * this component receives new props that are not the same as the current
+   * props
+   * @param nextProps   the new props to be received
+   */
   componentWillReceiveProps (nextProps) {
     if (this.props !== nextProps) {
       this.getPartyData({
@@ -90,6 +115,10 @@ export default class PoliticalPartyGrid extends Component {
     }
   }
 
+  /**
+   * Renders either the grid of political party cards or error messages if no
+   * political parties were found or there was an error while getting data.
+   */
   render () {
     if (this.state.parties === null) {
       return (

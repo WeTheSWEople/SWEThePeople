@@ -9,7 +9,9 @@ import Navigation from './Navigation/Navigation'
 export default class App extends Component {
   render () {
     return (
+      // Material theme
       <MuiThemeProvider>
+        {/* Navigation and Router structure for all components within app */}
         <div>
           <Navigation />
           <DefaultRouter />

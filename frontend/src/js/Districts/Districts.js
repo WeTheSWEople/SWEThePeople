@@ -1,16 +1,20 @@
+/* eslint-disable camelcase */
+/* eslint-disable valid-jsdoc */
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {RingLoader} from 'react-spinners'
-/* eslint-enable no-unused-vars */
 
 import axios from 'axios'
-import DistrictGrid from './DistrictGrid.jsx'
-import DistrictFilter from './DistrictFilter.jsx'
+import DistrictGrid from './DistrictGrid.js'
+import DistrictFilter from './DistrictFilter.js'
 import url from '../../assets/resource.json'
 
+/**
+* Creates component for District card
+*/
 export default class Districts extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       all_states: null,
@@ -23,13 +27,18 @@ export default class Districts extends Component {
     axios.get(url.api_url + 'state/?state_usps=True').then((response) => {
       this.setState({all_states: response.data})
     }).catch((error) => {
-      this.setState({all_states: null})
+      if (error) {
+        this.setState({all_states: null})
+      }
     })
 
     this.handleFilterClicked = this.handleFilterClicked.bind(this)
   }
 
-  handleFilterClicked(state_value, population_value, median_age_value,
+  /**
+  * Sets filter state based on selected filter values
+  */
+  handleFilterClicked (state_value, population_value, median_age_value,
     sort_value) {
     this.setState({
       state_value: state_value,
@@ -39,6 +48,9 @@ export default class Districts extends Component {
     })
   }
 
+  /**
+  * Creates card for filtered districts
+  */
   render () {
     const styles = {
       center: {
@@ -58,7 +70,7 @@ export default class Districts extends Component {
         </div>
       )
     }
-
+    
     return (
       <div style={{paddingTop: '25px'}}>
         <DistrictFilter

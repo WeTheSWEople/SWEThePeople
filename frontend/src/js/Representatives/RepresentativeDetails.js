@@ -13,9 +13,11 @@ import '../../assets/css/App.css'
 import '../../assets/css/Bills.css'
 import '../../assets/css/Search.css'
 import '../../assets/css/RepresentativeInstance.css'
-
 import url from '../../assets/resource.json'
 
+/**
+ * styles object for the representative details page
+ */
 const styles = {
   hyperlink: {
     textDecoration: 'none',
@@ -49,7 +51,15 @@ const styles = {
   }
 }
 
+/**
+ * React component for representative details page
+ * Renders details such as social media, bills, articles, and photo
+ * of a particular representative along with their information
+ */
 export default class RepresentativeDetails extends Component {
+  /**
+   * Constructor to initialize representative and party data state variables
+   */
   constructor (props) {
     super(props)
     this.state = {
@@ -58,6 +68,13 @@ export default class RepresentativeDetails extends Component {
     }
   }
 
+  /**
+   * Makes an http request to our api to get information about a particular
+   * representative based on the bioguide id. Once the information is
+   * received, the rep data and party name state variables are set. If 
+   * there is an error, state variables are set to -1 to indicate there
+   * was an error getting data.
+   */
   componentWillMount () {
     axios.get(url.api_url +
       `representative/${this.props.match.params.bioguideid}`)
@@ -89,7 +106,12 @@ export default class RepresentativeDetails extends Component {
         }
       })
   }
-
+  /**
+   * Function for rendering the representative details page.
+   * It renders information about representative, social media which consists 
+   * of twitter feed, facebook, youtube along with recent new
+   * articles and recent bills sponsored by the representative
+   */
   render () {
     if (this.state.rep_data === null || this.state.party_name === null) {
       return (
@@ -102,7 +124,6 @@ export default class RepresentativeDetails extends Component {
           <p> Data Not Found </p>
         </div>)
     } else {
-      // Get social media feeds for representative
       let twitter = ''
       if (this.state.rep_data['twitter'] !== null) {
         twitter = <div><Timeline
@@ -164,8 +185,8 @@ export default class RepresentativeDetails extends Component {
           <Row>
             <Col sm={12} md={3}>
               <div style={styles.box} className='shadow rep-height'>
-                <img src={'https://theunitedstates.io/images/congress/225x275/' +
-                  this.state.rep_data.bioguide + '.jpg'}
+                <img src={'https://theunitedstates.io/images/congress/225x275/'
+                  + this.state.rep_data.bioguide + '.jpg'}
                 alt=''
                 style={styles.rep_pic}
                 width={'175px'}
@@ -183,8 +204,10 @@ export default class RepresentativeDetails extends Component {
                     </p>
                     <p> <b>Party: </b>
                       <Link to=
-                        {`/party/${this.state.party_name[this.state.rep_data['party_id']][1]}`}>
-                        {this.state.party_name[this.state.rep_data['party_id']][0]}
+                        {`/party/${this.state.party_name[this.state.rep_data[
+                          'party_id']][1]}`}>
+                        {this.state.party_name[this.state.rep_data
+                          ['party_id']][0]}
                       </Link>
                     </p>
                     <p> <b> State: </b> {this.state.rep_data['state']}</p>

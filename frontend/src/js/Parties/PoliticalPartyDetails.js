@@ -1,10 +1,11 @@
+/* eslint-disable valid-jsdoc */
 /* eslint-disable no-unused-vars */
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {GridList} from 'material-ui/GridList'
 import {Timeline} from 'react-twitter-widgets'
 import RepresentativeInstance from '../Representatives/RepresentativeInstance'
-import DistrictInstance from '../Districts/DistrictInstance.jsx'
+import DistrictInstance from '../Districts/DistrictInstance.js'
 import {RingLoader} from 'react-spinners'
 import axios from 'axios'
 import Slider from 'react-slick'
@@ -18,7 +19,14 @@ import '../../assets/css/PoliticalPartyDetails.css'
 import '../../assets/css/District.css'
 import url from '../../assets/resource.json'
 
+/**
+ * Shows the details for a single political party.
+ */
 export default class PoliticalPartyDetails extends Component {
+  /**
+   * Sets up the initial state and binds methods to this
+   * @param props   the props
+   */
   constructor (props) {
     super(props)
     this.state = {
@@ -39,6 +47,10 @@ export default class PoliticalPartyDetails extends Component {
     this.compareDistrictState = this.compareDistrictState.bind(this)
   }
 
+  /**
+   * When the component has mounted, request the district and party information
+   * from the API and set the state with the information
+   */
   componentDidMount () {
     this.setState({ready: false})
 
@@ -85,15 +97,34 @@ export default class PoliticalPartyDetails extends Component {
     })
   }
 
+  /**
+   * Compares two representatives by their last name
+   * @param lhs   the left representative
+   * @param rhs   the right representative
+   * @return < 0 if lhs comes before rhs, > 0 if lhs comes after rhs, 0 if same
+   */
   compareReps (lhs, rhs) {
     return this.state.reps[lhs].lastname.localeCompare(
       this.state.reps[rhs].lastname)
   }
 
+  /**
+   * Compares two districts by their ID.
+   * @param lhs   the left district
+   * @param rhs   the right district
+   * @return lhs.id - rhs.id
+   */
   compareDistrictID (lhs, rhs) {
     return this.state.districts[lhs].id - this.state.districts[rhs].id
   }
 
+  /**
+   * Compares two districts by their state, preserving their original order if
+   * both districts belong to the same state
+   * @param lhs   the left district
+   * @param rhs   the right district
+   * @return < 0 if lhs comes before rhs, > 0 if lhs comes after rhs, 0 if same
+   */
   compareDistrictState (lhs, rhs) {
     const result = this.state.districts[lhs].state.localeCompare(
       this.state.districts[rhs].state)
@@ -104,6 +135,10 @@ export default class PoliticalPartyDetails extends Component {
     return result
   }
 
+  /**
+   * Renders the political party details or the ring loader if all the
+   * information has not been received from the API yet.
+   */
   render () {
     if (!(this.state.districtFlag && this.state.partyFlag)) {
       return (

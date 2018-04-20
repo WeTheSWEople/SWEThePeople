@@ -9,8 +9,13 @@ import url from '../../assets/resource.json'
 import '../../assets/css/App.css'
 import '../../assets/css/Bills.css'
 
-// Component for Bills in RepresentativeDetails page
+/**
+ * React component to represent bill cards for the representatives
+ */
 export default class RepBills extends Component {
+  /**
+   * Constructor to initialize state variables
+   */
   constructor (props) {
     super(props)
     this.state = {
@@ -20,11 +25,16 @@ export default class RepBills extends Component {
     this.getRandomColor = this.getRandomColor.bind(this)
   }
 
+  /**
+   * Setting articles state to the data recieved from the parent component
+   */
   componentWillMount () {
     this.setState({bills_data: this.props.data})
   }
 
-  // Gets random color for Bill component
+  /**
+   * Function to generate a random color for the bill cards
+   */
   getRandomColor () {
     let letters = '0123456789ABCDEF'
     let color = '#'
@@ -34,6 +44,9 @@ export default class RepBills extends Component {
     return color
   }
 
+  /**
+    * Function to render the bill cards for representatives
+    */
   render () {
     for (let i = 0; i < this.state.bills_data.length; i++) {
       let bill = this.state.bills_data[i]
@@ -44,7 +57,6 @@ export default class RepBills extends Component {
       axios.get(url.api_url + 'representative/' +
         this.state.bills_data[i]['sponsor_id'])
         .then((response) => {
-          // sets bill sponsor to representative's name instead of id
           // eslint-disable-next-line
           this.state.bills_data[i]['sponsor'] =
             response.data['firstname'] + ' ' + response.data['lastname']

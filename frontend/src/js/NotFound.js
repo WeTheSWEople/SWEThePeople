@@ -1,6 +1,7 @@
 import React from 'react';
 import '../assets/css/App.css'
 
+// Basic 404 page for not found pages
 const NotFound = () =>
   <div className='App'>
   	<header className='App-header-white'></header>

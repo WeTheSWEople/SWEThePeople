@@ -14,7 +14,6 @@ import RepresentativeDetails from './src/js/Representatives/RepresentativeDetail
 import RepresentativeInstance from './src/js/Representatives/RepresentativeInstance.js';
 import Representatives from './src/js/Representatives/Representatives.js';
 import StateInstance from './src/js/Districts/StateInstance.js';
-import PoliticalParty from './src/js/Parties/PoliticalParty.js';
 import PoliticalPartyDetails from './src/js/Parties/PoliticalPartyDetails.js';
 import NotFound from './src/js/NotFound.js';
 import DistrictGrid from './src/js/Districts/DistrictGrid.js';
@@ -153,13 +152,6 @@ describe('StateInstance Component', () => {
   })
 })
 
-describe('PoliticalParty Component', () => {
-  const politicalpartyInstance = shallow(<PoliticalParty />)
-
-  it('displays nothing, because ready state is false', () => {
-    expect(politicalpartyInstance.find('div.parties-container').children()).to.have.length(0)
-  })
-})
 
 describe('NotFound Component', () => {
   const notfoundInstance = shallow(<NotFound />)

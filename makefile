@@ -36,13 +36,13 @@ selenium:
 	cd frontend && python2.7 guitests.py
 
 # make frontend - runs frontend tests
-frontend:
+frontend: FORCE
 	cd frontend && npm install
 	cd frontend && npm test
 
 # make backend  - runs backend tests
 # You will need to export environment variables (db credentials) to run backend target - provided in the turn in JSON
-backend:
+backend: FORCE
 	@echo "Make sure to export environment variables"
 	- cd backend && pip2.7 install -r requirements.txt
 	cd backend && python tests.py
@@ -77,4 +77,6 @@ setup:
 	cd frontend && make setup
 	cd backend && make setup
 	npm install -g newman
+
+FORCE: ;
 
