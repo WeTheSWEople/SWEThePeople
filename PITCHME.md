@@ -136,3 +136,4 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 * Why does the team place a YouTube search result video front and center on their grid pages?
 * Why the current design?
 ---
+# [Visualization](http://swethepeople.me/visualization.html)
