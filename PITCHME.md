@@ -116,13 +116,23 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ## Other Critique
 ### What did they do well?
+* Integrated three challenging models
+* Found strong attributes to use for each model
+* Went beyond the specs when they could
 ---
 ## Other Critique
 ### What did we learn from their website?
+* Interesting approach to API design
+* More in-depth filtering options
 ---
 ## Other Critique
 ### What can they do better?
+* Searching based on photo attributes
+* Better details page design
+* Better handling of user errors
 ---
 ## Other Critique
 ### What puzzles us about their website?
+* Why does the team place a YouTube search result video front and center on their grid pages?
+* Why the current design?
 ---
