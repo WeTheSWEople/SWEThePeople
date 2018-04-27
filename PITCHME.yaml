@@ -1,2 +1,3 @@
 logo: frontend/src/assets/images/header.png
 theme : night
+background-size : contain
