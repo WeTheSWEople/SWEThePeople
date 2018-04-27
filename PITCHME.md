@@ -74,8 +74,8 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
   * Bills
 * Census
   * District information
-* WebHose
-  * Articles
+* TheUnitedStates.io
+  * Representative photos
 ---
 ## Demonstration
 [SWEThePeople.me](http://swethepeople.me)
@@ -140,3 +140,6 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 * Why the current design?
 ---
 ## [Visualization](http://swethepeople.me/visualization.html)
+---
+## Tests
+[TravisCI](https://travis-ci.org/WeTheSWEople/SWEThePeople)
