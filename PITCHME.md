@@ -4,7 +4,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ### Raul Camacho
 ##### *Camacho Style Sheets*
-![Raul!](images/raul-adams.jpg)
+![Raul!](images/raul-adams.png)
 
 **Responsibilities:**
 * Frontend design and CSS
@@ -23,7 +23,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ### Palak Hirpara
 ##### *The Decider*
-![Palak!](images/palak-adams.jpg)
+![Palak!](images/palak-adams.png)
 
 **Responsibilities:**
 * Representatives frontend and backend
@@ -33,7 +33,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ### Minwoo Jo
 ##### *MJ*
-![Minwoo!](images/minwoo-adams.jpg)
+![Minwoo!](images/minwoo-adams.png)
 
 **Responsibilities:**
 * District frontend and backend
