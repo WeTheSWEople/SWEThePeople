@@ -19,7 +19,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 * Districts front-end
 * Backend unit tests
 * Deployment
-* Blockchain integration
+* Blockchain integration in the cloud
 ---
 ### Palak Hirpara
 ##### *The Decider*
@@ -48,7 +48,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 * Representatives frontend
 * Districts backend
 * Documentation
-* Opening too many issues
+* Having too many issues
 ---
 ### Michael Tirtowidjojo
 ##### *Mojo Jojo*
@@ -61,6 +61,9 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ## SWEThePeople
 * Present the interplay between Parties, Districts, Representatives
 * Learn more about parties and choices representatives make through the demographics of their districts
+---
+## Tests
+[TravisCI](https://travis-ci.org/WeTheSWEople/SWEThePeople)
 ---
 ## Data Sources
 * ProPublica
@@ -82,10 +85,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
     * Parties
     * Districts
   * Filter, Sort, Pagination
-  * Search
----
-## Tests
-[TravisCI](https://travis-ci.org/WeTheSWEople/SWEThePeople)
+  * Search ("Google-like")
 ---
 ## Self-Critique
 ### What did we do well?
@@ -111,6 +111,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 * How to intuitively present large amounts of data
 * How to properly integrate "old stories" into sprints with new tasks
 * How to most-equitably split up tasks on a large team
+* Gitbook
 ---
 [HikingAdventures.me](http://HikingAdventures.me)
 ---
@@ -136,4 +137,4 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 * Why does the team place a YouTube search result video front and center on their grid pages?
 * Why the current design?
 ---
-# [Visualization](http://swethepeople.me/visualization.html)
+## [Visualization](http://swethepeople.me/visualization.html)
