@@ -33,7 +33,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ### Minwoo Jo
 ##### *MJ*
-![Minwoo!](images/minwoo-adams.png)
+![Minwoo!](images/minwoo-adams.jpg)
 
 **Responsibilities:**
 * District frontend and backend
@@ -52,7 +52,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ### Michael Tirtowidjojo
 ##### *Mojo Jojo*
-![Michael!](images/michael-adams.jpg)
+![Michael!](images/michael-adams.png)
 
 **Responsibilities:**
 * Parties frontend and backend
