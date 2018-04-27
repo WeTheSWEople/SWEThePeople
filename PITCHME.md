@@ -79,7 +79,6 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ## Demonstration
 [SWEThePeople.me](http://swethepeople.me)
-
 * Navigation
   * Navigation bar
   * Inter-model Navigation
@@ -91,53 +90,70 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ## Self-Critique
 ### What did we do well?
+@ul
 * Planned ahead
 * Clearly delineated tasks
 * Communicated effectively via Slack and Github
+@ulend
 ---
 ## Self Critique
 ### What did we learn?
+@ul
 * How to work as a team on a large project
 * Importance of tracking bugs, handling them
 * Benefits of linted code
 * How to utilize new tools
+@ulend
 ---
 ## Self Critique
-### What can we do better?
+#### What can we do better?
+![MERGE!](images/merge.gif)
+@ul
 * Create a consistent code-quality standard before starting the project
 * Creating issues whenever we find a bug
 * Improve story planning and timing
+@ulend
 ---
 ## Self Critique
 ### What puzzles us?
+@ul
 * How to intuitively present large amounts of data
 * How to properly integrate "old stories" into sprints with new tasks
 * How to most-equitably split up tasks on a large team
 * Gitbook
+@ulend
 ---
 [HikingAdventures.me](http://HikingAdventures.me)
 ---
 ## Other Critique
 ### What did they do well?
+@ul
 * Integrated three challenging models
 * Found strong attributes to use for each model
 * Went beyond the specs when they could
+@ulend
 ---
 ## Other Critique
 ### What did we learn from their website?
+@ul
 * Interesting approach to API design
 * More in-depth filtering options
+@ulend
 ---
 ## Other Critique
 ### What can they do better?
+@ul
 * Searching based on photo attributes
 * Better details page design
 * Better handling of user errors
+@ulend
 ---
 ## Other Critique
 ### What puzzles us about their website?
+@ul
 * Why does the team place a YouTube search result video front and center on their grid pages?
 * Why the current design?
+@ulend
 ---
 ## [Visualization](http://swethepeople.me/visualization.html)
 ---
