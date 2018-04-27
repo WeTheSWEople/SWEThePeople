@@ -89,7 +89,8 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
   * Search ("Google-like")
 ---
 ### Self-Critique
-### What did we do well?
+#### What did we do well?
+![Plan!](images/plan.jpg)
 @ul
 * Planned ahead
 * Clearly delineated tasks
@@ -97,7 +98,8 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 @ulend
 ---
 ### Self Critique
-### What did we learn?
+#### What did we learn?
+![Drop!](images/drop.jpg)
 @ul
 * How to work as a team on a large project
 * Importance of tracking bugs, handling them
