@@ -107,9 +107,8 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 @ulend
 ---
 ## Self Critique
-### What can we do better?
-![MERGE!](images/giphy.gif)
-
+#### What can we do better?
+![MERGE!](images/merge.gif)
 @ul
 * Create a consistent code-quality standard before starting the project
 * Creating issues whenever we find a bug
