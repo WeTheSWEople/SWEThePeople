@@ -88,7 +88,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
   * Filter, Sort, Pagination
   * Search ("Google-like")
 ---
-## Self-Critique
+### Self-Critique
 ### What did we do well?
 @ul
 * Planned ahead
@@ -96,7 +96,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 * Communicated effectively via Slack and Github
 @ulend
 ---
-## Self Critique
+### Self Critique
 ### What did we learn?
 @ul
 * How to work as a team on a large project
@@ -105,7 +105,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 * How to utilize new tools
 @ulend
 ---
-## Self Critique
+### Self Critique
 #### What can we do better?
 ![MERGE!](images/merge.gif)
 @ul
@@ -114,7 +114,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 * Improve story planning and timing
 @ulend
 ---
-## Self Critique
+### Self Critique
 #### What puzzles us?
 ![Plan!](images/puzzles.jpg)
 @ul
