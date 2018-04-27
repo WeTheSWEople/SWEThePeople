@@ -4,7 +4,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ### Raul Camacho
 ##### *Camacho Style Sheets*
-
+![Raul!](images/raul-adams.png)
 
 **Responsibilities:**
 * Frontend design and CSS
@@ -13,7 +13,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ### William Han
 ##### *Bill*
-
+![William!](images/william-adams.jpg)
 
 **Responsibilities:**
 * Districts front-end
@@ -23,7 +23,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ### Palak Hirpara
 ##### *The Decider*
-
+![Palak!](images/palak-adams.png)
 
 **Responsibilities:**
 * Representatives frontend and backend
@@ -33,7 +33,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ### Minwoo Jo
 ##### *MJ*
-
+![Minwoo!](images/minwoo-adams.jpg)
 
 **Responsibilities:**
 * District frontend and backend
@@ -42,7 +42,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ### Benjamin Singer
 ##### *Benny*
-
+![Benny!](images/benny-adams.jpg)
 
 **Responsibilities:**
 * Representatives frontend
@@ -52,15 +52,17 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ### Michael Tirtowidjojo
 ##### *Mojo Jojo*
-
+![Michael!](images/michael-adams.png)
 
 **Responsibilities:**
 * Parties frontend and backend
 * Chief of chief naming
 ---
 ## SWEThePeople
+@ul
 * Present the interplay between Parties, Districts, Representatives
 * Learn more about parties and choices representatives make through the demographics of their districts
+@ulend
 ---
 ## Tests
 [TravisCI](https://travis-ci.org/WeTheSWEople/SWEThePeople)
