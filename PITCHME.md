@@ -68,7 +68,6 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 [TravisCI](https://travis-ci.org/WeTheSWEople/SWEThePeople)
 ---
 ## Data Sources
-@ul
 * ProPublica
   * Representative information
 * GovTrack
@@ -77,11 +76,10 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
   * District information
 * WebHose
   * Articles
- @ulend
+
 ---
 ## Demonstration
 [SWEThePeople.me](http://swethepeople.me)
-@ul
 * Navigation
   * Navigation bar
   * Inter-model Navigation
@@ -90,7 +88,6 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
     * Districts
   * Filter, Sort, Pagination
   * Search ("Google-like")
- @ulend
 ---
 ## Self-Critique
 ### What did we do well?
