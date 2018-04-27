@@ -117,12 +117,16 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ## Self Critique
 ### What puzzles us?
-@ul
+![Plan!](images/keys.png)
 * How to intuitively present large amounts of data
++++
 * How to properly integrate "old stories" into sprints with new tasks
++++
+![Plan!](images/plan.png)
 * How to most-equitably split up tasks on a large team
++++
 * Gitbook
-@ulend
+
 ---
 [HikingAdventures.me](http://HikingAdventures.me)
 ---
