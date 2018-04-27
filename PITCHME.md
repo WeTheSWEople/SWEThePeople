@@ -59,8 +59,10 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 * Chief of chief naming
 ---
 ## SWEThePeople
+@ul
 * Present the interplay between Parties, Districts, Representatives
 * Learn more about parties and choices representatives make through the demographics of their districts
+@ulend
 ---
 ## Data Sources
 * ProPublica
