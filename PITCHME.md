@@ -115,8 +115,8 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 @ulend
 ---
 ## Self Critique
-### What puzzles us?
-![Plan!](images/puzzle.jpg)
+#### What puzzles us?
+![Plan!](images/puzzles.jpg)
 @ul
 * How to intuitively present large amounts of data
 * How to properly integrate "old stories" into sprints with new tasks
