@@ -68,6 +68,9 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ## Tests
 [TravisCI](https://travis-ci.org/WeTheSWEople/SWEThePeople)
 ---
+## Selenium Test
+![Selenium!](images/selenium.png)
+---
 ## Data Sources
 * ProPublica
   * Representative information
@@ -164,6 +167,3 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ## Tests
 [TravisCI](https://travis-ci.org/WeTheSWEople/SWEThePeople)
----
-## Selenium Test
-![Selenium!](images/selenium.png)
