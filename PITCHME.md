@@ -1,4 +1,4 @@
-## WeTheSWEople presents:
+## WeTheSWEople present:
 ### SWEThePeople
 Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Tirtowidjojo
 ---
@@ -57,6 +57,7 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 **Responsibilities:**
 * Parties frontend and backend
 * Chief of chief naming
+* Search
 ---
 ## SWEThePeople
 @ul
@@ -163,3 +164,6 @@ Raul Camacho, William Han, Palak Hirpara, Minwoo Jo, Benjamin Singer, Michael Ti
 ---
 ## Tests
 [TravisCI](https://travis-ci.org/WeTheSWEople/SWEThePeople)
+---
+## Selenium Test
+![Selenium!](images/selenium.png)
