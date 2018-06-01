@@ -8,6 +8,22 @@ American political parties, representatives, and congressional districts.
 - Technical report: [https://wethesweople.gitbooks.io/report/](https://wethesweople.gitbooks.io/report/)
 - Python Version: Python2.7
 
+## Walkthrough
+### Splash Page
+![Splash Page](/images/screenshots/splash.png)
+### Representatives
+#### Grid
+![Representatives Grid](/images/screenshots/rep_grid.png)
+#### Details
+![Representatives Details](/images/screenshots/rep_details.png)
+### Parties
+![Parties Grid](/images/screenshots/parties_grid.png)
+### Districts
+#### Grid
+![Districts Grid](/images/screenshots/districts_grid.png)
+#### Details
+![Districts Details](/images/screenshots/districts_details.png)
+
 ## Install Repo Locally
 1. Clone the repository
 ```
@@ -80,7 +96,7 @@ $ python2.7 guitests.py
 ```
 
 ### Backend tests
-In the backend folder, run the test script 
+In the backend folder, run the test script
 (You will need to export environment variables (db credentials) to run this test - provided in the turn in JSON)
 ```
 $ cd backend
