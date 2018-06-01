@@ -1,4 +1,4 @@
-# swethepeople.me ![Build Status](https://travis-ci.org/WeTheSWEople/SWEThePeople.svg?branch=master)
+# swethepeople.me
 
 An IDB project for CS 373: Software Engineering that brings together data on
 American political parties, representatives, and congressional districts.
