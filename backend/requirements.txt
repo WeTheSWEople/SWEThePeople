@@ -14,6 +14,6 @@ requests==2.18.4
 six==1.11.0
 SQLAlchemy==1.2.3
 SQLAlchemy-Utils==0.33.1
-urllib3==1.22
+urllib3==1.26.5
 validators==0.12.1
 Werkzeug==0.14.1
